@@ -1,0 +1,55 @@
+
+.stop-sticky {
+    position: static;
+}
+
+
+
+.milestone {
+    position: relative;
+    width: 100%;
+}
+
+
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+.target {
+    font-kerning: none;
+}
+
+[data-valid] .form-input, [data-valid] .form-textarea, [data-valid] .form-select {
+    border-color: green;
+}
+
+[data-invalid] .form-input, [data-invalid] .form-textarea, [data-invalid] .form-select {
+    border-color: red;
+}
+
+Form.Message {
+    display: none;
+}
+
+[data-invalid] Form.Message {
+    display: block;
+}
+
+
+

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960.005466617202" height="523.5229811285809" id="svgcontent"
+     x="480.002733308601" y="261.76149056429045" viewBox="0 0 750 409">
+    <g >
+
+        <g id="svg_1">
+            <g id="left_bowl">
+                <path fill="none" stroke-width="1.5" stroke-opacity="null" fill-opacity="1.5"
+                      d="M18.88069,240.53957 L98.16459,131.87336 L177.44849,240.53957 L18.88069,240.53957 z" id="svg_51"
+                      stroke="#000"></path>
+                <path fill="#000000" stroke-width="1.5" stroke-opacity="null" fill-opacity="1.5"
+                      d="M177.61731,241.91139 L177.5306,254.24352 L177.5306,254.24352 C177.48271,261.05436 141.88614,266.50179 98.02345,266.41069 C54.16075000000001,266.31958 18.641840000000002,260.72443999999996 18.689729999999997,253.9136 L18.776440000000008,241.58147 L177.61731,241.91139 z"
+                      id="svg_52" stroke="#000"></path>
+            </g>
+            <g id="right_bowl">
+                <path fill="none" stroke-width="1.5" stroke-opacity="null" fill-opacity="1.5"
+                      d="M574.11931,241.54339 L653.40321,132.87718999999998 L732.68711,241.54339 L574.11931,241.54339 z"
+                      id="svg_27" stroke="#000"></path>
+                <path fill="#000000" stroke-width="1.5" stroke-opacity="null" fill-opacity="1.5"
+                      d="M732.85593,242.91521 L732.76922,255.24734 L732.76922,255.24734 C732.72132,262.05818999999997 697.12476,267.50561 653.26207,267.41451 C609.39936,267.3234 573.88045,261.72827 573.92835,254.91742 L574.01506,242.58529 L732.85593,242.91521 z"
+                      id="svg_28" stroke="#000"></path>
+            </g>
+            <path stroke="#000" fill="#25282C" stroke-width="1.5" stroke-opacity="null"
+                  d="M454.83333,352.22175 C454.83333,356.61536 419.53843,360.17709 375.99998,360.17709 M454.83333,352.22175 L454.83333,352.22175 C454.83333,356.61536 419.53843,360.17709 375.99998,360.17709 C332.46154,360.17709 297.16666,356.61537 297.16666,352.22175 M297.16666,352.22175 L297.16666,352.22175 C297.16666,347.82814 332.46154,344.2664 375.99998,344.2664 C419.53843,344.2664 454.83333,347.82814 454.83333,352.22175 L454.83333,384.04314 C454.83333,388.43675 419.53843,391.99847 375.99998,391.99847 C332.46154,391.99847 297.16666,388.43675 297.16666,384.04314 L297.16666,352.22175 z"
+                  id="svg_25"></path>
+            <line fill="none" stroke-width="8" stroke-opacity="null" fill-opacity="1.5" x1="376" y1="128.87323" x2="376"
+                  y2="352.38696" id="svg_7" stroke-linejoin="inherit" stroke-linecap="inherit" stroke="#000"></line>
+            <circle id="leftCircle" fill="black" stroke-width="1.5" stroke="black" r="5" cy="127.8225"
+                    cx="98.88069"></circle>
+            <circle id="rightCircle" fill="black" stroke-width="1.5" stroke="black" r="5" cy="127.8225"
+                    cx="653.11931"></circle>
+            <line fill="none" stroke="#000" stroke-width="8" stroke-opacity="null" fill-opacity="1.5" x1="99.88069"
+                  y1="128.8725" x2="654.11931" y2="127.8225" id="lever" stroke-linejoin="inherit"
+                  stroke-linecap="inherit"></line>
+        </g>
+    </g>
+
+</svg>

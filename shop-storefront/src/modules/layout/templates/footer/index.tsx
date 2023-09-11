@@ -2,7 +2,7 @@ import FooterCTA from "@modules/layout/components/footer-cta"
 import FooterNav from "@modules/layout/components/footer-nav"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
 
-const Footer = () => {
+const FooterSecond = () => {
   return (
     <footer>
       <FooterCTA />
@@ -12,4 +12,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default FooterSecond

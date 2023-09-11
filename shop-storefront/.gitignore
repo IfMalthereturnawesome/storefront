@@ -35,6 +35,9 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env*.local
+.npmrc.local
+.npmrc
 
 # vercel
 .vercel
@@ -42,7 +45,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 node_modules
+next-env.d.ts
 
+# others
 .yarn
 .swc
 dump.rdb
+.contentlayer
+project_structure.tsx
+.storybook

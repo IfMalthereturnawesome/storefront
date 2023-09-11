@@ -1,0 +1,40 @@
+<svg id="test" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080"
+     shape-rendering="geometricPrecision" text-rendering="geometricPrecision" >
+    <g id="test-u-lever" transform="translate(-245.170373 220.968928)">
+        <g id="test-s-g1" transform="translate(-11 9)">
+            <line id="test-u-lever2" x1="-431.87251" y1="2.390438" x2="431.87251" y2="-2.390438"
+                  transform="translate(1090.478088 349.203187)" fill="none" stroke="#3f5787" stroke-width="3"/>
+            <line id="test-u-lever3" x1="-431.87251" y1="2.390438" x2="431.87251" y2="-2.390438"
+                  transform="translate(1090.478088 329.203187)" fill="none" stroke="#3f5787" stroke-width="3"/>
+            <path id="test-s-path1" d="M658.605578,351.593625v-20" fill="none" stroke="#3f5787" stroke-width="3.84"/>
+        </g>
+        <path id="test-s-path2" d="M1523.691565,346.812749l-.827341-20" transform="translate(-9.999999 9)" fill="none"
+              stroke="#3f5787" stroke-width="3.84"/>
+    </g>
+    <path id="test-s-path3"
+          d="M841.2749,600.796813Q941.673307,478.087649,943.220873,478.083026l58.064364,74.74912Q740.876491,723.505975,841.2749,600.796813Z"
+          transform="matrix(-.611526 0.6998-.572311-.500119 1707.797391 333.610039)" fill="none" stroke="#3f5787"
+          stroke-width="3.84"/>
+    <text id="test-u-minimal-weight" dx="0" dy="0" font-family="&quot;test:::Inter&quot;" font-size="100"
+          font-weight="700" transform="matrix(.993813 0.111067-.111067 0.993813 282.885062-184.07485)" fill="#e7ecef"
+          stroke-width="0">
+        <tspan id="test-s-tspan1" y="0" font-weight="700" stroke-width="0"><![CDATA[
+Minimal
+]]></tspan>
+        <tspan id="test-s-tspan2" x="0" y="100" font-weight="700" stroke-width="0"><![CDATA[
+weight 
+]]></tspan>
+    </text>
+    <text id="test-u-maximum" dx="0" dy="0" font-family="&quot;test:::Inter&quot;" font-size="100" font-weight="700"
+          transform="translate(873.832887-134.82281)" fill="#e7ecef" stroke-width="0">
+        <tspan id="test-s-tspan3" y="0" font-weight="700" stroke-width="0"><![CDATA[
+Maximum
+]]></tspan>
+        <tspan id="test-s-tspan4" x="0" y="100" font-weight="700" stroke-width="0"><![CDATA[
+comfort 
+]]></tspan>
+    </text>
+    <script><![CDATA[]]></script>
+
+    <style></style>
+</svg>

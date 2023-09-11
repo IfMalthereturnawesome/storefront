@@ -1,0 +1,11 @@
+:root {
+    --header-height: 80px;
+    --banner-height: 54px;
+}
+
+.prose-slate {
+    --tw-prose-bullets: hsl(var(--slate-12) / 1);
+}
+.section-min-height {
+    min-height: calc(99.5vh - var(--header-height) - var(--banner-height));
+}

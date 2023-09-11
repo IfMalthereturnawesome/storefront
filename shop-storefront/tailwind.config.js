@@ -1,41 +1,245 @@
+/** @type {import('tailwindcss').Config} */
+const { blackA, violet, mauve } = require('@radix-ui/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
-  content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
-    "./src/modules/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      transitionProperty: {
-        "width": "width",
-        "spacing": 'margin, padding',
-      },
-      maxWidth: {
-        "8xl": "100rem",
-      },
+    content: [
+      "./src/app/**/*.{js,ts,jsx,tsx}",
+      "./src/pages/**/*.{js,ts,jsx,tsx}",
+      "./src/components/**/*.{js,ts,jsx,tsx}",
+      "./src/modules/**/*.{js,ts,jsx,tsx}",
+    ],
+    darkMode: 'class',
+    theme: {
       screens: {
-        "2xsmall": "320px",
-        "xsmall": "512px",
-        "small": "1024px",
-        "medium": "1280px",
-        "large": "1440px",
-        "xlarge": "1680px",
-        "2xlarge": "1920px",
+        '3xs': '320px',
+        '2xs': '375px',
+        'xs': '475px',
+        '3xl': '1920px',
+        ...defaultTheme.screens,
       },
-      fontFamily: {
-        sans: [
-          "Inter",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Ubuntu",
-          "sans-serif",
-        ],
+      extend: {
+        drawCard: 'drawCard ',
+        colors: {
+          caction: {
+            50: '#edf9ff',
+            100: '#def4ff',
+            200: '#c4eaff',
+            300: '#a0d9ff',
+            400: '#7ac0ff',
+            500: '#5aa2fa',
+            600: '#3c7fef',
+            700: '#2f6ad3',
+            800: '#2959aa',
+            900: '#294e86',
+            950: '#0c1627',
+            DEFAULT: '#0c1627',
+          },
+          csecondary: {
+            50: '#eefdfb',
+            100: '#d3faf9',
+            200: '#adf4f4',
+            300: '#74ebec',
+            400: '#34d8dc',
+            500: '#18bbc2',
+            600: '#1797a3',
+            700: '#197985',
+            800: '#1d626d',
+            900: '#1d525c',
+            950: '#0c3139',
+            DEFAULT: '#0c3139',
+          },
+          cpink: {
+            50: '#fef2f2',
+            100: '#ffe1e2',
+            200: '#ffc8ca',
+            300: '#ffa8ab',
+            400: '#fd6c71',
+            500: '#f53e44',
+            600: '#e22027',
+            700: '#be171d',
+            800: '#9d171c',
+            900: '#821a1e',
+            950: '#47080a',
+            DEFAULT: '#ffa8ab',
+          },
+          cbg: {
+            50: '#f9f7f7',
+            100: '#f5f1f1',
+            200: '#e9dfdf',
+            300: '#d8c9c9',
+            400: '#c1a8a8',
+            500: '#a98a8a',
+            600: '#917171',
+            700: '#795c5c',
+            800: '#654f4f',
+            900: '#574545',
+            950: '#2d2222',
+            DEFAULT: '#f5f1f1',
+          },
+          cgreen: {
+            50: '#eefce9',
+            100: '#daf8cf',
+            200: '#aaf094',
+            300: '#89e86e',
+            400: '#62d942',
+            500: '#41bf23',
+            600: '#2e9818',
+            700: '#267417',
+            800: '#225c18',
+            900: '#204e19',
+            950: '#0c2b08',
+            DEFAULT: '#aaf094',
+          },
+          gray: {
+            100: '#EBF1F5',
+            200: '#D9E3EA',
+            300: '#C5D2DC',
+            400: '#9BA9B4',
+            500: '#707D86',
+            600: '#55595F',
+            700: '#33363A',
+            800: '#25282C',
+            900: '#151719',
+          },
+          purple: {
+            100: '#F4F4FF',
+            200: '#E2E1FF',
+            300: '#CBCCFF',
+            400: '#ABABFF',
+            500: '#8D8DFF',
+            600: '#5D5DFF',
+            700: '#4B4ACF',
+            800: '#38379C',
+            900: '#262668',
+          },
+          about:{
+            1:  '#FFA8AB',
+            2:  '#AAF094',
+            3:  '#FFBDEA',
+            4:  '#ef233c',
+            5:  '#26532b',
+
+          },
+          mask:{
+            black: '#030203',
+          },
+          custom:{
+            white: '#faf7f7',
+          },
+          ...blackA,
+          ...violet,
+          ...mauve,
+
+        },
+
+        spacing: {
+          '9/16': '56.25%',
+          '3/4': '75%',
+          '1/1': '100%',
+        },
+        fontFamily: {
+          inter: ['var(--font-inter)', 'sans-serif'],
+          'architects-daughter': [
+            'var(--font-architects-daughter)',
+            'sans-serif',
+          ],'poppins': ['var(--font-poppins)', 'sans-serif'],
+
+        },
+        fontSize: {
+          xs: '0.75rem',
+          sm: '0.875rem',
+          base: '1rem',
+          lg: '1.125rem',
+          xl: '1.25rem',
+          '2xl': '1.5rem',
+          '3xl': '2rem',
+          '4xl': '2.5rem',
+          '5xl': '3.25rem',
+          '6xl': '4rem',
+        },
+        inset: {
+          full: '100%',
+        },
+        letterSpacing: {
+          tighter: '-0.02em',
+          tight: '-0.01em',
+          normal: '0',
+          wide: '0.01em',
+          wider: '0.02em',
+          widest: '0.4em',
+        },
+        minWidth: {
+          10: '2.5rem',
+        },
+        scale: {
+          98: '.98',
+        },
+        transitionProperty: {
+          "width": "width",
+          "spacing": 'margin, padding',
+        },
+
+      },
+      keyframes: {
+        slideUpAndFade: {
+          '0%': {opacity: 0, transform: 'translateY(2px)'},
+          '100%': {opacity: 1, transform: 'translateY(0)'},
+        },
+        slideRightAndFade: {
+          '0%': {opacity: 0, transform: 'translateX(-2px)'},
+          '100%': {opacity: 1, transform: 'translateX(0)'},
+        },
+        slideDownAndFade: {
+          '0%': {opacity: 0, transform: 'translateY(-2px)'},
+          '100%': {opacity: 1, transform: 'translateY(0)'},
+        },
+        slideLeftAndFade: {
+          '0%': {opacity: 0, transform: 'translateX(2px)'},
+          '100%': {opacity: 1, transform: 'translateX(0)'},
+        },
+        slideUpEnter: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: 100,
+            transform: "translateY(0px)",
+          },
+        },
+        slideUpLeave: {
+          "0%": {
+            opacity: 100,
+            transform: "translateY(0)",
+          },
+          "100%": {
+            opacity: 0,
+            transform: "translateY(20px)",
+          },
+        },
+      },
+      animation: {
+        slideUpAndFade: 'slideUpAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideDownAndFade: 'slideDownAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideRightAndFade:
+            'slideRightAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideLeftAndFade: 'slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideUpEnter: "slideUpEnter .3s ease-in-out",
+        slideUpLeave: "slideUpLeave .3s ease-in-out",
+
+
       },
     },
-  },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+    require('flowbite/plugin'),
+    require('flowbite-typography'),
+    require('windy-radix-palette'),
+    require('windy-radix-typography'),
+    require('@tailwindcss/container-queries'),
+  ],
+
+};

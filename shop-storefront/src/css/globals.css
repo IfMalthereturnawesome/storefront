@@ -1,0 +1,32 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+/* Additional styles */
+@import 'additional-styles/custom-prose.css';
+@import 'additional-styles/utility-patterns.css';
+@import 'additional-styles/range-slider.css';
+@import 'additional-styles/toggle-switch.css';
+@import 'additional-styles/theme.css';
+@import 'additional-styles/animations.css';
+@import 'additional-styles/scroll-animations.css';
+@import 'additional-styles/other.css';
+@import 'additional-styles/tailwind-classes.css';
+
+
+
+@import 'tailwindcss/utilities';
+
+@layer utilities {
+
+  .rtl {
+    direction: rtl;
+  }
+
+
+}
+
+
+[x-cloak=""] {
+  display: none;
+}

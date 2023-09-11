@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext", "es2015"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,20 +14,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": [
-      "cypress"
-    ],
+    "types": ["cypress"],
+    "sourceMap": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "downlevelIteration": true,
     "baseUrl": "./src",
     "paths": {
-      "@lib/*": [
-        "lib/*"
-      ],
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ]
+      "@lib/*": ["lib/*"],
+      "@modules/*": ["modules/*"],
+      "@pages/*": ["pages/*"],
+      "@/*": ["./*"],
+      "contentlayer/generated": ["../.contentlayer/generated"]
     },
     "plugins": [
       {
@@ -47,7 +41,8 @@
     "cypress/support/commands.js",
     "cypress/integration/product.spec.js",
     "cypress/plugins/index.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": [
     "node_modules",

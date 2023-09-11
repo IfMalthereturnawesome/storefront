@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rotate-720 {
+  transform: rotate(720deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.dark .drawCard{
+  position:relative;
+}
+
+.dark .drawCard::before,
+.dark .drawCard::after {
+  content: '';
+  position: absolute;
+  border: 1px solid transparent;
+  width: 0;
+  height: 0;
+
+  background-color: hsla(190, 84.0%, 46.0%, 0.8) ;
+
+  transition: width 0.55s ease-out, height 0.55s ease-out 0.25s;
+  pointer-events: none;
+}
+
+
+.dark .drawCard::before {
+  top: 0;
+  left: 0;
+
+  height: 1px;
+}
+
+.dark .drawCard::after {
+  bottom: 0;
+  right: 0;
+  width: 1px;
+}
+
+.dark .drawCard:hover::before {
+  width: 100%;
+
+}
+
+
+
+/*Draw blog card*/
+
+.dark .drawBlogCard{
+  position:relative;
+}
+
+.dark .drawBlogCard::before,
+.dark .drawBlogCard::after {
+  content: '';
+  position: absolute;
+  border: 1px solid transparent;
+  width: 0;
+  height: 0;
+  background-color: hsla(190, 90.0%, 54.0%, 0.8) ;
+  transition: width 0.55s ease-out, height 0.55s ease-out 0.25s;
+  pointer-events: none;
+}
+
+
+.dark .drawBlogCard::before {
+  top: 0;
+  left: 0;
+  height: 10px;
+
+}
+
+.dark .drawBlogCard:hover::before {
+  width: 100%;
+
+}
+
+
+/* About us smooth transition */
+
+.smooth-bg-transition {
+  transition: background-color 0.2s ease;
+}
+
+.spacer-smooth-bg-transition {
+  transition: background-color 1s ease;
+}
+
+.smooth-color-transition {
+  transition: color 1.0s ease;
+}
+
+
+.fixed-content {
+  position: fixed;
+  top: 0;
+  width: 99vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+#hero-lightpass {
+  max-width: 100vw;
+  max-height: 50vh;
+  margin-top: 5vh;
+}
+
+.canvas-container {
+  width: 100vw;
+  height: 50vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.webkit-hidden{
+  -webkit-backface-visibility: hidden;
+}
+
+/* Smooth Canvas transition from transparent to not transparent */
+.canvas-transition {
+  transition: background-color 3.5s ease;
+}
+
+
+.scale-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scale {
+  perspective: 1000px;
+}
+
+
+
+.stand {
+  position: absolute;
+  bottom: 0;
+}
+
+
+
+
+
+.whatever{
+  background: var(--amber-a1);
+}
+
+#scaleContainer {
+  position: relative;
+}
+
+#tsparticles canvas{
+  height: 100vh!important;
+}
+
+#tsparticles-custom {
+  margin-top: -64px;
+  height: 63px;
+  width: 142px;
+  background: transparent;
+
+
+}
+
+
+.grain {
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.grain-texture {
+  animation: 2s steps(1) infinite noise;
+}
+.grain-texture {
+  width: 500%;
+  height: 500%;
+  max-width: none;
+
+  background-image: url('/images/grains.png');
+  background-position: 50%;
+  background-size: 256px;
+  flex: none;
+  position: absolute;
+  top: -150%;
+  bottom: 0;
+  left: -150%;
+  right: 0;
+  animation: animateGrains 40s linear infinite;
+}
+
+@keyframes animateGrains {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 10% 5%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}

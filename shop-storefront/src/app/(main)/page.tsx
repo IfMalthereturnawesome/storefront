@@ -1,6 +1,8 @@
-import FeaturedProducts from "@modules/home/components/featured-products"
-import Hero from "@modules/home/components/hero"
+
 import { Metadata } from "next"
+import VideoAnimation from "@/components/sleepMask/VideoAnimation";
+import MinimalWeight from "@/components/sleepMask/MinimalWeight";
+import ThinFeature from "@/components/sleepMask/ThinFeature";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -8,13 +10,18 @@ export const metadata: Metadata = {
     "Shop all available models only at the ACME. Worldwide Shipping. Secure Payment.",
 }
 
-const Home = () => {
-  return (
-    <>
-      <Hero />
-      <FeaturedProducts />
-    </>
-  )
-}
+export default function Home() {
 
-export default Home
+    return (
+        <>
+            <div  className="bg-mask-black">
+                <VideoAnimation/>
+
+                <div className="spacer"></div>
+
+                {/*<ThinFeature/>*/}
+
+            </div>
+        </>
+    )
+}

@@ -1,16 +1,33 @@
-import Footer from "@modules/layout/templates/footer"
-import Nav from "@modules/layout/templates/nav"
+'use client'
+
+import {useEffect} from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Footer from '@/components/ui/Footer';
+import Header from "@/components/ui/Header";
+
 
 export default function PageLayout({
-  children,
-}: {
-  children: React.ReactNode
+                                       children,
+                                   }: {
+    children: React.ReactNode
 }) {
-  return (
-    <>
-      <Nav />
-      {children}
-      <Footer />
-    </>
-  )
+
+    useEffect(() => {
+        AOS.init({
+            once: true,
+            disable: 'phone',
+            duration: 600,
+            easing: 'ease-out-sine',
+        });
+    });
+    return (
+        <>
+            <Header/>
+            <main className="grow bg-cyan-1">
+                {children}
+            </main>
+            <Footer/>
+        </>
+    )
 }
