@@ -95,8 +95,8 @@ export const ThemeToggle = () => {
 
      <svg
         id="theme-toggle-dark-icon"
-        className="hidden h-5 w-5"
-        fill="currentColor"
+        className="hidden h-5 w-5 xl:h-6 xl:w-6 fill-mask-black"
+
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -104,8 +104,8 @@ export const ThemeToggle = () => {
       </svg>
        <svg
         id="theme-toggle-light-icon"
-        className="hidden h-5 w-5"
-        fill="currentColor"
+        className="hidden h-5 w-5 xl:h-6 xl:w-6 fill-custom-white"
+
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >

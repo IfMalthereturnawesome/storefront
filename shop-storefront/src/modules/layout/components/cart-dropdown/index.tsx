@@ -22,18 +22,18 @@ const CartDropdown = () => {
     <div className="h-full z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
-          <div className="relative inline-block">
+          <div className="relative inline-flex pt-1">
             {/* Shopping bag icon */}
             <Link href="/cart">
-              <ShoppingBagIcon className="h-6 w-6 dark:stroke-white" />
+              <ShoppingBagIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white " />
             </Link>
 
             {/* Item count */}
             {totalItems > 0 && (
                 <div
-                    className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-blue-9 rounded-full text-white text-xs h-5 w-5 flex items-center justify-center"
+                    className="absolute top-[3px] right-0  transform translate-x-1/2 -translate-y-1/2 bg-blue-10 dark:bg-[#297DB5] rounded-full text-white  h-5 w-5 flex items-center justify-center"
                 >
-                  <span className={"text-slate-1 dark:text-slate-12 font-bold text-xs"}>{totalItems}</span>
+                  <span className={"text-slate-1 dark:text-slate-12 text-[0.75rem] font-bold "}>{totalItems}</span>
                 </div>
             )}
           </div>

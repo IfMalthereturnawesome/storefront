@@ -10,7 +10,7 @@ export default function Search() {
   return (
     <div className=" mx-4 md:mx-4 flex justify-center items-center">
       <button
-        className="2xs:hidden  md:flex w-full sm:w-[150px] text-[15px] bg-white text-slate-400 inline-flex items-center justify-between leading-5 pl-3 pr-2 py-[7px] rounded border border-slate-200 hover:border-slate-300 shadow-sm whitespace-nowrap dark:text-slate-500 dark:bg-cyan-3 dark:border-slate-700 dark:hover:border-slate-600"
+        className="3xs:hidden  xl:flex w-full sm:w-[150px] text-[15px] bg-white text-slate-400 inline-flex items-center justify-between leading-5 pl-3 pr-2 py-[7px] rounded border border-slate-200 hover:border-slate-300 shadow-sm whitespace-nowrap dark:text-slate-500 dark:bg-cyan-3 dark:border-slate-700 dark:hover:border-slate-600"
         onClick={(e) => {
           e.stopPropagation()
           setSearchModalOpen(true)
@@ -36,7 +36,7 @@ export default function Search() {
         </div>
       </button>
         <button
-            className=" sm:flex md:hidden"
+            className=" 3xs:flex xl:hidden"
             onClick={(e) => {
                 e.stopPropagation()
                 setSearchModalOpen(true)
@@ -45,9 +45,9 @@ export default function Search() {
         >
             <div className="flex items-center justify-center">
                 <svg
-                    className="w-4 h-4 fill-slate-12 mr-3 shrink-0 dark:fill-slate-400"
-                    width="16"
-                    height="16"
+                    className="h-5 w-5 xl:h-6 xl:w-6 fill-mask-black dark:fill-custom-white "
+                    width="20"
+                    height="20"
                     viewBox="0 0 16 16"
                     xmlns="http://www.w3.org/2000/svg"
                 >

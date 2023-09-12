@@ -59,7 +59,7 @@ export default async function SingleResource({
         {/* Main area */}
         <div className="min-w-0">
           {/* Mobile hamburger + breadcrumbs */}
-          <div className="mb-8 flex items-center md:hidden">
+          <div className="mb-8 flex items-center 2xl:hidden">
             <Hamburger />
 
             {/* Breadcrumbs */}

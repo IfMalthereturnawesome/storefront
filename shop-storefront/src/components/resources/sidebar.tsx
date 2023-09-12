@@ -74,7 +74,7 @@ export default function SupportSidebar() {
           unmount={false}
           as="aside"
           id="sidebar"
-          className=" prose  prose-slate fixed left-0 top-[calc(80px+54px)] z-10 h-screen  w-64 border-r border-slate-200 bg-cyan-1 prose-a:no-underline prose-ul:list-none dark:border-slate-800  2xl:left-auto 2xl:!block 2xl:shrink-0 2xl:!opacity-100 "
+          className=" prose  prose-slate fixed left-[2px] lg:top-[100px] top-[68px] 2xs:top-[72px] z-10 h-screen overflow-y-auto   w-64 border-r border-slate-200 bg-cyan-1 prose-a:no-underline prose-ul:list-none dark:border-slate-800  2xl:left-auto 2xl:!block 2xl:shrink-0 2xl:!opacity-100 "
           enter="transition ease-out duration-200 transform"
           enterFrom="opacity-0 -translate-x-full"
           enterTo="opacity-100 translate-x-0"
@@ -88,10 +88,10 @@ export default function SupportSidebar() {
             aria-hidden="true"
           ></div>
 
-          <div className=" no-scrollbar bottom-0 top-0 w-64 overflow-y-auto px-4 sm:px-6 md:pl-0 md:pr-8">
-            <div className="pb-8 pt-12 md:pt-16">
+          <div className=" 2xl:no-scrollbar bottom-0 top-0 w-64 mb-20  px-4 sm:px-6 md:pl-0 md:pr-8">
+            <div className=" py-0 2xl:pb-8 2xl:pt-12 2xl:md:pt-16">
               {/* Docs nav */}
-              <nav className="md:block">
+              <nav className="">
                 <ul className=" text-sm  ">
                   {/* 1st level */}
                   <SidebarLinkGroup

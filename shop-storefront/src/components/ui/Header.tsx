@@ -132,14 +132,14 @@ export default function Header() {
                         </Popover.Group>
                     </div>
 
-                    <div className="hidden 2xs:flex lg:w-1/4 justify-center items-center pr-2">
+                    <div className=" flex lg:w-1/4 justify-center items-center pr-2">
                         <ThemeToggle/>
                         <Search/>
 
                         <div className="hidden lg:flex items-center gap-x-6 h-full">
                             {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal/>}
                             <Link href="/account">
-                                <UserIcon className="h-5 w-5 dark:stroke-white" aria-hidden="true"/>
+                                <UserIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white "  aria-hidden="true"/>
                             </Link>
                         </div>
                         <CartDropdown/>
