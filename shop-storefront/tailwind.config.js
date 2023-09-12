@@ -17,6 +17,13 @@ module.exports = {
         'xs': '475px',
         '3xl': '1920px',
         ...defaultTheme.screens,
+        '2xsmall': '320px',
+        'xsmall': '512px',
+        'small': '1024px',
+        'medium': '1280px',
+        'large': '1440px',
+        'xlarge': '1680px',
+        '2xlarge': '1920px',
       },
       extend: {
         drawCard: 'drawCard ',
@@ -171,6 +178,9 @@ module.exports = {
         },
         minWidth: {
           10: '2.5rem',
+        },
+        maxWidth: {
+          '8xl': '100rem',
         },
         scale: {
           98: '.98',

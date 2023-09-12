@@ -9,7 +9,6 @@ import PageNavigation from '@/components/resources/page-navigation';
 
 import SecondaryNav from '@/components/resources/secondary-nav';
 import SocialShare from '@/components/post-components/SocialShare';
-import classNames from 'classnames';
 
 export async function generateStaticParams() {
   return allResources.map(resource => ({

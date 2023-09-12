@@ -50,7 +50,7 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
 
     <section className="relative bg-cyan-1">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="pb-12 pt-16 md:pb-20 md:pt-20">
+        <div className="pb-12 pt-5 md:pb-20 md:pt-20">
           <div className="mx-auto max-w-3xl">
             <div className="pb-12">
               <Breadcrumb postTitle={post.title} />

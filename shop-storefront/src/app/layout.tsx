@@ -43,7 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable} bg-gray-900 border-2 border-amberA-12 font-inter tracking-tight  antialiased`}
         >
-        {/*<BreakpointsIndicator />*/}
+        <BreakpointsIndicator />
         <Providers>
             <div className="flex min-h-screen flex-col overflow-hidden bg-cyan-1">
 

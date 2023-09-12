@@ -34,7 +34,7 @@ export function BlogNavMobile() {
           <Disclosure.Button
             className={classNames(
               open ? 'dark:text-cgreen-200' : 'text-black',
-              'flex w-full items-center justify-between rounded-lg py-2  pl-3 pr-3.5 font-semibold leading-7 text-black transition duration-150  dark:text-white  hover:dark:text-cgreen',
+              'flex w-full items-center justify-between rounded-lg pt-2 pb-4  pl-3 pr-3.5 text-xl font-bold leading-7 text-black transition duration-150  dark:text-white  hover:dark:text-cgreen',
             )}
             aria-hidden="true"
           >
@@ -62,7 +62,7 @@ export function BlogNavMobile() {
                 {item.title}
               </Disclosure.Button>
             ))}
-            <div className="mt-2 text-base">
+            <div className="mt-2 pb-4 text-base">
               <Link
                 href="/blog"
                 className="py-2 pl-6 pr-3 font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500"

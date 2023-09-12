@@ -9,6 +9,7 @@ import gsap from 'gsap';
 import Footer from "@/components/ui/Footer";
 import Highlighter, {HighlighterItem} from "@/components/highlighter/highlighter";
 import FeatureImg01 from '../../public/images/eight-athletics-sleep-resources-blog.png';
+import Header from "@/components/ui/Header";
 
 
 export default function NotFound() {
@@ -20,6 +21,7 @@ export default function NotFound() {
 
     return (
         <>
+            <Header/>
 
             <section className="relative bg-cyan-1 section-min-height">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">

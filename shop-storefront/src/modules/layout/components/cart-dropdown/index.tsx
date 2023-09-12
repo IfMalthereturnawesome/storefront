@@ -7,6 +7,7 @@ import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import Trash from "@modules/common/icons/trash"
 import Thumbnail from "@modules/products/components/thumbnail"
+import {ShoppingBagIcon} from '@heroicons/react/24/outline';
 import { formatAmount, useCart } from "medusa-react"
 import Link from "next/link"
 import { Fragment } from "react"
@@ -18,10 +19,24 @@ const CartDropdown = () => {
   const { state, open, close } = useCartDropdown()
 
   return (
-    <div className="h-full z-50" onMouseEnter={open} onMouseLeave={close}>
+    <div className="h-full z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
-          <Link href="/cart">{`My Bag (${totalItems})`}</Link>
+          <div className="relative inline-block">
+            {/* Shopping bag icon */}
+            <Link href="/cart">
+              <ShoppingBagIcon className="h-6 w-6 dark:stroke-white" />
+            </Link>
+
+            {/* Item count */}
+            {totalItems > 0 && (
+                <div
+                    className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-blue-9 rounded-full text-white text-xs h-5 w-5 flex items-center justify-center"
+                >
+                  <span className={"text-slate-1 dark:text-slate-12 font-bold text-xs"}>{totalItems}</span>
+                </div>
+            )}
+          </div>
         </Popover.Button>
         <Transition
           show={state}
