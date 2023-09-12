@@ -39,13 +39,13 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <html lang="en" className="dark">
+        <html lang="en" className="dark border-2 border-amberA-12 ">
         <body
-            className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable} bg-gray-900 border-2 border-amberA-12 font-inter tracking-tight  antialiased`}
+            className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable} bg-gray-900  font-inter tracking-tight  antialiased`}
         >
         <BreakpointsIndicator />
         <Providers>
-            <div className="flex min-h-screen flex-col overflow-hidden bg-cyan-1">
+            <div className="flex min-h-screen flex-col overflow-hidden bg-cyan-1 pt-[72px] lg:pt-[104px]">
 
                 {children}
             </div>

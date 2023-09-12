@@ -13,6 +13,8 @@ export default function Contact() {
   return (
     <>
 
+
+
       <ContactForm />
         <FAQPage />
       <ContactDetails />

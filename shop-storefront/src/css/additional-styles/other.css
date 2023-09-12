@@ -53,3 +53,20 @@ Form.Message {
 
 
 
+.headerVisible {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+
+    transition: top 0.3s ease-in;
+}
+
+.headerHidden {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    right: 0;
+    transition: top 0.3s ease-out;
+}

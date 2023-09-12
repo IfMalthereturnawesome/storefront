@@ -3,6 +3,7 @@ import {allTerms} from 'contentlayer/generated' // change to your actual import 
 import PostDate from '@/components/post-date'
 import Link from 'next/link'
 import NeoButton from "@/components/elements/NeoButton";
+import Container from '@/components/elements/Container';
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
@@ -13,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function TermsIndex() {
     return (
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-16">
+         <Container>
             <h1 className="text-center mb-16 custom-header-1">Terms and Policies</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -33,6 +34,6 @@ export default function TermsIndex() {
                     </div>
                 ))}
             </div>
-        </div>
+         </Container>
     )
 }

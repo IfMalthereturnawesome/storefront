@@ -6,9 +6,9 @@ import TopicTitle from '@/components/resources/topic-title';
 import Hamburger from '@/components/resources/hamburger';
 import Feedback from '@/components/resources/feedback';
 import PageNavigation from '@/components/resources/page-navigation';
-
 import SecondaryNav from '@/components/resources/secondary-nav';
 import SocialShare from '@/components/post-components/SocialShare';
+import Container from '@/components/elements/Container';
 
 export async function generateStaticParams() {
   return allResources.map(resource => ({
@@ -49,6 +49,7 @@ export default async function SingleResource({
 
   return (
     <>
+      <Container>
       {/* Page header */}
       <div className="mb-6 flex h-16 items-center">
         <TopicTitle name={resource.topic.name} segment={resource.topic.slug} />
@@ -120,6 +121,7 @@ export default async function SingleResource({
         {/* Secondary navigation */}
         <SecondaryNav />
       </article>
+      </Container>
     </>
   );
 }

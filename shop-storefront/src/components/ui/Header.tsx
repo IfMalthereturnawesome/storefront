@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import {ThemeToggle} from '../darkMode/ThemeToggle';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {Popover} from '@headlessui/react';
 import ResourceNav from './ResourceNav';
 import SupportNav from './SupportNav';
@@ -22,13 +22,47 @@ import TopNav from "@/components/ui/TopNav";
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollPosition, setLastScrollPosition] = useState(0);
+    const [topNavBanner, setTopNavBanner] = useState(false);
+
+
+    const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollPosition = window.scrollY;
+            const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
+
+            if (currentScrollPosition < 100) { // near top of the page
+                setTopNavBanner(true);
+            } else {
+                setTopNavBanner(false);
+            }
+
+            if (scrollDifference >= scrollThreshold) {
+                if (currentScrollPosition < lastScrollPosition) {
+                    setIsVisible(true);
+                } else {
+                    setIsVisible(false);
+                }
+                setLastScrollPosition(currentScrollPosition);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollPosition]);
+
 
     return (
         <>
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
 
-            <header id="header_1" className="z-30 bg-cyan-1">
-                <TopNav/>
+            <header id="header_1" className={`z-30 bg-cyan-1 mx-[2px]  ${isVisible ? 'headerVisible' : 'headerHidden'}`}>
+                {topNavBanner && <TopNav />}
+
 
                 {/*  NAVIGATION DESKTOP */}
                 <nav

@@ -3,6 +3,7 @@ import { allTerms } from 'contentlayer/generated' // change to your actual impor
 import { notFound } from 'next/navigation'
 import PostDate from '@/components/post-date'
 import { TermsMdx } from '@/components/mdx/terms-mdx'
+import Container from "@/components/elements/Container"
 
 
 export async function generateStaticParams() {
@@ -36,8 +37,7 @@ export default async function SingleTerm({ params }: {
     if (!term) notFound()
 
     return (
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 ">
-            <div className="pt-16 sm:pt-[2rem] sm:pb-12 pb-16  md:pt-[8rem] md:pb-[8rem]">
+        <Container>
                 <div className="flex flex-col md:flex-row">
 
                     <main className="md:flex-auto md:pl-10 order-1" data-aos="fade-up">
@@ -49,7 +49,6 @@ export default async function SingleTerm({ params }: {
                     </main>
 
                 </div>
-            </div>
-        </div>
+        </Container>
     )
 }

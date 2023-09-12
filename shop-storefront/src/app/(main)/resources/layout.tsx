@@ -27,7 +27,7 @@ export default function ResourcesLayout({children}: ResourcesLayoutProps) {
 
                   {/* Page container */}
                   <div className="2xl:grow 2xl:pl-64 2xl:pr-0 ">
-                    <div className=" pb-8 pt-5 xl:pl-6 xl:pt-28 2xl:pl-12">
+                    <div className="xl:pl-6 2xl:pl-12">
                       {children}
                     </div>
                   </div>

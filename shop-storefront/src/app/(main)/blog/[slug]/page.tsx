@@ -9,7 +9,7 @@ import {PostMdx} from '@/components/mdx/post-mdx';
 import Breadcrumb from '@/components/elements/Breadcrumb';
 import RelatedPosts from '@/components/post-components/RelatedPosts';
 import SocialShare from '@/components/post-components/SocialShare';
-
+import Container from '@/components/elements/Container';
 
 export async function generateStaticParams() {
   return allPosts.map(post => ({
@@ -48,18 +48,31 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
 
   return (
 
-    <section className="relative bg-cyan-1">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="pb-12 pt-5 md:pb-20 md:pt-20">
+
+     <Container>
           <div className="mx-auto max-w-3xl">
-            <div className="pb-12">
+            <div className="lg:hidden">
               <Breadcrumb postTitle={post.title} />
+            </div>
+            <div className="hidden lg:flex pb-6 lg:pb-8 ">
+              <Breadcrumb postTitle={post.title} />
+            </div>
+            <div className={"flex lg:hidden py-5"}>
+              {post.tags && (
+                  <div
+                      className=" flex justify-center md:mt-0"
+                      data-aos="fade-up"
+                      data-aos-delay="600"
+                  >
+                    <PostTags tags={post.tags} />
+                  </div>
+              )}
             </div>
 
 
               <header className="mb-8">
                 {/* Title and excerpt */}
-                <div className="text-center md:text-left">
+                <div className="text-left md:text-left">
                   <h1
                     className="custom-header-1 format format-blue mb-6 dark:format-invert"
                     data-aos="fade-up"
@@ -101,6 +114,7 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
                     </div>
                   </div>
                   {/* Article tags */}
+                  <div className={"hidden lg:flex "}>
                   {post.tags && (
                     <div
                       className="mt-4 flex justify-center md:mt-0"
@@ -110,8 +124,9 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
                       <PostTags tags={post.tags} />
                     </div>
                   )}
+                  </div>
                   {/* Article Social Share */}
-                  <div data-aos="fade-up" data-aos-delay="600">
+                  <div  data-aos="fade-up" data-aos-delay="600">
                     <SocialShare url={post.slug} title={post.title} />
                   </div>
                 </div>
@@ -141,16 +156,13 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
               <PostMdx code={post.body.code} />
               </div>
           </div>
-        </div>
-
           <div className="mt-5 lg:mt-20 pb-14">
             <h3 className="format py-10 text-xl font-bold dark:format-invert md:text-3xl">
               Related Posts
             </h3>
             <RelatedPosts relatedPosts={relatedPosts} />
           </div>
-      </div>
-    </section>
+     </Container>
 
   );
 }

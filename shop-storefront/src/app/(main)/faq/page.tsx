@@ -4,7 +4,7 @@ import {allHelp} from 'contentlayer/generated'
 import PostDate from '@/components/post-date'
 import Link from 'next/link'
 import NeoButton from "@/components/elements/NeoButton";
-
+import Container from '@/components/elements/Container';
 
 export const metadata = {
     title: 'Contact us - Open PRO',
@@ -13,7 +13,9 @@ export const metadata = {
 
 const FAQPage: React.FC = () => {
     return (
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 ">
+
+        <Container>
+
             <h1 className="text-center mb-16 custom-header-1">Frequently Asked Questions</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -33,7 +35,7 @@ const FAQPage: React.FC = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </Container>
     )
 }
 
