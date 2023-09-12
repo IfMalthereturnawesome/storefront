@@ -11,6 +11,8 @@ import SpinnerButton from '@/components/elements/SpinnerButton';
 import Filter, {sortOptions} from '@/components/elements/Filter';
 import FeatureImg01 from '/public/images/eight-athletics-sleep-resources-blog.png';
 import TopNavBanner from '@/components/ui/NavBanner';
+import {Button} from '@nextui-org/button';
+
 
 // export const metadata = {
 //   title: 'Blog - Open PRO',
@@ -243,7 +245,7 @@ export default function Blog() {
                               </p>
                             </div>
                           </div>
-                          <div>
+                          <Button>
                             <Link
                               className="btn-sm group relative  btn-sm group text-slate-12 custom-button-neo"
                               href={"/resources"}
@@ -255,7 +257,7 @@ export default function Blog() {
                                 </span>
                               </span>
                             </Link>
-                          </div>
+                          </Button>
                         </div>
                         {/* Image */}
                         <div className="relative h-64 w-full overflow-hidden md:h-auto">

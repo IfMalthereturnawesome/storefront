@@ -1,3 +1,5 @@
+import {nextui} from "@nextui-org/react";
+
 /** @type {import('tailwindcss').Config} */
 const { blackA, violet, mauve } = require('@radix-ui/colors');
 const defaultTheme = require('tailwindcss/defaultTheme');
@@ -8,6 +10,7 @@ module.exports = {
       "./src/pages/**/*.{js,ts,jsx,tsx}",
       "./src/components/**/*.{js,ts,jsx,tsx}",
       "./src/modules/**/*.{js,ts,jsx,tsx}",
+      "/node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
     ],
     darkMode: 'class',
     theme: {
@@ -247,6 +250,7 @@ module.exports = {
 
   },
   plugins: [
+    nextui(),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
@@ -271,7 +275,7 @@ module.exports = {
         'xs': [-2 * 1, 1.6],   // -1.34
         'sm': [-1 * 1, 1.6],   // -0.75
         'md': [-0.5, 1.6],        // 0
-        'base': [0, 1.6],
+        'base': [0, 1.8],
         'lg': [1 * 0.75, 1.6],    // 0.75
         'xl': [2 * 0.75, 1.6],    // 1.34
         '2xl': [3 * 0.75, 1.2],   // 2.01

@@ -6,6 +6,7 @@ import FeatureImg02 from "/public/images/sleep-science-resource.png";
 import FeatureImg03 from "/public/images/sleep-athletics-resource.png";
 import React from "react";
 import Container from '@/components/elements/Container';
+import {Button} from '@nextui-org/button';
 
 export const metadata = {
     title: 'Contact us - Open PRO',
@@ -118,7 +119,7 @@ export default function Resources() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <Button>
                                                 <Link
                                                     className="w-full md:w-auto btn-sm group relative text-slate-12 custom-button-neo"
                                                     href={`/resources/${title.toLowerCase().replace(/ /g, "-")}/overview`}
@@ -130,7 +131,8 @@ export default function Resources() {
                           -&gt;
                         </span>
                       </span> </Link>
-                                            </div>
+                                            </Button>
+
                                         </div>
                                         {/* Image */}
                                         <div

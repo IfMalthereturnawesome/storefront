@@ -80,7 +80,7 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
                     {post.title}
                   </h1>
                   <p
-                    className="format format-blue text-xl dark:format-invert lg:format-lg"
+                    className="format format-blue text-lg dark:format-invert lg:format-lg"
                     data-aos="fade-up"
                     data-aos-delay="200"
                   >

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import {Button} from '@nextui-org/button';
 
 interface LinkButtonProps {
     href: string;
@@ -12,9 +13,10 @@ const NeoButton: React.FC<LinkButtonProps> = ({ href, className, children }) => 
 
     return (
         <Link href={href} passHref>
-            <div className={`${defaultClasses} ${className ? className : ''}`}>
+
+            <Button className={`${defaultClasses} ${className ? className : ''}`}>
                 {children}
-            </div>
+            </Button>
         </Link>
     );
 }

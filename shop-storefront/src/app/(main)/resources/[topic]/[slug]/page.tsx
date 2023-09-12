@@ -87,7 +87,7 @@ export default async function SingleResource({
               <h1 className="h2 mb-4 text-slate-800 dark:text-slate-200">
                 {resource.title}
               </h1>
-              <p className="text-xl text-slate-11">
+              <p className="text-lg text-slate-11">
                 {resource.summary}
               </p>
             </header>
