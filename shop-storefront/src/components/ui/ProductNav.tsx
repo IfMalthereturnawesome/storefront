@@ -42,8 +42,8 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
                       className={classNames(
                           open
                               ? 'text-blue-600 dark:text-cgreen-200'
-                              : 'text-black dark:text-gray-300',
-                          'text-md flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 hover:text-indigo-500 focus:outline-none dark:hover:text-cgreen-200',
+                              : 'text-mask-black dark:text-custom-white',
+                          'text-base flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 hover:text-indigo-500 focus:outline-none dark:hover:text-cgreen-200',
                       )}
                       onClick={() => handleClick(open)}
                   >
@@ -87,7 +87,7 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
                         {products.map(item => (
                             <div
                                 key={item.name}
-                                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 "
+                                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-md leading-6 "
                             >
                               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg ">
                                 <item.icon
@@ -174,7 +174,7 @@ export function ProductNavMobile() {
                 key={item.name}
                 as="a"
                 href={item.href}
-                className="flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-slate-12 transition duration-150 hover:text-indigo-10"
+                className="flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 transition duration-150 hover:text-indigo-10"
               >
                 <item.icon
                   className="h-5 w-5 flex-none text-gray-400 dark:text-white "

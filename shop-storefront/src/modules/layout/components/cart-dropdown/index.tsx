@@ -33,7 +33,7 @@ const CartDropdown = () => {
                 <div
                     className="absolute top-[3px] right-0  transform translate-x-1/2 -translate-y-1/2 bg-blue-10 dark:bg-[#297DB5] rounded-full text-white  h-5 w-5 flex items-center justify-center"
                 >
-                  <span className={"text-slate-1 dark:text-slate-12 text-[0.75rem] font-bold "}>{totalItems}</span>
+                  <span className={"text-slate-1 dark:text-slate-12 text-xs font-bold "}>{totalItems}</span>
                 </div>
             )}
           </div>

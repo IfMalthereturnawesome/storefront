@@ -88,7 +88,7 @@ export default function Resources() {
 
             {/* Cards */}
             <div
-                className="relative py-6 sm:px-12 md:px-0 md:py-12 lg:max-w-7xl 2xl:max-w-full 2xl:px-0 lg:px-12 text-left">
+                className="relative pt-6 pb-12 sm:px-12 md:px-0 md:py-12 lg:max-w-7xl 2xl:max-w-full 2xl:px-0 lg:px-12 text-left">
                 {/* Grid */}
                 <div className="grid gap-6 md:gap-10 md:grid-cols-12">
                     {/* Looping through the boxes */}
@@ -120,7 +120,7 @@ export default function Resources() {
                                             </div>
                                             <div>
                                                 <Link
-                                                    className="w-full md:w-auto btn-sm group relative text-slate-12 transition duration-150 ease-in-out bg-cyan-1 dark:bg-cyan-2 border-black focus:border-sky-7 focus:outline-sky-9 hover:bg-black dark:hover:bg-cyan-3 dark:hover:border-cyan-10 hover:text-slate-1 dark:hover:text-slate-12 group-hover:bg-black dark:group-hover:bg-cyan-3 group-hover:border-cyan-10 group-hover:text-slate-1 dark:group-hover:text-slate-12"
+                                                    className="w-full md:w-auto btn-sm group relative text-slate-12 custom-button-neo"
                                                     href={`/resources/${title.toLowerCase().replace(/ /g, "-")}/overview`}
                                                 >
 <span className="relative inline-flex items-center justify-center md:justify-start">

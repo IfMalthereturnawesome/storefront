@@ -242,6 +242,10 @@ module.exports = {
 
       },
     },
+  corePlugins: {
+    fontSize: false,
+
+  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
@@ -251,6 +255,36 @@ module.exports = {
     require('windy-radix-palette'),
     require('windy-radix-typography'),
     require('@tailwindcss/container-queries'),
+    require('tailwindcss-fluid-spacing'),
+    require('tailwindcss-fluid-type')({
+      settings: {
+        fontSizeMin: 1.125 * 0.85, // 0.75375
+        fontSizeMax: 1.25 * 0.85,  // 0.8375
+        ratioMin: 1.125,
+        ratioMax: 1.2,
+        screenMin: 20,
+        screenMax: 96,
+        unit: 'rem',
+        prefix: ''
+      },
+      values: {
+        'xs': [-2 * 1, 1.6],   // -1.34
+        'sm': [-1 * 1, 1.6],   // -0.75
+        'md': [-0.5, 1.6],        // 0
+        'base': [0, 1.6],
+        'lg': [1 * 0.75, 1.6],    // 0.75
+        'xl': [2 * 0.75, 1.6],    // 1.34
+        '2xl': [3 * 0.75, 1.2],   // 2.01
+        '3xl': [4 * 0.75, 1.2],   // 2.68
+        '4xl': [5 * 0.75, 1.1],   // 3.35
+        '5xl': [6 * 0.75, 1.1],   // 4.02
+        '6xl': [7 * 0.75, 1.1],   // 4.69
+        '7xl': [8 * 0.75, 1],     // 5.36
+        '8xl': [9 * 0.75, 1],     // 6.03
+        '9xl': [10 * 0.75, 1],    // 6.7
+      },
+    }),
+
   ],
 
 };

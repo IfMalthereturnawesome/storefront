@@ -47,7 +47,7 @@ export default function PostItem({...props}) {
                     </Link>
                   </h3>
                 </header>
-                <p className="grow px-4 text-base text-gray-800 dark:text-gray-400">
+                <p className="grow px-4 text-md text-gray-800 dark:text-gray-400">
                   {props.summary}
                 </p>
                 <footer className="my-4 flex items-center px-4 md:mb-4">

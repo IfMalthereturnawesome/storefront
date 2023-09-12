@@ -10180,12 +10180,17 @@
   "resolved" "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-1.14.0.tgz"
   "version" "1.14.0"
 
+"tailwindcss-fluid-spacing@^0.4.0":
+  "integrity" "sha512-ktvokYjL6d+J7f6TB5wC9Xybwnj6dtCPLiRF+N/YfSluj6y2JE1+hfg0/YCHqaBk7YK+fay7r9gx9EUQY2UPbg=="
+  "resolved" "https://registry.npmjs.org/tailwindcss-fluid-spacing/-/tailwindcss-fluid-spacing-0.4.0.tgz"
+  "version" "0.4.0"
+
 "tailwindcss-fluid-type@^2.0.3":
   "integrity" "sha512-PE1yz2R+wMyB9updGxU3Ru/NzN2ZelRzEbkdR1F4Q3jlmma8MGnEfKG2Qkpzbmo49QYLUD/cFIUF23MmC6OMTA=="
   "resolved" "https://registry.npmjs.org/tailwindcss-fluid-type/-/tailwindcss-fluid-type-2.0.3.tgz"
   "version" "2.0.3"
 
-"tailwindcss@^3", "tailwindcss@^3.3.3", "tailwindcss@>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1", "tailwindcss@>=3.0.0", "tailwindcss@>=3.0.0 || >= 3.0.0-alpha.1", "tailwindcss@>=3.0.0 || insiders", "tailwindcss@>=3.2.0":
+"tailwindcss@^3", "tailwindcss@^3.3.3", "tailwindcss@>=2.0.0", "tailwindcss@>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1", "tailwindcss@>=3.0.0", "tailwindcss@>=3.0.0 || >= 3.0.0-alpha.1", "tailwindcss@>=3.0.0 || insiders", "tailwindcss@>=3.2.0":
   "integrity" "sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.3.3.tgz"
   "version" "3.3.3"

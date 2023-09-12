@@ -40,10 +40,10 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
               <Popover.Button
                 ref={buttonRef}
                 className={classNames(
-                  open
-                    ? 'text-blue-600 dark:text-cgreen-200'
-                    : 'text-black dark:text-gray-300',
-                  'text-md flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 hover:text-indigo-500 focus:outline-none dark:hover:text-cgreen-200',
+                    open
+                        ? 'text-blue-600 dark:text-cgreen-200'
+                        : 'text-mask-black dark:text-custom-white',
+                    'text-base flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 hover:text-indigo-500 focus:outline-none dark:hover:text-cgreen-200',
                 )}
                 onClick={() => handleClick(open)}
               >
@@ -74,7 +74,7 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
                     {supportItems.map(item => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center  gap-x-6 rounded-lg p-4 text-sm leading-6 "
+                        className="group relative flex items-center  gap-x-6 rounded-lg p-4 text-md leading-6 "
                       >
                         <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg ">
                           <item.icon
@@ -151,7 +151,7 @@ export function SupportNavMobile() {
                 as="a"
                 href={item.href}
                 className={classNames(
-                  'flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 transition duration-150',
+                  'flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 transition duration-150',
                   'text-slate-12 hover:text-indigo-10',
                   {
                     'hover:text-indigo-500 dark:hover:text-cgreen': !open,

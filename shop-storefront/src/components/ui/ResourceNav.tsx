@@ -6,7 +6,7 @@ import {useDropdownHoverMenu} from '@/utils/hooks/DropdownHoverHooks';
 import PostDate from '@/components/post-date';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
 
-function classNames(...classes: string[]) {
+function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ');
 }
 
@@ -41,8 +41,8 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                             className={classNames(
                                 open
                                     ? 'text-blue-600 dark:text-cgreen-200'
-                                    : 'text-black dark:text-gray-300',
-                                'text-md flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 hover:text-indigo-500 focus:outline-none dark:hover:text-cgreen-200',
+                                    : 'text-mask-black dark:text-custom-white',
+                                'text-base flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 hover:text-indigo-500 focus:outline-none dark:hover:text-cgreen-200',
                             )}
                             onClick={() => handleClick(open)}
                         >
@@ -74,7 +74,7 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                                         {resources.map(item => (
                                             <div
                                                 key={item.name}
-                                                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 "
+                                                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-md leading-6 "
                                             >
                                                 <div
                                                     className="flex h-11 w-11 flex-none items-center justify-center rounded-lg">
@@ -116,7 +116,7 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                                         </div>
                                         <ul role="list" className="mt-4 space-y-4">
                                             {newestPosts.map(post => (
-                                                <li key={post._id} className="py-2 text-base">
+                                                <li key={post._id} className="py-2 text-sm">
                                                     <Link
                                                         href={`/blog/${post.slug}`}
                                                         className="flex flex-col items-start text-sm font-medium text-gray-900 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-100 dark:hover:text-indigo-500"
@@ -125,7 +125,7 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                               <PostDate dateString={post.publishedAt}/>
                             </span>
                                                         <span
-                                                            className="text-md text-black hover:text-indigo-500 dark:text-white dark:hover:text-indigo-500">
+                                                            className="text-sm text-black hover:text-indigo-500 dark:text-white dark:hover:text-indigo-500">
                               {post.title}
                             </span>
                                                     </Link>
@@ -170,10 +170,17 @@ export function ResourceNavMobile() {
                                 key={item.name}
                                 as="a"
                                 href={item.href}
-                                className="flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150 "
+                                className="flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150 "
                             >
                                 <item.icon
-                                    className="h-5 w-5 flex-none text-gray-400"
+                                    className={classNames(
+                                        'h-5 w-5 flex-none transition duration-150',
+                                        'text-gray-400',
+                                        {
+                                            'group-hover:text-indigo-500 dark:text-indigo-400': !open,
+                                        },
+                                        {'dark:text-cgreen-50': open},
+                                    )}
                                     aria-hidden="true"
                                 />
                                 {item.name}

@@ -75,4 +75,8 @@
   input:focus ~ label {
     @apply left-0;
   }
+
+  .custom-button-neo{
+    @apply transition duration-150 ease-in-out hover:text-slate-1 border-2 dark:border border-black rounded-[0.3rem] border-solid duration-200 cursor-pointer focus:border-sky-7 focus:outline-sky-9 hover:bg-black dark:bg-cyan-2 dark:hover:bg-cyan-3 dark:hover:border-cyan-10 dark:hover:text-slate-12 dark:group-hover:bg-cyan-3 dark:group-hover:text-slate-12 group-hover:bg-black dark:group-hover:border-cyan-10 group-hover:border-black group-hover:text-slate-1
+  }
 }

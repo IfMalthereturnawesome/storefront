@@ -9,7 +9,7 @@ import {
     ClipboardDocumentListIcon,
 } from '@heroicons/react/24/outline';
 
-import SleepResourcs from '../../public/images/eight-athletics-sleep-resources.svg';
+import SleepResources from '../../public/images/eight-athletics-sleep-resources.svg';
 import SleepEssentialsSVG from '../../public/images/eight-athletics-sleep-essentials_resource.svg';
 import SleepScienceSVG from '../../public/images/eight-athletics-sleep-science_resource.svg';
 import SleepAthleticsSVG from '../../public/images/eight-athletics-sleep-athletics_resource.svg';
@@ -27,7 +27,7 @@ const SleepScienceIcon = () => <Image src={SleepScienceSVG} width={28} height={2
                                       alt={"Eight Athletics' Sleep Science Resource"}/>
 const SleepAthleticsIcon = () => <Image src={SleepAthleticsSVG} width={28} height={28} className="my-0 mr-3 shrink-0"
                                         alt={"Eight Athletics' Sleep Athletics Resource"}/>
-const SleepResourcesIcon = () => <Image src={SleepResourcs} width={22} height={22} className="my-0 mr-3 shrink-0"
+const SleepResourcesIcon = () => <Image src={SleepResources} width={28} height={26} className="my-0 mr-3 shrink-0"
                                         alt={"Eight Athletics' Sleep Resources"}/>
 
 const posts = allPosts;
