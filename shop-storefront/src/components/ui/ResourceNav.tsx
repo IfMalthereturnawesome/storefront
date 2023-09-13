@@ -5,6 +5,7 @@ import {resources, newestPosts} from '@/utils/reuseableData';
 import {useDropdownHoverMenu} from '@/utils/hooks/DropdownHoverHooks';
 import PostDate from '@/components/post-date';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
+import {Button} from '@nextui-org/button';
 
 function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ');
@@ -142,6 +143,80 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
         </Popover.Group>
     );
 }
+
+export function ResourceNavPop() {
+
+    return (
+
+                                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                                    <div className="p-4 group-hover:bg-black dark:group-hover:bg-gray-800">
+                                        {resources.map(item => (
+                                            <div
+                                                key={item.name}
+                                                className="group relative flex items-center gap-x-6 rounded-lg p-4 text-md leading-6 "
+                                            >
+                                                <div
+                                                    className="flex h-11 w-11 flex-none items-center justify-center rounded-lg">
+                                                    <item.icon
+                                                        className="h-6 w-6 text-gray-600 group-hover:text-blue-600 dark:text-cgreen-50 group-hover:dark:text-cgreen-200"
+                                                        aria-hidden="true"
+                                                    />
+                                                </div>
+                                                <div className="flex-auto">
+                                                    <Link
+                                                        href={item.href}
+                                                        className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
+                                                    >
+                                                        {item.name}
+                                                        <span className="absolute inset-0"/>
+                                                    </Link>
+                                                    <p className="mt-1 text-slate-11 ">
+                                                        {item.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="bg-gold-2 dark:bg-amberA-1 px-8 py-4 sm:px-8 sm:py-4">
+                                        <div className="flex items-center justify-between">
+                                            <h3 className="text-base font-medium text-black dark:text-gray-100">
+                                                Recent Posts
+                                            </h3>
+                                            <div className="text-sm">
+                                                <Link
+                                                    href="/blog"
+                                                    className="font-medium hover:text-indigo-500 transition duration-150 ease-in-out text-blue-600 dark:text-indigo-500 dark:hover:text-blue-600"
+                                                >
+                                                    View all posts
+                                                    <span aria-hidden="true"> &rarr;</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <ul role="list" className="mt-4 space-y-4">
+                                            {newestPosts.map(post => (
+                                                <li key={post._id} className="py-2 text-sm">
+                                                    <Link
+                                                        href={`/blog/${post.slug}`}
+                                                        className="flex flex-col items-start text-sm font-medium text-gray-900 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-100 dark:hover:text-indigo-500"
+                                                    >
+                            <span className="mb-1 text-xs text-gray-500 dark:text-gray-400">
+                              <PostDate dateString={post.publishedAt}/>
+                            </span>
+                                                        <span
+                                                            className="text-sm text-black hover:text-indigo-500 dark:text-white dark:hover:text-indigo-500">
+                              {post.title}
+                            </span>
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+
+    );
+}
+
 
 export function ResourceNavMobile() {
     return (

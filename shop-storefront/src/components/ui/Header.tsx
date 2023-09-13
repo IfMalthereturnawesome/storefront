@@ -17,6 +17,7 @@ import Search from '../resources/search';
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal";
 import CartDropdown from "@modules/layout/components/cart-dropdown";
 import TopNav from "@/components/ui/TopNav";
+import NavigationMenuDemo from "@/components/ui/navigation-menu";
 
 
 export default function Header() {
@@ -59,6 +60,8 @@ export default function Header() {
     return (
         <>
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
+
+
 
             <header id="header_1" className={`z-30 bg-cyan-1 mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden'}`}>
                 {topNavBanner && <TopNav />}
@@ -118,9 +121,7 @@ export default function Header() {
 
                     <div className="hidden lg:flex lg:w-1/2 justify-center">
                         <Popover.Group className="hidden lg:flex lg:gap-x-6">
-                            <ProductNav activeSubMenu={activeSubMenu} setActiveSubMenu={setActiveSubMenu} />
-                            <ResourceNav activeSubMenu={activeSubMenu} setActiveSubMenu={setActiveSubMenu} />
-                            <SupportNav activeSubMenu={activeSubMenu} setActiveSubMenu={setActiveSubMenu} />
+                            <NavigationMenuDemo />
                         </Popover.Group>
                     </div>
 

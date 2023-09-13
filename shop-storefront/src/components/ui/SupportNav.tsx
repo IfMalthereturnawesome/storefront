@@ -4,6 +4,7 @@ import {Fragment} from 'react';
 import {Disclosure, Popover, Transition} from '@headlessui/react';
 import {useDropdownHoverMenu} from '@/utils/hooks/DropdownHoverHooks';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
+import {Button} from '@nextui-org/button';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -99,6 +100,7 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
                   </div>
                   <div className="grid grid-cols-2 divide-x divide-gray-900/5 dark:divide-gold-5 bg-gold-2 dark:bg-gold-2">
                     {supportCTA.map(item => (
+                        <Button>
                         <Link
                             key={item.name}
                             href={item.href}
@@ -110,6 +112,7 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
                           />
                           {item.name}
                         </Link>
+                        </Button>
 
                     ))}
                   </div>
@@ -122,6 +125,62 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
     </>
   );
 }
+
+export function SupportNavPop() {
+
+  return (
+      <>
+
+                      <div className="p-4">
+                        {supportItems.map(item => (
+                            <div
+                                key={item.name}
+                                className="group relative flex items-center  gap-x-6 rounded-lg p-4 text-md leading-6 "
+                            >
+                              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg ">
+                                <item.icon
+                                    className="h-6 w-6 text-gray-600 group-hover:text-blue-600 dark:text-cgreen-50 group-hover:dark:text-cgreen-200"
+                                    aria-hidden="true"
+                                />
+                              </div>
+                              <div className="flex-auto">
+                                <Link
+                                    href={item.href}
+                                    className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
+                                >
+                                  {item.name}
+                                  <span className="absolute inset-0 " />
+                                </Link>
+                                <p className="mt-1 text-slate-11">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </div>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-2 divide-x divide-gray-900/5 dark:divide-gold-5 bg-gold-2 dark:bg-gold-2">
+                        {supportCTA.map(item => (
+                            <Button>
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
+                                >
+                                    <item.icon
+                                        className="h-5 w-5 flex-none text-slate-11 group-hover:text-blue-600  group-hover:dark:text-cgreen-200"
+                                        aria-hidden="true"
+                                    />
+                                    {item.name}
+                                </Link>
+                            </Button>
+
+                        ))}
+                      </div>
+
+      </>
+  );
+}
+
 
 export function SupportNavMobile() {
   return (

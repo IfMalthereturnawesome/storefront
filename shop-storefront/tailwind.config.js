@@ -1,4 +1,5 @@
 import {nextui} from "@nextui-org/react";
+import plugin from 'tailwindcss';
 
 /** @type {import('tailwindcss').Config} */
 const { blackA, violet, mauve } = require('@radix-ui/colors');
@@ -232,6 +233,38 @@ module.exports = {
             transform: "translateY(20px)",
           },
         },
+        enterFromRight: {
+          from: { opacity: 0, transform: 'translateX(200px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
+        },
+        enterFromLeft: {
+          from: { opacity: 0, transform: 'translateX(-200px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
+        },
+        exitToRight: {
+          from: { opacity: 1, transform: 'translateX(0)' },
+          to: { opacity: 0, transform: 'translateX(200px)' },
+        },
+        exitToLeft: {
+          from: { opacity: 1, transform: 'translateX(0)' },
+          to: { opacity: 0, transform: 'translateX(-200px)' },
+        },
+        scaleIn: {
+          from: { opacity: 0, transform: 'rotateX(-10deg) scale(0.9)' },
+          to: { opacity: 1, transform: 'rotateX(0deg) scale(1)' },
+        },
+        scaleOut: {
+          from: { opacity: 1, transform: 'rotateX(0deg) scale(1)' },
+          to: { opacity: 0, transform: 'rotateX(-10deg) scale(0.95)' },
+        },
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
       },
       animation: {
         slideUpAndFade: 'slideUpAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
@@ -241,15 +274,27 @@ module.exports = {
         slideLeftAndFade: 'slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
         slideUpEnter: "slideUpEnter .3s ease-in-out",
         slideUpLeave: "slideUpLeave .3s ease-in-out",
+        scaleIn: 'scaleIn 200ms ease',
+        scaleOut: 'scaleOut 200ms ease',
+        fadeIn: 'fadeIn 200ms ease',
+        fadeOut: 'fadeOut 200ms ease',
+        enterFromLeft: 'enterFromLeft 350ms ease-in-out',
+        enterFromRight: 'enterFromRight 350ms ease-in-out',
+        exitToLeft: 'exitToLeft 350ms ease-in-out',
+        exitToRight: 'exitToRight 350ms ease-in-out',
 
 
       },
     },
-  corePlugins: {
-    fontSize: false,
 
-  },
   plugins: [
+    plugin(({ matchUtilities }) => {
+      matchUtilities({
+        perspective: (value) => ({
+          perspective: value,
+        }),
+      });
+    }),
     nextui(),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
