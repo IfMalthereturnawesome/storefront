@@ -6,7 +6,7 @@ import  {ProductNavPop} from "@/components/ui/ProductNav";
 import {ResourceNavPop} from "@/components/ui/ResourceNav";
 import {SupportNavPop} from "@/components/ui/SupportNav";
 
-const NavigationMenuDemo = () => {
+const NavigationMenuDropdowns = () => {
     return (
         <NavigationMenu.Root className="relative z-[1] flex w-screen justify-center">
             <NavigationMenu.List className="center  m-0 flex list-none  p-1 ">
@@ -24,7 +24,7 @@ const NavigationMenuDemo = () => {
                         />
                     </NavigationMenu.Trigger>
 
-                    <NavigationMenu.Content className="z-10 mb-0 w-screen absolute top-0 left-0 w-full  max-w-md overflow-hidden rounded-3xl bg-cyan-1 shadow-lg ring-1 ring-gray-900/5 dark:text-white border-black border-2
+                    <NavigationMenu.Content className="z-10 mb-0 w-screen absolute top-0 left-0 w-full  max-w-lg overflow-hidden rounded-3xl bg-cyan-1 shadow-lg ring-1 ring-gray-900/5 dark:text-white border-black border-2
                     data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromLeft data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToLeft">
                         <ProductNavPop  />
                     </NavigationMenu.Content>
@@ -44,7 +44,7 @@ const NavigationMenuDemo = () => {
                         />
                     </NavigationMenu.Trigger>
 
-                    <NavigationMenu.Content className="z-10 mb-0 w-screen  absolute top-0 left-0 w-full max-w-md overflow-hidden rounded-3xl bg-cyan-1 shadow-lg ring-1 ring-gray-900/5 dark:text-white border-black border-2
+                    <NavigationMenu.Content className="z-10 mb-0 w-screen  absolute top-0 left-0 w-full max-w-lg overflow-hidden rounded-3xl bg-cyan-1 shadow-lg ring-1 ring-gray-900/5 dark:text-white border-black border-2
                     data-[motion=from-start]:animate-fadeIn data-[motion=from-end]:animate-fadeIn data-[motion=to-start]:animate-fadeOut data-[motion=to-end]:animate-fadeOut">
                         <ResourceNavPop  />
                     </NavigationMenu.Content>
@@ -64,7 +64,7 @@ const NavigationMenuDemo = () => {
                         />
                     </NavigationMenu.Trigger>
 
-                    <NavigationMenu.Content className="z-10 mb-0 w-screen absolute top-0 left-0 w-full max-w-md overflow-hidden rounded-3xl bg-cyan-1 shadow-lg ring-1 ring-gray-900/5 dark:text-white border-black border-2
+                    <NavigationMenu.Content className="z-10 mb-0 w-screen absolute top-0 left-0 w-full max-w-lg overflow-hidden rounded-3xl bg-cyan-1 shadow-lg ring-1 ring-gray-900/5 dark:text-white border-black border-2
                     data-[motion=from-start]:animate-enterFromRight data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToRight data-[motion=to-end]:animate-exitToRight">
                         <SupportNavPop  />
                     </NavigationMenu.Content>
@@ -84,4 +84,4 @@ const NavigationMenuDemo = () => {
 };
 
 
-export default NavigationMenuDemo;
+export default NavigationMenuDropdowns;

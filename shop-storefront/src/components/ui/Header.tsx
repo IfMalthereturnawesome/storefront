@@ -17,7 +17,7 @@ import Search from '../resources/search';
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal";
 import CartDropdown from "@modules/layout/components/cart-dropdown";
 import TopNav from "@/components/ui/TopNav";
-import NavigationMenuDemo from "@/components/ui/navigation-menu";
+import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
 
 
 export default function Header() {
@@ -121,7 +121,7 @@ export default function Header() {
 
                     <div className="hidden lg:flex lg:w-1/2 justify-center">
                         <Popover.Group className="hidden lg:flex lg:gap-x-6">
-                            <NavigationMenuDemo />
+                            <NavigationMenuDropdowns />
                         </Popover.Group>
                     </div>
 
