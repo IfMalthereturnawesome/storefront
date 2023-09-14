@@ -10,6 +10,10 @@ import {
   b2b,
 } from '@/utils/reuseableData';
 
+import CountryMenu from "@modules/mobile-menu/components/country-menu";
+import CountrySelect from "@modules/layout/components/country-select";
+
+
 
 export default function Footer() {
   return (
@@ -79,6 +83,7 @@ export default function Footer() {
                   ))}
                 </ul>
               </div>
+              <CountrySelect />
 
               {/* 3rd block */}
               <div className="text-base font-semibold">

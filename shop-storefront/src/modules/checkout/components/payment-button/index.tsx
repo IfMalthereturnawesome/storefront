@@ -45,13 +45,13 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
   switch (paymentSession?.provider_id) {
     case "stripe":
       return (
-        <StripePaymentButton session={paymentSession} notReady={notReady} />
+          <StripePaymentButton session={paymentSession} notReady={notReady} />
       )
     case "manual":
       return <ManualTestPaymentButton notReady={notReady} />
     case "paypal":
       return (
-        <PayPalPaymentButton notReady={notReady} session={paymentSession} />
+          <PayPalPaymentButton notReady={notReady} session={paymentSession} />
       )
     default:
       return <Button disabled>Select a payment method</Button>
@@ -59,16 +59,16 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
 }
 
 const StripePaymentButton = ({
-  session,
-  notReady,
-}: {
+                               session,
+                               notReady,
+                             }: {
   session: PaymentSession
   notReady: boolean
 }) => {
   const [disabled, setDisabled] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
+      undefined
   )
 
   const { cart } = useCart()
@@ -95,128 +95,128 @@ const StripePaymentButton = ({
     }
 
     await stripe
-      .confirmCardPayment(session.data.client_secret as string, {
-        payment_method: {
-          card: card,
-          billing_details: {
-            name:
-              cart.billing_address.first_name +
-              " " +
-              cart.billing_address.last_name,
-            address: {
-              city: cart.billing_address.city ?? undefined,
-              country: cart.billing_address.country_code ?? undefined,
-              line1: cart.billing_address.address_1 ?? undefined,
-              line2: cart.billing_address.address_2 ?? undefined,
-              postal_code: cart.billing_address.postal_code ?? undefined,
-              state: cart.billing_address.province ?? undefined,
+        .confirmCardPayment(session.data.client_secret as string, {
+          payment_method: {
+            card: card,
+            billing_details: {
+              name:
+                  cart.billing_address.first_name +
+                  " " +
+                  cart.billing_address.last_name,
+              address: {
+                city: cart.billing_address.city ?? undefined,
+                country: cart.billing_address.country_code ?? undefined,
+                line1: cart.billing_address.address_1 ?? undefined,
+                line2: cart.billing_address.address_2 ?? undefined,
+                postal_code: cart.billing_address.postal_code ?? undefined,
+                state: cart.billing_address.province ?? undefined,
+              },
+              email: cart.email,
+              phone: cart.billing_address.phone ?? undefined,
             },
-            email: cart.email,
-            phone: cart.billing_address.phone ?? undefined,
           },
-        },
-      })
-      .then(({ error, paymentIntent }) => {
-        if (error) {
-          const pi = error.payment_intent
+        })
+        .then(({ error, paymentIntent }) => {
+          if (error) {
+            const pi = error.payment_intent
 
-          if (
-            (pi && pi.status === "requires_capture") ||
-            (pi && pi.status === "succeeded")
-          ) {
-            onPaymentCompleted()
+            if (
+                (pi && pi.status === "requires_capture") ||
+                (pi && pi.status === "succeeded")
+            ) {
+              onPaymentCompleted()
+            }
+
+            setErrorMessage(error.message)
+            return
           }
 
-          setErrorMessage(error.message)
+          if (
+              (paymentIntent && paymentIntent.status === "requires_capture") ||
+              paymentIntent.status === "succeeded"
+          ) {
+            return onPaymentCompleted()
+          }
+
           return
-        }
-
-        if (
-          (paymentIntent && paymentIntent.status === "requires_capture") ||
-          paymentIntent.status === "succeeded"
-        ) {
-          return onPaymentCompleted()
-        }
-
-        return
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
+        })
+        .finally(() => {
+          setSubmitting(false)
+        })
   }
 
   return (
-    <>
-      <Button
-        disabled={submitting || disabled || notReady}
-        onClick={handlePayment}
-      >
-        {submitting ? <Spinner /> : "Checkout"}
-      </Button>
-      {errorMessage && (
-        <div className="text-red-500 text-small-regular mt-2">
-          {errorMessage}
-        </div>
-      )}
-    </>
+      <>
+        <Button
+            disabled={submitting || disabled || notReady}
+            onClick={handlePayment}
+        >
+          {submitting ? <Spinner /> : "Checkout"}
+        </Button>
+        {errorMessage && (
+            <div className="text-red-500 text-small-regular mt-2">
+              {errorMessage}
+            </div>
+        )}
+      </>
   )
 }
 
 const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""
 
 const PayPalPaymentButton = ({
-  session,
-  notReady,
-}: {
+                               session,
+                               notReady,
+                             }: {
   session: PaymentSession
   notReady: boolean
 }) => {
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
+      undefined
   )
 
   const { cart } = useCart()
   const { onPaymentCompleted } = useCheckout()
 
   const handlePayment = async (
-    _data: OnApproveData,
-    actions: OnApproveActions
+      _data: OnApproveData,
+      actions: OnApproveActions
   ) => {
     actions?.order
-      ?.authorize()
-      .then((authorization) => {
-        if (authorization.status !== "COMPLETED") {
-          setErrorMessage(`An error occurred, status: ${authorization.status}`)
-          return
-        }
-        onPaymentCompleted()
-      })
-      .catch(() => {
-        setErrorMessage(`An unknown error occurred, please try again.`)
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
+        ?.authorize()
+        .then((authorization) => {
+          if (authorization.status !== "COMPLETED") {
+            setErrorMessage(`An error occurred, status: ${authorization.status}`)
+            return
+          }
+          onPaymentCompleted()
+        })
+        .catch(() => {
+          setErrorMessage(`An unknown error occurred, please try again.`)
+        })
+        .finally(() => {
+          setSubmitting(false)
+        })
   }
   return (
-    <PayPalScriptProvider
-      options={{
-        "client-id": PAYPAL_CLIENT_ID,
-        currency: cart?.region.currency_code.toUpperCase(),
-        intent: "authorize",
-      }}
-    >
-      {errorMessage && (
-        <span className="text-rose-500 mt-4">{errorMessage}</span>
-      )}
-      <PayPalButtons
-        style={{ layout: "horizontal" }}
-        createOrder={async () => session.data.id as string}
-        onApprove={handlePayment}
-        disabled={notReady || submitting}
-      />
-    </PayPalScriptProvider>
+      <PayPalScriptProvider
+          options={{
+            "client-id": PAYPAL_CLIENT_ID,
+            currency: cart?.region.currency_code.toUpperCase(),
+            intent: "authorize",
+          }}
+      >
+        {errorMessage && (
+            <span className="text-rose-500 mt-4">{errorMessage}</span>
+        )}
+        <PayPalButtons
+            style={{ layout: "horizontal" }}
+            createOrder={async () => session.data.id as string}
+            onApprove={handlePayment}
+            disabled={notReady || submitting}
+        />
+      </PayPalScriptProvider>
   )
 }
 
@@ -234,9 +234,9 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   }
 
   return (
-    <Button disabled={submitting || notReady} onClick={handlePayment}>
-      {submitting ? <Spinner /> : "Checkout"}
-    </Button>
+      <Button disabled={submitting || notReady} onClick={handlePayment}>
+        {submitting ? <Spinner /> : "Checkout"}
+      </Button>
   )
 }
 
