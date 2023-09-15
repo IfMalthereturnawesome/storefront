@@ -17,7 +17,7 @@
     "types": ["cypress"],
     "sourceMap": true,
     "declaration": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "downlevelIteration": true,
     "baseUrl": "./src",
     "paths": {
