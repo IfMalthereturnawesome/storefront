@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {RefObject, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {PauseIcon} from "@radix-ui/react-icons";
 import {PlayIcon} from '@heroicons/react/20/solid';
@@ -207,7 +207,7 @@ const VideoAnimation: React.FC = () => {
 
 
         // ACHIEVE YOUR DREAMS - HEADER
-        const showHeaderAnimation = () => {
+    const useShowHeaderAnimation = (showHeaderText: boolean, headerRef: RefObject<HTMLDivElement>) => {
             useEffect(() => {
                 if (headerRef.current) {
                     const splitText = new SplitType(headerRef.current, {types: 'words, chars'});
@@ -271,7 +271,7 @@ const VideoAnimation: React.FC = () => {
                 }
 
 
-            }, [showHeaderText])
+            }, [showHeaderText, headerRef]);
         };
 
 
@@ -386,7 +386,7 @@ const VideoAnimation: React.FC = () => {
 
         }, []);
 
-    showHeaderAnimation();
+    useShowHeaderAnimation(showHeaderText, headerRef);
     const smoothAppear = () => {
 
         gsap.to(videoContainerRef.current, {

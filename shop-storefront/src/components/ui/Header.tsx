@@ -25,7 +25,7 @@ export default function Header() {
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollPosition, setLastScrollPosition] = useState(0);
-    const [topNavBanner, setTopNavBanner] = useState(false);
+    const [topNavBanner, setTopNavBanner] = useState(true);
 
 
     const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
