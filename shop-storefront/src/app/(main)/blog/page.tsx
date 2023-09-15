@@ -68,7 +68,7 @@ export default function Blog() {
                 className="custom-header-1 format format-blue mb-4 dark:format-invert"
                 data-aos="fade-up"
               >
-                Eight Athletics' Blog & News
+                Eight Athletics&apos; Blog &amp; News
               </h1>
             </div>
 
@@ -120,7 +120,7 @@ export default function Blog() {
                   </p>
                   <footer className="mt-4 flex items-center">
                     <Link href="#">
-                      <img
+                      <Image
                         className="mr-4 shrink-0 rounded-full"
                         src={featuredPost.authorImg}
                         width={40}
@@ -239,8 +239,8 @@ export default function Blog() {
                               <p className="text-slate-11 ">
                                 With science-backed advice and practical tips to
                                 enhance your sleep quality, our comprehensive
-                                guides will help you catch those elusive Z's.
-                                Don't let poor sleep hold you back - discover
+                                guides will help you catch those elusive Z&apos;s.
+                                Don&apos;t let poor sleep hold you back - discover
                                 the secrets to better sleep today!
                               </p>
                             </div>

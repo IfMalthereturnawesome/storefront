@@ -16,8 +16,8 @@ const FAQPage: React.FC = () => {
             <h1 className="text-center mb-vw-20 lg:mb-vw-10 custom-header-1">Frequently Asked Questions</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 2xs:gap-5  lg:gap-6 xl:gap-8 2xl:gap-10">
                 {allHelp.map((faq) => (
-                    <Link href={`/faq/${faq.slug}`} passHref className={"group"}>
-                    <div key={faq.slug}
+                    <Link key={faq.slug} href={`/faq/${faq.slug}`} passHref className={"group"}>
+                    <div
                          className=" flex flex-col h-full p-6 border-2 border-black dark:border-slate-1 dark:border-[1px] bg-slate-1 dark:bg-cyan-2 rounded-[0.3rem] hover:border-cyan-12  dark:hover:border-slate-5 hover:bg-bronze-1 dark:hover:bg-cyan-1 transition-all duration-300 transform shadow hover:drop-shadow-xl">
 
                         <div className="flex-grow">
