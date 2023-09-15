@@ -100,9 +100,9 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
                   </div>
                   <div className="grid grid-cols-2 divide-x divide-gray-900/5 dark:divide-gold-5 bg-gold-2 dark:bg-gold-2">
                     {supportCTA.map(item => (
-                        <Button>
+                        <Button key={item.name}>
                         <Link
-                            key={item.name}
+
                             href={item.href}
                             className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                         >
@@ -160,9 +160,9 @@ export function SupportNavPop() {
                       </div>
                       <div className="grid grid-cols-2 divide-x divide-gray-900/5 dark:divide-gold-5 bg-gold-2 dark:bg-gold-2">
                         {supportCTA.map(item => (
-                            <Button>
+                            <Button key={item.name}>
                                 <Link
-                                    key={item.name}
+
                                     href={item.href}
                                     className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                                 >

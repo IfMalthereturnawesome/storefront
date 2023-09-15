@@ -40,7 +40,7 @@ const VideoAnimation: React.FC = () => {
 
 
 
-    let ctx = gsap.context(() => {
+
 
 
         const smoothDisappearOneNight = () => {
@@ -273,7 +273,7 @@ const VideoAnimation: React.FC = () => {
 
             }, [showHeaderText])
         };
-        showHeaderAnimation();
+
 
         //  ONE NIGHT AT A TIME - Header
         useEffect(() => {
@@ -382,11 +382,11 @@ const VideoAnimation: React.FC = () => {
 
 
             }
-            return () => ctx.revert();
+
 
         }, []);
-    }, wrapperRef);
 
+    showHeaderAnimation();
     const smoothAppear = () => {
 
         gsap.to(videoContainerRef.current, {
@@ -419,7 +419,7 @@ const VideoAnimation: React.FC = () => {
 
 
         smoothAppear();
-        ctx.revert();
+
 
 
     };
