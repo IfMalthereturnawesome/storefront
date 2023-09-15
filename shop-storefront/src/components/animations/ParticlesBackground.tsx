@@ -280,13 +280,14 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
         }
     }, [shouldPlayParticles, individualParticleOptions]);
 
-
     return (
         <Particles
             id={`tsparticles`}
             init={particlesInit}
+            // @ts-ignore
             loaded={particlesLoaded}
             className="absolute top-0 left-0 w-full h-[100vh] z-[0]"
+            // @ts-ignore
             options={particleOptions}
         />
     );
