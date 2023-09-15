@@ -125,7 +125,7 @@ const VideoAnimation: React.FC = () => {
             });
 
             return () => mm.revert();
-        }, [state]);
+        }, [state, smoothDisappear]);
 
 
         // VIDEO
@@ -338,15 +338,18 @@ const VideoAnimation: React.FC = () => {
                                     ease: 'power2.inOut',
                                 });
 
+
                             },
                             onComplete: () => {
                                 char.style.textShadow = 'none';
+
 
 
                             }
                         }, index * 0.1);  // stagger time between each char
                     });
                 }
+
 
 
             }
@@ -381,7 +384,7 @@ const VideoAnimation: React.FC = () => {
             }
             return () => ctx.revert();
 
-        }, [showSmallDreamText]);
+        }, []);
     }, wrapperRef);
 
     const smoothAppear = () => {
