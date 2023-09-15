@@ -61,14 +61,14 @@ export default function Resources() {
                 <ol className="list-decimal list-inside text-lg text-slate-11 space-y-4" data-aos="fade-up"
                     data-aos-delay="200">
                     <li>We recommend beginning with the <InternalLink
-                        word="sleepEssentialsResource">'Overview'</InternalLink> in the <strong>Sleep
+                        word="sleepEssentialsResource">&quot;Overview&quot;</InternalLink> in the <strong>Sleep
                         Essentials Resource</strong>. This serves as the foundation of learning about
                         sleep.
                     </li>
-                    <li>Once you've grasped the basics, you can delve into the specific topics within the
+                    <li>Once you&apos;ve grasped the basics, you can delve into the specific topics within the
                         chosen collection for a more in-depth exploration.
                     </li>
-                    <li>If you're interested in more advanced or specific areas, you can explore
+                    <li>If you&apos;re interested in more advanced or specific areas, you can explore
                         the <InternalLink word="sleepScienceResource">Sleep
                             Science</InternalLink> and <InternalLink word="sleepAthleticsResource">Sleep
                             Athletics</InternalLink> Resources.
@@ -77,9 +77,9 @@ export default function Resources() {
                     </li>
                 </ol>
 
-                <p className="text-lg text-slate-11 my-4" data-aos="fade-up" data-aos-delay="200">Whether
-                    you're seeking a broad understanding or specific knowledge, navigate your way through.
-                    Happy exploring!</p>
+                <p className="text-lg text-slate-11 my-4" data-aos="fade-up" data-aos-delay="200">
+                   Whether you&apos;re seeking a broad understanding or specific knowledge, navigate your way through.
+                        Happy exploring! </p>
             </div>
 
             <h2 className="h3 mt-8 lg:px-20 text-slate-800 dark:text-slate-200" data-aos="fade-up">Our
@@ -175,7 +175,7 @@ export default function Resources() {
                 <p className="text-xl text-slate-11" data-aos="fade-up" data-aos-delay="200">Harnessing the
                     power of sleep is an invaluable tool to reach your highest potential, unlock hidden
                     capabilities, and turn dreams into reality. Mastering sleep equips you with the
-                    resilience to navigate life's challenges, fuels your body for optimum physical
+                    resilience to navigate life&apos;s challenges, fuels your body for optimum physical
                     performance, stimulates your mind for innovative thinking, and fosters the clarity and
                     focus required for effective leadership.</p>
 
@@ -183,11 +183,11 @@ export default function Resources() {
                     data-aos="fade-up">Achieve your dreams, one night at a time</h3>
                 <p className="text-lg text-slate-11 my-2" data-aos="fade-up" data-aos-delay="200">Adopting
                     healthy sleep habits is an investment in your future - a commitment to your personal
-                    growth and development. The road to sleep mastery isn't always easy, and immediate
-                    results are not guaranteed. It's a journey of consistency, patience, and learning.</p>
+                    growth and development. The road to sleep mastery isn&apos;t always easy, and immediate
+                    results are not guaranteed. It&apos;s a journey of consistency, patience, and learning.</p>
 
                 <p className="text-lg text-slate-11 my-4" data-aos="fade-up" data-aos-delay="200">With Eight
-                    Athletics, you're not alone on this journey. We're here to guide, support, and inspire
+                    Athletics, you&apos;re not alone on this journey. We&apos;re here to guide, support, and inspire
                     you with scientifically backed sleep resources and innovative products at every
                     step. </p>
                 <p className="text-lg text-slate-11 my-4" data-aos="fade-up" data-aos-delay="200">So, dream

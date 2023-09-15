@@ -67,8 +67,8 @@ export default function Contact() {
                     Browse our <Link href="/faq" title="FAQ"
                                      className="hover:text-indigo-500 text-blue-600">FAQ</Link> for answers to common
                     questions. <br/>
-                    Can't find what you're looking for? <br/>
-                    Send us a message and we'll get back to you as soon as possible.
+                    Can&apos;t find what you&apos;re looking for? <br/>
+                    Send us a message and we&apos;ll get back to you as soon as possible.
                 </p>
             </div>
             <Form.Root ref={formRef} className="max-w-xl mx-auto" onSubmit={handleOnSubmit}>
@@ -149,7 +149,7 @@ export default function Contact() {
                 <div className="flex flex-wrap  my-4">
                     <div className="w-full ">
                         <p className="text-slate-10 text-xs ml-1 font-medium mb-1">
-                            By clicking "send" you consent to allow Eight Athletics to store and process the personal
+                            By clicking &quot;send&quot; you consent to allow Eight Athletics to store and process the personal
                             information submitted above and agree to our <Link href="/terms/terms-and-conditions"
                                                                                title="Terms and Conditions"
                                                                                className="hover:text-indigo-500 text-blue-600">terms

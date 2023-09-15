@@ -232,7 +232,7 @@ const ScrollSection = () => {
 
 
         };
-    }, []);
+    }, [backgroundClasses, missionTextClasses, texts]);
 
     return (
         <div>

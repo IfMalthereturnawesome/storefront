@@ -77,7 +77,7 @@ export default function RelatedPosts({relatedPosts}: RelatedPostsProps) {
                       </p>
                       <footer className="my-4 flex items-center px-4 md:mb-4">
                         <Link href="#">
-                          <img
+                          <Image
                               className="mr-4 shrink-0 rounded-full"
                               src={post.authorImg}
                               width={40}

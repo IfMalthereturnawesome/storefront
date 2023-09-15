@@ -10,7 +10,7 @@ export default function Feedback() {
       <div className="text-lg font-bold text-slate-800 dark:text-slate-200">Was this helpful?</div>
       <div className="flex items-center space-x-4">
         <button className="opacity-30">
-          <span className="sr-only">No, it didn't help</span>
+          <span className="sr-only">No, it didn&apos;t help</span>
           <Image src={Feedback01} width={21} height={21} alt="No, it didn't help" />
         </button>
         <button className="opacity-30">

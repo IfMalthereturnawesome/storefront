@@ -56,5 +56,6 @@ const SpinnerButton = React.memo<SpinnerButtonProps>(
     );
   },
 );
+SpinnerButton.displayName = 'SpinnerButton';
 
 export default SpinnerButton;

@@ -42,12 +42,12 @@ export default function NotFound() {
                             </div>
 
                             {/* 404 content */}
-                            <h1 className="text-5xl custom-header-1 mb-4 animate-fade">Uh-oh! You're sleepwalking on the
+                            <h1 className="text-5xl custom-header-1 mb-4 animate-fade">Uh-oh! You&apos;re sleepwalking on the
                                 web.</h1>
 
 
-                            <p className="text-lg text-slate-11 mb-4 animate-fade">Seems like you've wandered off into
-                                dreamland. No worries, we've got your back!</p>
+                            <p className="text-lg text-slate-11 mb-4 animate-fade">Seems like you&apos;ve wandered off into
+                                dreamland. No worries, we&apos;ve got your back!</p>
 
                             {/* Action items */}
                             <div className="animate-fade">
@@ -166,8 +166,8 @@ export default function NotFound() {
                                                                     <p className="text-slate-11 ">
                                                                         With science-backed advice and practical tips to
                                                                         enhance your sleep quality, our comprehensive
-                                                                        guides will help you catch those elusive Z's.
-                                                                        Don't let poor sleep hold you back - discover
+                                                                        guides will help you catch those elusive Z&apos;s.
+                                                                        Don&apos;t let poor sleep hold you back - discover
                                                                         the secrets to better sleep today!
                                                                     </p>
                                                                 </div>

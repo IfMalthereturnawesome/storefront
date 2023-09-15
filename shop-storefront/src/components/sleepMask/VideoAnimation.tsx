@@ -37,100 +37,7 @@ const VideoAnimation: React.FC = () => {
 
 
 
-    const smoothAppear = () => {
 
-        gsap.to(videoContainerRef.current, {
-
-            opacity: 1, duration: 1, onComplete: () => {
-
-                setShowVideo(true);
-
-                if (videoRef.current) {
-                    videoRef.current.play().then(() => {
-
-                        setIsPlaying(true);  // Update the state to reflect that the video is playing
-                    }).catch((error) => {
-                        console.error("Video play failed:", error);
-                    });
-                }
-            }
-        });
-
-        setShowPlayAgainButton(false);
-    };
-
-    const scrollToTopAndPlayAgain = () => {
-
-
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        setShowHeaderText(true);
-
-        resetPage();
-
-
-        smoothAppear();
-        ctx.revert();
-
-
-    };
-
-    // const resetPage
-    const resetPage = () => {
-        setShowVideo(true);
-
-        setShowSmallDreamText(false);
-        setShowOneNightText(false);
-        setShowDescription(false);
-
-        // Reset Video Time
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-        }
-
-        // Reset GSAP animations (if any)
-        gsap.killTweensOf(videoContainerRef.current);
-        gsap.killTweensOf(headerRef.current);
-        gsap.killTweensOf(oneNightRef.current);
-        gsap.killTweensOf(smallDreamRef.current);
-        // ...
-
-        // Reset zIndex or other inline css
-        if (headerRef.current) {
-            headerRef.current.style.zIndex = '1';
-        }
-
-
-    }
-
-
-    const togglePlayPause = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
-
-    const smoothDisappearHeader = () => {
-        if (headerRef.current) {
-            gsap.to(headerRef.current, {
-                opacity: 0,
-                duration: 1,
-                onComplete: () => {
-                    if (headerRef.current) {
-                        headerRef.current.style.zIndex = '0';
-
-
-                        setShowHeaderText(false);
-                    }
-                },
-
-            });
-        }
-    };
 
 
     let ctx = gsap.context(() => {
@@ -476,6 +383,101 @@ const VideoAnimation: React.FC = () => {
 
         }, [showSmallDreamText]);
     }, wrapperRef);
+
+    const smoothAppear = () => {
+
+        gsap.to(videoContainerRef.current, {
+
+            opacity: 1, duration: 1, onComplete: () => {
+
+                setShowVideo(true);
+
+                if (videoRef.current) {
+                    videoRef.current.play().then(() => {
+
+                        setIsPlaying(true);  // Update the state to reflect that the video is playing
+                    }).catch((error) => {
+                        console.error("Video play failed:", error);
+                    });
+                }
+            }
+        });
+
+        setShowPlayAgainButton(false);
+    };
+
+    const scrollToTopAndPlayAgain = () => {
+
+
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        setShowHeaderText(true);
+
+        resetPage();
+
+
+        smoothAppear();
+        ctx.revert();
+
+
+    };
+
+    // const resetPage
+    const resetPage = () => {
+        setShowVideo(true);
+
+        setShowSmallDreamText(false);
+        setShowOneNightText(false);
+        setShowDescription(false);
+
+        // Reset Video Time
+        if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+        }
+
+        // Reset GSAP animations (if any)
+        gsap.killTweensOf(videoContainerRef.current);
+        gsap.killTweensOf(headerRef.current);
+        gsap.killTweensOf(oneNightRef.current);
+        gsap.killTweensOf(smallDreamRef.current);
+        // ...
+
+        // Reset zIndex or other inline css
+        if (headerRef.current) {
+            headerRef.current.style.zIndex = '1';
+        }
+
+
+    }
+
+
+    const togglePlayPause = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    const smoothDisappearHeader = () => {
+        if (headerRef.current) {
+            gsap.to(headerRef.current, {
+                opacity: 0,
+                duration: 1,
+                onComplete: () => {
+                    if (headerRef.current) {
+                        headerRef.current.style.zIndex = '0';
+
+
+                        setShowHeaderText(false);
+                    }
+                },
+
+            });
+        }
+    };
 
 
     return (
