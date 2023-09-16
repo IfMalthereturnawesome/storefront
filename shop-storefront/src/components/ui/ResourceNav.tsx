@@ -28,6 +28,9 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
         }
     };
 
+
+
+    // @ts-ignore
     return (
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative">

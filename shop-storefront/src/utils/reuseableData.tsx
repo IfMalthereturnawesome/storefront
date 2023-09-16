@@ -17,6 +17,7 @@ import {QuestionMarkIcon, HomeIcon} from "@radix-ui/react-icons";
 import {PhoneIcon, PlayCircleIcon} from '@heroicons/react/20/solid';
 import {allPosts} from "contentlayer/generated";
 import Image from "next/image";
+import React from "react";
 
 
 // Create React components for SVGs
@@ -76,7 +77,14 @@ export const callsToAction = [
     {name: 'Contact sales', href: '/contact', icon: PhoneIcon},
 ];
 
-export const resources = [
+interface Resource {
+    name: string;
+    description: string;
+    href: string;
+    icon: React.ComponentType<{className: string, 'aria-hidden': string}>; // or just React.ComponentType if you don't want to specify the props
+}
+
+export const resources: Resource[] = [
     {
         name: 'Eight Athletics - Sleep Resources',
         description:
