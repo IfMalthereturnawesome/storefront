@@ -1,7 +1,7 @@
 "use client"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
-import { createContext, useContext, useEffect, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 
 interface CartDropdownContext {
   state: boolean
@@ -20,9 +20,8 @@ export const CartDropdownProvider = ({
   children: React.ReactNode
 }) => {
   const { state, close, open } = useToggleState()
-  const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
-    undefined
-  )
+  const [activeTimer, setActiveTimer] = useState<ReturnType<typeof setTimeout> | undefined>(undefined);
+
 
   const timedOpen = () => {
     open()

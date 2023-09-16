@@ -9,7 +9,6 @@ import { InstantSearch } from "react-instantsearch-hooks-web"
 
 const DesktopSearchModal = () => {
   const { state, close, open } = useToggleState()
-
   return (
     <>
       <button onClick={open} className="flex items-center gap-x-2 h-full">
