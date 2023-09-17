@@ -4,7 +4,8 @@ import {XMarkIcon} from '@heroicons/react/24/outline';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
 import { Post } from 'contentlayer/generated';
 
-type SortOption = {
+
+export type SortOption = {
   name: string;
   href: string;
   current: boolean;
@@ -205,6 +206,7 @@ export default function Filter({
                                     onChange={() => toggleFilter(option.value)}
                                     className="z-50select-none h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
+
                                   <label
                                     htmlFor={`filter-${section.id}-${optionIdx}`}
                                     className="ml-3  select-none text-sm text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-cgreen"
@@ -347,10 +349,11 @@ export default function Filter({
                                 />
                                 <label
                                   htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900"
+                                  className="ml-3 whitespace-nowrap pr-6 !translate-y-0 select-none !text-sm font-medium text-gray-900"
                                 >
                                   {option.label}
                                 </label>
+
                               </div>
                             ))}
                           </form>

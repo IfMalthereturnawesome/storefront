@@ -8,7 +8,7 @@ import PostTags from '@/components/elements/post-tags';
 import PostItem from '@/components/post-item';
 import React, {useState} from 'react';
 import SpinnerButton from '@/components/elements/SpinnerButton';
-import Filter, {sortOptions} from '@/components/elements/Filter';
+import Filter, {SortOption, sortOptions} from '@/components/elements/Filter';
 import FeatureImg01 from '/public/images/eight-athletics-sleep-resources-blog.png';
 import TopNavBanner from '@/components/ui/NavBanner';
 import {Button} from '@nextui-org/button';
@@ -29,7 +29,7 @@ export default function Blog() {
   );
 
   const [isLoading, setIsLoading] = useState(false);
-  const [currentSortOption, setCurrentSortOption] = useState(() => {
+  const [currentSortOption, setCurrentSortOption] = useState<SortOption | null>(() => {
     const initialOption = sortOptions.find(option => option.current);
     if (initialOption) {
       return initialOption;
