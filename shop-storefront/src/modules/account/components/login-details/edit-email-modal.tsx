@@ -38,7 +38,7 @@ const EditEmailModal: React.FC<EditEmailModalProps> = ({ customer }) => {
 
   const { refetchCustomer } = useAccount()
 
-  const submit = handleSubmit((data) => {
+  const submit = handleSubmit((data:FormValues) => {
     setSubmitting(true)
     setError(undefined)
 

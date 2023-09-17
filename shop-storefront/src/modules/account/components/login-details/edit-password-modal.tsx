@@ -41,9 +41,12 @@ const EditPasswordModal: React.FC<EditPasswordModalProps> = ({ customer }) => {
 
   const { refetchCustomer } = useAccount()
 
-  const submit = handleSubmit(async (data) => {
+  const submit = handleSubmit(async (data:FormValues) => {
+
     setSubmitting(true)
     setError(undefined)
+
+
 
     if (data.old_password === data.new_password) {
       setSubmitting(false)
