@@ -197,18 +197,19 @@ const LightweightFeature = () => {
                     const indexOfFrame = COIN_LAND_FRAMES.indexOf(frame);
 
                     if (indexOfFrame !== -1 && !hitFrames.has(frame)) {
-                        setHitFrames(new Set([...hitFrames, frame]));
+                        const newSet = new Set(hitFrames);
+                        newSet.add(frame);
+                        setHitFrames(newSet);
 
                         setCoinsLanded(indexOfFrame + 1);
 
                         // Update the right bowl weight
                         setRightBowlWeight((indexOfFrame + 1) * 5);
-
-
-
                         oscillationTime = 0;
+
                     } else if (indexOfFrame === -1 && hitFrames.has(frame)) {
-                        setHitFrames(new Set(Array.from(hitFrames).filter(f => f !== frame)));
+                        const newSet = new Set(Array.from(hitFrames).filter(f => f !== frame));
+                        setHitFrames(newSet);
 
                     }
 
