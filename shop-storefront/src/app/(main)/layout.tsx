@@ -5,7 +5,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Footer from '@/components/ui/Footer';
 import Header from "@/components/ui/Header";
-import FooterNav from "@modules/layout/components/footer-nav";
 
 
 export default function PageLayout({
@@ -28,7 +27,7 @@ export default function PageLayout({
             <main className="grow bg-cyan-1">
                 {children}
             </main>
-            <FooterNav/>
+            <Footer/>
         </>
     )
 }
