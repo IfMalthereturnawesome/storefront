@@ -14,16 +14,17 @@ const loaders = require("@medusajs/medusa/dist/loaders/index").default
         expressApp: app
       })
       const configModule = container.resolve("configModule")
-      const port = process.env.PORT ?? configModule.projectConfig.port ?? 9000
+      const port = process.env.PORT ?? configModule.projectConfig.port ?? 9000;
 
       const server = GracefulShutdownServer.create(
-        app.listen(port, (err) => {
-          if (err) {
-            return
-          }
-          console.log(`Server is ready on port: ${port}`)
-        })
-      )
+          app.listen(port, '0.0.0.0', (err) => {  // <-- Notice the '0.0.0.0' host added
+            if (err) {
+              return;
+            }
+            console.log(`Server is ready on port: ${port}`);
+          })
+      );
+
 
       // Handle graceful shutdown
       const gracefulShutDown = () => {
