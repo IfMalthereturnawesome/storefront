@@ -15,7 +15,7 @@ const MobileMenu = () => {
         {(() => {
           switch (currentScreen) {
             case "country":
-              return <CountryMenu />
+
             case "search":
               return <SearchMenu />
             default:

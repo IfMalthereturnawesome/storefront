@@ -5,7 +5,7 @@ import { useStore } from "@lib/context/store-context"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { revalidateTags } from "app/actions"
 import { useRegions } from "medusa-react"
-import { Fragment, useEffect, useMemo, useState } from "react"
+import {Fragment, useEffect, useMemo, useRef, useState} from "react"
 import ReactCountryFlag from "react-country-flag"
 
 type CountryOption = {
@@ -19,6 +19,8 @@ const CountrySelect = () => {
   const { regions } = useRegions()
   const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
   const { state, open, close } = useToggleState()
+  const dropdownRef = useRef(null);
+  const [dropdownDirection, setDropdownDirection] = useState("bottom");
 
   const options: CountryOption[] | undefined = useMemo(() => {
     return regions
@@ -39,6 +41,23 @@ const CountrySelect = () => {
     }
   }, [countryCode, options])
 
+  const checkDropdownDirection = () => {
+    const rect = dropdownRef.current.getBoundingClientRect();
+    const spaceToBottom = window.innerHeight - rect.bottom;
+    const spaceToTop = rect.top;
+    setDropdownDirection(spaceToBottom > spaceToTop ? "bottom" : "top");
+  };
+
+  const handleMouseEnter = () => {
+    checkDropdownDirection();
+    open();
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", checkDropdownDirection);
+    return () => window.removeEventListener("resize", checkDropdownDirection);
+  }, []);
+
   const handleChange = (option: CountryOption) => {
     revalidateTags(["medusa_request", "products", "collections"])
     setRegion(option.region, option.country)
@@ -46,7 +65,7 @@ const CountrySelect = () => {
   }
 
   return (
-    <div onMouseEnter={open} onMouseLeave={close}>
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={close} >
       <Listbox
         onChange={handleChange}
         defaultValue={
@@ -55,7 +74,7 @@ const CountrySelect = () => {
             : undefined
         }
       >
-        <Listbox.Button className="py-1 w-full">
+        <Listbox.Button className="py-1 w-full" >
           <div className="text-small-regular flex items-center gap-x-2 xsmall:justify-end">
             <span>Shipping to:</span>
             {current && (
@@ -73,7 +92,7 @@ const CountrySelect = () => {
             )}
           </div>
         </Listbox.Button>
-        <div className="relative w-full min-w-[316px]">
+        <div className="relative w-full min-w-[316px]" ref={dropdownRef}>
           <Transition
             show={state}
             as={Fragment}
@@ -82,8 +101,8 @@ const CountrySelect = () => {
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar"
-              static
+                className={`absolute ${dropdownDirection === "top" ? "-bottom-[calc(100%-50px)]" : "-top-[calc(100%-20px)]"} left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar`}
+                static
             >
               {options?.map((o, index) => {
                 return (

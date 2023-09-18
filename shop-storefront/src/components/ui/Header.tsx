@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import {ThemeToggle} from '../darkMode/ThemeToggle';
-import {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Popover} from '@headlessui/react';
 import ResourceNav from './ResourceNav';
 import SupportNav from './SupportNav';
@@ -20,6 +20,13 @@ import TopNav from "@/components/ui/TopNav";
 import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
 
 
+
+
+
+
+
+
+
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
@@ -29,6 +36,9 @@ export default function Header() {
 
 
     const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
+
+
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -139,8 +149,11 @@ export default function Header() {
                         <CartDropdown />
                     </div>
                 </nav>
-
                 <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+
+
+
+
             </header>
         </>
     );

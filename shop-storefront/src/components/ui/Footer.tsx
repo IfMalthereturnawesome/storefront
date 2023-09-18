@@ -10,7 +10,7 @@ import {
   b2b,
 } from '@/utils/reuseableData';
 
-import CountryMenu from "@modules/mobile-menu/components/country-menu";
+
 import CountrySelect from "@modules/layout/components/country-select";
 
 
@@ -83,7 +83,7 @@ export default function Footer() {
                   ))}
                 </ul>
               </div>
-              <CountrySelect />
+
 
               {/* 3rd block */}
               <div className="text-base font-semibold">
@@ -111,6 +111,7 @@ export default function Footer() {
                   ))}
                 </ul>
               </div>
+
 
               {/* 4th block */}
               <div className="text-base font-semibold">
@@ -140,6 +141,7 @@ export default function Footer() {
                   )}
                 </ul>
               </div>
+
 
               {/* 5th block */}
   {/*            <div className="text-base font-semibold">*/}
@@ -172,6 +174,8 @@ export default function Footer() {
   {/*            </div>*/}
             </div>
           </div>
+          <CountrySelect />
+
 
           <hr
             className="mx-0 my-8 h-0 border-x-0 border-b-0 border-t border-solid border-gray-200 leading-6 dark:border-gray-700 lg:mt-12 lg:mb-2"
