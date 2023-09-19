@@ -1,64 +1,33 @@
-'use client';
-import React, { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitType from 'split-type';
-gsap.registerPlugin(ScrollTrigger);
+import React from "react";
 
 
-interface HorizontalTextScrollProps {
-    text?: string;
-}
-
-const HorizontalTextScroll: React.FC<HorizontalTextScrollProps> = ({ text = "Achieve your dreams, one night at a time. Achieve your dreams, one night at a time. Achieve your dreams, one night at a time. Achieve your dreams, one night at a time." }) => {
-
-    const textRef = useRef(null);
-    const slider = useRef(null);
-
-    useEffect(() => {
-        if (textRef.current) {
-            const splitText = new SplitType(textRef.current, { types: 'chars' });
-            const chars = splitText.chars || [];
-
-            // Hide all characters initially
-            gsap.set(chars, { opacity: 1 });
-
-            // Create the staggered reveal for the characters
-            gsap.to(chars, {
-                opacity: 1,
-
-                repeat: -1,  // Infinite loop for the reveal
-
-            });
-        }
-
-
-        // Horizontal scrolling effect
-        gsap.fromTo(
-            slider.current,
-            { x: 210 }, // Start from the right end of the screen
-            {
-                x: () => -(textRef.current as unknown as HTMLElement).offsetWidth || 0,
-                ease: "none",
-                duration: 20,
-                repeat: -1
-            }
-        );
-
-    }, []);
+const HorizontalTextScroll: React.FC = () => {
+    const text = "Achieve your dreams, one night at a time.";
 
     return (
-        <div className="relative pb-20 md:mt-[-71rem]">
-            <div ref={slider} className="whitespace-nowrap ">
-                <p ref={textRef} className="inline-block text-9xl lg:text-[12rem] font-bold pr-5 text-slate-12">
-                    {text}
-                </p>
-
-
+        <div className="relative pb-20 md:mt-[-71rem] overflow-hidden">
+            {/* Gradient Overlay to fade text at ends */}
+            <div className="absolute inset-0 z-10 pointer-events-none">
+                <div
+                    className="absolute inset-y-0 left-0 w-24 dark:w-32 bg-gradient-to-r from-[rgba(250,254,254,1)] to-[rgba(250,254,254,0)] dark:from-[rgba(7,25,29,1)] dark:to-[rgba(7,25,29,0)]">
+                </div>
+                <div
+                    className="absolute inset-y-0 right-0 w-24 dark:w-32 bg-gradient-to-l from-[rgba(250,254,254,1)] to-[rgba(250,254,254,0)] dark:from-[rgba(7,25,29,1)] dark:to-[rgba(7,25,29,0)]">
+                </div>
             </div>
+            {/* Scrolling Text */}
+            <div className="horizontal_scrolling_text ">
+                <div className="horizontal-text  inline-block text-9xl lg:text-[10rem] font-bold text-slate-12">
+                    <span>{text}</span>
+                </div>
+                <div className="horizontal-text  inline-block text-9xl lg:text-[10rem] font-bold  text-slate-12">
+                    <span>{text}</span>
+                </div>
+            </div>
+
+
         </div>
     );
 };
 
 export default HorizontalTextScroll;
-
