@@ -67,7 +67,7 @@ export default function CountrySelectFlag() {
                 <ModalContent className="py-6">
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-row items-center justify-center mx-auto text-xl pb-8">
+                            <ModalHeader className="flex flex-row items-center justify-center mx-auto text-xl text-slate-12 pb-8">
                                 Select Delivery Country
                             </ModalHeader>
                             <ModalBody className="justify-start items-start mx-auto">

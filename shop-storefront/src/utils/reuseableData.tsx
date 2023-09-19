@@ -47,7 +47,7 @@ export const products = [
         icon: ChartPieIcon,
     },
     {
-        name: '100% Blackout',
+        name: 'Total Blackout',
         description: 'Speak directly to your customers',
         href: '#',
         icon: CursorArrowRaysIcon,

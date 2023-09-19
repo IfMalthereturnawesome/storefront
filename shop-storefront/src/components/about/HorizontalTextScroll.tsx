@@ -21,12 +21,12 @@ const HorizontalTextScroll: React.FC<HorizontalTextScrollProps> = ({ text = "Ach
             const chars = splitText.chars || [];
 
             // Hide all characters initially
-            gsap.set(chars, { opacity: 0 });
+            gsap.set(chars, { opacity: 1 });
 
             // Create the staggered reveal for the characters
             gsap.to(chars, {
                 opacity: 1,
-                stagger: 0.13,
+
                 repeat: -1,  // Infinite loop for the reveal
 
             });
@@ -50,7 +50,7 @@ const HorizontalTextScroll: React.FC<HorizontalTextScrollProps> = ({ text = "Ach
     return (
         <div className="relative pb-20 md:mt-[-71rem]">
             <div ref={slider} className="whitespace-nowrap ">
-                <p ref={textRef} className="inline-block text-9xl font-bold pr-5 text-slate-12">
+                <p ref={textRef} className="inline-block text-9xl lg:text-[12rem] font-bold pr-5 text-slate-12">
                     {text}
                 </p>
 

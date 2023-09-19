@@ -71,7 +71,7 @@ export default function CountrySelectMobile() {
                 <ModalContent className={" py-6"}>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-row justify-between items-center">
+                            <ModalHeader className="flex flex-row justify-between items-center text-slate-12">
 
                             Select Country
                             </ModalHeader>

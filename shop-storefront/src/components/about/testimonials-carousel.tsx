@@ -48,7 +48,7 @@ export default function TestimonialsCarousel() {
       img: UserImage03,
       alt: 'Client Testimonial 03',
       quote: '“I’m a long-distance runner, and I can’t emphasize enough how important good sleep is. This mask from Eight Athletics is a must-have.”',
-      name: 'Anna Eriksson',
+      name: 'Anders Eriksson',
       role: 'Runner, Stockholm'
     }
   ]
