@@ -43,14 +43,16 @@ const Register = () => {
   })
 
   return (
-    <div className="max-w-sm flex flex-col items-center mt-12">
+    <div className="max-w-5xl flex flex-col items-center mt-12">
       {isSubmitting && (
         <div className="z-10 fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi uppercase mb-6">Become a Acme Member</h1>
-      <p className="text-center text-base-regular text-gray-700 mb-4">
+
+      <h1 className="custom-header-1  mb-6">Become an <br></br> Eight Athletics member</h1>
+      <div className={"max-w-sm"}>
+      <p className="text-center text-base-regular text-slate-11 mb-4">
         Create your Acme Member profile, and get access to an enhanced shopping
         experience.
       </p>
@@ -97,20 +99,20 @@ const Register = () => {
             </span>
           </div>
         )}
-        <span className="text-center text-gray-700 text-small-regular mt-6">
-          By creating an account, you agree to Acme&apos;s{" "}
-          <Link href="/content/privacy-policy" className="underline">
+        <span className="text-center text-slate-11 text-small-regular mt-6">
+          By creating an account, you agree to Eight Athletics&apos;s{" "}
+          <Link href="/terms/privacy-policy" className="underline">
             Privacy Policy
           </Link>{" "}
           and{" "}
-          <Link href="/content/terms-of-use" className="underline">
+          <Link href="/terms/terms-and-conditions" className="underline">
             Terms of Use
           </Link>
           .
         </span>
-        <Button className="mt-6">Join</Button>
+        <Button type={"submit"} className="mt-6">Join</Button>
       </form>
-      <span className="text-center text-gray-700 text-small-regular mt-6">
+      <span className="text-center text-slate-11 text-small-regular mt-6">
         Already a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
@@ -120,6 +122,7 @@ const Register = () => {
         </button>
         .
       </span>
+      </div>
     </div>
   )
 }

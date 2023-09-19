@@ -45,8 +45,8 @@ const Login = () => {
           <Spinner size={24} />
         </div>
       )}
-      <h1 className="text-large-semi uppercase mb-6">Welcome back</h1>
-      <p className="text-center text-base-regular text-gray-700 mb-8">
+      <h1 className="custom-header-1 mb-6">Welcome back</h1>
+      <p className="text-center text-md text-slate-11 mb-8">
         Sign in to access an enhanced shopping experience.
       </p>
       <form className="w-full" onSubmit={onSubmit}>
@@ -72,9 +72,10 @@ const Login = () => {
             </span>
           </div>
         )}
-        <Button className="mt-6">Enter</Button>
+          <Button type={"submit"} className="mt-6">Log in</Button>
+
       </form>
-      <span className="text-center text-gray-700 text-small-regular mt-6">
+      <span className="text-center text-slate-11 text-md mt-6">
         Not a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
