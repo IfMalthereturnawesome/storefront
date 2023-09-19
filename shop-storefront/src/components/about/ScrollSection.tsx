@@ -237,8 +237,8 @@ const ScrollSection = () => {
     return (
         <div>
             <div ref={containerRef}
-                 style={{height: '500vh', backgroundColor: initialBgColor}}
-                 className={"px-4 lg:px-20 smooth-bg-transition"}>
+                 style={{ backgroundColor: initialBgColor}}
+                 className={"px-4 lg:px-20 smooth-bg-transition h-[600vh] lg:h-[500vh]"}>
                 <div className={"w-[90%] lg:w-[80%]"}
                     style={{
                         position: 'fixed',
@@ -282,7 +282,7 @@ const ScrollSection = () => {
 
 
             </div>
-            <div ref={spacerRef} className="spacer bg-mint-6 dark:bg-violet-1 spacer-smooth-bg-transition"></div>
+            <div ref={spacerRef} className="h-[5vh] lg:h-[100vh] bg-mint-6 dark:bg-violet-1 spacer-smooth-bg-transition"></div>
 
         </div>
 

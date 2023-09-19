@@ -54,7 +54,7 @@
     "lodash": "^4.17.21",
     "lottie-web": "^5.12.2",
     "medusa-react": "^9.0.0",
-    "next": "^13.4.19",
+    "next": "^13.5.1",
     "next-contentlayer": "^0.3.4",
     "next-share": "^0.25.0",
     "react": "^18.2.0",
