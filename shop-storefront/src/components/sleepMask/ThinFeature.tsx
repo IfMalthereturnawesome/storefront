@@ -76,7 +76,7 @@ const ThinFeature: React.FC = () => {
                 scrollTrigger: {
                     trigger: ".pinme",
                     start: 'center center',
-                    end: '+=4000',
+                    end: '+=3000',
                     scrub: true,
                     pin: true, // Pinning here
                 },
@@ -88,23 +88,23 @@ const ThinFeature: React.FC = () => {
 
             /// FUNCTIONS START HERE
 
-            const revealSecondHalf = () => {
-                if (!hasReachedHeight && containerRef.current && containerRef.current.offsetHeight >= 60) {
-                    setHasReachedHeight(true);
-                    gsap.to(textTopAnimatedRef.current, {
-                        opacity: 1,
-                        zIndex: 2,
-                        duration: 1,
-                    });
-                } else if (hasReachedHeight && containerRef.current && containerRef.current.offsetHeight >= 60) {
-                    setHasReachedHeight(false);
-                    gsap.to(textTopAnimatedRef.current, {
-                        opacity: 1,
-                        zIndex: 1,
-                        duration: 0.5,
-                    });
-                }
-            }
+            // const revealSecondHalf = () => {
+            //     if (!hasReachedHeight && containerRef.current && containerRef.current.offsetHeight >= 60) {
+            //         setHasReachedHeight(true);
+            //         gsap.to(textTopAnimatedRef.current, {
+            //             opacity: 1,
+            //             zIndex: 2,
+            //             duration: 1,
+            //         });
+            //     } else if (hasReachedHeight && containerRef.current && containerRef.current.offsetHeight >= 60) {
+            //         setHasReachedHeight(false);
+            //         gsap.to(textTopAnimatedRef.current, {
+            //             opacity: 1,
+            //             zIndex: 1,
+            //             duration: 0.5,
+            //         });
+            //     }
+            // }
 
 
             const handleMouseMove = (event: MouseEvent) => {
@@ -123,7 +123,7 @@ const ThinFeature: React.FC = () => {
                     const dy = y - yc;
                     const dz = z - zc;
 
-                    gsap.to([containerRef.current, textTopRef.current, textTopAnimatedRef.current, textBottomRef.current], {
+                    gsap.to([containerRef.current, textTopRef.current,  textBottomRef.current], {
                         rotationY: 0.001 * dx,  // Reduced multiplier
                         rotationX: -0.001 * dy, // Reduced multiplier
                         rotationZ: 0.001 * dz,  // Reduced multiplier
@@ -159,9 +159,7 @@ const ThinFeature: React.FC = () => {
                 height: '500px',
                 ease: 'Power3.out', // Easing: Starts quick, slows down towards the end
                 duration: 0.5, // Slightly longer duration for smoother effect
-                onUpdate: () => {
-                    revealSecondHalf();
-                }
+
             });
 
 // Text animation with easing
@@ -211,21 +209,21 @@ const ThinFeature: React.FC = () => {
             <div className="mx-auto flex flex-col justify-center ">
 
                 {/* Text above the image always visible but cut in half */}
-                <div ref={textTopRef} className="absolute top-[49.6%] left-[41.5%] z-0 overflow-hidden" style={{ transform: 'translate(-50%, -50%)' }}>
-                    <span className="text-9xl font-poppins font-thin text-custom-white">Razor</span>
+                <div ref={textTopRef} className="absolute top-[49.6%] left-[41.5%] z-[2] " style={{ transform: 'translate(-50%, -50%)' }}>
+                    <span className="text-9xl font-poppins font-thin text-custom-white ">Razor</span>
                 </div>
 
                 {/* Text above the image that will be animated in */}
-                <div ref={textTopAnimatedRef} className="absolute top-[49.6%] left-[41.5%] z-0 opacity-0" style={{ transform: 'translate(-50%, -50%)',opacity:0 }}>
-                    <span className="text-9xl font-poppins font-thin text-custom-white">Razor</span>
-                </div>
+                {/*<div ref={textTopAnimatedRef} className="absolute top-[49.6%] left-[41.5%] z-0 opacity-0" style={{ transform: 'translate(-50%, -50%)',opacity:0 }}>*/}
+                {/*    <span className="text-9xl font-poppins font-thin text-custom-white">Razor</span>*/}
+                {/*</div>*/}
 
 
 
 
                 {/* Text below the image */}
                 <div ref={textBottomRef} className="absolute top-[50%] left-[58.5%] z-[2]" style={{  transform: 'translate(-50%, -50%)' }}>
-                    <span className="text-9xl font-thin font-poppins text-custom-white">Thin</span>
+                    <span className="text-9xl font-poppins font-thin text-custom-white">Thin</span>
                 </div>
 
 
