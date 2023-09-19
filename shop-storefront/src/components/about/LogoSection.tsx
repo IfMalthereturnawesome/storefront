@@ -97,7 +97,7 @@ export const LogoSection = () => {
                            alt="Eight Athletics Icon Logo" width={650} height={650}/>
                 </motion.div>
                 <span
-                    className="absolute top-0 z-10 h-full w-[55vw] origin-left scale-[var(--scale)] bg-cyan-1 opacity-[var(--opacity-border)]"
+                    className="absolute top-0 z-10 h-full w-[46.3vw] origin-left scale-[var(--scale)] bg-cyan-1 opacity-[var(--opacity-border)]"
                     style={{
                         left: "calc((16.5% * var(--scale) + var(--icon-scale) * 80% - (2.5rem * var(--icon-scale))))",
                     }}
