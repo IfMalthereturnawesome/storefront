@@ -31,14 +31,14 @@ const CountryMenu = ({ goBack, onCountrySelected, setMobileMenuOpen }) => {
                 className="flex items-center gap-x-2"
                 onClick={goBack} // Call the goBack function when the button is clicked
             >
-              <ChevronDown className="rotate-90 text-gray-700" size={20} />
+              <ChevronDown className="rotate-90 text-slate-12" size={20} />
             </button>
           </div>
           <div>
             <h1 className="text-large-regular">Shipping To</h1>
           </div>
           <div className="flex-1 basis-0 flex justify-end">
-            <button onClick={handleCloseMenu}>
+            <button onClick={handleCloseMenu} className={"text-slate-12"}>
               <X size={20} />
             </button>
           </div>
@@ -56,7 +56,7 @@ const CountryMenu = ({ goBack, onCountrySelected, setMobileMenuOpen }) => {
                   >
                     <div className="flex items-center gap-x-4">
                       <ReactCountryFlag svg countryCode={option.country} />
-                      <span className="text-base-regular">{option.label}</span>
+                      <span className="text-base-regular text-slate-12">{option.label}</span>
                     </div>
                     <ChevronDown size={16} className="-rotate-90" />
                   </button>
@@ -69,3 +69,4 @@ const CountryMenu = ({ goBack, onCountrySelected, setMobileMenuOpen }) => {
 };
 
 export default CountryMenu;
+

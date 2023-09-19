@@ -44,7 +44,7 @@ export default function Resources() {
 
             {/* Page header */}
             <div className="max-w-3xl mx-auto text-left pb-12 md:pb-16">
-                <h4 className="inline-block bg-cyan-3 text-slate-12 py-2 px-4 rounded-full mb-4"
+                <h4 className="inline-block bg-cyan-3 text-sm md:text-base text-slate-12 py-2 px-4 rounded-full mb-4"
                     data-aos="fade-up">Sleep Better, Live Better: Unleash your Potential</h4>
                 <h1 className="h2 mb-4 text-slate-800 dark:text-slate-200" data-aos="fade-up">Mastering
                     Sleep with Eight Athletics: Your Ultimate Collection of Sleep Resources</h1>
@@ -136,7 +136,7 @@ export default function Resources() {
                                         </div>
                                         {/* Image */}
                                         <div
-                                            className="block md:hidden items-center justify-center w-full md:w-auto">
+                                            className="3xs:block md:hidden items-center justify-center w-full md:w-auto">
                                             <Image
                                                 className="object-cover w-full h-[20rem] md:h-full object-center sm:px-6"
                                                 src={imgSrc}
@@ -147,9 +147,9 @@ export default function Resources() {
                                         </div>
                                         {/* Image - Shown above md */}
                                         <div
-                                            className="hidden 2xs:flex md:block 3xs:hidden xs:hidden sm:hidden  items-center justify-center w-full md:w-auto ">
+                                            className="hidden md:block items-center justify-center w-full md:w-auto">
                                             <Image
-                                                className="object-contain  w-full h-full lg:max-h-[470px]"
+                                                className="object-contain  w-full h-[20rem]  lg:max-h-[470px]"
                                                 src={imgSrc}
                                                 width={400}
                                                 height={400}

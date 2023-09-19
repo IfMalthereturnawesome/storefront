@@ -12,6 +12,8 @@ import {
 
 
 import CountrySelect from "@modules/layout/components/country-select";
+import CountrySelectMobile from "@modules/mobile-menu/components/country-menu/country-select";
+import CountrySelectDesktop from "@modules/layout/components/country-select/countrySelect";
 
 
 
@@ -43,7 +45,7 @@ export default function Footer() {
                 </Link>
               </div>
               <div
-                className="my-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold 
+                className="my-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text 
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300 
@@ -53,15 +55,19 @@ export default function Footer() {
                 <br />
                 Achieve your dreams, one night at a time
               </div>
+              <div className={"hidden md:block pt-4"}>
+
+                <CountrySelectDesktop />
+              </div>
             </div>
 
             {/* 2nd, 3rd and 4th blocks */}
-            <div className="grid gap-8 sm:grid-cols-3 md:col-span-6 lg:col-span-6">
+            <div className="grid gap-8  2xs:grid-cols-2 sm:grid-cols-3  md:col-span-6 ">
               {/* 2nd block */}
               <div className="text-base font-semibold">
                 <Link href="/product">
                   <h6
-                    className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold 
+                    className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text 
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300 
@@ -89,7 +95,7 @@ export default function Footer() {
               <div className="text-base font-semibold">
                 <Link href="/resources">
                   <h6
-                    className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold 
+                    className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text 
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300 
@@ -117,7 +123,7 @@ export default function Footer() {
               <div className="text-base font-semibold">
                 <Link href="/contact">
                   <h6
-                    className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold 
+                    className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text 
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300 
@@ -173,8 +179,17 @@ export default function Footer() {
   {/*              </p>*/}
   {/*            </div>*/}
             </div>
+
+
+              <div className={"md:hidden"}>
+                  <CountrySelectMobile />
+
+              </div>
           </div>
-          <CountrySelect />
+
+
+
+
 
 
           <hr
@@ -218,7 +233,7 @@ export default function Footer() {
           {/* Bottom area */}
           <div className="px-8 sm:flex sm:items-center sm:justify-between sm:px-16 md:grid-cols-6 md:px-12 lg:gap-12 lg:px-16 xl:px-16">
             {/* Social links */}
-            <ul className="mb-4 flex md:order-1 md:mb-0 md:ml-4 ">
+            <ul className="mb-4 flex md:order-1 md:mb-0 md:ml-4 3xs:justify-between md:justify-center">
               <li>
                 <Link
                   href="/"
