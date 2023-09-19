@@ -18,15 +18,15 @@ const ScrollSection = () => {
     const spacerRef = useRef<HTMLDivElement>(null);
 
     const texts = [
-        {text: "create innovative sleep products,", size: "64px", color: 'text-slate-12 dark:text-slate-12'},
+        {text: "create innovative sleep products,", color: 'text-slate-12 dark:text-slate-12'},
         {
             text: "that have the customer's needs built right into the core of the business,",
-            size: "64px",
+
             color: 'text-slate-12 dark:text-slate-12'
         },
         {
             text: "with the philosophy that quality sleep is paramount to success.",
-            size: "64px",
+
             color: 'text-slate-12 dark:text-slate-12'
         }
     ];
@@ -238,21 +238,21 @@ const ScrollSection = () => {
         <div>
             <div ref={containerRef}
                  style={{height: '500vh', backgroundColor: initialBgColor}}
-                 className={"px-20 smooth-bg-transition"}>
-                <div
+                 className={"px-4 lg:px-20 smooth-bg-transition"}>
+                <div className={"w-[90%] lg:w-[80%]"}
                     style={{
                         position: 'fixed',
                         top: '42.8%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
                         textAlign: 'center',
-                        width: '80%',
+
                         fontWeight: '700',
                     }}
                 >
                     <div ref={missionRef}
-                         className={`smooth-color-transition dark:text-about-1 ${isDarkMode ? missionTextClasses[0].split(" ")[1] : missionTextClasses[0].split(" ")[0]}`}
-                         style={{fontSize: '36px'}}>
+                         className={`smooth-color-transition dark:text-about-1 text-4xl py-2 lg:text-4xl ${isDarkMode ? missionTextClasses[0].split(" ")[1] : missionTextClasses[0].split(" ")[0]}`}
+                         >
                         {"Eight Athletics' mission is to"}
                     </div>
 
@@ -262,18 +262,19 @@ const ScrollSection = () => {
                                 ref={(el) => (subtextRefs.current[index] = el as HTMLDivElement)}
                                 key={index}
                                 style={{
-                                    fontSize: text.size,
+
                                     color: text.color,
                                     opacity: 0,
                                     position: 'absolute',
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: '70%',
+
                                     fontWeight: '700',
                                     lineHeight: '1.1',
                                 }}
+                                className={"w-[100%] lg:w-[60%]"}
                             >
-                                {text.text}
+                                <h3 className={"text-7xl lg:text-8xl"}>{text.text}</h3>
                             </div>
                         ))}
                     </div>
