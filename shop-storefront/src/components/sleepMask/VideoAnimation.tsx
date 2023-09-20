@@ -34,267 +34,207 @@ const VideoAnimation: React.FC = () => {
     const [state, setState] = useState(true);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [showCanvas, setShowCanvas] = useState(true);
+    const descriptionRef1 = useRef(null);
+    const descriptionRef2 = useRef(null);
+    const descriptionRef3 = useRef(null);
 
-
-
-
-
-
-
-
-
-        const smoothDisappearOneNight = () => {
-            if (oneNightRef.current) {
-                gsap.to(oneNightRef.current, {
-                    opacity: 1,
-                    duration: 3,
-                    onComplete: () => {
-                        if (oneNightRef.current) {
-                            oneNightRef.current.style.zIndex = '0';
-                        }
-                    }
-                });
-            }
-        }
-
-
-        const smoothDisappear = () => {
-            setShowHeaderText(false);
-            if (headerRef.current) {
-                headerRef.current.style.opacity = '0';
-            }
-            smoothDisappearHeader();
-
-            const videoContainer = videoContainerRef.current;
-
-            gsap.to(videoContainer, {
-                opacity: 0, duration: 1,
+    const smoothDisappearOneNight = () => {
+        if (oneNightRef.current) {
+            gsap.to(oneNightRef.current, {
+                opacity: 1,
+                duration: 3,
                 onComplete: () => {
-
-                    setShowVideo(false);
-                    // Jump to the top of the page
-
-
-                    setShowPlayAgainButton(true);
-                    if (videoRef.current) {
-                        videoRef.current.pause();  // Pause the video first
-                        videoRef.current.addEventListener('loadedmetadata', function () {
-                            this.currentTime = 0;  // Rewind the video to the beginning
-                        }, false);
-                        smoothDisappearOneNight();
-
-                        setIsPlaying(false);  // Set isPlaying to false
+                    if (oneNightRef.current) {
+                        oneNightRef.current.style.zIndex = '0';
                     }
-
-
                 }
             });
-        };
+        }
+    }
 
 
-        useLayoutEffect(() => {
-            let mm = gsap.matchMedia();
-            mm.add('(max-width: 399px)', () => {
-                setState(false);
-            });
-            mm.add('(min-width: 400px)', () => {
-                setState(true);
-                if (!state) return;
-                if (wrapperRef.current) {
-                    ScrollTrigger.create({
-                        trigger: ".pin-video",
-                        start: "top top",
-                        end: "bottom top",
-                        pin: true,
-                        pinSpacing: true,
-                        onLeave: ({progress, direction, isActive}) => {
-                            if (isActive) {
-                                smoothDisappear();
-                                setShowSmallDreamText(true);
-                                setShowOneNightText(true);
-                                setShowDescription(true);
-                            }
-                        },
-                        onEnterBack: ({progress, direction, isActive}) => {
-                            if (isActive) {
-                                // Your logic here
-                            }
-                        },
-                    });
-                }
-            });
+    const smoothDisappear = () => {
+        setShowHeaderText(false);
+        if (headerRef.current) {
+            headerRef.current.style.opacity = '0';
+        }
+        smoothDisappearHeader();
 
-            return () => mm.revert();
-        }, [state, smoothDisappear]);
+        const videoContainer = videoContainerRef.current;
+
+        gsap.to(videoContainer, {
+            opacity: 0, duration: 1,
+            onComplete: () => {
+
+                setShowVideo(false);
+                // Jump to the top of the page
 
 
-        // VIDEO
-        useEffect(() => {
-            if (headerRef.current) {
-
-                headerRef.current.style.opacity = '0';
-            }
-            if (showPlayAgainButton) {
-                setShowHeaderText(false);
-
-
-            }
-            const tl = gsap.timeline();
-            if (videoRef.current) {
-                tl.fromTo(
-                    videoRef.current,
-                    {opacity: 0},
-                    {opacity: 1, duration: 1}
-                );
-            }
-            // if showPlayAgain button is true, then smooth disappear header
-
-            // Add this block to start the video after 1.2 seconds
-            const timer = setTimeout(() => {
-
+                setShowPlayAgainButton(true);
                 if (videoRef.current) {
-                    videoRef.current.play().then(() => {
-                        smoothDisappearHeader();
-                        setIsPlaying(true);
+                    videoRef.current.pause();  // Pause the video first
+                    videoRef.current.addEventListener('loadedmetadata', function () {
+                        this.currentTime = 0;  // Rewind the video to the beginning
+                    }, false);
+                    smoothDisappearOneNight();
 
-                    }).catch((error) => {
-                        console.error("Video play failed:", error);
-                    });
+                    setIsPlaying(false);  // Set isPlaying to false
                 }
-            }, 1000);
 
-            if (videoContainerRef.current) {
+
+            }
+        });
+    };
+
+
+    useLayoutEffect(() => {
+        let mm = gsap.matchMedia();
+        mm.add('(max-width: 399px)', () => {
+            setState(false);
+        });
+        mm.add('(min-width: 400px)', () => {
+            setState(true);
+            if (!state) return;
+            if (wrapperRef.current) {
                 ScrollTrigger.create({
-                        trigger: videoContainerRef.current,
-                        start: "top top",
-                        end: "1%",
-
-                        onLeave: () => {
-
-                            setShowVideo(false);
+                    trigger: ".pin-video",
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    pinSpacing: true,
+                    onLeave: ({progress, direction, isActive}) => {
+                        if (isActive) {
                             smoothDisappear();
-                            setShowPlayAgainButton(true);
                             setShowSmallDreamText(true);
                             setShowOneNightText(true);
                             setShowDescription(true);
-                        },
-
-                        onEnterBack: () => {
-                            // Do nothing to prevent reappearing
-
                         }
-                    }
-                );
-            }
-
-            if (videoRef.current) {
-                videoRef.current.addEventListener('ended', () => {
-                    smoothDisappear();
-                    setShowSmallDreamText(true);
-                    setShowOneNightText(true);
-                    setShowDescription(true);
-
+                    },
+                    onEnterBack: ({progress, direction, isActive}) => {
+                        if (isActive) {
+                            // Your logic here
+                        }
+                    },
                 });
             }
+        });
+
+        return () => mm.revert();
+    }, [state, smoothDisappear]);
 
 
-            return () => {
+    // VIDEO
+    useEffect(() => {
+        if (headerRef.current) {
 
-                clearTimeout(timer);
-
-            };
-        }, []);
-
-
-        // ACHIEVE YOUR DREAMS - HEADER
-    const useShowHeaderAnimation = (showHeaderText: boolean, headerRef: RefObject<HTMLDivElement>) => {
-            useEffect(() => {
-                if (headerRef.current) {
-                    const splitText = new SplitType(headerRef.current, {types: 'words, chars'});
-
-                    const tl = gsap.timeline({
-                        onStart: () => {
+            headerRef.current.style.opacity = '0';
+        }
+        if (showPlayAgainButton) {
+            setShowHeaderText(false);
 
 
-                            // Set opacity to 1 when animation starts
-                            if (headerRef.current) {
-                                headerRef.current.style.opacity = '1';
+        }
+        const tl = gsap.timeline();
+        if (videoRef.current) {
+            tl.fromTo(
+                videoRef.current,
+                {opacity: 0},
+                {opacity: 1, duration: 1}
+            );
+        }
+        // if showPlayAgain button is true, then smooth disappear header
 
-                            }
-                        },
-                        onComplete: () => {
+        // Add this block to start the video after 1.2 seconds
+        const timer = setTimeout(() => {
 
-                            // Set z-index to 0 after animation completes
-                            if (headerRef.current) {
-                                headerRef.current.style.zIndex = '0';
+            if (videoRef.current) {
+                videoRef.current.play().then(() => {
+                    smoothDisappearHeader();
+                    setIsPlaying(true);
 
+                }).catch((error) => {
+                    console.error("Video play failed:", error);
+                });
+            }
+        }, 1000);
 
-                            }
+        if (videoContainerRef.current) {
+            ScrollTrigger.create({
+                    trigger: videoContainerRef.current,
+                    start: "top top",
+                    end: "1%",
 
+                    onLeave: () => {
 
-                        },
+                        setShowVideo(false);
+                        smoothDisappear();
+                        setShowPlayAgainButton(true);
+                        setShowSmallDreamText(true);
+                        setShowOneNightText(true);
+                        setShowDescription(true);
+                    },
 
+                    onEnterBack: () => {
+                        // Do nothing to prevent reappearing
 
-                    });
-
-                    // Add spaces manually
-                    if (splitText.words) {
-                        splitText.words.forEach((word, index) => {
-                            const space = document.createElement('span');
-                            space.innerHTML = '&nbsp;';
-                            space.style.display = 'inline-block';
-                            word.parentNode?.insertBefore(space, word.nextSibling);
-                        });
                     }
-
-
-                    tl.from(splitText.chars, {
-                        opacity: 0,
-                        color: '#fdc500',
-                        scale: 0.7,
-                        stagger: {amount: 0.5},
-                        ease: 'power2.inOut',
-
-                    });
-
-
-                    tl.to(splitText.chars, {
-                        color: '#faf7f7',
-                        opacity: 0.8,
-                        scale: 1,
-                        stagger: {amount: 1.5},
-                        ease: 'power1.out',
-
-                    });
-
-
                 }
+            );
+        }
+
+        if (videoRef.current) {
+            videoRef.current.addEventListener('ended', () => {
+                smoothDisappear();
+                setShowSmallDreamText(true);
+                setShowOneNightText(true);
+                setShowDescription(true);
+
+            });
+        }
 
 
-            }, [showHeaderText, headerRef]);
+        return () => {
+
+            clearTimeout(timer);
+
         };
+    }, []);
 
 
-        //  ONE NIGHT AT A TIME - Header
+    // ACHIEVE YOUR DREAMS - HEADER
+    const useShowHeaderAnimation = (showHeaderText: boolean, headerRef: RefObject<HTMLDivElement>) => {
         useEffect(() => {
+            if (headerRef.current) {
+                const splitText = new SplitType(headerRef.current, {types: 'words, chars'});
 
-            if (oneNightRef.current && showOneNightText) {
-                oneNightRef.current.style.opacity = '1';
-                const splitTextNight = new SplitType(oneNightRef.current, {types: 'words, chars'});
                 const tl = gsap.timeline({
                     onStart: () => {
-                        if (oneNightRef.current) {
-                            oneNightRef.current.style.opacity = '1';
+
+
+                        // Set opacity to 1 when animation starts
+                        if (headerRef.current) {
+                            headerRef.current.style.opacity = '1';
+
                         }
                     },
                     onComplete: () => {
-                        // Add any completion logic here
-                    }
+
+                        // Set z-index to 0 after animation completes
+                        if (headerRef.current) {
+                            headerRef.current.style.zIndex = '0';
+
+
+                        }
+
+
+                    },
+
+
                 });
 
                 // Add spaces manually
-                if (splitTextNight.words) {
-                    splitTextNight.words.forEach((word, index) => {
+                if (splitText.words) {
+                    splitText.words.forEach((word, index) => {
                         const space = document.createElement('span');
                         space.innerHTML = '&nbsp;';
                         space.style.display = 'inline-block';
@@ -302,91 +242,169 @@ const VideoAnimation: React.FC = () => {
                     });
                 }
 
-                // Existing animations
-                tl.from(splitTextNight.chars, {
-                    opacity: 1,
+
+                tl.from(splitText.chars, {
+                    opacity: 0,
                     color: '#fdc500',
-                    scale: 1,
-                    stagger: {amount: 0.3},
-                    textShadow: '0px 0px 15px rgba(255, 255, 255, 0.8)', // Initial glow
-                    ease: 'back.out(1.7)',
+                    scale: 0.7,
+                    stagger: {amount: 0.5},
+                    ease: 'power2.inOut',
+
                 });
 
-                tl.to(splitTextNight.chars, {
+
+                tl.to(splitText.chars, {
                     color: '#faf7f7',
-                    opacity: 0.6,
-                    stagger: {amount: 0.1},
-                    ease: 'power2.inOut',
+                    opacity: 0.8,
+                    scale: 1,
+                    stagger: {amount: 1.5},
+                    ease: 'power1.out',
+
                 });
 
 
-                if (splitTextNight.chars) {
-                    splitTextNight.chars.forEach((char, index) => {
-                        tl.to(char, {
-                            opacity: 0.9,
-                            duration: 0.1,
-                            ease: 'power2.inOut',
-                            stagger: {amount: 0.1},
-                            delay: 1.5,
-                            onStart: () => {
-                                char.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.4)';
-                                // change the innerHTML of the char to different letters
-
-                                tl.to(splitTextNight.chars, {
-                                    opacity: 1,
-                                    stagger: {amount: 1},
-                                    ease: 'power2.inOut',
-                                });
-
-
-                            },
-                            onComplete: () => {
-                                char.style.textShadow = 'none';
-
-
-
-                            }
-                        }, index * 0.1);  // stagger time between each char
-                    });
-                }
-
-
-
             }
-        }, [showOneNightText]);
 
 
-        // Smaller "achieve your dreams" Text
-        useEffect(() => {
-            if (smallDreamRef.current && showSmallDreamText) {
-                smallDreamRef.current.style.opacity = '1';
-
-                const tl = gsap.timeline({
-                    onComplete: () => {
-                        if (smallDreamRef.current) {
-                            smallDreamRef.current.style.zIndex = '0';
-                        }
-                        //     set timeout to show description
-                        setShowDescription(true);
+        }, [showHeaderText, headerRef]);
+    };
 
 
+    //  ONE NIGHT AT A TIME - Header
+    useEffect(() => {
+
+        if (oneNightRef.current && showOneNightText) {
+            oneNightRef.current.style.opacity = '1';
+            const splitTextNight = new SplitType(oneNightRef.current, {types: 'words, chars'});
+            const tl = gsap.timeline({
+                onStart: () => {
+                    if (oneNightRef.current) {
+                        oneNightRef.current.style.opacity = '1';
                     }
+
+                    if (
+                        descriptionRef1.current &&
+                        descriptionRef2.current &&
+                        descriptionRef3.current
+                    ) {
+                        // Set initial state
+                        gsap.set([descriptionRef1.current, descriptionRef2.current, descriptionRef3.current], { opacity: 0.2, color: 'rgb(255,255,255)'
+                             });
+
+                        const tl = gsap.timeline({ defaults: { duration: 1, stagger: 0.5, color: "#e7ecef"} });
+
+                        tl.to(descriptionRef1.current, { opacity: 0.9}, "+=3")
+                            .to(descriptionRef2.current, { opacity: 0.9}, "+=1.3")
+                            .to(descriptionRef3.current, { opacity: 0.9}, "+=1.3");
+                    }
+
+                },
+                onComplete: () => {
+                    // Add any completion logic here
+
+
+                }
+            });
+
+            // Add spaces manually
+            if (splitTextNight.words) {
+                splitTextNight.words.forEach((word, index) => {
+                    const space = document.createElement('span');
+                    space.innerHTML = '&nbsp;';
+                    space.style.display = 'inline-block';
+                    word.parentNode?.insertBefore(space, word.nextSibling);
                 });
+            }
 
-                tl.to(smallDreamRef.current, {
-                    opacity: 1,
-                    duration: 1,
-                    delay: 1,
-                    ease: 'power2.inOut',
+            // Existing animations
+            tl.from(splitTextNight.chars, {
+                opacity: 1,
+                color: '#fdc500',
+                scale: 1,
+                stagger: {amount: 0.3},
+                textShadow: '0px 0px 15px rgba(255, 255, 255, 0.8)', // Initial glow
+                ease: 'back.out(1.7)',
+            });
+
+            tl.to(splitTextNight.chars, {
+                color: '#faf7f7',
+                opacity: 0.6,
+                stagger: {amount: 0.1},
+                ease: 'power2.inOut',
+            });
+
+
+            if (splitTextNight.chars) {
+                splitTextNight.chars.forEach((char, index) => {
+                    tl.to(char, {
+                        opacity: 0.9,
+                        duration: 0.1,
+                        ease: 'power2.inOut',
+                        stagger: {amount: 0.1},
+                        delay: 1.5,
+                        onStart: () => {
+                            char.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.4)';
+                            // change the innerHTML of the char to different letters
+
+                            tl.to(splitTextNight.chars, {
+                                opacity: 1,
+                                stagger: {amount: 1},
+                                ease: 'power2.inOut',
+                            });
+
+
+                        },
+                        onComplete: () => {
+                            char.style.textShadow = 'none';
+
+
+                        }
+                    }, index * 0.1);  // stagger time between each char
                 });
-
-
             }
 
 
-        }, []);
+        }
+    }, [showOneNightText]);
+
+
+    // Smaller "achieve your dreams" Text
+    useEffect(() => {
+        if (smallDreamRef.current && showSmallDreamText) {
+            smallDreamRef.current.style.opacity = '1';
+
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    if (smallDreamRef.current) {
+                        smallDreamRef.current.style.zIndex = '0';
+                    }
+                    //     set timeout to show description
+                    setShowDescription(true);
+
+
+                }
+            });
+
+            tl.to(smallDreamRef.current, {
+                opacity: 1,
+                duration: 1,
+                delay: 1,
+                ease: 'power2.inOut',
+            });
+
+
+        }
+
+
+    }, []);
+
+
+
 
     useShowHeaderAnimation(showHeaderText, headerRef);
+
+
+
     const smoothAppear = () => {
 
         gsap.to(videoContainerRef.current, {
@@ -419,7 +437,6 @@ const VideoAnimation: React.FC = () => {
 
 
         smoothAppear();
-
 
 
     };
@@ -485,10 +502,10 @@ const VideoAnimation: React.FC = () => {
 
     return (
         <>
-            <div ref={wrapperRef} className="relative h-[120vh] pin-video" id={"smooth-content"}>
+            <div ref={wrapperRef} className="relative h-screen lg:h-[120vh] pin-video" id={"smooth-content"}>
 
                 <div ref={headerRef}
-                     className="absolute top-[18vh] w-[99vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-8xl  "
+                     className="absolute top-[18vh] w-[99vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
                      style={{zIndex: 1}}>
                     achieve your dreams
                 </div>
@@ -496,11 +513,11 @@ const VideoAnimation: React.FC = () => {
 
                 {(showSmallDreamText && showOneNightText) && (
                     <div
-                        className={`w-[99vw] h-[100vh] pt-[16vh] px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[18vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
                         <div className="">  {/* Added minHeight */}
                             {showSmallDreamText && (
                                 <div ref={smallDreamRef}
-                                     className="flex items-center justify-center text-[#e7ecef] text-opacity-50 font-bold text-3xl ">
+                                     className="flex items-center justify-center text-[#e7ecef] text-opacity-50 font-bold text-lg 2xs:text-xl xs:text-2xl lg:text-3xl ">
                                     achieve your dreams,
                                 </div>
                             )}
@@ -508,7 +525,7 @@ const VideoAnimation: React.FC = () => {
                         <div className="">  {/* Added minHeight */}
                             {showOneNightText && (
                                 <div ref={oneNightRef}
-                                     className="flex items-center justify-center text-[#faf7f7] text-opacity-60 font-bold text-8xl"
+                                     className="flex items-center justify-center text-[#faf7f7] text-opacity-60 font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl"
                                      style={{opacity: 1}}
 
                                 >
@@ -522,16 +539,12 @@ const VideoAnimation: React.FC = () => {
                             {showDescription && (
                                 <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[28vw] 3xl:px-[30vw]"
                                      data-aos="fade-up">
-                                    <p className="text-[#e7ecef] mx-auto font-sans text-2xl text-opacity-90 font-semibold tracking-normal text-center">
-                                        {/*A new era of sleep masks has arrived, where total blackout meets unmatched*/}
-                                        {/*comfort.*/}
-                                        {/*Made for a unique fit that adapts seamlessly to the unique features of your*/}
-                                        {/*face, —elevating your peak*/}
-                                        {/*performance, no matter your location or how you sleep.*/}
+                                    <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl  3xl:text-xl font-semibold font-sans !leading-normal tracking-wide text-center">
+                                        <span ref={descriptionRef1} className="text-[#e7ecef] inline">Enter a new sleep era where total blackout meets unmatched comfort. </span>
 
-                                        Enter a new sleep era where total blackout meets unmatched comfort. Custom-fit
-                                        for your unique face.
-                                        Elevate your peak performance, no matter your location or how you sleep.
+                                        <span ref={descriptionRef2} className="text-[#e7ecef] inline">Custom-fit for your unique face. </span>
+
+                                        <span ref={descriptionRef3} className="text-[#e7ecef] ">Elevate your peak performance, no matter where you are and how you sleep.</span>
                                     </p>
 
                                 </div>
@@ -543,26 +556,30 @@ const VideoAnimation: React.FC = () => {
                         )
                         }
 
-
                     </div>
-
 
                 )}
 
-
                 <div ref={videoContainerRef} className="relative "
                      style={{display: showVideo ? 'block' : 'none', opacity: showVideo ? 1 : 0}}>
-                    <video
-                        ref={videoRef}
-                        className="w-full h-fit "
-                        preload="auto"
-                        muted={true}
-                        autoPlay={false}
-                        // src={"/videos/Eight-Athletics-sleep-mask-commercial-web.mp4"}
-                        src={"/videos/test-video-for-animation.mp4"}
-                    >
-                        Your browser does not support the video tag.
-                    </video>
+                    <div
+                        className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0 ${showVideo ? 'block' : 'hidden'} sm:p-4 lg:p-0`}>
+                        <div
+                            className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
+                            <video
+                                ref={videoRef}
+                                className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
+                                preload="auto"
+                                muted={true}
+                                autoPlay={false}
+                                src={"/videos/Eight-Athletics-sleep-mask-commercial-web.mp4"}
+                                // src={"/videos/test-video-for-animation.mp4"}
+
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
                     <button
                         onClick={togglePlayPause}
                         className="absolute bottom-4 right-4 z-10 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center"

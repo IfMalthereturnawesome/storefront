@@ -102,14 +102,12 @@
 }
 
 #hero-lightpass {
-  max-width: 100vw;
-  max-height: 50vh;
-  margin-top: 5vh;
+
 }
 
 .canvas-container {
   width: 100vw;
-  height: 50vh;
+
 
   display: flex;
   justify-content: center;
