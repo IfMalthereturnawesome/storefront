@@ -229,7 +229,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={close}>
+          <Button myVariant="secondary" onClick={close}>
             Cancel
           </Button>
           <Button onClick={submit} disabled={submitting}>

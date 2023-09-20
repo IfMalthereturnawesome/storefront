@@ -53,7 +53,7 @@ const AccountInfo = ({
         </div>
         <div>
           <Button
-            variant="secondary"
+            myVariant="secondary"
             className="w-[100px] min-h-[25px] py-1"
             onClick={handleToggle}
             type={state ? "reset" : "button"}

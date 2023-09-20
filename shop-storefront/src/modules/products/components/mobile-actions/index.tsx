@@ -72,7 +72,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
               )}
             </div>
             <div className="grid grid-cols-2 w-full gap-x-4">
-              <Button onClick={open} variant="secondary">
+              <Button onClick={open} myVariant="secondary">
                 <div className="flex items-center justify-between w-full">
                   <span>
                     {variant
