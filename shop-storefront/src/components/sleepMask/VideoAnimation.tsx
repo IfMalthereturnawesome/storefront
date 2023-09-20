@@ -294,8 +294,8 @@ const VideoAnimation: React.FC = () => {
                         const tl = gsap.timeline({ defaults: { duration: 1, stagger: 0.5, color: "#e7ecef"} });
 
                         tl.to(descriptionRef1.current, { opacity: 0.9}, "+=3")
-                            .to(descriptionRef2.current, { opacity: 0.9}, "+=1.3")
-                            .to(descriptionRef3.current, { opacity: 0.9}, "+=1.3");
+                            .to(descriptionRef2.current, { opacity: 0.9}, "+=1.2")
+                            .to(descriptionRef3.current, { opacity: 0.9}, "+=1.2");
                     }
 
                 },
