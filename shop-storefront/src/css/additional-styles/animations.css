@@ -199,7 +199,7 @@
   bottom: 0;
   left: -150%;
   right: 0;
-  animation: animateGrains 40s linear infinite;
+  animation: animateGrains 120s linear infinite;
 }
 
 @keyframes animateGrains {

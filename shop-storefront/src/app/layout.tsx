@@ -4,7 +4,7 @@ import {Inter, Architects_Daughter, Poppins} from 'next/font/google';
 import 'flowbite';
 import BreakpointsIndicator from "@/components/helper/breakpoints";
 import {ProvidersNextUI} from "@/app/providers";
-
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -50,6 +50,7 @@ export default function RootLayout({children}: RootLayoutProps) {
                 </div>
             </Providers>
         </ProvidersNextUI>
+        <Analytics />
         </body>
         </html>
     );
