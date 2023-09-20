@@ -1,4 +1,6 @@
 // pages/api/homerunnerPingback.js
+import { NextRequest, NextResponse } from "next/server"
+
 
 export default async (req, res) => {
   if (req.method === 'POST') {
