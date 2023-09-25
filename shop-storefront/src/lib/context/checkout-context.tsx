@@ -265,6 +265,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
 
   const setSavedAddress = (address: Address) => {
     const setValue = methods.setValue
+    installHomerunner();
     fetchHomerunnerOptions({
       receiver_address1: "",
       receiver_address2: "",
