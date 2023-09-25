@@ -384,6 +384,10 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
         redirect: 'follow',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': '*/*',
+          'Connection': 'keep-alive',
+          'Authorization': 'bearer 3iny7dmc5axsh9pf1b6zk4lwtv2gqjeu',
+
         },
       };
       // @ts-ignore
