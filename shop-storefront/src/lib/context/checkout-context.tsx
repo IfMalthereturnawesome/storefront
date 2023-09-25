@@ -386,7 +386,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
           'Content-Type': 'application/json',
           'Accept': '*/*',
           'Connection': 'keep-alive',
-          'Authorization': 'bearer 3iny7dmc5axsh9pf1b6zk4lwtv2gqjeu',
+          'Authorization': 'basic bWhvbG1rQGhvdG1haWwuY29tOjNpbnk3ZG1jNWF4c2g5cGYxYjZ6azRsd3R2MmdxamV1',
 
         },
       };
