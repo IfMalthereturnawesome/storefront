@@ -332,6 +332,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     } else {
       payload.billing_address = billing_address
     }
+    installHomerunner();
 
     updateCart(payload, {
       onSuccess: ({ cart }) => {
@@ -393,7 +394,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   // Function to fetch shipping options from Homerunner
   const fetchHomerunnerOptions = async (receiverDetails) => {
 
-    installHomerunner();
+
 
     try {
       const raw = JSON.stringify(receiverDetails);
