@@ -392,6 +392,8 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
       if (response.ok) {
         console.log("Request to Homerunner was successful.");
         // If the server starts sending CORS headers in the future, you can parse the response here.
+        const data = await response.json();
+        setHomerunnerOptions(data);
       } else {
         console.log("Error making request to Homerunner:", response.status);
       }
