@@ -20,7 +20,7 @@ import {
   useUpdateCart,
 } from "medusa-react"
 import { useRouter } from "next/navigation"
-import React, {createContext, useContext, useEffect, useMemo, useState} from "react"
+import React, { createContext, useContext, useEffect, useMemo } from "react"
 import { FormProvider, useForm, useFormContext } from "react-hook-form"
 import { useStore } from "./store-context"
 
@@ -66,10 +66,7 @@ interface CheckoutProviderProps {
 
 const IDEMPOTENCY_KEY = "create_payment_session_key"
 
-
-
 export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
-  const [homerunnerOptions, setHomerunnerOptions] = useState([]);
   const {
     cart,
     setCart,
@@ -146,30 +143,19 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   }, [cart])
 
   const shippingMethods = useMemo(() => {
-    if (homerunnerOptions.length > 0) {
-      return homerunnerOptions.map((option) => ({
-        value: option.carrier,  // assuming 'carrier' can be used as a unique identifier
-        label: option.title,
-        description: option.description,
-        price: formatAmount({   // You might need to adjust this based on Homerunner's response structure
-          amount: option.conditions[0]?.price || 0,
-          includeTaxes: true,
-          region: cart.region,
-        }),
-      }))
-    } else if (shipping_options && cart?.region) {
-      return shipping_options.map((option) => ({
+    if (shipping_options && cart?.region) {
+      return shipping_options?.map((option) => ({
         value: option.id,
         label: option.name,
         price: formatAmount({
           amount: option.amount || 0,
-          includeTaxes: true,
           region: cart.region,
         }),
       }))
     }
-    return [];
-  }, [shipping_options, cart, homerunnerOptions]);
+
+    return []
+  }, [shipping_options, cart])
 
   /**
    * Resets the form when the cart changed.
@@ -265,24 +251,6 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
 
   const setSavedAddress = (address: Address) => {
     const setValue = methods.setValue
-    installHomerunner();
-    fetchHomerunnerOptions({
-      receiver_address1: "",
-      receiver_address2: "",
-      receiver_country: "",
-      receiver_city: "",
-      receiver_zip_code: "",
-      receiver_phone: "",
-      receiver_email: "",
-      receiver_company: "",
-      cart_date: 1607558400,
-      cart_time: "08:08:44",
-      cart_day: "Thursday",
-      cart_amount: 1,
-      cart_weight: 400,
-      cart_currency: "DKK",
-      cart_subtotal: 100,
-    });
 
     setValue("shipping_address", {
       address_1: address.address_1 || "",
@@ -333,32 +301,11 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     } else {
       payload.billing_address = billing_address
     }
-    installHomerunner();
 
     updateCart(payload, {
       onSuccess: ({ cart }) => {
-        fetchHomerunnerOptions({
-          receiver_address1: "",
-          receiver_address2: "",
-          receiver_country: "",
-          receiver_city: "",
-          receiver_zip_code: "",
-          receiver_phone: "",
-          receiver_email: "",
-          receiver_company: "",
-          cart_date: 1607558400,
-          cart_time: "08:08:44",
-          cart_day: "Thursday",
-          cart_amount: 1,
-          cart_weight: 400,
-          cart_currency: "DKK",
-          cart_subtotal: 100,
-
-        } );
         setCart(cart)
         prepareFinalSteps()
-
-
       },
     })
   }
@@ -373,58 +320,6 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
         push(`/order/confirmed/${data.id}`)
       },
     })
-  }
-
-  const installHomerunner = () => {
-    let raw = "{\n    \"activation_code\": \"473-981-722\",\n    \"name\": \"MedusaJS\",\n    \"platform\": \"custom\",\n    \"version\": \"1.0.0\",\n    \"shop_url\": \"https://www.eightathletics.com\",\n    \"pingback_url\": \"https://www.eightathletics.com/pingback/test?token=473-981-722\"\n}";
-
-    const requestOptions = {
-      method: 'POST',
-      body: raw,
-      redirect: 'follow'
-    };
-
-    // @ts-ignore
-    fetch("https://api.smartcheckout.homerunner.com?activation_token=473-981-722", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-
-        .catch(error => console.log('error', error));
-  }
-
-  // Function to fetch shipping options from Homerunner
-  const fetchHomerunnerOptions = async (receiverDetails) => {
-
-
-
-    try {
-      const raw = JSON.stringify(receiverDetails);
-      const requestOptions = {
-        method: 'POST',
-        body: raw,
-        redirect: 'follow',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': '*/*',
-          'Connection': 'keep-alive',
-          'Authorization': '3iny7dmc5axsh9pf1b6zk4lwtv2gqjeu',
-
-        },
-      };
-      // @ts-ignore
-      const response = await fetch("https://api.smartcheckout.homerunner.com?shop_token=2693fa373ed152b932bc2e582ba387349825e9181abc2817889eed8562f56c3a", requestOptions);
-
-      if (response.ok) {
-        console.log("Request to Homerunner was successful.");
-        // If the server starts sending CORS headers in the future, you can parse the response here.
-        const data = await response.json();
-        setHomerunnerOptions(data);
-      } else {
-        console.log("Error making request to Homerunner:", response.status);
-      }
-    } catch (error) {
-      console.log('error', error);
-    }
   }
 
   return (
