@@ -373,8 +373,27 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     })
   }
 
+  const installHomerunner = () => {
+    let raw = "{\n    \"activation_code\": \"473-981-722\",\n    \"name\": \"MedusaJS\",\n    \"platform\": \"custom\",\n    \"version\": \"1.0.0\",\n    \"shop_url\": \"https://www.eightathletics.com\",\n    \"pingback_url\": \"https://www.eightathletics.com/pingback/test?token=473-981-722\"\n}";
+
+    const requestOptions = {
+      method: 'POST',
+      body: raw,
+      redirect: 'follow'
+    };
+
+    // @ts-ignore
+    fetch("https://api.smartcheckout.homerunner.com?activation_token=473-981-722", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+
+        .catch(error => console.log('error', error));
+  }
+
   // Function to fetch shipping options from Homerunner
   const fetchHomerunnerOptions = async (receiverDetails) => {
+
+    installHomerunner();
 
     try {
       const raw = JSON.stringify(receiverDetails);
@@ -386,7 +405,7 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
           'Content-Type': 'application/json',
           'Accept': '*/*',
           'Connection': 'keep-alive',
-          'Authorization': 'basic bWhvbG1rQGhvdG1haWwuY29tOjNpbnk3ZG1jNWF4c2g5cGYxYjZ6azRsd3R2MmdxamV1',
+          'Authorization': '3iny7dmc5axsh9pf1b6zk4lwtv2gqjeu',
 
         },
       };
