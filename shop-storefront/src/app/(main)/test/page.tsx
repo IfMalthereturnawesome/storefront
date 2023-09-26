@@ -20,8 +20,8 @@ export default function About() {
     return (
         <>
 
-            {/* <MinimalWeight/> */}
-            <ThinFeature/>
+             <MinimalWeight/>
+            {/*<ThinFeature/>*/}
 
 
 

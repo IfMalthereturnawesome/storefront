@@ -239,15 +239,28 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     function getCarrierImage(carrier) {
         switch (carrier) {
             case 'dao':
-                return '/images/shippingProviders/dao.png';
+                return '/images/shippingProviders/dao.svg';
+            case 'daoShop':
+                return '/images/shippingProviders/dao-shop.svg';
             case 'instabox':
                 return '/images/shippingProviders/instabox.svg';
-
             case 'bring':
-                return '/images/shippingProviders/bring.png';
+                return '/images/shippingProviders/bring.svg';
+            case 'colis':
+                return '/images/shippingProviders/colis-prive.svg';
+            case 'dhl':
+                return '/images/shippingProviders/dhl.svg';
+            case 'mondialrelay':
+                return '/images/shippingProviders/mondialrelay.svg';
+            case 'posti':
+                return '/images/shippingProviders/posti-logo.svg';
+            case 'hermes':
+                return '/images/shippingProviders/hermes.svg';
+            case 'postnl':
+                return '/images/shippingProviders/postnl.svg';
 
             default:
-                return '/path/to/default.png'; // Replace with the actual path to a default image
+                return '/images/shippingProviders/delivery-truck.svg';
         }
     }
 
