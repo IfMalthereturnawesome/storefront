@@ -92,7 +92,7 @@ const AddressSelect = ({ addresses }: AddressSelectProps) => {
                         {address.first_name} {address.last_name}
                       </span>
                       {address.company && (
-                        <span className="text-small-regular text-gray-700">
+                        <span className="text-small-regular text-slate-11">
                           {address.company}
                         </span>
                       )}

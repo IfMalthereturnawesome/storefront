@@ -20,7 +20,7 @@ const ShippingAddress = () => {
       )}
       <ConnectForm<CheckoutFormValues>>
         {({ register, formState: { errors, touchedFields } }) => (
-          <div className="grid grid-cols-1 gap-y-2">
+          <div className="grid grid-cols-1 gap-y-2 text-slate-1">
             <Input
               label="Email"
               {...register("email", {
