@@ -12,13 +12,19 @@ import StepContainer from "../step-container"
 import {medusaClient} from "@lib/config";
 import {Listbox} from '@headlessui/react';
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 
 type ShippingOption = {
-    value?: string
-    label?: string
-    price: string
+    value?: string;
+    label?: string;
+    price: string;
+    metadata?: {
+        carrier?: string;
+        [key: string]: any; // This allows for other metadata keys if needed.
+    };
 }
+
 
 type ShippingProps = {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">
@@ -161,6 +167,8 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
             return shipping_options?.map((option) => ({
                 value: option.id,
                 label: option.name,
+                metadata: option.metadata,
+                
                 price: formatAmount({
                     amount: option.amount || 0,
                     region: cart.region,
@@ -228,6 +236,23 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
         }).join(', ');
     }
 
+    function getCarrierImage(carrier) {
+        switch (carrier) {
+            case 'dao':
+                return '/images/shippingProviders/dao.png';
+            case 'instabox':
+                return '/images/shippingProviders/instabox.svg';
+
+            case 'bring':
+                return '/images/shippingProviders/bring.png';
+
+            default:
+                return '/path/to/default.png'; // Replace with the actual path to a default image
+        }
+    }
+
+
+
 
     return (
         <StepContainer
@@ -264,6 +289,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                             >
                                                 <div className="flex items-center gap-x-4">
                                                     <Radio checked={value === option.value}/>
+                                                <Image src={getCarrierImage(option.metadata?.carrier)} alt={option.metadata?.carrier || 'default'}  width={128} height={128} className="w-16 h-16 mr-2 object-contain object-center " />
                                                     <span className="text-base-regular text-slate-2">
                             {option.label}
                           </span>
