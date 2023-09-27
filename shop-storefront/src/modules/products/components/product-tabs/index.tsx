@@ -35,7 +35,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
                 key={i}
                 className={({ selected }) =>
                   clsx(
-                    "text-left uppercase text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out",
+                    "text-left uppercase text-slate-1 text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out",
                     {
                       "border-b border-gray-900": selected,
                     }
@@ -61,9 +61,9 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
     <Tab.Panel className="text-small-regular py-8">
       <div className="grid grid-cols-2 gap-x-8">
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-4 text-slate-1">
           <div>
-            <span className="font-semibold">Material</span>
+            <span className="font-semibold text-slate-1">Material</span>
             <p>{product.material ? product.material : "-"}</p>
           </div>
           <div>
@@ -75,7 +75,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             <p>{product.type ? product.type.value : "-"}</p>
           </div>
         </div>
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-4 text-slate-1">
           <div>
             <span className="font-semibold">Weight</span>
             <p>{product.weight ? `${product.weight} g` : "-"}</p>
@@ -92,7 +92,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
       </div>
       {product.tags?.length ? (
         <div>
-          <span className="font-semibold">Tags</span>
+          <span className="font-semibold text-slate-1">Tags</span>
         </div>
       ) : null}
     </Tab.Panel>
@@ -102,7 +102,16 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 const ShippingInfoTab = () => {
   return (
     <Tab.Panel className="text-small-regular py-8">
-      <div className="grid grid-cols-1 gap-y-8">
+      <div className="grid grid-cols-1 gap-y-8 text-slate-1">
+        <div className="flex items-start gap-x-2">
+          <Back />
+          <div>
+            <span className="font-semibold">Free Shipping in EU</span>
+            <p className="max-w-sm">
+                We offer free shipping on all orders over 50€(excl taxes) within the EU.
+            </p>
+          </div>
+        </div>
         <div className="flex items-start gap-x-2">
           <FastDelivery />
           <div>
@@ -134,6 +143,7 @@ const ShippingInfoTab = () => {
             </p>
           </div>
         </div>
+
       </div>
     </Tab.Panel>
   )

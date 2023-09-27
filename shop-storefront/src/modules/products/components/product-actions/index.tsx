@@ -1,12 +1,13 @@
 import { useProductActions } from "@lib/context/product-context"
 import useProductPrice from "@lib/hooks/use-product-price"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
-import Button from "@modules/common/components/button"
+
 import OptionSelect from "@modules/products/components/option-select"
 import clsx from "clsx"
 import Link from "next/link"
 import React, { useMemo } from "react"
-import { Product } from "types/medusa"
+
+import BuyNowButton from "@/components/elements/BuyNowButton";
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -29,17 +30,17 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       {product.collection && (
         <Link
           href={`/collections/${product.collection.handle}`}
-          className="text-small-regular text-gray-700"
+          className="text-small-regular text-slate-2"
         >
           {product.collection.title}
         </Link>
       )}
-      <h3 className="text-xl-regular">{product.title}</h3>
+      <h3 className="text-3xl font-bold text-slate-1">{product.title}</h3>
 
-      <p className="text-base-regular">{product.description}</p>
+      <p className="text-base-regular text-slate-1 ">{product.description}</p>
 
       {product.variants.length > 1 && (
-        <div className="my-8 flex flex-col gap-y-6">
+        <div className="my-8 flex flex-col gap-y-6 text-slate-1  ">
           {(product.options || []).map((option) => {
             return (
               <div key={option.id}>
@@ -57,9 +58,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="mb-4">
         {selectedPrice ? (
-          <div className="flex flex-col text-gray-700">
+          <div className="flex flex-col text-slate-1">
             <span
-              className={clsx("text-xl-semi", {
+              className={clsx("text-slate-1 font-bold text-base", {
                 "text-rose-600": selectedPrice.price_type === "sale",
               })}
             >
@@ -68,7 +69,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             {selectedPrice.price_type === "sale" && (
               <>
                 <p>
-                  <span className="text-gray-500">Original: </span>
+                  <span className="text-slate-1">Original: </span>
                   <span className="line-through">
                     {selectedPrice.original_price}
                   </span>
@@ -84,9 +85,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         )}
       </div>
 
-      <Button onClick={addToCart}>
-        {!inStock ? "Out of stock" : "Add to cart"}
-      </Button>
+      {/*<Button onClick={addToCart} className={"text-md justify-start"}>*/}
+      {/*  {!inStock ? "Out of stock" : "Add to cart"}*/}
+      {/*    <ArrowLongRightIcon className={"w-6 h-6 ml-2 "}/>*/}
+      {/*</Button>*/}
+        <BuyNowButton onClick={addToCart} />
+
+
+
+
     </div>
   )
 }

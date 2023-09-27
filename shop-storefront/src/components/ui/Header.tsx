@@ -20,13 +20,6 @@ import TopNav from "@/components/ui/TopNav";
 import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
 
 
-
-
-
-
-
-
-
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
@@ -36,8 +29,6 @@ export default function Header() {
 
 
     const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
-
-
 
 
     useEffect(() => {
@@ -72,9 +63,8 @@ export default function Header() {
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
 
 
-
             <header id="header_1" className={`z-30 bg-cyan-1 mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden'}`}>
-                {topNavBanner && <TopNav />}
+                {topNavBanner && <TopNav/>}
 
                 <nav
                     className="relative mx-auto flex items-center justify-between px-4 py-4"
@@ -126,32 +116,31 @@ export default function Header() {
                             onClick={() => setMobileMenuOpen(true)}
                         >
                             <span className="sr-only">Open main menu</span>
-                            <Bars3Icon className="h-8 w-8" aria-hidden="true" />
+                            <Bars3Icon className="h-8 w-8" aria-hidden="true"/>
                         </button>
                     </div>
 
                     <div className="hidden lg:flex lg:w-1/2 justify-center">
                         <Popover.Group className="hidden lg:flex lg:gap-x-6">
-                            <NavigationMenuDropdowns />
+                            <NavigationMenuDropdowns/>
                         </Popover.Group>
                     </div>
 
                     <div className="flex lg:w-1/4 justify-center items-center pr-2">
-                        <ThemeToggle />
-                        <Search  />
+                        <ThemeToggle/>
+                        <Search/>
 
                         <div className="hidden lg:flex items-center gap-x-6 h-full">
-                            {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
+                            {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal/>}
                             <Link href="/account" className={"z-[2]"}>
-                                <UserIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white" aria-hidden="true" />
+                                <UserIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white"
+                                          aria-hidden="true"/>
                             </Link>
                         </div>
-                        <CartDropdown />
+                        <CartDropdown/>
                     </div>
                 </nav>
-                <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-
-
+                <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen}/>
 
 
             </header>

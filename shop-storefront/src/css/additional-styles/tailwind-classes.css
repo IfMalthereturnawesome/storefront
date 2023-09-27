@@ -11,6 +11,10 @@
     @apply max-w-[1440px] w-full mx-auto px-8
   }
 
+  .content-container__big {
+    @apply max-w-[100vw] w-full mx-auto
+  }
+
   .contrast-btn {
     @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
   }

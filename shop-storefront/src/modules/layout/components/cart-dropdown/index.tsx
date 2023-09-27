@@ -50,14 +50,14 @@ const CartDropdown = () => {
         >
           <Popover.Panel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[382px] text-gray-900"
+            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[400px] text-gray-900"
           >
             <div className="p-4 flex items-center justify-center">
               <h3 className="text-large-semi">Shopping Bag</h3>
             </div>
             {cart && items?.length ? (
               <>
-                <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar">
+                <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1  gap-y-8 no-scrollbar">
                   {items
                     .sort((a, b) => {
                       return a.created_at > b.created_at ? -1 : 1

@@ -70,3 +70,54 @@ Form.Message {
     right: 0;
     transition: top 0.3s ease-out;
 }
+
+
+.buy-now--primary-container {
+    position: relative;
+}
+
+.buy-now--primary-before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: 1px solid black; /* Update color as needed */
+    border-left: 1px solid black;
+    bottom: -2px;
+    height: 2px;
+    left: 2px;
+    width: 100%;
+    transition: all 0.3s ease-in-out; /* Update as needed */
+}
+
+.buy-now--primary-after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    height: 100%;
+    right: -2px;
+
+    top: 2px;
+    width: 2px;
+    transition: all 0.3s ease-in-out; /* Update as needed */
+}
+.buy-now--primary-container.active .buy-now--primary-before,
+.buy-now--primary-container.active .buy-now--primary-after {
+    display: none;
+}
+
+body .cursor-zoom-in {
+    cursor: url('/images/icon-cursor-zoom.cur'), auto;
+    cursor: url('/images/icon-cursor-zoom.svg') 24 24, auto;
+
+}
+
+body .cursor-zoom-out {
+    cursor: url('/images/icon-cursor-zoomed.cur'), auto;
+    cursor: url('/images/icon-cursor-zoomed.svg') 24 24, auto;
+}
+
+.scale-2 {
+    transform: scale(2);
+}
