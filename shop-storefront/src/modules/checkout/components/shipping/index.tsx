@@ -437,10 +437,11 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
 
                             <Image
                                 src={getCarrierImage(cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier)}
-                                alt={cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier }
+                                alt={cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier as string || 'default'}
                                 width={128}
                                 height={128}
                                 className="w-24 h-16 object-contain" />
+
                             <span className="text-gray-800 font-semibold"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
                             <p className="text-gray-800 text-xs">{shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price}</p>
 
