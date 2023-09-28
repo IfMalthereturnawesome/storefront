@@ -11,13 +11,14 @@ import {ShoppingBagIcon} from '@heroicons/react/24/outline';
 import { formatAmount, useCart } from "medusa-react"
 import Link from "next/link"
 import { Fragment } from "react"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 const CartDropdown = () => {
   const { cart, totalItems } = useCart()
   const items = useEnrichedLineItems()
   const { deleteItem } = useStore()
   const { state, open, close } = useCartDropdown()
-
+  const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
   return (
     <div className="h-full z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full">
@@ -119,7 +120,10 @@ const CartDropdown = () => {
                       {formatAmount({
                         amount: cart.subtotal || 0,
                         region: cart.region,
-                        includeTaxes: false,
+                        includeTaxes: true,
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                        locale: locale
                       })}
                     </span>
                   </div>

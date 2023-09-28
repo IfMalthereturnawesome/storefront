@@ -5,6 +5,7 @@ import Package from "@modules/common/icons/package"
 import User from "@modules/common/icons/user"
 import { formatAmount } from "medusa-react"
 import Link from "next/link"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type OverviewProps = {
   orders?: Order[]
@@ -12,6 +13,7 @@ type OverviewProps = {
 }
 
 const Overview = ({ orders, customer }: OverviewProps) => {
+
   return (
     <div>
       <div className="small:hidden">
@@ -130,6 +132,9 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                                   amount: order.total,
                                   region: order.region,
                                   includeTaxes: false,
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 2,
+                                  locale:  getLocaleForRegion(order?.region?.name) || "en-US"
                                 })}
                               </span>
                             </div>

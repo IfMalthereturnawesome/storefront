@@ -13,6 +13,7 @@ import {medusaClient} from "@lib/config";
 import {Listbox} from '@headlessui/react';
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
 import Image from "next/image";
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 
 type ShippingOption = {
@@ -49,7 +50,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
             soId: cart.shipping_methods?.[0]?.shipping_option_id,
         },
     })
-
+    const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
     // Fetch shipping options
     const {shipping_options, refetch} = useCartShippingOptions(cart.id, {
         enabled: !!cart.id,
@@ -172,6 +173,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                 price: formatAmount({
                     amount: option.amount || 0,
                     region: cart.region,
+                    locale: locale
                 }),
             }))
         }

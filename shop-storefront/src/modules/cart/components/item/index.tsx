@@ -33,7 +33,7 @@ const Item = ({ item, region }: ItemProps) => {
                 quantity: parseInt(value.target.value),
               })
             }
-            className="max-h-[35px] w-[75px]"
+            className="max-h-[35px] w-fit"
           >
             {Array.from(
               [

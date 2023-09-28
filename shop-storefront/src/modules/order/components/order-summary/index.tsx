@@ -1,17 +1,19 @@
 import { Order } from "@medusajs/medusa"
 import { formatAmount } from "medusa-react"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type OrderSummaryProps = {
   order: Order
 }
 
 const OrderSummary = ({ order }: OrderSummaryProps) => {
+  const locale = getLocaleForRegion(order?.region?.name) || "en-US";
   const getAmount = (amount?: number | null) => {
     if (!amount) {
       return
     }
 
-    return formatAmount({ amount, region: order.region, includeTaxes: false })
+    return formatAmount({ amount, region: order.region, includeTaxes: false, locale: locale })
   }
 
   return (

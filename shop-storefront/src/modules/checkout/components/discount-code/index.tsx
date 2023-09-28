@@ -8,6 +8,7 @@ import React, { useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { useMutation } from "@tanstack/react-query"
 import SecondaryButton from "@modules/common/components/button/SecondaryButton";
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type DiscountFormValues = {
   discount_code: string
@@ -21,7 +22,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   const { id, discounts, region } = cart
   const { mutate, isLoading } = useUpdateCart(id)
   const { setCart } = useCart()
-
+  const locale = getLocaleForRegion(region.name) || "en-US";
   const { isLoading: mutationLoading, mutate: removeDiscount } = useMutation(
     (payload: { cartId: string; code: string }) => {
       return medusaClient.carts.deleteDiscount(payload.cartId, payload.code)
@@ -40,6 +41,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         return `- ${formatAmount({
           amount: discounts[0].rule.value,
           region: region,
+          locale: locale
         })}`
 
       default:
@@ -66,6 +68,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         onError: (error: any) => {
           // Check if the error response has a 404 status code
           if (error.response.status === 404) {
+            console.log("Discount code is not valid")
             setError(
                 "discount_code",
                 {
@@ -136,7 +139,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 })}
                 errors={errors}
               />
+
               <div>
+
                 <SecondaryButton
                   className="!min-h-[0] h-[46px] w-[80px]"
                   disabled={isLoading}
@@ -144,7 +149,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 >
                   Apply
                 </SecondaryButton>
+
               </div>
+              {errors.discount_code && <span className="text-red-500 pt-2">{errors.discount_code.message}</span>}
             </div>
           </form>
         )}

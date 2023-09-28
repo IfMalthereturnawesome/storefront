@@ -1,6 +1,7 @@
 import { formatAmount, useCart, useProducts } from "medusa-react"
 import { useEffect, useMemo } from "react"
 import { CalculatedVariant } from "types/medusa"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type useProductPriceProps = {
   id: string
@@ -9,6 +10,7 @@ type useProductPriceProps = {
 
 const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
   const { cart } = useCart()
+  const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
 
   const { products, isLoading, isError, refetch } = useProducts(
     {
@@ -51,6 +53,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         includeTaxes: true,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
+        locale: locale,
       }),
       original_price: formatAmount({
         amount: cheapestVariant.original_price,
@@ -58,6 +61,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         includeTaxes: true,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
+        locale: locale,
       }),
       price_type: cheapestVariant.calculated_price_type,
       percentage_diff: getPercentageDiff(
@@ -87,6 +91,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         includeTaxes: true,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
+        locale: locale,
       }),
       original_price: formatAmount({
         amount: variant.original_price,
@@ -94,6 +99,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         includeTaxes: true,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
+        locale: locale,
       }),
       price_type: variant.calculated_price_type,
       percentage_diff: getPercentageDiff(

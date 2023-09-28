@@ -4,6 +4,7 @@ import Thumbnail from "@modules/products/components/thumbnail"
 import { formatAmount } from "medusa-react"
 import Link from "next/link"
 import { useMemo } from "react"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type OrderCardProps = {
   order: Omit<Order, "beforeInsert">
@@ -20,6 +21,8 @@ const OrderCard = ({ order }: OrderCardProps) => {
     return order.items.length
   }, [order])
 
+    const locale = getLocaleForRegion(order?.region?.name) || "en-US";
+
   return (
     <div className="bg-white flex flex-col">
       <div className="uppercase text-large-semi mb-1">#{order.display_id}</div>
@@ -32,6 +35,9 @@ const OrderCard = ({ order }: OrderCardProps) => {
             amount: order.total,
             region: order.region,
             includeTaxes: false,
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2,
+              locale: locale
           })}
         </span>
         <span className="pl-2">{`${numberOfLines} ${

@@ -1,6 +1,7 @@
 import { ErrorMessage } from "@hookform/error-message"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import clsx from "clsx"
+
 import {
   forwardRef,
   SelectHTMLAttributes,
@@ -70,9 +71,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             <option value="">{placeholder}</option>
             {children}
           </select>
-          <span className="absolute right-4 inset-y-0 flex items-center pointer-events-none text-slate-12 dark:text-slate-2">
-            <ChevronDown />
-          </span>
+
         </div>
         {hasError && props.name && (
           <ErrorMessage

@@ -23,6 +23,7 @@ import {useRouter} from "next/navigation"
 import React, {createContext, useContext, useEffect, useMemo} from "react"
 import {FormProvider, useForm, useFormContext} from "react-hook-form"
 import {useStore} from "./store-context"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type AddressValues = {
     first_name: string
@@ -77,6 +78,7 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         completeCheckout: {mutate: complete, isLoading: completingCheckout},
     } = useCart()
 
+    const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
     const {customer} = useMeCustomer()
     const {countryCode} = useStore()
 
@@ -84,6 +86,7 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         defaultValues: mapFormValues(customer, cart, countryCode),
         reValidateMode: "onChange",
     })
+
 
     const {
         mutate: setPaymentSessionMutation,
@@ -145,12 +148,14 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
 
     const shippingMethods = useMemo(() => {
         if (shipping_options && cart?.region) {
+
             return shipping_options?.map((option) => ({
                 value: option.id,
                 label: option.name,
                 price: formatAmount({
                     amount: option.amount || 0,
                     region: cart.region,
+                    locale: locale,
                 }),
             }))
         }

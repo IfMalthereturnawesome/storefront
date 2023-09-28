@@ -1,6 +1,7 @@
 import { MoneyAmount } from "@medusajs/medusa"
 import { formatAmount } from "medusa-react"
 import { Region, Variant } from "types/medusa"
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 export const findCheapestRegionPrice = (variants: Variant[], regionId: string) => {
   const regionPrices = variants.reduce((acc, v) => {
@@ -59,7 +60,7 @@ export const findCheapestCurrencyPrice = (
 
 export const findCheapestPrice = (variants: Variant[], region: Region) => {
   const { id, currency_code } = region
-  
+  const locale = getLocaleForRegion(region.name) || "en-US";
   let cheapestPrice = findCheapestRegionPrice(variants, id)
 
       if (!cheapestPrice) {
@@ -73,6 +74,9 @@ export const findCheapestPrice = (variants: Variant[], region: Region) => {
         return formatAmount({
           amount: cheapestPrice.amount,
           region: region,
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2,
+          locale: locale
         })
       }
 

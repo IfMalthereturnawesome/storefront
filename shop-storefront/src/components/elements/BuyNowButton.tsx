@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {ArrowLongRightIcon} from "@heroicons/react/24/solid";
 
-function BuyNowButton({onClick}) {
+function BuyNowButton({
+                          onClick = () => {
+                          }, message
+                      }) {
     const [isActive, setIsActive] = useState(false);
 
     return (
@@ -13,7 +16,7 @@ function BuyNowButton({onClick}) {
                 onMouseLeave={() => setIsActive(false)}
                 onClick={onClick}
                 type="button"
-                className="flex justify-between items-center py-0 px-4 m-0 w-full h-full font-poppins text-sm  font-semibold leading-5 text-left uppercase whitespace-nowrap bg-black bg-none rounded-none border-black cursor-pointer text-slate-12 hover:text-slate-10"
+                className="flex justify-between items-center py-0 px-4 m-0 w-full h-full font-poppins text-sm  font-semibold leading-5 text-left uppercase whitespace-nowrap bg-black bg-none rounded-none border-black cursor-pointer text-slate-1 dark:text-slate-12 hover:text-slate-10 dark:hover:text-slate-10"
                 data-auto-id="add-to-bag"
                 title="Læg i kurv"
                 style={{
@@ -28,9 +31,9 @@ function BuyNowButton({onClick}) {
             >
                 <span
                     className="flex-auto text-sm leading-5 uppercase truncate"
-                    style={{ letterSpacing: '2px' }}
+                    style={{letterSpacing: '2px'}}
                 >
-                    ADD TO CART
+                    {message}
                 </span>
                 <ArrowLongRightIcon className={"w-6 h-6 ml-2 "}/>
             </button>
