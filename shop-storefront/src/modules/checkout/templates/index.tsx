@@ -5,12 +5,13 @@ import Link from "next/link"
 import CheckoutLoader from "../components/checkout-loader"
 import CheckoutForm from "./checkout-form"
 import CheckoutSummary from "./checkout-summary"
+import Image from "next/image";
 
 const CheckoutTemplate = () => {
   return (
     <CheckoutProvider>
       <div className="bg-gray-100 relative small:min-h-screen">
-        <div className="h-16 bg-white">
+        <div className="h-16 ">
           <nav className="flex items-center h-full justify-between content-container">
             <Link
               href="/cart"
@@ -24,8 +25,8 @@ const CheckoutTemplate = () => {
                 <span className="mt-px block small:hidden">Back</span>
               </>
             </Link>
-            <Link href="/" className="text-xl-semi">
-              ACME
+            <Link href="/" className="text-xl-semi ">
+              <Image src={"/images/Eight-Athletics-black-logo.svg"} alt={"Eight Athletics logo"} height={100} width={100}/>
             </Link>
             <div className="flex-1 basis-0" />
           </nav>

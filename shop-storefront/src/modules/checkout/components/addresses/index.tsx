@@ -19,12 +19,12 @@ const Addresses = () => {
         <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center text-sm">
           1
         </div>
-        <h2 className={"text-slate-1"}>Shipping address</h2>
+        <h2 className={"text-gray-800"}>Shipping address</h2>
       </div>
       {isEdit ? (
         <div className="px-8 pb-8">
           <ShippingAddress />
-          <div className="mt-6 text-slate-1">
+          <div className="mt-6 text-gray-800">
             <Checkbox
               label="Same as billing address"
               checked={checked}
@@ -37,7 +37,7 @@ const Addresses = () => {
                 <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center font-mono text-sm">
                   2
                 </div>
-                <h2 className={"text-slate-1"}>Billing address</h2>
+                <h2 className={"text-gray-800"}>Billing address</h2>
               </div>
               <BillingAddress />
             </div>
@@ -57,7 +57,7 @@ const Addresses = () => {
                 <div className="bg-green-400 rounded-full min-w-[24px] h-6 flex items-center justify-center text-white text-small-regular">
                   ✓
                 </div>
-                <div className="flex items-start justify-between w-full text-slate-1">
+                <div className="flex items-start justify-between w-full text-gray-700">
                   <div className="flex flex-col">
                     <span>
                       {cart.shipping_address.first_name}{" "}
@@ -104,7 +104,7 @@ const Addresses = () => {
                 <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center font-mono text-sm">
                   2
                 </div>
-                <h2>Billing address</h2>
+                <h2 className={"text-gray-800"}>Billing address</h2>
               </div>
               <div className="bg-gray-50 px-8 py-6 text-small-regular">
                 {cart && cart.billing_address ? (
@@ -112,7 +112,7 @@ const Addresses = () => {
                     <div className="bg-green-400 rounded-full min-w-[24px] h-6 flex items-center justify-center text-white text-small-regular">
                       ✓
                     </div>
-                    <div className="flex items-start justify-between w-full">
+                    <div className="flex items-start justify-between w-full text-gray-700">
                       <div className="flex flex-col">
                         <span>
                           {cart.billing_address.first_name}{" "}

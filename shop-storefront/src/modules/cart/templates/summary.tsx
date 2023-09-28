@@ -13,7 +13,7 @@ const Summary = ({ cart }: SummaryProps) => {
     <div className="grid grid-cols-1 gap-y-6">
       <CartTotals cart={cart} />
       <Link href="/checkout">
-        <BuyNowButton message={"Go to checkout"}></BuyNowButton>
+        <BuyNowButton title={"Go to checkout"} message={"Go to checkout"}></BuyNowButton>
       </Link>
     </div>
   )

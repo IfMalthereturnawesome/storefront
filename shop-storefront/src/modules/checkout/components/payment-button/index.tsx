@@ -7,6 +7,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
+import BuyNowButton from "@/components/elements/BuyNowButton";
 
 type PaymentButtonProps = {
   paymentSession?: PaymentSession | null
@@ -15,47 +16,65 @@ type PaymentButtonProps = {
 const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
   const [notReady, setNotReady] = useState(true)
   const { cart } = useCart()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    setNotReady(true)
+    setNotReady(true);
 
     if (!cart) {
-      return
+      setErrorMessage("Cart is not available.");
+      return;
     }
 
     if (!cart.shipping_address) {
-      return
+      setErrorMessage("Shipping address is required.");
+      return;
     }
 
-    if (!cart.billing_address) {
-      return
-    }
+
 
     if (!cart.email) {
-      return
+      setErrorMessage("Email is required.");
+      return;
     }
 
     if (cart.shipping_methods.length < 1) {
-      return
+      setErrorMessage("Shipping method is required.");
+      return;
     }
 
-    setNotReady(false)
-  }, [cart])
+    setNotReady(false);
+    setErrorMessage(null); // reset error message if everything is fine
+  }, [cart]);
 
-  switch (paymentSession?.provider_id) {
-    case "stripe":
-      return (
-          <StripePaymentButton session={paymentSession} notReady={notReady} />
-      )
-    case "manual":
-      return <ManualTestPaymentButton notReady={notReady} />
-    case "paypal":
-      return (
-          <PayPalPaymentButton notReady={notReady} session={paymentSession} />
-      )
-    default:
-      return <Button disabled>Select a payment method</Button>
-  }
+
+  return (
+      <div>
+        {errorMessage && (
+            <div className="text-red-500 text-small-regular mt-2">
+              {errorMessage}
+            </div>
+        )}
+
+        {/* existing switch case logic for rendering the payment buttons */}
+        {(() => {
+          switch (paymentSession?.provider_id) {
+            case "stripe":
+              return (
+                  <StripePaymentButton session={paymentSession} notReady={notReady} />
+              );
+            case "manual":
+              return <ManualTestPaymentButton notReady={notReady} />;
+            case "paypal":
+              return (
+                  <PayPalPaymentButton notReady={notReady} session={paymentSession} />
+              );
+            default:
+              return <Button disabled>Select a payment method</Button>;
+          }
+        })()}
+      </div>
+  );
 }
 
 const StripePaymentButton = ({
@@ -145,14 +164,19 @@ const StripePaymentButton = ({
         })
   }
 
+
   return (
+
       <>
-        <Button
+        {/* @ts-ignore*/}
+        <BuyNowButton
+            message={"Place Order"}
             disabled={submitting || disabled || notReady}
             onClick={handlePayment}
+            title="Place Order"
         >
           {submitting ? <Spinner /> : "Checkout"}
-        </Button>
+        </BuyNowButton>
         {errorMessage && (
             <div className="text-red-500 text-small-regular mt-2">
               {errorMessage}

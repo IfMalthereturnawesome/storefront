@@ -6,7 +6,7 @@ import Radio from "@modules/common/components/radio"
 import Spinner from "@modules/common/icons/spinner"
 import clsx from "clsx"
 import {formatAmount, useCart, useCartShippingOptions} from "medusa-react"
-import React, {useEffect, useMemo} from "react"
+import React, {useEffect, useLayoutEffect, useMemo} from "react"
 import {Controller, useForm} from "react-hook-form"
 import StepContainer from "../step-container"
 import {medusaClient} from "@lib/config";
@@ -37,8 +37,14 @@ type ShippingFormProps = {
 
 const Shipping: React.FC<ShippingProps> = ({cart}) => {
     const [servicePoints, setServicePoints] = React.useState([]);
-    const [selectedServicePoint, setSelectedServicePoint] = React.useState<{ name: string, address: string, distance: string } | null>(null);
-
+    const [selectedServicePoint, setSelectedServicePoint] = React.useState<{
+        name: string,
+        address: string,
+        distance: string
+    } | null>(null);
+    const [loadingServicePoints, setLoadingServicePoints] = React.useState(false); // New state for loading service points
+    const [initialFetchDone, setInitialFetchDone] = React.useState(false); // New state for initial fetch
+    const lastFetchedOptionIdRef = React.useRef<string | null>(null);
 
     const {addShippingMethod, setCart} = useCart()
     const {
@@ -47,7 +53,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
         formState: {errors},
     } = useForm<ShippingFormProps>({
         defaultValues: {
-            soId: cart.shipping_methods?.[0]?.shipping_option_id,
+            soId: cart.shipping_methods?.[1]?.shipping_option_id,
         },
     })
     const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
@@ -60,6 +66,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     useEffect(() => {
         const refetchShipping = async () => {
             await refetch()
+
         }
 
         refetchShipping().then(r => console.log("Refetched shipping options", r));
@@ -69,7 +76,6 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
         addShippingMethod.mutate(
             {
                 option_id: soId,
-
 
             },
             {
@@ -92,7 +98,14 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
 
 
     const fetchServicePoints = async (address: Address, carrier: unknown) => {
-        const endpoint = `https://api.homerunner.com/v3/servicepoints/${carrier}?country_code=${address.country_code}&street=${address.address_1}&zip_code=${address.postal_code}&city=${address.city}&limit=20`;
+        let adjustedCarrier = carrier;
+
+        // Check if the carrier value is 'daoShop'
+        if (carrier === 'daoShop') {
+            adjustedCarrier = 'dao';  // Adjust the carrier value
+        }
+
+        const endpoint = `https://api.homerunner.com/v3/servicepoints/${adjustedCarrier}?country_code=${address.country_code}&street=${address.address_1}&zip_code=${address.postal_code}&city=${address.city}&limit=10`;
         const base64Credentials = btoa('mholmk@hotmail.com:3iny7dmc5axsh9pf1b6zk4lwtv2gqjeu');
         const requestOptions = {
             method: 'GET',
@@ -102,64 +115,76 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
         };
         const response = await fetch(endpoint, requestOptions);
         const data = await response.json();
+        console.log("API Response:", data);
         return data.servicepoints;
+
     }
 
+    const fetchServicePointsIfNecessary = async (selectedOptionValue: string, shippingOptions: typeof shipping_options) => {
+        if (!shippingOptions) return;
+        const selectedOption = shipping_options.find(option => option.id === selectedOptionValue);
+
+        if (selectedOption?.metadata?.servicePoint === 'true') {
+            setLoadingServicePoints(true);
+            try {
+                const fetchedServicePoints = await fetchServicePoints(cart.shipping_address, selectedOption.metadata.carrier as string);
+                setServicePoints(fetchedServicePoints);
+
+                if (fetchedServicePoints.length > 0) {
+                    setSelectedServicePoint({
+                        name: fetchedServicePoints[0].name,
+                        address: fetchedServicePoints[0].address,
+                        distance: fetchedServicePoints[0].distance
+                    });
+                }
+            } catch (error) {
+                console.error("Failed to fetch service points:", error);
+                // Handle the error appropriately, e.g., show an error message to the user
+            } finally {
+                setLoadingServicePoints(false);
+                setInitialFetchDone(true);
+            }
+        } else {
+            setServicePoints([]);
+            setSelectedServicePoint(null);
+            setInitialFetchDone(true);
+        }
+    };
 
     const handleChange = async (value: string, fn: (value: string) => void) => {
         submitShippingOption(value);
         fn(value);
+        await fetchServicePointsIfNecessary(value, shipping_options); // Pass shipping_options as an argument
+    };
 
-        const selectedOption = shipping_options.find(option => option.id === value);
+    useEffect(() => {
 
-        if (selectedOption.metadata && selectedOption.metadata.servicePoint === 'true') {
-            const fetchedServicePoints = await fetchServicePoints(cart.shipping_address, selectedOption.metadata.carrier as string);
-            setServicePoints(fetchedServicePoints);
 
-            // Set the first service point as default (assuming this is desired)
-            if (fetchedServicePoints.length > 0) {
-                setSelectedServicePoint({
-                    name: fetchedServicePoints[0].name,
-                    address: fetchedServicePoints[0].address,
-                    distance: fetchedServicePoints[0].distance
-                });
+        const defaultOption = cart.shipping_methods?.[0]?.shipping_option_id;
 
-            }
 
-        } else {
-            setServicePoints([]);
-            setSelectedServicePoint(null); // Reset selected service point if not a service point option
+        if (defaultOption && shipping_options) {
+            fetchServicePointsIfNecessary(defaultOption, shipping_options);
         }
-    }
+    }, [cart, shipping_options]);
+
 
     useEffect(() => {
         if (selectedServicePoint) {
-            // Update the cart's shipping_address metadata with the selected service point
-            const updatedShippingAddress = {
-                ...cart.shipping_address,
-                metadata: {
-                    ...cart.shipping_address.metadata,
-                    selectedServicePoint: selectedServicePoint  // Storing the selected service point
-                }
-            };
-
-            console.log("Updating cart with:", updatedShippingAddress);
-
             confirmSelection();
-
         }
     }, [selectedServicePoint]);
 
-    const confirmSelection = () => {
 
+    const confirmSelection = () => {
         medusaClient.carts.update(cart.id, {
             shipping_address: {
                 metadata: {
                     ...cart.shipping_address.metadata,
-                    selectedServicePoint: selectedServicePoint  // Storing the selected service point
+                    selectedServicePoint: selectedServicePoint
                 }
             },
-        }).then(r => console.log("Updated cart with service point", r));
+        }).then(r => console.log("Updated cart with selected service point", r));
     };
 
     // Memoized shipping method options
@@ -169,7 +194,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                 value: option.id,
                 label: option.name,
                 metadata: option.metadata,
-                
+
                 price: formatAmount({
                     amount: option.amount || 0,
                     region: cart.region,
@@ -267,14 +292,12 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     }
 
 
-
-
     return (
         <StepContainer
             index={sameBilling ? 2 : 3}
             title="Delivery"
             closedState={
-                <div className="px-8 pb-8 text-small-regular text-slate-2">
+                <div className="px-8 pb-8 text-small-regular text-gray-700">
                     <p>Enter your address to see available delivery options.</p>
                 </div>
             }
@@ -304,12 +327,15 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                             >
                                                 <div className="flex items-center gap-x-4">
                                                     <Radio checked={value === option.value}/>
-                                                <Image src={getCarrierImage(option.metadata?.carrier)} alt={option.metadata?.carrier || 'default'}  width={128} height={128} className="w-16 h-16 mr-2 object-contain object-center " />
-                                                    <span className="text-base-regular text-slate-2">
+                                                    <Image src={getCarrierImage(option.metadata?.carrier)}
+                                                           alt={option.metadata?.carrier || 'default'} width={128}
+                                                           height={128}
+                                                           className="w-16 h-16 mr-2 object-contain object-center "/>
+                                                    <span className="text-base-regular text-gray-700">
                             {option.label}
                           </span>
                                                 </div>
-                                                <span className="justify-self-end text-slate-2">
+                                                <span className="justify-self-end text-gray-700">
                           {option.price}
                         </span>
                                             </RadioGroup.Option>
@@ -321,42 +347,54 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                     </div>
                                 )}
                             </RadioGroup>
-                            {servicePoints.length > 0 && (
-                                <div className="mt-4 px-8 py-4">
-                                    <Listbox value={selectedServicePoint} onChange={setSelectedServicePoint}>
-                                        {({open}) => (
-                                            <>
-                                                <Listbox.Label className="block text-sm font-medium text-slate-2">Choose
-                                                    a Service Point</Listbox.Label>
-                                                <div className="mt-2 relative">
+                            {loadingServicePoints ? (
+                                <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
+                                    <Spinner/>
+                                </div>
+                            ) : (
+                                servicePoints && servicePoints.length > 0 && (
+                                    <div className="mt-4 px-8 py-4">
+                                        <Listbox value={selectedServicePoint} onChange={setSelectedServicePoint}>
+                                            {({open}) => (
+                                                <>
+                                                    <Listbox.Label className="block text-sm font-medium text-gray-700">Choose
+                                                        a Service Point</Listbox.Label>
+                                                    <div className="mt-2 relative">
               <span className="block relative">
                 <Listbox.Button
-                    className="block w-full pl-3 pr-10 py-2 text-left text-slate-1 bg-cbg rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                    className="block w-full pl-3 pr-10 py-2 text-left text-gray-800 bg-cbg rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selectedServicePoint ? `${selectedServicePoint.name} - ${formatDistance(selectedServicePoint.distance)}` : 'Select a service point'}
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <ChevronDownIcon className="w-5 h-5 text-slate-5"/>
+                    <ChevronDownIcon className="w-5 h-5 text-gray-600"/>
                   </span>
                 </Listbox.Button>
               </span>
-                                                    <Listbox.Options className={`z-10 mt-2 relative w-full py-1 bg-white border border-gray-300 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
-                                                        {servicePoints.map((servicePoint) => (
-                                                            <Listbox.Option key={servicePoint.id} value={servicePoint} className={({ active, selected }) => `cursor-pointer select-none relative px-4 py-2 ${active ? 'bg-cbg text-slate-2' : 'text-slate-1'} ${selected ? 'font-semibold' : 'font-normal'}`}>
-                                                                {servicePoint.name} - {formatDistance(servicePoint.distance)}
-                                                                <div className="text-xs text-slate-3">
-                                                                    {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
-                                                                </div>
-                                                                <div className="text-xs text-slate-3 mt-1">
-                                                                    {formatOpeningHours(servicePoint.opening_hours)}
-                                                                </div>
-                                                            </Listbox.Option>
-                                                        ))}
-                                                    </Listbox.Options>
+                                                        <Listbox.Options
+                                                            className={`z-10 mt-2 relative w-full py-1 bg-white border border-gray-300 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
+                                                            {servicePoints.map((servicePoint) => (
+                                                                <Listbox.Option key={servicePoint.id}
+                                                                                value={servicePoint}
+                                                                                className={({
+                                                                                                active,
+                                                                                                selected
+                                                                                            }) => `cursor-pointer select-none relative px-4 py-2 ${active ? 'bg-cbg text-gray-700' : 'text-gray-800'} ${selected ? 'font-semibold' : 'font-normal'}`}>
+                                                                    {servicePoint.name} - {formatDistance(servicePoint.distance)}
+                                                                    <div className="text-xs text-gray-600">
+                                                                        {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
+                                                                    </div>
+                                                                    <div className="text-xs text-gray-600 mt-1">
+                                                                        {formatOpeningHours(servicePoint.opening_hours)}
+                                                                    </div>
+                                                                </Listbox.Option>
+                                                            ))}
+                                                        </Listbox.Options>
 
-                                                </div>
-                                            </>
-                                        )}
-                                    </Listbox>
-                                </div>
+                                                    </div>
+                                                </>
+                                            )}
+                                        </Listbox>
+                                    </div>
+                                )
                             )}
 
                             <ErrorMessage

@@ -89,7 +89,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       {/*  {!inStock ? "Out of stock" : "Add to cart"}*/}
       {/*    <ArrowLongRightIcon className={"w-6 h-6 ml-2 "}/>*/}
       {/*</Button>*/}
-        <BuyNowButton onClick={addToCart} message={"Add to cart"} />
+        <BuyNowButton title={"Add to cart"} onClick={addToCart} message={"Add to cart"} />
 
 
 

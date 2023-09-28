@@ -32,7 +32,7 @@ const StepContainer = ({
           <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center text-sm">
             {index}
           </div>
-          <h2 className={"text-slate-1"}>{title}</h2>
+          <h2 className={"text-gray-800"}>{title}</h2>
         </div>
         <Disclosure>
           <Disclosure.Panel

@@ -24,7 +24,7 @@ export default function PageLayout({
     return (
         <>
             <Header/>
-            <main className="grow bg-cyan-1">
+            <main className="grow bg-cyan-1 pt-[70px] lg:pt-[104px]">
                 {children}
             </main>
             <Footer/>
