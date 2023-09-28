@@ -14,6 +14,7 @@ import {Listbox} from '@headlessui/react';
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
 import Image from "next/image";
 import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
+import Button from "@modules/common/components/button";
 
 
 type ShippingOption = {
@@ -44,7 +45,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     } | null>(null);
     const [loadingServicePoints, setLoadingServicePoints] = React.useState(false); // New state for loading service points
     const [initialFetchDone, setInitialFetchDone] = React.useState(false); // New state for initial fetch
-    const lastFetchedOptionIdRef = React.useRef<string | null>(null);
+    const [isEditMode, setIsEditMode] = React.useState(true);
 
     const {addShippingMethod, setCart} = useCart()
     const {
@@ -292,6 +293,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     }
 
 
+
     return (
         <StepContainer
             index={sameBilling ? 2 : 3}
@@ -301,65 +303,68 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                     <p>Enter your address to see available delivery options.</p>
                 </div>
             }
-        >
-            <Controller
-                name="soId"
-                control={control}
-                render={({field: {value, onChange}}) => {
-                    return (
-                        <div>
-                            <RadioGroup
-                                value={value}
-                                onChange={(value: string) => handleChange(value, onChange)}
-                            >
-                                {shippingMethods && shippingMethods.length ? (
-                                    shippingMethods.map((option) => {
-                                        return (
-                                            <RadioGroup.Option
-                                                key={option.value}
-                                                value={option.value}
-                                                className={clsx(
-                                                    "flex items-center justify-between text-small-regular cursor-pointer py-4 border-b border-gray-200 last:border-b-0 px-8",
-                                                    {
-                                                        "bg-gray-50": option.value === value,
-                                                    }
-                                                )}
-                                            >
-                                                <div className="flex items-center gap-x-4">
-                                                    <Radio checked={value === option.value}/>
-                                                    <Image src={getCarrierImage(option.metadata?.carrier)}
-                                                           alt={option.metadata?.carrier || 'default'} width={128}
-                                                           height={128}
-                                                           className="w-16 h-16 mr-2 object-contain object-center "/>
-                                                    <span className="text-base-regular text-gray-700">
+        >   {isEditMode ? (
+            <div className={"px-8 pb-8"}>
+                <Controller
+                    name="soId"
+                    control={control}
+                    render={({field: {value, onChange}}) => {
+                        return (
+                            <div>
+                                <RadioGroup
+                                    value={value}
+                                    onChange={(value: string) => handleChange(value, onChange)}
+                                >
+                                    {shippingMethods && shippingMethods.length ? (
+                                        shippingMethods.map((option) => {
+                                            return (
+                                                <RadioGroup.Option
+                                                    key={option.value}
+                                                    value={option.value}
+                                                    className={clsx(
+                                                        "flex items-center justify-between text-small-regular cursor-pointer py-4 border-b border-gray-200 last:border-b-0 px-8",
+                                                        {
+                                                            "bg-gray-50": option.value === value,
+                                                        }
+                                                    )}
+                                                >
+                                                    <div className="flex items-center gap-x-4">
+                                                        <Radio checked={value === option.value}/>
+                                                        <Image src={getCarrierImage(option.metadata?.carrier)}
+                                                               alt={option.metadata?.carrier || 'default'} width={128}
+                                                               height={128}
+                                                               className="w-16 h-16 mr-2 object-contain object-center "/>
+                                                        <span className="text-base-regular text-gray-700">
                             {option.label}
                           </span>
-                                                </div>
-                                                <span className="justify-self-end text-gray-700">
+                                                    </div>
+                                                    <span className="justify-self-end text-gray-700">
                           {option.price}
                         </span>
-                                            </RadioGroup.Option>
-                                        )
-                                    })
-                                ) : (
+                                                </RadioGroup.Option>
+                                            )
+                                        })
+                                    ) : (
+                                        <div
+                                            className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
+                                            <Spinner/>
+                                        </div>
+                                    )}
+                                </RadioGroup>
+                                {loadingServicePoints ? (
                                     <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
                                         <Spinner/>
                                     </div>
-                                )}
-                            </RadioGroup>
-                            {loadingServicePoints ? (
-                                <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
-                                    <Spinner/>
-                                </div>
-                            ) : (
-                                servicePoints && servicePoints.length > 0 && (
-                                    <div className="mt-4 px-8 py-4">
-                                        <Listbox value={selectedServicePoint} onChange={setSelectedServicePoint}>
-                                            {({open}) => (
-                                                <>
-                                                    <Listbox.Label className="block text-sm font-medium text-gray-700">Choose
-                                                        a Service Point</Listbox.Label>
-                                                    <div className="mt-2 relative">
+                                ) : (
+                                    servicePoints && servicePoints.length > 0 && (
+                                        <div className="mt-4 px-8 py-4">
+                                            <Listbox value={selectedServicePoint} onChange={setSelectedServicePoint}>
+                                                {({open}) => (
+                                                    <>
+                                                        <Listbox.Label
+                                                            className="block text-sm font-medium text-gray-700">Choose
+                                                            a Service Point</Listbox.Label>
+                                                        <div className="mt-2 relative">
               <span className="block relative">
                 <Listbox.Button
                     className="block w-full pl-3 pr-10 py-2 text-left text-gray-800 bg-cbg rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -369,49 +374,92 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                   </span>
                 </Listbox.Button>
               </span>
-                                                        <Listbox.Options
-                                                            className={`z-10 mt-2 relative w-full py-1 bg-white border border-gray-300 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
-                                                            {servicePoints.map((servicePoint) => (
-                                                                <Listbox.Option key={servicePoint.id}
-                                                                                value={servicePoint}
-                                                                                className={({
-                                                                                                active,
-                                                                                                selected
-                                                                                            }) => `cursor-pointer select-none relative px-4 py-2 ${active ? 'bg-cbg text-gray-700' : 'text-gray-800'} ${selected ? 'font-semibold' : 'font-normal'}`}>
-                                                                    {servicePoint.name} - {formatDistance(servicePoint.distance)}
-                                                                    <div className="text-xs text-gray-600">
-                                                                        {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
-                                                                    </div>
-                                                                    <div className="text-xs text-gray-600 mt-1">
-                                                                        {formatOpeningHours(servicePoint.opening_hours)}
-                                                                    </div>
-                                                                </Listbox.Option>
-                                                            ))}
-                                                        </Listbox.Options>
+                                                            <Listbox.Options
+                                                                className={`z-10 mt-2 relative w-full py-1 bg-white border border-gray-300 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
+                                                                {servicePoints.map((servicePoint) => (
+                                                                    <Listbox.Option key={servicePoint.id}
+                                                                                    value={servicePoint}
+                                                                                    className={({
+                                                                                                    active,
+                                                                                                    selected
+                                                                                                }) => `cursor-pointer select-none relative px-4 py-2 ${active ? 'bg-cbg text-gray-700' : 'text-gray-800'} ${selected ? 'font-semibold' : 'font-normal'}`}>
+                                                                        {servicePoint.name} - {formatDistance(servicePoint.distance)}
+                                                                        <div className="text-xs text-gray-600">
+                                                                            {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
+                                                                        </div>
+                                                                        <div className="text-xs text-gray-600 mt-1">
+                                                                            {formatOpeningHours(servicePoint.opening_hours)}
+                                                                        </div>
+                                                                    </Listbox.Option>
+                                                                ))}
+                                                            </Listbox.Options>
 
-                                                    </div>
-                                                </>
-                                            )}
-                                        </Listbox>
-                                    </div>
-                                )
-                            )}
-
-                            <ErrorMessage
-                                errors={errors}
-                                name="soId"
-                                render={({message}) => {
-                                    return (
-                                        <div className="pt-2 text-rose-500 text-small-regular">
-                                            <span>{message}</span>
+                                                        </div>
+                                                    </>
+                                                )}
+                                            </Listbox>
                                         </div>
                                     )
-                                }}
-                            />
+                                )}
+
+                                <ErrorMessage
+                                    errors={errors}
+                                    name="soId"
+                                    render={({message}) => {
+                                        return (
+                                            <div className="pt-2 text-rose-500 text-small-regular">
+                                                <span>{message}</span>
+                                            </div>
+                                        )
+                                    }}
+                                />
+                            </div>
+                        )
+                    }}
+                />
+                <Button
+                    className="max-w-[200px] mt-6"
+                    onClick={() => setIsEditMode(false)}
+                >Continue to Payment
+                </Button>
+
+            </div>
+        ) : (
+            <div className="px-8 py-6 bg-white shadow rounded-lg">
+                <div className="flex items-center justify-between space-x-4">
+
+                    <div className="flex items-center space-x-4">
+                        <div className="bg-green-400 rounded-full min-w-[24px] h-6 flex items-center justify-center text-white text-small-regular">
+                            ✓
                         </div>
-                    )
-                }}
-            />
+
+                        <div>
+
+                            <Image
+                                src={getCarrierImage(cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier)}
+                                alt={cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier }
+                                width={128}
+                                height={128}
+                                className="w-24 h-16 object-contain" />
+                            <span className="text-gray-800 font-semibold"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
+                            <p className="text-gray-800 text-xs">{shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price}</p>
+
+                            {selectedServicePoint && (
+                                <div className="mt-2 text-xs text-gray-800">
+                                    <p className={"font-semibold"}>{selectedServicePoint.name}</p>
+                                    <p>{selectedServicePoint.address.street}, {selectedServicePoint.address.city}, {selectedServicePoint.address.zip_code}, {selectedServicePoint.address.country_code}</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    <button
+                        onClick={() => setIsEditMode(true)}
+                        className="text-xs text-gray-800 ">
+                        Edit
+                    </button>
+                </div>
+            </div>
+        )}
         </StepContainer>
     )
 }

@@ -47,7 +47,7 @@ export default function CountrySelectDesktop() {
         <>
             <Button onPress={onOpen}
                     className="top-1 right-1 text-base font-semibold leading-5 text-slate-11 hover:text-indigo-500  dark:hover:text-cgreen p-3 bg-white dark:bg-sky-1">
-                Shipping to:
+                Free Shipping to:
                 <ReactCountryFlag
                     svg
                     style={{

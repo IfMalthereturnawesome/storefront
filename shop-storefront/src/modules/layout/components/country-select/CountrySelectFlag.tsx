@@ -44,7 +44,7 @@ export default function CountrySelectFlag() {
     return (
         <>
             <Button onPress={onOpen} className=" text-xs font-normal leading-5 text-slate-11 hover:text-indigo-500  dark:hover:text-cgreen ">
-                Shipping to:
+                Free Shipping to:
                 <ReactCountryFlag
                     svg
                     style={{

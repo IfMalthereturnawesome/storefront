@@ -46,7 +46,7 @@ export default function CountrySelectMobile() {
     return (
         <>
             <Button onPress={onOpen} className={"top-1 text-base font-normal leading-5 text-gray-500 transition duration-150 ease-in-out hover:text-indigo-500 dark:text-gray-400 dark:hover:text-cgreen p-3 bg-white dark:bg-sky-1"}>
-                Shipping to:
+                Free Shipping to:
                 <ReactCountryFlag
                     svg
                     style={{

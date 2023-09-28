@@ -35,7 +35,7 @@ const CountryMenu = ({ goBack, onCountrySelected, setMobileMenuOpen }) => {
             </button>
           </div>
           <div>
-            <h1 className="text-large-regular">Shipping To</h1>
+            <h1 className="text-large-regular">Free Shipping To</h1>
           </div>
           <div className="flex-1 basis-0 flex justify-end">
             <button onClick={handleCloseMenu} className={"text-slate-12"}>

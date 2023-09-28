@@ -174,7 +174,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobil
                                             <div className="flex items-center gap-x-2">
                                                 <ReactCountryFlag countryCode={countryCode || "us"} svg/>
                                                 <span className="normal-case">
-                                                Shipping to{" "}
+                                                Free Shipping to{" "}
                                                     {countries?.find((c) => c.country === countryCode)?.label}
                                             </span>
                                             </div>
