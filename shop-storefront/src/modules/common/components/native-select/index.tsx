@@ -65,12 +65,12 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           <select
             ref={innerRef}
             {...props}
-            className="appearance-none flex-1 bg-transparent border-none px-4 py-2.5 transition-colors duration-150 focus:border-gray-700 outline-none"
+            className="appearance-none flex-1 text-slate-12 dark:text-slate-2 bg-transparent border-none px-4 py-2.5 transition-colors duration-150 focus:border-gray-700 outline-none"
           >
             <option value="">{placeholder}</option>
             {children}
           </select>
-          <span className="absolute right-4 inset-y-0 flex items-center pointer-events-none">
+          <span className="absolute right-4 inset-y-0 flex items-center pointer-events-none text-slate-12 dark:text-slate-2">
             <ChevronDown />
           </span>
         </div>

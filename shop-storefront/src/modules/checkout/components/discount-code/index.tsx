@@ -7,6 +7,7 @@ import { formatAmount, useCart, useUpdateCart } from "medusa-react"
 import React, { useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { useMutation } from "@tanstack/react-query"
+import SecondaryButton from "@modules/common/components/button/SecondaryButton";
 
 type DiscountFormValues = {
   discount_code: string
@@ -62,16 +63,30 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
       },
       {
         onSuccess: ({ cart }) => setCart(cart),
-        onError: () => {
-          setError(
-            "discount_code",
-            {
-              message: "Code is invalid",
-            },
-            {
-              shouldFocus: true,
-            }
-          )
+        onError: (error: any) => {
+          // Check if the error response has a 404 status code
+          if (error.response.status === 404) {
+            setError(
+                "discount_code",
+                {
+                  message: "Discount code is not valid",
+                },
+                {
+                  shouldFocus: true,
+                }
+            );
+          } else {
+            // Handle other error types or add more specific error messages if necessary
+            setError(
+                "discount_code",
+                {
+                  message: "An error occurred. Please try again.",
+                },
+                {
+                  shouldFocus: true,
+                }
+            );
+          }
         },
       }
     )
@@ -91,18 +106,18 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   return (
     <div className="w-full bg-white flex flex-col">
       <div className="mb-4">
-        <h3 className="text-base-semi">Discount</h3>
+        <h3 className="text-base-semi text-slate-12 dark:text-slate-2">Discount</h3>
       </div>
       <div className="text-small-regular">
         {appliedDiscount ? (
           <div className="flex items-center justify-between">
             <div>
-              <span>Code: </span>
-              <span className="font-semibold">{appliedDiscount}</span>
+              <span className={"text-slate-12 dark:text-slate-2"}>Code: </span>
+              <span className="font-semibold text-slate-12 dark:text-slate-2">{appliedDiscount}</span>
             </div>
             <div>
               <button
-                className="flex items-center gap-x-2"
+                className="flex items-center gap-x-2 text-slate-11 dark:text-slate-5"
                 onClick={onRemove}
                 disabled={isLoading}
               >
@@ -113,7 +128,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit(onApply)} className="w-full">
-            <div className="grid grid-cols-[1fr_80px] gap-x-2">
+            <div className="grid grid-cols-[1fr_80px] gap-x-2 text-slate-11 dark:text-slate-3">
               <Input
                 label="Code"
                 {...register("discount_code", {
@@ -122,13 +137,13 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 errors={errors}
               />
               <div>
-                <Button
+                <SecondaryButton
                   className="!min-h-[0] h-[46px] w-[80px]"
                   disabled={isLoading}
                   isLoading={isLoading}
                 >
                   Apply
-                </Button>
+                </SecondaryButton>
               </div>
             </div>
           </form>
