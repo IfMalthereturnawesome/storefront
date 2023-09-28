@@ -294,6 +294,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
 
 
 
+
     return (
         <StepContainer
             index={sameBilling ? 2 : 3}
@@ -448,6 +449,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                             {selectedServicePoint && (
                                 <div className="mt-2 text-xs text-gray-800">
                                     <p className={"font-semibold"}>{selectedServicePoint.name}</p>
+                                    {/*  @ts-ignore */}
                                     <p>{selectedServicePoint.address.street}, {selectedServicePoint.address.city}, {selectedServicePoint.address.zip_code}, {selectedServicePoint.address.country_code}</p>
                                 </div>
                             )}
