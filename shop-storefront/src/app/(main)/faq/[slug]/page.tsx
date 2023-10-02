@@ -63,9 +63,7 @@ export default async function SingleHelp({params}: {
                 </div>
 
                 <div className="hidden md:block">
-
-                        <Sidebar/>
-
+                    <Sidebar/>
                 </div>
 
 
