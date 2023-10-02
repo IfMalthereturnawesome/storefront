@@ -28,7 +28,7 @@ export default function PostAccordion({title, active = false, ...props}: PostAcc
                     }}
                     aria-expanded={accordionOpen}>
 
-                <h4 className={"flex-shrink whitespace-normal text-slate-800 dark:text-slate-200 m-0 text-xs xs:text-sm md:text-md "}>{title}</h4>
+                <h4 className={"flex-shrink whitespace-normal text-slate-800 dark:text-slate-200 m-0 text-sm md:text-md "}>{title}</h4>
 
                 <div
                     className={`shrink-0 mr-3 transform transition-transform duration-300 ${accordionOpen ? 'rotate-45' : ''}`}>

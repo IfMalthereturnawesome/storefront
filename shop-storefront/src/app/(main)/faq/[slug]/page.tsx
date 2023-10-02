@@ -1,57 +1,75 @@
-import type { Metadata } from 'next'
-import { allHelp } from 'contentlayer/generated'
-import { notFound } from 'next/navigation'
+import type {Metadata} from 'next'
+import {allHelp} from 'contentlayer/generated'
+import {notFound} from 'next/navigation'
 import PostDate from '@/components/post-date'
 import Sidebar from './help-sidebar'
-import { HelpMdx } from '@/components/mdx/help-mdx'
+import MobileNavBar from './MobileNavbar'
+import {HelpMdx} from '@/components/mdx/help-mdx'
 import Container from "@/components/elements/Container"
+import {LogoSection} from "@/components/about/LogoSection";
+import {ConditionalRender} from "@/components/utils/ConditionalRender";
+import React from "react";
+import ExtraSmallMobileNavBar from "@/app/(main)/faq/[slug]/ExtraSmallMobileNavbar";
 
 export async function generateStaticParams() {
-  return allHelp.map((help) => ({
-    slug: help.slug,
-  }))
+    return allHelp.map((help) => ({
+        slug: help.slug,
+    }))
 }
 
-export async function generateMetadata({ params }: {
-  params: { slug: string }
+export async function generateMetadata({params}: {
+    params: { slug: string }
 }): Promise<Metadata | undefined> {
 
-  const help = allHelp.find((help) => help.slug === params.slug)
+    const help = allHelp.find((help) => help.slug === params.slug)
 
-  if (!help) return
+    if (!help) return
 
-  const { title, summary: description } = help
+    const {title, summary: description} = help
 
-  return {
-    title,
-    description,
-  }
+    return {
+        title,
+        description,
+    }
 }
 
-export default async function SingleHelp({ params }: {
-  params: { slug: string }
+export default async function SingleHelp({params}: {
+    params: { slug: string }
 }) {
 
-  const help = allHelp.find((help) => help.slug === params.slug)
-  
-  if (!help) notFound()
+    const help = allHelp.find((help) => help.slug === params.slug)
 
-  return (
-   <Container>
-        <div className="flex flex-col md:flex-row">
+    if (!help) notFound()
 
-          <main className="md:flex-auto md:pl-10 order-1" data-aos="fade-up">
-            <div className="mb-8">
-              <h2 className="h2 mb-4 text-slate-800 dark:text-slate-200">{help.title}</h2>
-              <p className="text-slate-11 text-sm italic">Last updated - <span className="italic text-sm"><PostDate dateString={help.updatedAt} /></span></p>
-            </div>            
-            <HelpMdx code={help.body.code} />
-          </main>
+    return (
+        <Container>
+            <div className="flex flex-col md:flex-row-reverse">
 
-          {/* Nav sidebar */}
-          <Sidebar />         
 
-        </div>
-   </Container>
-  )
+                <main className="flex-1 md:pl-10" data-aos="fade-up">
+                    <div className="mb-8">
+                        <h2 className="h2 mb-4 text-slate-800 dark:text-slate-200">{help.title}</h2>
+                        <p className="text-slate-11 text-sm italic">Last updated - <span
+                            className="italic text-sm"><PostDate dateString={help.updatedAt}/></span></p>
+                    </div>
+                    <HelpMdx code={help.body.code}/>
+                </main>
+                {/* Nav sidebar */}
+                <div className="xs:hidden">
+                    <ExtraSmallMobileNavBar/>
+                </div>
+                <div className="hidden xs:block md:hidden">
+                    <MobileNavBar/>
+                </div>
+
+                <div className="hidden md:block">
+
+                        <Sidebar/>
+
+                </div>
+
+
+            </div>
+        </Container>
+    )
 }
