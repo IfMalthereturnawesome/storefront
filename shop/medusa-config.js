@@ -61,6 +61,12 @@ const plugins = [
       capture: true,
     },
   },
+  {
+    resolve: `medusa-plugin-ip-lookup`,
+    options: {
+      access_token: process.env.IPSTACK_ACCESS_KEY,
+    },
+  },
 ];
 
 const modules = {
