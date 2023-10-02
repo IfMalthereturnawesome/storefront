@@ -28,18 +28,21 @@ export default function PostAccordion({title, active = false, ...props}: PostAcc
                     }}
                     aria-expanded={accordionOpen}>
 
+                <h4 className={"flex-shrink whitespace-normal text-slate-800 dark:text-slate-200 m-0 text-xs xs:text-sm md:text-md "}>{title}</h4>
 
-
-
-                <h4 className={"m-0 text-slate-800 dark:text-slate-200"}>{title}</h4>
-                <div className={`shrink-0 mr-3 transform transition-transform duration-300 ${accordionOpen ? 'rotate-45' : ''}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                <div
+                    className={`shrink-0 mr-3 transform transition-transform duration-300 ${accordionOpen ? 'rotate-45' : ''}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                         className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                     </svg>
                 </div>
+
             </Button>
             <div ref={contentRef} style={{height: height, transition: 'height 0.3s ease-out', overflow: 'hidden'}}>
-                <div className={`px-4 py-2 mt-2 bg-cyan-1 ${accordionOpen ? 'rounded-b-[12px]' : ''}`}>{props.children}</div>
+                <div
+                    className={`px-4 py-2 mt-2 bg-cyan-1 ${accordionOpen ? 'rounded-b-[12px]' : ''}`}>{props.children}</div>
             </div>
         </div>
     )
