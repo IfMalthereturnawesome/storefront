@@ -21,7 +21,7 @@ export default function PostAccordion({title, active = false, ...props}: PostAcc
     return (
         <div className={`mb-3 prose-p:m-0 py-1  ${accordionOpen ? ' rounded-[12px]' : ''}`}>
             <Button className={`flex justify-between items-center py-5 px-4 w-full leading-6 cursor-pointer font-medium text-left
-                  overflow-hidden dark:bg-cyan-2 dark:hover-cyan-1 bg-cyan-1 hover:bg-gold-1 border border-black hover:border-sky-11 dark:hover:border-cyan-10 transition-all duration-300 transform shadow dark:hover:drop-shadow-xl hover:drop-shadow-sm  ${accordionOpen ? 'rounded-t-[12px]' : 'rounded-[12px]'}`}
+                  overflow-hidden dark:bg-cyan-2 dark:hover-cyan-1 bg-cyan-1 hover:bg-gold-1 border border-black hover:border-sky-11 dark:hover:border-cyan-10 transition-all duration-300 transform ${accordionOpen ? 'rounded-t-[12px]' : 'rounded-[12px]'}`}
                     onClick={(e) => {
                         e.preventDefault();
                         setAccordionOpen(!accordionOpen);
