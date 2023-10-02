@@ -690,7 +690,7 @@ export default function SleepLib({word, children}: SleepLibProps) {
             <span className="inline-block my-0">
         <SlBookOpen/>
       </span>
-            <p className="m-2 text-xs 3xs:text-sm md:text-base  font-normal text-slate-7">
+            <p className="m-2 text-xs 3xs:text-sm sm:text-md   font-normal text-slate-7">
                 {data.content}
             </p>
         </div>

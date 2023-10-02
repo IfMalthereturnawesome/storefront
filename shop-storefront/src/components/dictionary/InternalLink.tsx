@@ -261,10 +261,10 @@ export default function InternalLink({word, children}: SleepLibProps) {
             <span className="inline-block my-0">
         <CgInternal size={17}/>
       </span>
-            <p className="m-2 text-xs 3xs:text-sm md:text-base  font-normal text-slate-7">{data.content}</p>
+            <p className="m-2 text-xs 3xs:text-sm sm:text-md   font-normal text-slate-7">{data.content}</p>
             <Link
                 href={data.url}
-                className="m-2 text-xs 3xs:text-sm md:text-base text-blue-600 hover:text-indigo-500 dark:hover:text-indigo-500 underline"
+                className="m-2 text-xs3xs:text-sm sm:text-md text-blue-200 dark:text-blue-600 hover:text-indigo-500 dark:hover:text-indigo-500 underline"
             >
                 Learn more
             </Link>
