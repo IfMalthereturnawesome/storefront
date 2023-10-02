@@ -45,6 +45,7 @@ export default function CountrySelectMobile() {
 
     return (
         <>
+            {isOpen && <Overlay />}
             <Button onPress={onOpen} className={"top-1 text-base font-normal leading-5 text-gray-500 transition duration-150 ease-in-out hover:text-indigo-500 dark:text-gray-400 dark:hover:text-cgreen p-3 bg-white dark:bg-sky-1"}>
                 Free Shipping to:
                 <ReactCountryFlag
@@ -66,7 +67,7 @@ export default function CountrySelectMobile() {
                 placement="center"
                 size="full"
                 backdrop={"opaque"}
-                className={"max-w-[90vw] mx-auto bg-cyan-1 w-auto"}
+                className={"max-w-[90vw] mx-auto bg-cyan-1 w-auto z-20"}
             >
                 <ModalContent className={" py-6"}>
                     {(onClose) => (
@@ -100,5 +101,21 @@ export default function CountrySelectMobile() {
                 </ModalContent>
             </Modal>
         </>
+    );
+}
+
+function Overlay() {
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            WebkitBackdropFilter: 'blur(5px)',
+            backdropFilter: 'blur(5px)',
+            zIndex: 10,
+        }}></div>
     );
 }

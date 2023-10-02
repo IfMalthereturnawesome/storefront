@@ -43,6 +43,7 @@ export default function CountrySelectFlag() {
 
     return (
         <>
+            {isOpen && <Overlay />}
             <Button onPress={onOpen} className=" text-xs font-normal leading-5 text-slate-11 hover:text-indigo-500  dark:hover:text-cgreen ">
                 Free Shipping to:
                 <ReactCountryFlag
@@ -61,8 +62,8 @@ export default function CountrySelectFlag() {
                 onOpenChange={onOpenChange}
                 placement="center"
                 size="2xl"
-                className="mx-auto bg-cyan-1"
-                backdrop={"opaque"}
+                className="mx-auto bg-cyan-1 z-20"
+
             >
                 <ModalContent className="py-6">
                     {(onClose) => (
@@ -95,5 +96,21 @@ export default function CountrySelectFlag() {
                 </ModalContent>
             </Modal>
         </>
+    );
+}
+
+function Overlay() {
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            WebkitBackdropFilter: 'blur(5px)',
+            backdropFilter: 'blur(5px)',
+            zIndex: 10,
+        }}></div>
     );
 }

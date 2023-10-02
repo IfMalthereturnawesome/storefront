@@ -45,6 +45,7 @@ export default function CountrySelectDesktop() {
 
     return (
         <>
+            {isOpen && <Overlay />}
             <Button onPress={onOpen}
                     className="top-1 right-1 text-base font-semibold leading-5 text-slate-11 hover:text-indigo-500  dark:hover:text-cgreen p-3 bg-white dark:bg-sky-1">
                 Free Shipping to:
@@ -71,8 +72,8 @@ export default function CountrySelectDesktop() {
                 onOpenChange={onOpenChange}
                 placement="center"
                 size="2xl"
-                className=" mx-auto bg-cyan-1"
-                backdrop={"opaque"}
+                className=" mx-auto bg-cyan-1 z-20"
+
             >
                 <ModalContent className="py-6">
                     {(onClose) => (
@@ -105,5 +106,21 @@ export default function CountrySelectDesktop() {
                 </ModalContent>
             </Modal>
         </>
+    );
+}
+
+function Overlay() {
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            WebkitBackdropFilter: 'blur(5px)',
+            backdropFilter: 'blur(5px)',
+            zIndex: 10,
+        }}></div>
     );
 }
