@@ -31,8 +31,8 @@ export default (rootDirectory: string): Router | Router[] => {
   const router = Router();
 
   // Set up root routes for store and admin endpoints, with appropriate CORS settings
-  router.use("/store", cors(storeCorsOptions), bodyParser.json(), preCartCreation);  // Add preCartCreation middleware
-  router.use("/products/*", cors(storeCorsOptions), bodyParser.json(), preCartCreation);  // Add preCartCreation middleware for /products/*
+  router.use("/store", cors(storeCorsOptions), bodyParser.json());  // Add preCartCreation middleware
+
   router.use("/admin", cors(adminCorsOptions), bodyParser.json());
 
   // Add authentication to all admin routes *except* auth and account invite ones
