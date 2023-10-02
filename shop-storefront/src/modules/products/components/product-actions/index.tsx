@@ -5,9 +5,10 @@ import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import OptionSelect from "@modules/products/components/option-select"
 import clsx from "clsx"
 import Link from "next/link"
-import React, {useMemo} from "react"
+import React, {useMemo, useState} from "react"
 
 import BuyNowButton from "@/components/elements/BuyNowButton";
+import SizeGuideModal from "@modules/products/components/size-guide/SizeGuide";
 
 type ProductActionsProps = {
     product: PricedProduct
@@ -24,7 +25,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
     const isColorSelected = !!options[colorOptionId];
     const isSizeSelected = !!options[sizeOptionId];
     const isBothSelected = isColorSelected && isSizeSelected;
-
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const selectedPrice = useMemo(() => {
         const {variantPrice, cheapestPrice} = price
@@ -49,6 +50,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
             {product.variants.length > 1 && (
                 <div className="my-8 flex flex-col gap-y-6 text-slate-1  ">
                     {(product.options || []).map((option) => {
+                        const additionalElem = option.title.toLowerCase() === "size" ? (
+                            <button
+                                className={"p-0 m-0 leading-5 text-center underline bg-transparent cursor-pointer text-sm text-neutral-800"}
+                                onClick={() => setModalOpen(true)}
+                            >
+                                Size Guide
+                            </button>
+                        ) : null;
+
                         return (
                             <div key={option.id}>
                                 <OptionSelect
@@ -56,13 +66,18 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                                     current={options[option.id]}
                                     updateOption={updateOptions}
                                     title={option.title}
+                                    additionalElement={additionalElem}
                                 />
+                                {option.title.toLowerCase() === "size" &&
+                                    <SizeGuideModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>}
                             </div>
-                        )
+                        );
                     })}
                 </div>
             )}
 
+
+            <SizeGuideModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
             <div className="mb-4">
                 {selectedPrice ? (
                     <div className="flex flex-col text-slate-1">
@@ -73,6 +88,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
             >
               {selectedPrice.calculated_price}
             </span>
+
                         {selectedPrice.price_type === "sale" && (
                             <>
                                 <p>
@@ -91,6 +107,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                     <div></div>
                 )}
             </div>
+
 
             {/*<Button onClick={addToCart} className={"text-md justify-start"}>*/}
             {/*  {!inStock ? "Out of stock" : "Add to cart"}*/}

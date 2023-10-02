@@ -121,4 +121,82 @@ body .cursor-zoom-out {
 .scale-2 {
     transform: scale(2);
 }
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 1.5rem;
+}
 
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.2rem;
+    width: 1.2rem;
+    left: 0.15rem;  /* Adjusted padding to be a bit smaller */
+    bottom: 0.15rem;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #a8a7a7;
+}
+
+input:checked + .slider:before {
+    transform: translateX(1.5rem);  /* Adjusted translation to move the circle out completely */
+}
+
+.slider.round {
+    border-radius: 1.5rem;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 52;
+}
+
+.modal-backdrop-blur {
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 52;
+}
