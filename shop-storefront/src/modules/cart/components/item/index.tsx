@@ -22,7 +22,7 @@ const Item = ({ item, region }: ItemProps) => {
       <div className="text-base-regular flex flex-col gap-y-8">
         <div className="flex items-start justify-between">
           <div className="flex flex-col">
-            <span className={"text-slate-12 dark:text-slate-2"}>{item.title}</span>
+            <span className={"text-slate-12"}>{item.title}</span>
             <LineItemOptions variant={item.variant} />
           </div>
           <NativeSelect
@@ -58,7 +58,7 @@ const Item = ({ item, region }: ItemProps) => {
         <div className="flex items-end justify-between text-small-regular flex-1">
           <div>
             <button
-              className="flex items-center gap-x-1 text-gray-500"
+              className="flex items-center gap-x-1 text-slate-11"
               onClick={() => deleteItem(item.id)}
             >
               <Trash size={14} />
