@@ -1,6 +1,6 @@
 import React from "react";
 import { CurrencyDollarSolid, NextJs, SquaresPlusSolid, ToolsSolid } from "@medusajs/icons";
-import { Badge, Heading, Text } from "@medusajs/ui";
+import { Heading, IconBadge, Text} from "@medusajs/ui";
 
 const OrderDetailNextjs = () => {
   const queryParams = `?ref=onboarding&type=${process.env.MEDUSA_ADMIN_ONBOARDING_TYPE || "nextjs"}`
@@ -29,9 +29,9 @@ const OrderDetailNextjs = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <IconBadge>
                   <SquaresPlusSolid />
-                </Badge>
+                </IconBadge>
               </div>
             </div>
             <div>
@@ -54,9 +54,9 @@ const OrderDetailNextjs = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <IconBadge >
                   <CurrencyDollarSolid />
-                </Badge>
+                </IconBadge>
               </div>
             </div>
             <div>
@@ -79,9 +79,9 @@ const OrderDetailNextjs = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <IconBadge>
                   <NextJs />
-                </Badge>
+                </IconBadge>
               </div>
             </div>
             <div>
