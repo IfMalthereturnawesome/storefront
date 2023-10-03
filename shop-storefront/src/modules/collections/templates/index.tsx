@@ -10,20 +10,13 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import { useCart } from "medusa-react"
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
+import { ProductCollection } from "@medusajs/medusa"
 
-type CollectionTemplateProps = {
-  collection: {
-    handle: string
-    title: string
-    id: string
-  }
-}
-
-const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
-  collection,
-}) => {
-  const { cart } = useCart()
-  const { ref, inView } = useInView()
+const CollectionTemplate: React.FC<{ collection: ProductCollection }> = ({
+                                                                             collection,
+                                                                         }) => {
+    const { cart } = useCart()
+    const { ref, inView } = useInView()
 
   const {
     data: infiniteData,
