@@ -24,6 +24,7 @@ export default function CountrySelectFlag() {
                     country: c.iso_2,
                     region: r.id,
                     label: c.display_name,
+                    currency: r?.currency_code.toUpperCase()
                 }));
             })
             .flat();
@@ -74,8 +75,11 @@ export default function CountrySelectFlag() {
                             <ModalBody className="justify-start items-start mx-auto">
                                 <div className="grid grid-cols-3 gap-4 text-left pl-2">
                                     {options?.map((option, index) => (
-                                        <Button key={index} onPress={() => handleChange(option)}
-                                                className="text-left justify-start text-slate-12 text-base hover:text-indigo-500 dark:hover:text-cgreen">
+                                        <Button
+                                            key={index}
+                                            onPress={() => handleChange(option)}
+                                            className={`text-left justify-start text-slate-12 text-md transition duration-150 ease-in-out hover:text-indigo-500 dark:hover:text-cgreen 
+                ${option.country === current?.country ? "font-bold underline underline-offset-2" : ""}`}>
                                             <ReactCountryFlag
                                                 svg
                                                 style={{
@@ -84,13 +88,14 @@ export default function CountrySelectFlag() {
                                                 }}
                                                 countryCode={option.country}
                                             />
-                                            <span style={{ marginLeft: "8px" }}>
-                        {option.label}
-                      </span>
+                                            <span style={{marginLeft: "8px"}}>
+                    {option.label} - {option.currency}
+                </span>
                                         </Button>
                                     ))}
                                 </div>
                             </ModalBody>
+
                         </>
                     )}
                 </ModalContent>

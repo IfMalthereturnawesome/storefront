@@ -26,6 +26,7 @@ export default function CountrySelectDesktop() {
                     country: c.iso_2,
                     region: r.id,
                     label: c.display_name,
+                    currency: r?.currency_code.toUpperCase()
                 }));
             })
             .flat();
@@ -79,13 +80,16 @@ export default function CountrySelectDesktop() {
                     {(onClose) => (
                         <>
                             <ModalHeader className="flex flex-row  items-center justify-center mx-auto text-xl pb-8 text-slate-12">
-                                Select Country
+                                Select Delivery Country
                             </ModalHeader>
                             <ModalBody className="justify-start items-start mx-auto">
                                 <div className="grid grid-cols-3 gap-4 text-left pl-2">
                                     {options?.map((option, index) => (
-                                        <Button key={index} onPress={() => handleChange(option)}
-                                                className="text-left justify-start text-slate-12  text-base transition duration-150 ease-in-out hover:text-indigo-500  dark:hover:text-cgreen">
+                                        <Button
+                                            key={index}
+                                            onPress={() => handleChange(option)}
+                                            className={`text-left justify-start text-slate-12 text-md transition duration-150 ease-in-out hover:text-indigo-500 dark:hover:text-cgreen 
+                ${option.country === current?.country ? "font-bold underline underline-offset-2" : ""}`}>
                                             <ReactCountryFlag
                                                 svg
                                                 style={{
@@ -95,12 +99,13 @@ export default function CountrySelectDesktop() {
                                                 countryCode={option.country}
                                             />
                                             <span style={{marginLeft: "8px"}}>
-                        {option.label}
-                      </span>
+                    {option.label} - {option.currency}
+                </span>
                                         </Button>
                                     ))}
                                 </div>
                             </ModalBody>
+
                         </>
                     )}
                 </ModalContent>

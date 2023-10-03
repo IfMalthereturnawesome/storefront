@@ -8,9 +8,9 @@ export default function Search() {
   const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false)
 
   return (
-    <div className=" mx-4 md:mx-4 flex justify-center items-center z-[2]">
+    <div className="mx-4 md:mx-4 flex justify-center items-center z-[2]">
       <button
-        className="3xs:hidden  xl:flex w-full sm:w-[150px] text-[15px] bg-white text-slate-400 inline-flex items-center justify-between leading-5 pl-3 pr-2 py-[7px] rounded border border-slate-200 hover:border-slate-300 shadow-sm whitespace-nowrap dark:text-slate-500 dark:bg-cyan-3 dark:border-slate-700 dark:hover:border-slate-600"
+        className="3xs:hidden  xl:flex w-full sm:w-[130px] text-[15px] bg-white text-slate-400 inline-flex items-center justify-between leading-5 pl-3 pr-2 py-[7px] rounded border border-slate-200 hover:border-slate-300 shadow-sm whitespace-nowrap dark:text-slate-500 dark:bg-cyan-2 dark:border-slate-700 dark:hover:border-slate-600"
         onClick={(e) => {
           e.stopPropagation()
           setSearchModalOpen(true)
@@ -31,9 +31,7 @@ export default function Search() {
             Search<span className="hidden sm:inline"></span>…
           </span>
         </div>
-        <div className="flex items-center justify-center h-5 w-5 font-medium text-slate-500 rounded border border-slate-200 shadow-sm ml-3 dark:bg-slate-700 dark:text-slate-400 dark:border-slate-600">
-          /
-        </div>
+
       </button>
         <button
             className=" 3xs:flex xl:hidden"
