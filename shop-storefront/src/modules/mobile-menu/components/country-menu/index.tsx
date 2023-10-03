@@ -15,6 +15,8 @@ const CountryMenu = ({ goBack, onCountrySelected, setMobileMenuOpen }) => {
     setRegion(regionId, countryCode);
     close();
     onCountrySelected();
+
+
   };
 
   const handleCloseMenu = () => {
@@ -56,7 +58,7 @@ const CountryMenu = ({ goBack, onCountrySelected, setMobileMenuOpen }) => {
                   >
                     <div className="flex items-center gap-x-4">
                       <ReactCountryFlag svg countryCode={option.country} />
-                      <span className="text-base-regular text-slate-12">{option.label}</span>
+                      <span className="text-base-regular text-slate-12">{option.label} - {option.currency} </span>
                     </div>
                     <ChevronDown size={16} className="-rotate-90" />
                   </button>

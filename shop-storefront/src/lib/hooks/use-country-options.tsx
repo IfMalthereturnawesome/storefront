@@ -5,6 +5,7 @@ type CountryOption = {
   country: string
   region: string
   label: string
+    currency: string
 }
 
 const useCountryOptions = () => {
@@ -17,6 +18,7 @@ const useCountryOptions = () => {
           country: c.iso_2,
           region: r.id,
           label: c.display_name,
+          currency: r?.currency_code.toUpperCase()
         }))
       })
       .flat()
