@@ -71,7 +71,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
       <div className="hidden small:block">
         <div className="text-xl-semi flex justify-between items-start mb-4">
           <span>Hello {customer?.first_name}</span>
-          <span className="text-small-regular text-gray-700">
+          <span className="text-small-regular text-slate-11">
             Signed in as:{" "}
             <span className="font-semibold">{customer?.email}</span>
           </span>

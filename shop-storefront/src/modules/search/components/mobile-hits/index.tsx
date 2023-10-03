@@ -26,7 +26,7 @@ const MobileHits = ({
 
   return (
     <div className={className}>
-      <span className="text-small-regular uppercase text-gray-700">
+      <span className="text-small-regular uppercase text-slate-11">
         Results
       </span>
       <div className="grid grid-cols-1 py-4">

@@ -107,8 +107,8 @@ export default async function SinglePost({params}: {params: {slug: string}}) {
                     <div className="format format-blue dark:format-invert">
                       {post.author}
 
-                      <span className="text-gray-700"> - </span>
-                      <span className="text-gray-500">
+                      <span className="text-slate-11"> - </span>
+                      <span className="text-slate-10">
                         <PostDate dateString={post.publishedAt} />
                       </span>
                     </div>

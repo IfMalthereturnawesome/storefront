@@ -706,14 +706,14 @@ export default function SleepLib({word, children}: SleepLibProps) {
               arrow={false}
               className="max-w-sm !bg-blue-12 dark:!bg-white !text-slate-2 3xs:p-2 md:p-4"
           >
-            <span className="border-b-2 cursor-help font-semibold border-blue-600 text-gray-700 dark:text-gray-300">
+            <span className="border-b-2 cursor-help font-semibold border-blue-600 text-slate-11 dark:text-gray-300">
               {children}
             </span>
           </Tooltip>
         </span>
             )}
             {!isClient && (
-                <span className="border-b-1 cursor-help border-blue-600 text-gray-700">
+                <span className="border-b-1 cursor-help border-blue-600 text-slate-11">
           {children}
         </span>
             )}

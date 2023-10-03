@@ -26,7 +26,7 @@ const AccountNav = () => {
       <div className="hidden small:block">
         <div>
           <div className="py-4">
-            <h3 className="text-base-semi">Account</h3>
+            <h3 className="text-large-semi">Account</h3>
           </div>
           <div className="text-base-regular">
             <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
@@ -74,8 +74,8 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
   return (
     <Link
       href={href}
-      className={clsx("text-gray-700", {
-        "text-gray-900 font-semibold": active,
+      className={clsx("text-slate-11", {
+        "text-slate-12 font-bold": active,
       })}
     >
       <>{children}</>

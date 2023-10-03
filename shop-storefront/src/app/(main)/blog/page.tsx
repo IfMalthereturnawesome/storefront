@@ -109,7 +109,7 @@ export default function Blog() {
                     <h3 className="h3 mb-4 text-2xl lg:text-3xl">
                       <Link
                         href={`/blog/${featuredPost.slug}`}
-                        className="text-gray-700 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-100"
+                        className="text-slate-11 transition duration-150 ease-in-out hover:text-slate-11 dark:text-gray-200 dark:hover:text-gray-100"
                       >
                         {featuredPost.title}
                       </Link>
@@ -131,11 +131,11 @@ export default function Blog() {
                     <div>
                       <Link
                         href="#"
-                        className="font-medium text-gray-700 transition duration-150 ease-in-out  dark:text-gray-200"
+                        className="font-medium text-slate-11 transition duration-150 ease-in-out  dark:text-gray-200"
                       >
                         {featuredPost.author}
                       </Link>
-                      <span className="text-gray-700"> - </span>
+                      <span className="text-slate-11"> - </span>
                       <span className="text-gray-500">
                         <PostDate dateString={featuredPost.publishedAt} />
                       </span>
