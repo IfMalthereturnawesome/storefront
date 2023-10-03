@@ -17,7 +17,10 @@ function BuyNowButton({
                 onClick={!disabled ? onClick : undefined}
                 disabled={disabled}
                 type="button"
-                className={`flex justify-between items-center py-0 px-4 m-0 w-full h-full font-poppins text-sm  font-semibold leading-5 text-left uppercase whitespace-nowrap bg-black bg-none rounded-none border-black cursor-pointer text-slate-1 dark:text-slate-12 hover:text-slate-10 dark:hover:text-slate-10 ${disabled ? 'opacity-50 cursor-normal' : ''}`}
+                className={`flex justify-between items-center py-0 px-4 m-0 w-full h-full font-poppins text-sm 
+                font-semibold leading-5 text-left uppercase whitespace-nowrap bg-black dark:bg-white rounded-none border-black 
+                cursor-pointer text-slate-1  hover:text-slate-10 
+                ${disabled ? 'opacity-50 cursor-normal' : ''}`}
                 data-auto-id="add-to-bag"
                 title={title}
                 style={{

@@ -31,10 +31,10 @@ const CartTemplate = () => {
               <div className="flex flex-col gap-y-8 sticky top-12">
                 {cart && cart.region && (
                   <>
-                    <div className=" p-6">
+                    <div className="p-6 bg-cyan-2 border border-slate-3">
                       <Summary cart={cart} />
                     </div>
-                    <div className=" p-6">
+                    <div className="p-6">
                       <DiscountCode cart={cart} />
                     </div>
                   </>

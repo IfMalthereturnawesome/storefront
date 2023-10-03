@@ -26,7 +26,7 @@ const LineItemPrice = ({
     console.log("region", region.name)
 
     return (
-        <div className="flex flex-col text-gray-700 text-right">
+        <div className="flex flex-col text-slate-12 text-right">
       <span
           className={clsx("text-base-regular", {
               "text-rose-600": hasReducedPrice,
@@ -39,7 +39,8 @@ const LineItemPrice = ({
             includeTaxes: false,
             minimumFractionDigits: 0,
             maximumFractionDigits: 2,
-            locale: locale,
+            locale: locale
+
         })}
       </span>
             {hasReducedPrice && (
@@ -55,7 +56,8 @@ const LineItemPrice = ({
                   includeTaxes: false,
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 2,
-                  locale: locale,
+                  locale: locale
+
               })}
             </span>
                     </p>

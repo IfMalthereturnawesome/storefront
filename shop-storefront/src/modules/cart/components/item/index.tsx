@@ -33,6 +33,7 @@ const Item = ({ item, region }: ItemProps) => {
                 quantity: parseInt(value.target.value),
               })
             }
+            placeholder={"Select quantity"}
             className="max-h-[35px] w-fit"
           >
             {Array.from(

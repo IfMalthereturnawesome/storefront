@@ -107,9 +107,9 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   }
 
   return (
-    <div className="w-full bg-white flex flex-col">
+    <div className="w-full  flex flex-col">
       <div className="mb-4">
-        <h3 className="text-base-semi text-slate-12 dark:text-slate-2">Discount</h3>
+        <h3 className="text-base-semi text-slate-12">Discount</h3>
       </div>
       <div className="text-small-regular">
         {appliedDiscount ? (
@@ -120,18 +120,18 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
             </div>
             <div>
               <button
-                className="flex items-center gap-x-2 text-slate-11 dark:text-slate-5"
+                className="flex items-center gap-x-2 text-slate-11 "
                 onClick={onRemove}
                 disabled={isLoading}
               >
                 <Trash size={16} />
-                <span className="sr-only">Remove gift card from order</span>
+                <span className="sr-only">Remove discount code from order</span>
               </button>
             </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onApply)} className="w-full">
-            <div className="grid grid-cols-[1fr_80px] gap-x-2 text-slate-11 dark:text-slate-3">
+            <div className="grid grid-cols-[1fr_80px] gap-x-2 text-slate-11">
               <Input
                 label="Code"
                 {...register("discount_code", {
@@ -143,7 +143,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
               <div>
 
                 <SecondaryButton
-                  className="!min-h-[0] h-[46px] w-[80px]"
+                  className="!min-h-[0] h-[46px] w-[80px] custom-button-neo-dark rounded-none"
                   disabled={isLoading}
                   isLoading={isLoading}
                 >
