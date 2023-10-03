@@ -34,9 +34,9 @@ const CartTemplate = () => {
                     <div className="p-6 bg-cyan-2 border border-slate-3">
                       <Summary cart={cart} />
                     </div>
-                    <div className="p-6">
+
                       <DiscountCode cart={cart} />
-                    </div>
+
                   </>
                 )}
               </div>

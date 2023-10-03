@@ -11,7 +11,9 @@ import {
 import React, { useMemo } from "react"
 
 const PaymentStripe: React.FC = () => {
-  const useOptions:
+
+
+    const useOptions:
     | StripeCardNumberElementOptions
     | StripeCardExpiryElementOptions
     | StripeCardCvcElementOptions = useMemo(() => {
@@ -19,10 +21,10 @@ const PaymentStripe: React.FC = () => {
       style: {
         base: {
           fontFamily: "Inter, sans-serif",
-          color: "#424270",
+            color:  "#867979",
           padding: "10px 12px",
           "::placeholder": {
-            color: "#CFD7E0",
+            color: "#a4aab0",
           },
         },
       },
@@ -48,8 +50,8 @@ const CardNumber = ({
   options: StripeCardNumberElementOptions
 }) => {
   return (
-    <div className="border-b border-gray-200 py-2 relative">
-      <span className="absolute -top-6 text-gray-700 text-base-regular">
+    <div className="border-b border-slate-5 py-2 relative">
+      <span className="absolute -top-6 text-slate-12 text-base-regular">
         Card number
       </span>
       <CardNumberElement options={options} />
@@ -63,19 +65,19 @@ const CardExpiry = ({
   options: StripeCardExpiryElementOptions
 }) => {
   return (
-    <div className="border-b border-gray-200 w-full py-2 relative">
-      <span className="absolute -top-6 text-gray-700 text-base-regular">
+    <div className="border-b border-slate-5 w-full py-2 relative">
+      <span className="absolute -top-6 text-slate-12 text-base-regular">
         Expiration date
       </span>
-      <CardExpiryElement options={options} />
+      <CardExpiryElement className={"text-slate-12"} options={options} />
     </div>
   )
 }
 
 const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
   return (
-    <div className="border-b border-gray-200 w-full py-2 relative">
-      <span className="absolute -top-6 text-gray-700 text-base-regular">
+    <div className="border-b border-slate-5 w-full py-2 relative">
+      <span className="absolute -top-6 text-slate-12 text-base-regular">
         CVC
       </span>
       <CardCvcElement options={{ ...options, placeholder: "123" }} />

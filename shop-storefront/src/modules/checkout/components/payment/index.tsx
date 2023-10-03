@@ -38,7 +38,7 @@ const Payment = () => {
       title="Payment"
       index={isSame ? 3 : 4}
       closedState={
-        <div className="px-8 pb-8 text-small-regular text-gray-700">
+        <div className="px-8 pb-8 text-small-regular text-slate-11">
           <p>Enter your address to see available payment options.</p>
         </div>
       }
@@ -65,7 +65,7 @@ const Payment = () => {
               )
             })
         ) : (
-          <div className="flex flex-col items-center justify-center px-4 py-16 text-gray-900">
+          <div className="flex flex-col items-center justify-center px-4 py-16 text-slate-12">
             <Spinner />
           </div>
         )}

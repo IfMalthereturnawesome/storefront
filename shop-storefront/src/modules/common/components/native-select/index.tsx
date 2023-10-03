@@ -59,14 +59,14 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
             "relative flex items-center text-base-regular ",
             className,
             {
-              "text-gray-500": isPlaceholder,
+              "text-slate-10": isPlaceholder,
             }
           )}
         >
           <select
             ref={innerRef}
             {...props}
-            className="appearance-none flex-1 text-slate-12 bg-cyan-1 px-4 py-2.5 transition-colors duration-150 focus:border-gray-700 outline-none"
+            className="appearance-none flex-1 text-slate-12 bg-cyan-1 px-4 py-2.5 transition-colors duration-150 focus:border-slate-6 outline-none"
           >
             <option value="">{placeholder}</option>
             {children}

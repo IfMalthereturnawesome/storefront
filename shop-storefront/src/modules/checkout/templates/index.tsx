@@ -6,27 +6,41 @@ import CheckoutLoader from "../components/checkout-loader"
 import CheckoutForm from "./checkout-form"
 import CheckoutSummary from "./checkout-summary"
 import Image from "next/image";
+import React from "react";
 
 const CheckoutTemplate = () => {
   return (
     <CheckoutProvider>
-      <div className="bg-gray-100 relative small:min-h-screen">
-        <div className="h-16 ">
+      <div className="bg-cyan-1 relative small:min-h-screen">
+        <div className="h-16 lg:h-20">
           <nav className="flex items-center h-full justify-between content-container">
             <Link
               href="/cart"
-              className="text-small-semi text-gray-700 flex items-center gap-x-2 uppercase flex-1 basis-0"
+              className="text-small-semi text-slate-11 flex items-center gap-x-2 uppercase flex-1 basis-0"
             >
               <>
                 <ChevronDown className="rotate-90" size={16} />
-                <span className="mt-px hidden small:block">
+                <span className="mt-px hidden small:block text-slate-11 hover:text-blue-600 dark:hover:text-cgreen transition-colors duration-200">
                   Back to shopping cart
                 </span>
-                <span className="mt-px block small:hidden">Back</span>
+                <span className="mt-px block small:hidden text-slate-11 hover:text-blue-600 dark:hover:text-cgreen transition-colors duration-200">Back</span>
               </>
             </Link>
             <Link href="/" className="text-xl-semi ">
-              <Image src={"/images/Eight-Athletics-black-logo.svg"} alt={"Eight Athletics logo"} height={100} width={100}/>
+              <Image
+                  src={'/images/Eight-Athletics-black-logo.svg'}
+                  alt={'Eight Athletics Logo'}
+                  width={100}
+                  height={100}
+                  className="dark:hidden"
+              />
+              <Image
+                  src={'/images/Eight-Athletics-white-logo.svg'}
+                  alt={'Eight Athletics Logo'}
+                  width={100}
+                  height={100}
+                  className="hidden dark:block"
+              />
             </Link>
             <div className="flex-1 basis-0" />
           </nav>

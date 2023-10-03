@@ -3,88 +3,123 @@
 @tailwind utilities;
 
 @layer components {
-  .custom-header-1 {
-    @apply h2 mb-4 text-slate-800 dark:text-slate-200;
-  }
+    .custom-header-1 {
+        @apply h2 mb-4 text-slate-800 dark:text-slate-200;
+    }
 
-  .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-8
-  }
+    .content-container {
+        @apply max-w-[1440px] w-full mx-auto px-8
+    }
 
-  .content-container__big {
-    @apply max-w-[100vw] w-full mx-auto
-  }
+    .content-container__big {
+        @apply max-w-[100vw] w-full mx-auto
+    }
 
-  .contrast-btn {
-    @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
-  }
+    .contrast-btn {
+        @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
+    }
 
-  .text-xsmall-regular {
-    @apply text-[10px] leading-4 font-normal;
-  }
+    .text-xsmall-regular {
+        @apply text-[10px] leading-4 font-normal;
+    }
 
-  .text-small-regular {
-    @apply text-xs leading-5 font-normal;
-  }
+    .text-small-regular {
+        @apply text-xs leading-5 font-normal;
+    }
 
-  .text-small-semi {
-    @apply text-xs leading-5 font-semibold;
-  }
+    .text-small-semi {
+        @apply text-xs leading-5 font-semibold;
+    }
 
-  .text-base-regular {
-    @apply text-sm leading-6 font-normal;
-  }
+    .text-base-regular {
+        @apply text-sm leading-6 font-normal;
+    }
 
-  .text-base-semi {
-    @apply text-sm leading-6 font-semibold;
-  }
+    .text-base-semi {
+        @apply text-sm leading-6 font-semibold;
+    }
 
-  .text-large-regular {
-    @apply text-base leading-6 font-normal;
-  }
+    .text-large-regular {
+        @apply text-base leading-6 font-normal;
+    }
 
-  .text-large-semi {
-    @apply text-base leading-6 font-semibold;
-  }
+    .text-large-semi {
+        @apply text-base leading-6 font-semibold;
+    }
 
-  .text-xl-regular {
-    @apply text-2xl leading-[36px] font-normal;
-  }
+    .text-xl-regular {
+        @apply text-2xl leading-[36px] font-normal;
+    }
 
-  .text-xl-semi {
-    @apply text-2xl leading-[36px] font-semibold;
-  }
+    .text-xl-semi {
+        @apply text-2xl leading-[36px] font-semibold;
+    }
 
-  .text-2xl-regular {
-    @apply text-[30px] leading-[48px] font-normal;
-  }
+    .text-2xl-regular {
+        @apply text-[30px] leading-[48px] font-normal;
+    }
 
-  .text-2xl-semi {
-    @apply text-[30px] leading-[48px] font-semibold;
-  }
+    .text-2xl-semi {
+        @apply text-[30px] leading-[48px] font-semibold;
+    }
 
-  .text-3xl-regular {
-    @apply text-[36px] leading-[48px] font-normal;
-  }
+    .text-3xl-regular {
+        @apply text-[36px] leading-[48px] font-normal;
+    }
 
-  .text-3xl-semi {
-    @apply text-[36px] leading-[48px] font-semibold;
-  }
+    .text-3xl-semi {
+        @apply text-[36px] leading-[48px] font-semibold;
+    }
 
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label {
-    @apply -translate-y-2 text-xsmall-regular;
-  }
+    input:focus ~ label,
+    input:not(:placeholder-shown) ~ label {
+        @apply -translate-y-2 text-xsmall-regular;
+    }
 
-  input:focus ~ label {
-    @apply left-0;
-  }
+    input:focus ~ label {
+        @apply left-0;
+    }
 
-  .custom-button-neo{
-    @apply transition duration-150 ease-in-out hover:text-slate-1 border-2 dark:border border-black rounded-[0.3rem] border-solid cursor-pointer focus:border-white dark:focus:border-sky-7 focus:outline-black dark:focus:outline-sky-9 hover:bg-black dark:bg-cyan-2 dark:hover:bg-cyan-3 dark:hover:border-cyan-10 dark:hover:text-slate-12 dark:group-hover:bg-cyan-3 dark:group-hover:text-slate-12 group-hover:bg-black dark:group-hover:border-cyan-10 group-hover:border-black group-hover:text-slate-1
-  }
+    .custom-button-neo {
+        @apply transition duration-150 ease-in-out hover:text-slate-1 border-2 dark:border border-black rounded-[0.3rem] border-solid cursor-pointer focus:border-white dark:focus:border-sky-7 focus:outline-black dark:focus:outline-sky-9 hover:bg-black dark:bg-cyan-2 dark:hover:bg-cyan-3 dark:hover:border-cyan-10 dark:hover:text-slate-12 dark:group-hover:bg-cyan-3 dark:group-hover:text-slate-12 group-hover:bg-black dark:group-hover:border-cyan-10 group-hover:border-black group-hover:text-slate-1
+    }
 
-  .custom-button-neo-dark{
-    @apply transition duration-150 ease-in-out hover:text-slate-12 text-slate-1 dark:text-slate-12 border-2 dark:border border-black rounded-[0.3rem] border-solid cursor-pointer focus:border-black dark:focus:border-sky-7 focus:outline-black dark:focus:outline-sky-9 bg-black hover:bg-custom-white dark:bg-cyan-2 dark:hover:bg-cyan-3 dark:border-cyan-10 dark:hover:border-cyan-10 dark:hover:text-slate-12 dark:group-hover:bg-cyan-3 dark:group-hover:text-slate-12 group-hover:bg-black dark:group-hover:border-cyan-10 group-hover:border-black group-hover:text-slate-1
-  }
+    .custom-button-neo-dark {
+        @apply transition duration-150 ease-in-out hover:text-slate-12 text-slate-1 dark:text-slate-12 border-2 dark:border border-black rounded-[0.3rem] border-solid cursor-pointer focus:border-black dark:focus:border-sky-7 focus:outline-black dark:focus:outline-sky-9 bg-black hover:bg-custom-white dark:bg-cyan-2 dark:hover:bg-cyan-3 dark:border-cyan-10 dark:hover:border-cyan-10 dark:hover:text-slate-12 dark:group-hover:bg-cyan-3 dark:group-hover:text-slate-12 group-hover:bg-black dark:group-hover:border-cyan-10 group-hover:border-black group-hover:text-slate-1
+    }
+
+    .custom-button-neo__dark-black {
+        @apply
+        transition duration-150 ease-in-out
+        hover:text-slate-1
+        text-slate-12
+        border-2
+        border-solid
+        cursor-pointer
+        focus:outline-black
+        bg-white
+        hover:bg-custom-white
+        group-hover:bg-black
+        group-hover:text-slate-1
+        rounded-[0.3rem];
+
+        @apply dark:text-slate-12
+        dark:bg-black
+        dark:hover:bg-cyan-3
+        dark:border-cyan-10
+        dark:hover:border-cyan-10
+        dark:hover:text-slate-12
+        dark:group-hover:bg-cyan-3
+        dark:group-hover:text-slate-12
+        dark:group-hover:border-cyan-10;
+
+        @apply border-black
+        focus:border-black
+        group-hover:border-black;
+
+        @apply dark:border-black
+        dark:focus:border-sky-7
+        dark:focus:outline-sky-9;
+    }
+
 }

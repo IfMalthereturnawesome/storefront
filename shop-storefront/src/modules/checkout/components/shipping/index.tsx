@@ -293,14 +293,12 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     }
 
 
-
-
     return (
         <StepContainer
             index={sameBilling ? 2 : 3}
             title="Delivery"
             closedState={
-                <div className="px-8 pb-8 text-small-regular text-gray-700">
+                <div className="px-8 pb-8 text-small-regular text-slate-11">
                     <p>Enter your address to see available delivery options.</p>
                 </div>
             }
@@ -323,9 +321,11 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                                     key={option.value}
                                                     value={option.value}
                                                     className={clsx(
-                                                        "flex items-center justify-between text-small-regular cursor-pointer py-4 border-b border-gray-200 last:border-b-0 px-8",
+                                                        "flex items-center justify-between text-small-regular cursor-pointer py-4 px-8",
                                                         {
-                                                            "bg-gray-50": option.value === value,
+                                                            "border-b border-t border-x border-slate-12 dark:border-cyan-10": option.value === value, // Solid border for checked
+                                                            "border-b border-t border-x border-slate-3 dark:border-slate-3 ": option.value !== value, // Subtle border for unchecked
+                                                            "bg-cyan-1": option.value === value,
                                                         }
                                                     )}
                                                 >
@@ -335,25 +335,31 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                                                alt={option.metadata?.carrier || 'default'} width={128}
                                                                height={128}
                                                                className="w-16 h-16 mr-2 object-contain object-center "/>
-                                                        <span className="text-base-regular text-gray-700">
-                            {option.label}
-                          </span>
+                                                        <span className={clsx("text-base-regular", {
+                                                            "text-slate-12 font-semibold": option.value === value, // Text color for checked
+                                                            "text-slate-11": option.value !== value, // Text color for unchecked
+                                                        })}>
+            {option.label}
+        </span>
                                                     </div>
-                                                    <span className="justify-self-end text-gray-700">
-                          {option.price}
-                        </span>
+                                                    <span className={clsx("justify-self-end", {
+                                                        "text-slate-12 font-semibold": option.value === value, // Text color for checked
+                                                        "text-slate-11": option.value !== value, // Text color for unchecked
+                                                    })}>
+        {option.price}
+    </span>
                                                 </RadioGroup.Option>
                                             )
                                         })
                                     ) : (
                                         <div
-                                            className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
+                                            className="flex flex-col items-center justify-center px-4 py-8 text-slate-12">
                                             <Spinner/>
                                         </div>
                                     )}
                                 </RadioGroup>
                                 {loadingServicePoints ? (
-                                    <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
+                                    <div className="flex flex-col items-center justify-center px-4 py-8 text-slate-12">
                                         <Spinner/>
                                     </div>
                                 ) : (
@@ -363,42 +369,46 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                                 {({open}) => (
                                                     <>
                                                         <Listbox.Label
-                                                            className="block text-sm font-medium text-gray-700">Choose
-                                                            a Service Point</Listbox.Label>
-                                                        <div className="mt-2 relative">
-              <span className="block relative">
-                <Listbox.Button
-                    className="block w-full pl-3 pr-10 py-2 text-left text-gray-800 bg-cbg rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                {selectedServicePoint ? `${selectedServicePoint.name} - ${formatDistance(selectedServicePoint.distance)}` : 'Select a service point'}
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <ChevronDownIcon className="w-5 h-5 text-gray-600"/>
-                  </span>
-                </Listbox.Button>
-              </span>
+                                                            className="block text-sm font-medium text-slate-12">
+                                                            Select a Service Point
+                                                        </Listbox.Label>
+                                                        <div
+                                                            className="mt-2 relative group"> {/* Add the group class here */}
+                                                            <span className="block relative">
+          <Listbox.Button
+              className={`block w-full pl-3 pr-10 py-3 text-left custom-button-neo-dark bg-white text-slate-12 group-hover:bg-custom-white group-hover:text-slate-12`}> {/* Use group-hover here */}
+              {selectedServicePoint ? `${selectedServicePoint.name} - ${formatDistance(selectedServicePoint.distance)}` : 'Select a service point'}
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+              <ChevronDownIcon className="w-5 h-5 text-slate-10"/>
+            </span>
+          </Listbox.Button>
+        </span>
                                                             <Listbox.Options
-                                                                className={`z-10 mt-2 relative w-full py-1 bg-white border border-gray-300 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
+                                                                className={`z-10 mt-2 relative w-full py-1 bg-custom-white dark:bg-cyan-2 border border-slate-5 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
                                                                 {servicePoints.map((servicePoint) => (
-                                                                    <Listbox.Option key={servicePoint.id}
-                                                                                    value={servicePoint}
-                                                                                    className={({
-                                                                                                    active,
-                                                                                                    selected
-                                                                                                }) => `cursor-pointer select-none relative px-4 py-2 ${active ? 'bg-cbg text-gray-700' : 'text-gray-800'} ${selected ? 'font-semibold' : 'font-normal'}`}>
+                                                                    <Listbox.Option
+                                                                        key={servicePoint.id}
+                                                                        value={servicePoint}
+                                                                        className={({
+                                                                                        active,
+                                                                                        selected
+                                                                                    }) => `cursor-pointer select-none relative px-4 py-2 ${active ? ' text-slate-12' : 'text-slate-11'} ${selected ? 'font-semibold' : 'font-normal'}`}
+                                                                    >
                                                                         {servicePoint.name} - {formatDistance(servicePoint.distance)}
-                                                                        <div className="text-xs text-gray-600">
+                                                                        <div className="text-xs">
                                                                             {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
                                                                         </div>
-                                                                        <div className="text-xs text-gray-600 mt-1">
+                                                                        <div className="text-xs mt-1">
                                                                             {formatOpeningHours(servicePoint.opening_hours)}
                                                                         </div>
                                                                     </Listbox.Option>
                                                                 ))}
                                                             </Listbox.Options>
-
                                                         </div>
                                                     </>
                                                 )}
                                             </Listbox>
+
                                         </div>
                                     )
                                 )}
@@ -426,11 +436,12 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
 
             </div>
         ) : (
-            <div className="px-8 py-6 bg-white shadow rounded-lg">
+            <div className="px-8 py-6">
                 <div className="flex items-center justify-between space-x-4">
 
                     <div className="flex items-center space-x-4">
-                        <div className="bg-green-400 rounded-full min-w-[24px] h-6 flex items-center justify-center text-white text-small-regular">
+                        <div
+                            className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">
                             ✓
                         </div>
 
@@ -441,13 +452,14 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                 alt={cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier as string || 'default'}
                                 width={128}
                                 height={128}
-                                className="w-24 h-16 object-contain" />
+                                className="w-24 h-16 object-contain"/>
 
-                            <span className="text-gray-800 font-semibold"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
-                            <p className="text-gray-800 text-xs">{shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price}</p>
+                            <span
+                                className="text-slate-12 font-semibold"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
+                            <p className="text-slate-12 text-xs">{shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price}</p>
 
                             {selectedServicePoint && (
-                                <div className="mt-2 text-xs text-gray-800">
+                                <div className="mt-2 text-xs text-slate-12">
                                     <p className={"font-semibold"}>{selectedServicePoint.name}</p>
                                     {/*  @ts-ignore */}
                                     <p>{selectedServicePoint.address.street}, {selectedServicePoint.address.city}, {selectedServicePoint.address.zip_code}, {selectedServicePoint.address.country_code}</p>
@@ -457,7 +469,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                     </div>
                     <button
                         onClick={() => setIsEditMode(true)}
-                        className="text-xs text-gray-800 ">
+                        className="text-xs text-slate-11 ">
                         Edit
                     </button>
                 </div>

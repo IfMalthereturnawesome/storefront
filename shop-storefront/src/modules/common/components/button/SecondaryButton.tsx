@@ -22,7 +22,7 @@ const SecondaryButton = ({
                 {
                     "text-white bg-gray-900 border-gray-900 hover:bg-white hover:text-gray-900 disabled:hover:bg-gray-900 disabled:hover:text-white":
                         variant === "primary",
-                    "text-gray-900 bg-transparent border-gray-920 hover:bg-gray-100":
+                    "text-gray-900 bg-white dark:bg-black border-gray-920 hover:bg-black":
                         variant === "secondary",
                 },
                 className

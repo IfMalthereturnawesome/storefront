@@ -1,5 +1,6 @@
 import Button from "@modules/common/components/button"
 import Link from "next/link"
+import SecondaryButton from "@modules/common/components/button/SecondaryButton";
 
 const SignInPrompt = () => {
   return (
@@ -12,7 +13,7 @@ const SignInPrompt = () => {
       </div>
       <div>
         <Link href="/account/login">
-          <Button myVariant="secondary" className={"text-slate-12 dark:hover:text-slate-1 "}>Sign in</Button>
+          <SecondaryButton variant="secondary" className={"!min-h-[0] h-[46px] w-[80px] custom-button-neo__dark-black rounded-none"}>Sign in</SecondaryButton>
         </Link>
       </div>
     </div>
