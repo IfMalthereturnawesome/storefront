@@ -1,6 +1,6 @@
 import React from "react";
 import { ComputerDesktopSolid, CurrencyDollarSolid, ToolsSolid } from "@medusajs/icons";
-import { Badge, Heading, Text } from "@medusajs/ui";
+import {Badge, Heading, IconBadge, Text} from "@medusajs/ui";
 
 const OrderDetailDefault = () => {
   return (
@@ -28,9 +28,9 @@ const OrderDetailDefault = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <IconBadge>
                   <CurrencyDollarSolid />
-                </Badge>
+                </IconBadge>
               </div>
             </div>
             <div>
@@ -53,9 +53,9 @@ const OrderDetailDefault = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <IconBadge >
                   <ComputerDesktopSolid />
-                </Badge>
+                </IconBadge>
               </div>
             </div>
             <div>
@@ -78,9 +78,9 @@ const OrderDetailDefault = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <IconBadge>
                   <ToolsSolid />
-                </Badge>
+                </IconBadge>
               </div>
             </div>
             <div>
