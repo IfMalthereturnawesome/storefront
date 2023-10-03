@@ -20,10 +20,10 @@ const CartDropdown = () => {
   const { state, open, close } = useCartDropdown()
   const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
   return (
-    <div className="h-full z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
-      <Popover className="relative h-full">
+    <div className="h-full  z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
+      <Popover className="relative h-full ">
         <Popover.Button className="h-full">
-          <div className="relative inline-flex pt-1">
+          <div className="relative inline-flex pt-1 ">
             {/* Shopping bag icon */}
             <Link href="/cart">
               <ShoppingBagIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white " />
@@ -51,14 +51,14 @@ const CartDropdown = () => {
         >
           <Popover.Panel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[400px] text-gray-900"
+            className="hidden small:block absolute top-[calc(100%+1px)] -right-5 bg-cyan-1 border-x border-b border-slate-5 w-[410px] text-slate-12"
           >
             <div className="p-4 flex items-center justify-center">
-              <h3 className="text-large-semi">Shopping Bag</h3>
+              <h3 className="text-large-semi text-slate-12">Shopping Bag</h3>
             </div>
             {cart && items?.length ? (
               <>
-                <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1  gap-y-8 no-scrollbar">
+                <div className=" max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar">
                   {items
                     .sort((a, b) => {
                       return a.created_at > b.created_at ? -1 : 1
@@ -98,7 +98,7 @@ const CartDropdown = () => {
                           <div className="flex items-end justify-between text-small-regular flex-1">
                             <div>
                               <button
-                                className="flex items-center gap-x-1 text-gray-500"
+                                className="flex items-center gap-x-1 text-slate-10"
                                 onClick={() => deleteItem(item.id)}
                               >
                                 <Trash size={14} />
@@ -112,7 +112,7 @@ const CartDropdown = () => {
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-700 font-semibold">
+                    <span className="text-slate-11 font-semibold">
                       Subtotal{" "}
                       <span className="font-normal">(incl. taxes)</span>
                     </span>
@@ -123,7 +123,7 @@ const CartDropdown = () => {
                         includeTaxes: true,
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
-                        locale: locale
+
                       })}
                     </span>
                   </div>
@@ -135,7 +135,7 @@ const CartDropdown = () => {
             ) : (
               <div>
                 <div className="flex py-16 flex-col gap-y-4 items-center justify-center">
-                  <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
+                  <div className="bg-cyan-1 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-slate-12">
                     <span>0</span>
                   </div>
                   <span>Your shopping bag is empty.</span>
