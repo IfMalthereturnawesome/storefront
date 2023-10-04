@@ -50,7 +50,7 @@ const AccountNav = () => {
                   Orders
                 </AccountNavLink>
               </li>
-              <li className="text-grey-700">
+              <li className="text-slate-11">
                 <button type="button" onClick={handleLogout}>
                   Log out
                 </button>

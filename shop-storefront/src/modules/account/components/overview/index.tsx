@@ -25,7 +25,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
             <li>
               <Link
                 href="/account/profile"
-                className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                className="flex items-center justify-between py-4 border-b border-slate-5 px-8"
               >
                 <>
                   <div className="flex items-center gap-x-2">
@@ -39,7 +39,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
             <li>
               <Link
                 href="/account/addresses"
-                className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                className="flex items-center justify-between py-4 border-b border-slate-5 px-8"
               >
                 <>
                   <div className="flex items-center gap-x-2">
@@ -53,7 +53,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
             <li>
               <Link
                 href="/account/orders"
-                className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                className="flex items-center justify-between py-4 border-b border-slate-5 px-8"
               >
                 <>
                   <div className="flex items-center gap-x-2">
@@ -76,7 +76,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
             <span className="font-semibold">{customer?.email}</span>
           </span>
         </div>
-        <div className="flex flex-col py-8 border-t border-gray-200">
+        <div className="flex flex-col py-8 border-t border-slate-5">
           <div className="flex flex-col gap-y-4 h-full col-span-1 row-span-2 flex-1">
             <div className="flex items-start gap-x-16 mb-6">
               <div className="flex flex-col gap-y-4">
@@ -85,7 +85,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                   <span className="text-3xl-semi leading-none">
                     {getProfileCompletion(customer)}%
                   </span>
-                  <span className="uppercase text-base-regular text-gray-500">
+                  <span className="uppercase text-base-regular text-slate-10">
                     Completed
                   </span>
                 </div>
@@ -97,7 +97,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                   <span className="text-3xl-semi leading-none">
                     {customer?.shipping_addresses?.length || 0}
                   </span>
-                  <span className="uppercase text-base-regular text-gray-500">
+                  <span className="uppercase text-base-regular text-slate-10">
                     Saved
                   </span>
                 </div>
@@ -114,7 +114,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                     return (
                       <li key={order.id}>
                         <Link href={`/order/details/${order.id}`}>
-                          <div className="bg-gray-50 flex justify-between items-center p-4">
+                          <div className="group bg-cyan-2 flex justify-between items-center p-4 border border-slate-5 dark:border-amberA-12 custom-button-neo">
                             <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1">
                               <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">
@@ -145,7 +145,8 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                               <span className="sr-only">
                                 Go to order #{order.display_id}
                               </span>
-                              <ChevronDown className="-rotate-90" />
+                              <ChevronDown className="group-hover:translate-x-0 group-hover:scale-130 group-hover:text-white dark:group-hover:text-amberA-12 -rotate-90 transition-transform -translate-x-[1.5rem]" />
+
                             </button>
                           </div>
                         </Link>

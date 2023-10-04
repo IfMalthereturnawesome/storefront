@@ -86,7 +86,7 @@ const AddAddress: React.FC = () => {
   return (
     <>
       <button
-        className="border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
+        className="p-5 min-h-[220px] h-full w-full flex flex-col justify-between border border-slate-8 dark:border-amberA-12 custom-button-neo"
         onClick={open}
       >
         <span className="text-base-semi">New address</span>
@@ -176,12 +176,13 @@ const AddAddress: React.FC = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="!bg-gray-200 !text-gray-900 !border-gray-200 min-h-0"
             onClick={handleClose}
+            myVariant={"secondary"}
+            className={"text-slate-12 capitalize font-md hover:text-slate-12 dark:hover:text-slate-1 bg-slate-1 "}
           >
             Cancel
           </Button>
-          <Button className="min-h-0" onClick={submit} disabled={submitting}>
+          <Button  onClick={submit} disabled={submitting} myVariant={"primary"} className={"text-slate-1 capitalize font-md rounded-none "}>
             Save
             {submitting && <Spinner />}
           </Button>

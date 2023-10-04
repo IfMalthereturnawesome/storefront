@@ -5,6 +5,7 @@ import { formatAmount } from "medusa-react"
 import Link from "next/link"
 import { useMemo } from "react"
 import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
+import SecondaryButton from "@modules/common/components/button/SecondaryButton";
 
 type OrderCardProps = {
   order: Omit<Order, "beforeInsert">
@@ -24,9 +25,9 @@ const OrderCard = ({ order }: OrderCardProps) => {
     const locale = getLocaleForRegion(order?.region?.name) || "en-US";
 
   return (
-    <div className="bg-white flex flex-col">
-      <div className="uppercase text-large-semi mb-1">#{order.display_id}</div>
-      <div className="flex items-center divide-x divide-gray-200 text-small-regular text-slate-11">
+    <div className="flex flex-col">
+      <div className="uppercase text-large-semi mb-1 text-slate-10">#{order.display_id}</div>
+      <div className="flex items-center divide-x divide-slate-7 text-small-regular text-slate-11">
         <span className="pr-2">
           {new Date(order.created_at).toDateString()}
         </span>
@@ -54,7 +55,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                 size="full"
               />
               <div className="flex items-center text-small-regular text-slate-11">
-                <span className="text-gray-900 font-semibold">{i.title}</span>
+                <span className="text-slate-12 font-semibold">{i.title}</span>
                 <span className="ml-2">x</span>
                 <span>{i.quantity}</span>
               </div>
@@ -72,7 +73,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
       </div>
       <div className="flex justify-end">
         <Link href={`/order/details/${order.id}`}>
-          <Button myVariant="secondary">See details</Button>
+          <SecondaryButton variant="primary" className={"dark:border-slate-10"}>See details</SecondaryButton>
         </Link>
       </div>
     </div>

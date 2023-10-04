@@ -11,7 +11,7 @@ const OrderOverview = () => {
 
   if (isLoading) {
     return (
-      <div className="text-gray-900 w-full flex justify-center pt-12">
+      <div className="text-slate-12 w-full flex justify-center pt-12">
         <Spinner size={36} />
       </div>
     )
@@ -23,7 +23,7 @@ const OrderOverview = () => {
         {orders.map((o) => (
           <div
             key={o.id}
-            className="border-b border-gray-200 pb-6 last:pb-0 last:border-none"
+            className="border-b text-slate-5 pb-6 last:pb-0 last:border-none"
           >
             <OrderCard order={o} />
           </div>

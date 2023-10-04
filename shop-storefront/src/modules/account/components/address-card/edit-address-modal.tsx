@@ -100,9 +100,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
     <>
       <div
         className={clsx(
-          "border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
+          "border border-slate-5 p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
           {
-            "border-gray-900": isActive,
+            "border-slate-12": isActive,
           }
         )}
       >
@@ -229,10 +229,11 @@ const EditAddress: React.FC<EditAddressProps> = ({
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button myVariant="secondary" onClick={close}>
+          <Button myVariant={"secondary"}
+                  className={"text-slate-12 capitalize font-md hover:text-slate-12 dark:hover:text-slate-1 bg-slate-1 "} onClick={close}>
             Cancel
           </Button>
-          <Button onClick={submit} disabled={submitting}>
+          <Button onClick={submit} disabled={submitting} myVariant={"primary"} className={"text-slate-1 capitalize font-md rounded-none "}>
             Save
             {submitting && <Spinner />}
           </Button>

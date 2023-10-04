@@ -16,7 +16,7 @@ const Items = ({ items, region, cartId }: ItemsProps) => {
   const enrichedItems = useEnrichedLineItems(items, cartId)
 
   return (
-    <div className="p-10 border-b border-gray-200 gap-y-4 flex flex-col">
+    <div className="p-10 border-b border-slate-5 gap-y-4 flex flex-col">
       {enrichedItems?.length
         ? enrichedItems.map((item) => {
             return (

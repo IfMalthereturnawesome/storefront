@@ -13,7 +13,7 @@ const Help = () => {
             </Link>
           </li>
           <li>
-            <Link href="/contact">
+            <Link href="/terms/returns-policy">
               Returns & Exchanges
             </Link>
           </li>

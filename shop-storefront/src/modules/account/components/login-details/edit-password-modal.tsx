@@ -121,7 +121,7 @@ const EditPasswordModal: React.FC<EditPasswordModalProps> = ({ customer }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="!bg-gray-200 !text-gray-900 !border-gray-200 min-h-0"
+            className="!bg-gray-200 !text-slate-12 !border-slate-5 min-h-0"
             onClick={close}
           >
             Cancel
