@@ -1,17 +1,16 @@
 'use client';
 import {useEffect, useState} from 'react';
 import 'flowbite';
-import Image from 'next/image'
 
 export const ThemeToggle = () => {
   const [tooltipContent, setTooltipContent] = useState('');
 
   useEffect(() => {
     const themeToggleDarkIcon = document.getElementById(
-      'theme-toggle-dark-icon',
+        'theme-toggle-dark-icon',
     );
     const themeToggleLightIcon = document.getElementById(
-      'theme-toggle-light-icon',
+        'theme-toggle-light-icon',
     );
     const themeToggleBtn = document.getElementById('theme-toggle');
 
@@ -37,11 +36,8 @@ export const ThemeToggle = () => {
       themeToggleLightIcon.classList.toggle('hidden');
     };
 
-    if (
-      localStorage.getItem('theme') === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark' || !currentTheme) {  // This line checks the local storage for the theme preference
       document.documentElement.classList.add('dark');
       themeToggleLightIcon.classList.remove('hidden');
       setTooltipContent('Toggle light mode');
@@ -51,39 +47,13 @@ export const ThemeToggle = () => {
       setTooltipContent('Toggle dark mode');
     }
 
-    const darkModeMediaQuery = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    );
-    const handleDarkModeChange = (event: { matches: any; }) => {
-      const isDarkMode = event.matches;
-      const currentTheme = localStorage.getItem('theme');
-      if (currentTheme !== 'light' && currentTheme !== 'dark') {
-        // No manual theme set, so use system preference
-        if (isDarkMode) {
-          document.documentElement.classList.add('dark');
-          themeToggleLightIcon.classList.remove('hidden');
-          themeToggleDarkIcon.classList.add('hidden');
-          localStorage.setItem('theme', 'dark');
-          setTooltipContent('Toggle light mode');
-        } else {
-          document.documentElement.classList.remove('dark');
-          themeToggleDarkIcon.classList.remove('hidden');
-          themeToggleLightIcon.classList.add('hidden');
-          localStorage.setItem('theme', 'light');
-          setTooltipContent('Toggle dark mode');
-        }
-      }
-    };
-
-    darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
-
     themeToggleBtn.addEventListener('click', toggleTheme);
 
     return () => {
       themeToggleBtn.removeEventListener('click', toggleTheme);
-      darkModeMediaQuery.removeEventListener('change', handleDarkModeChange);
     };
   }, []);
+
   return (
     <button
       data-tooltip-target="tooltip-theme-toggle"

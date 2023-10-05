@@ -29,7 +29,7 @@ const MinimalWeight: React.FC = () => {
     const [shouldPlayParticles, setShouldPlayParticles] = useState(false);
     const textHeight = 96;
 
-    usePageSettings();
+    // usePageSettings();
 
     useEffect(() => {
 

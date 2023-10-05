@@ -22,7 +22,7 @@ const ThinFeature: React.FC = () => {
     const textTopAnimatedRef = useRef<HTMLDivElement>(null);
     let [hasReachedHeight, setHasReachedHeight] = useState(false);
 
-    usePageSettings();
+    // usePageSettings();
 
     useEffect(() => {
         const lenis = new Lenis();

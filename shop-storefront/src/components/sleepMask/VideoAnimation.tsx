@@ -16,7 +16,7 @@ if (typeof window !== "undefined") {
 }
 
 const VideoAnimation: React.FC = () => {
-    usePageSettings();
+    // usePageSettings();
 
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);

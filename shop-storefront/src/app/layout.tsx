@@ -6,6 +6,7 @@ import BreakpointsIndicator from "@/components/helper/breakpoints";
 import {ProvidersNextUI} from "@/app/providers";
 import { Analytics } from '@vercel/analytics/react';
 
+
 const inter = Inter({
     subsets: ['latin'],
     variable: '--font-inter',
@@ -37,6 +38,8 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({children}: RootLayoutProps) {
+
+
     return (
         <html lang="en" className="dark border-2 border-amberA-12 ">
         <body

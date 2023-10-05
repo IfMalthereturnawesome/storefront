@@ -29,7 +29,7 @@ const oscillationSpeed = 0.05;
 const oscillationAmplitude = 1.2;
 
 const LightweightFeature = () => {
-    usePageSettings();
+    // usePageSettings();
 
     const lottieContainer = useRef(null);
     const [rightBowlWeight, setRightBowlWeight] = useState(0);

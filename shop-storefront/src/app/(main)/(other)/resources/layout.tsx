@@ -1,6 +1,6 @@
 import Sidebar from '@/components/resources/sidebar';
 
-import AppProvider from '../../app-provider';
+import AppProvider from '../../../app-provider';
 
 export const metadata = {
   title: 'Create Next App',

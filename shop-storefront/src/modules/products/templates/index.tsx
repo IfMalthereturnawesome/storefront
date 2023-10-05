@@ -20,7 +20,7 @@ type ProductTemplateProps = {
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
     const info = useRef<HTMLDivElement>(null)
-    usePageSettings();
+
     const inView = useIntersection(info, "0px")
 
     const productImageDirectory = `/images/products/${product.handle}/`;

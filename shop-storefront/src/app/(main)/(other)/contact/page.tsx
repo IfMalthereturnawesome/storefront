@@ -1,6 +1,6 @@
 import ContactForm from "@/components/emails/ContactForm";
 import ContactDetails from "@/components/ContactDetails";
-import FAQPage from "@/app/(main)/faq/page";
+import FAQPage from "@/app/(main)/(other)/faq/page";
 
 export const metadata = {
   title: 'Contact us - Open PRO',

@@ -9,7 +9,7 @@ import Container from "@/components/elements/Container"
 import {LogoSection} from "@/components/about/LogoSection";
 import {ConditionalRender} from "@/components/utils/ConditionalRender";
 import React from "react";
-import ExtraSmallMobileNavBar from "@/app/(main)/faq/[slug]/ExtraSmallMobileNavbar";
+import ExtraSmallMobileNavBar from "@/app/(main)/(other)/faq/[slug]/ExtraSmallMobileNavbar";
 
 export async function generateStaticParams() {
     return allHelp.map((help) => ({

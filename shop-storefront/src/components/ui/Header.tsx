@@ -20,7 +20,11 @@ import TopNav from "@/components/ui/TopNav";
 import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
 
 
-export default function Header() {
+interface HeaderProps {
+    className?: string;
+}
+
+export default function Header({ className }: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(true);
@@ -63,7 +67,7 @@ export default function Header() {
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
 
 
-            <header id="header_1" className={`z-30 bg-cyan-1 mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden'}`}>
+            <header id="header_1" className={`z-30 ${className || 'bg-cyan-1'} mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden'}`}>
                 {topNavBanner && <TopNav/>}
 
                 <nav
