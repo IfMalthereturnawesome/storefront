@@ -77,8 +77,8 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
                     mode: "push",
                 },
                 onHover: {
-                    enable: true,
-                    mode: "grab",
+                    enable: false,
+                    mode: "attract",
 
                 },
 
@@ -127,7 +127,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
         },
         particles: {
             color: {value: "#ffffff"},
-            number: {value: 20, density: {enable: true, area: 1500}},
+            number: {value: 25, density: {enable: true, area: 1500}},
             size: {value: {min: 3, max: 25}, random: false, anim: {speed: 4, size_min: 10}},
             opacity: {
 
@@ -241,41 +241,63 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
             setTimeout(() => {
                 const intervalId = setInterval(() => {
                     if (index < randomamizedCoords.length) {
-                        const coord = randomamizedCoords[index];
+                        for (let i = 0; i < 3; i++) { // Add 3 particles at once
+                            if (index < randomamizedCoords.length) {
+                                const coord = randomamizedCoords[index];
 
-                        // Update the speed for this particle
-                        individualParticleOptions.move.speed = currentSpeed;
+                                // Update the speed for this particle
+                                individualParticleOptions.move.speed = currentSpeed;
 
-                        // Set the individual options for each particle
-                        const individualOptions = {
-                            ...individualParticleOptions,
-                            move: {
-                                speed: currentSpeed, // Set the speed here
-                            },
-                        };
+                                // Set the individual options for each particle
+                                const individualOptions = {
+                                    ...individualParticleOptions,
+                                    move: {
+                                        speed: currentSpeed,
+                                    },
+                                };
 
-                        container.particles.addParticle(
-                            {x: coord.x, y: coord.y},
-                            individualOptions
-                        );
+                                container.particles.addParticle(
+                                    {x: coord.x, y: coord.y},
+                                    individualOptions
+                                );
 
-                        // Increment the speed for the next particle
-                        currentSpeed += increment_step;
-                        if (currentSpeed > 0.02) currentSpeed = 0.01; // Reset if it exceeds 1.7
+                                // Increment the speed for the next particle
+                                currentSpeed += increment_step;
+                                if (currentSpeed > 0.02) currentSpeed = 0.01; // Reset if it exceeds 1.7
 
-                        index++;
-
+                                index++;
+                            } else {
+                                break; // Exit the loop if there are no more coordinates left
+                            }
+                        }
                     } else {
-                        // Reset index and increment rounds
+                        // Reset index and stop the particle addition
                         index = 0;
-
-
                         console.log("count", container.particles.count, index);
-                        clearInterval(intervalId); // Stop the interval once all rounds are complete
+                        clearInterval(intervalId); // Stop the interval once all coordinates are used up
+
+                        // Start the removal process after a delay (e.g., 2s delay)
+                        setTimeout(() => {
+                            const removeIntervalId = setInterval(() => {
+                                if (container.particles.count > 0) {
+                                    // Remove 3 particles at once
+                                    for (let i = 0; i < 3; i++) {
+                                        if (container.particles.count > 0) {
+                                            container.particles.removeAt(30);
+                                        } else {
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    clearInterval(removeIntervalId); // Stop the interval when all particles are removed
+                                }
+                            }, 1);
+                        }, 2300);
 
                     }
-                }, 0.1);
-            }, 6000);
+                }, 1);
+            }, 6700);
+
 
         }
     }, [shouldPlayParticles, individualParticleOptions]);

@@ -25,6 +25,7 @@ const ThinFeature: React.FC = () => {
     // usePageSettings();
 
     useEffect(() => {
+        let ctx = gsap.context(() => {
         const lenis = new Lenis();
         // Update ScrollTrigger on scroll
         lenis.on('scroll', ScrollTrigger.update);
@@ -74,7 +75,7 @@ const ThinFeature: React.FC = () => {
                 snap: "frame",
                 ease: "none",
                 scrollTrigger: {
-                    trigger: ".pinme",
+                    trigger: ".pinThinFeature",
                     start: 'center center',
                     end: '+=3000',
                     scrub: true,
@@ -145,7 +146,7 @@ const ThinFeature: React.FC = () => {
             const masterTimeline = gsap.timeline({
 
                 scrollTrigger: {
-                    trigger: ".pinme",
+                    trigger: ".pinThinFeature",
                     start: 'center center',
                     end: '+=1000',
                     scrub: true,
@@ -189,6 +190,8 @@ const ThinFeature: React.FC = () => {
                 containerRef.current?.removeEventListener('mousemove', handleMouseMove);
             };
         }
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
     }, []);
 
 
@@ -196,7 +199,7 @@ const ThinFeature: React.FC = () => {
         <>
 
             <section
-                className="relative h-[100vh] max-h-100 flex flex-col justify-center items-center pinme"
+                className="relative h-[100vh] max-h-100 flex flex-col justify-center items-center pinThinFeature"
                 style={{
                     background: 'linear-gradient(to bottom, #2D4C5B, #1E3841, #1C343C, #244958, #32555C)'
                 }}

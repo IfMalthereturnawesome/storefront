@@ -7,9 +7,7 @@ import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {ScrollSmoother} from 'gsap/ScrollSmoother';
 import {MorphSVGPlugin} from 'gsap/MorphSVGPlugin';
-import {GSDevTools} from 'gsap/GSDevTools';
-import {Physics2DPlugin} from 'gsap/Physics2DPlugin';
-import {PhysicsPropsPlugin} from 'gsap/PhysicsPropsPlugin';
+
 import {TextPlugin} from 'gsap/TextPlugin';
 import {SplitText} from 'gsap/SplitText';
 import {CustomEase} from "gsap/CustomEase";
@@ -20,7 +18,7 @@ import usePageSettings from "@/utils/hooks/usePageSettings";
 
 
 if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MorphSVGPlugin, GSDevTools, Physics2DPlugin, PhysicsPropsPlugin, TextPlugin, SplitText, CustomEase);
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MorphSVGPlugin, TextPlugin, SplitText, CustomEase);
 }
 
 
@@ -32,7 +30,7 @@ const MinimalWeight: React.FC = () => {
     // usePageSettings();
 
     useEffect(() => {
-
+        let ctx = gsap.context(() => {
 
         const lever = document.getElementById('lever');
         const leftSide = document.getElementById('leftSide');
@@ -296,13 +294,12 @@ const MinimalWeight: React.FC = () => {
             .add(makeRightSideTurn)
 
         ScrollTrigger.create({
-            trigger: '.pinme',
+            trigger: '.pinMinimalWeightFeature',
             start: 'center center',  // Adjust according to your needs
             end: '+=300%',  // Adjust according to your needs
             pin: true,
             scrub: true,
             anticipatePin: 1,
-
 
             onEnter: () => masterTL.play(),
             onLeave: () => masterTL.pause(),
@@ -313,6 +310,9 @@ const MinimalWeight: React.FC = () => {
 
         });
 
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
+
     }, []);
 
 
@@ -322,7 +322,7 @@ const MinimalWeight: React.FC = () => {
 
 
             <section
-                className="relative z-[1] h-[100vh] max-h-100 flex flex-col justify-center items-center  pinme bg-transparent">
+                className="relative z-[1] h-[100vh] max-h-100 flex flex-col justify-center items-center  pinMinimalWeightFeature bg-transparent">
 
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]">
                     <div id="scaleContainer"
