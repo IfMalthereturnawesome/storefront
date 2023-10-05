@@ -126,7 +126,7 @@ export default function Header({ className }: HeaderProps) {
 
                     <div className="hidden lg:flex lg:w-1/2 justify-center">
                         <Popover.Group className="hidden lg:flex lg:gap-x-6">
-                            <NavigationMenuDropdowns/>
+                            <NavigationMenuDropdowns className={className} />
                         </Popover.Group>
                     </div>
 

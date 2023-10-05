@@ -33,8 +33,8 @@ const ZoomableImageGallery: React.FC<ZoomableImageGalleryProps> = ({images}) => 
             <button
                 onClick={toggleImages}
                 className="absolute left-[44%] bottom-[-1.8%] transform -translate-x-50% -translate-y-50% w-fit  h-12
-                 py-0 px-4 m-0 text-sm font-semibold leading-5 text-left uppercase bg-white bg-none rounded-none border
-                 border-black border-solid cursor-pointer text-slate-1 hover:text-slate-6 flex items-center justify-start"
+                 py-0 px-4 m-0 text-sm font-semibold leading-5 text-left uppercase bg-custom-white dark:bg-black dark:border-slate-8 bg-none rounded-none border
+                 border-black border-solid cursor-pointer text-slate-12 hover:text-slate-10 flex items-center justify-start"
             >
                 {isAllImagesShown ? (
                     <>

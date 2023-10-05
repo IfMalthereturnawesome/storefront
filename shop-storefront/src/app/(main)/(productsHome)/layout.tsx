@@ -24,7 +24,7 @@ export default function PageLayout({
     return (
         <>
             <Header className={"bg-cyan-1 dark:bg-mask-black"}/>
-            <main className="grow bg-mask-black pt-[70px] lg:pt-[104px]">
+            <main className="grow bg-custom-white dark:bg-mask-black pt-[70px] lg:pt-[104px]">
                 {children}
             </main>
             <Footer/>

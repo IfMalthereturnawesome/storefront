@@ -5,7 +5,8 @@ import Back from "@modules/common/icons/back"
 import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
 import clsx from "clsx"
-import { useMemo } from "react"
+import React, { useMemo } from "react"
+import Image from "next/image";
 
 type ProductTabsProps = {
   product: PricedProduct
@@ -28,16 +29,16 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   return (
     <div>
       <Tab.Group>
-        <Tab.List className="border-b border-gray-200 box-border grid grid-cols-2">
+        <Tab.List className="border-b border-gray-200 dark:border-gray-800 box-border grid grid-cols-2">
           {tabs.map((tab, i) => {
             return (
               <Tab
                 key={i}
                 className={({ selected }) =>
                   clsx(
-                    "text-left uppercase text-slate-1 text-small-regular pb-2 -mb-px border-b border-gray-200 transition-color duration-150 ease-in-out",
+                    "text-left uppercase text-slate-12 text-small-regular pb-2 -mb-px border-b border-gray-200 dark:border-gray-800 transition-color duration-150 ease-in-out",
                     {
-                      "border-b border-gray-900": selected,
+                      "border-b border-slate-12 dark:border-gray-100": selected,
                     }
                   )
                 }
@@ -61,9 +62,9 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
     <Tab.Panel className="text-small-regular py-8">
       <div className="grid grid-cols-2 gap-x-8">
-        <div className="flex flex-col gap-y-4 text-slate-1">
+        <div className="flex flex-col gap-y-4 text-slate-12">
           <div>
-            <span className="font-semibold text-slate-1">Material</span>
+            <span className="font-semibold text-slate-12">Material</span>
             <p>{product.material ? product.material : "-"}</p>
           </div>
           <div>
@@ -75,7 +76,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             <p>{product.type ? product.type.value : "-"}</p>
           </div>
         </div>
-        <div className="flex flex-col gap-y-4 text-slate-1">
+        <div className="flex flex-col gap-y-4 text-slate-12">
           <div>
             <span className="font-semibold">Weight</span>
             <p>{product.weight ? `${product.weight} g` : "-"}</p>
@@ -92,7 +93,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
       </div>
       {product.tags?.length ? (
         <div>
-          <span className="font-semibold text-slate-1">Tags</span>
+          <span className="font-semibold text-slate-12">Tags</span>
         </div>
       ) : null}
     </Tab.Panel>
@@ -102,9 +103,10 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 const ShippingInfoTab = () => {
   return (
     <Tab.Panel className="text-small-regular py-8">
-      <div className="grid grid-cols-1 gap-y-8 text-slate-1">
+      <div className="grid grid-cols-1 gap-y-8 text-slate-12">
         <div className="flex items-start gap-x-2">
-          <Back />
+          <Image src={"/images/free-shipping-icon.svg"} alt={"Free shipping icon"} width={16} height={16}
+                 className={"dark:invert"}/>
           <div>
             <span className="font-semibold">Free Shipping in EU</span>
             <p className="max-w-sm">

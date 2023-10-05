@@ -21,10 +21,11 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                 if (e.target === e.currentTarget) onClose();
             }}
         >
-            <div className="flex flex-col bg-white w-full max-w-4xl rounded-lg shadow-md overflow-hidden">
-                <header className="bg-white p-4 flex justify-between items-center">
-                    <h2 className="text-xl font-semibold text-gray-800">Size Guide</h2>
-                    <button onClick={onClose} className="text-gray-700">
+            <div
+                className="flex flex-col bg-custom-white dark:bg-cyan-1 w-full max-w-4xl rounded-lg  overflow-hidden">
+                <header className="bg-custom-white dark:bg-cyan-1 p-4 flex justify-between items-center">
+                    <h2 className="text-xl pl-2 font-normal text-slate-12">Size Guide</h2>
+                    <button onClick={onClose} className="text-slate-12">
                         <svg width="21px" height="21px" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
                         >
@@ -33,16 +34,17 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                     </button>
                 </header>
 
-                <nav className="bg-white flex justify-between items-center border-b border-gray-300">
+                <nav
+                    className="bg-custom-white dark:bg-cyan-1 flex justify-between items-center border-b border-slate-6">
                     <div className="flex space-x-0 w-full">
                         <button
-                            className={`flex-1 text-center focus:outline-none py-2 ${activeTab === 'chart' ? 'text-gray-800 border-b-2 border-black' : 'text-gray-500'}`}
+                            className={`flex-1 text-center focus:outline-none py-2 ${activeTab === 'chart' ? 'text-slate-12 border-b-2 border-slate-12' : 'text-slate-11'}`}
                             onClick={() => setActiveTab('chart')}
                         >
                             Size Chart
                         </button>
                         <button
-                            className={`flex-1 text-center focus:outline-none py-2 ${activeTab === 'measure' ? 'text-gray-800 border-b-2 border-black' : 'text-gray-500'}`}
+                            className={`flex-1 text-center focus:outline-none py-2 ${activeTab === 'measure' ? 'text-slate-12 border-b-2 border-slate-12' : 'text-slate-11'}`}
                             onClick={() => setActiveTab('measure')}
                         >
                             How to Measure
@@ -51,15 +53,12 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
                 </nav>
 
-
-                <div className="flex-grow p-4 bg-[#F5F4F4] text-gray-700 overflow-y-auto h-[450px]">
-
-
+                <div className="flex-grow p-4 bg-white dark:bg-cyan-2 text-slate-11 overflow-y-auto h-[450px]">
                     {activeTab === 'chart' && (
                         <div>
                             <div
-                                className="flex justify-between items-center py-4 px-2 m-0 leading-5 text-black align-baseline border-0 lg:leading-5">
-                                <h3 className="text-lg font-bold text-gray-800">Sleep Mask</h3>
+                                className="flex justify-between items-center py-4 px-2 m-0 leading-5 text-slate-12 align-baseline border-0 lg:leading-5">
+                                <h3 className="text-lg font-bold text-slate-12">Sleep Mask</h3>
                                 <div className="flex items-center space-x-2 pr-4">
                                     <span
                                         className={`text-sm ${unit === 'cm' ? 'font-bold opacity-100' : 'font-normal opacity-50'}`}>CM</span>
@@ -77,70 +76,70 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                             <div className="px-2 pb-4 rounded-md">
                                 <table className="w-full border-collapse">
                                     <thead>
-                                    <tr className="bg-white text-black text-md">
-                                        <th className="px-4 py-2 border border-gray-300">Size</th>
-                                        <th className="px-4 py-2 border border-gray-300">Head
+                                    <tr className="bg-white dark:bg-cyan-2 text-slate-12 text-md">
+                                        <th className="px-4 py-2 border border-slate-6">Size</th>
+                                        <th className="px-4 py-2 border border-slate-6">Head
                                             Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
-                                        <th className="px-4 py-2 border border-gray-300">Typical Male</th>
-                                        <th className="px-4 py-2 border border-gray-300">Typical Female</th>
+                                        <th className="px-4 py-2 border border-slate-6">Typical Male</th>
+                                        <th className="px-4 py-2 border border-slate-6">Typical Female</th>
                                     </tr>
                                     </thead>
-                                    <tbody className="text-sm">
-                                    <tr className="bg-white">
-                                        <td className="px-4 py-2 border border-gray-300">2XS</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tbody className="text-sm text-slate-12">
+                                    <tr className="bg-custom-white dark:bg-cyan-1">
+                                        <td className="px-4 py-2 border border-slate-6">2XS</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? 52 : parseFloat((52 * 0.393701).toFixed(2))}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Uncommon</td>
-                                        <td className="px-4 py-2 border border-gray-300">Uncommon</td>
+                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
+                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
                                     </tr>
-                                    <tr className="bg-[#F5F4F4]">
-                                        <td className="px-4 py-2 border border-gray-300">XS</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tr className="bg-white dark:bg-cyan-2">
+                                        <td className="px-4 py-2 border border-slate-6">XS</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? 53 : parseFloat((53 * 0.393701).toFixed(2))}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Common</td>
-                                        <td className="px-4 py-2 border border-gray-300">Common</td>
+                                        <td className="px-4 py-2 border border-slate-6">Common</td>
+                                        <td className="px-4 py-2 border border-slate-6">Common</td>
                                     </tr>
-                                    <tr className="bg-white">
-                                        <td className="px-4 py-2 border border-gray-300">Small</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tr className="bg-custom-white dark:bg-cyan-1">
+                                        <td className="px-4 py-2 border border-slate-6">Small</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? '54 - 55' : `${parseFloat((54 * 0.393701).toFixed(2))} - ${parseFloat((55 * 0.393701).toFixed(2))}`}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Average</td>
-                                        <td className="px-4 py-2 border border-gray-300">Average</td>
+                                        <td className="px-4 py-2 border border-slate-6">Average</td>
+                                        <td className="px-4 py-2 border border-slate-6">Average</td>
                                     </tr>
-                                    <tr className="bg-[#F5F4F4]">
-                                        <td className="px-4 py-2 border border-gray-300">Medium</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tr className="bg-white dark:bg-cyan-2">
+                                        <td className="px-4 py-2 border border-slate-6">Medium</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? '56 - 57' : `${parseFloat((56 * 0.393701).toFixed(2))} - ${parseFloat((57 * 0.393701).toFixed(2))}`}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Average</td>
-                                        <td className="px-4 py-2 border border-gray-300">Average</td>
+                                        <td className="px-4 py-2 border border-slate-6">Average</td>
+                                        <td className="px-4 py-2 border border-slate-6">Average</td>
                                     </tr>
-                                    <tr className="bg-white">
-                                        <td className="px-4 py-2 border border-gray-300">Large</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tr className="bg-custom-white dark:bg-cyan-1">
+                                        <td className="px-4 py-2 border border-slate-6">Large</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? '58 - 59' : `${parseFloat((58 * 0.393701).toFixed(2))} - ${parseFloat((59 * 0.393701).toFixed(2))}`}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Common</td>
-                                        <td className="px-4 py-2 border border-gray-300">Common</td>
+                                        <td className="px-4 py-2 border border-slate-6">Common</td>
+                                        <td className="px-4 py-2 border border-slate-6">Common</td>
                                     </tr>
-                                    <tr className="bg-[#F5F4F4]">
-                                        <td className="px-4 py-2 border border-gray-300">XL</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tr className="bg-white dark:bg-cyan-2">
+                                        <td className="px-4 py-2 border border-slate-6">XL</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? '60 - 61' : `${parseFloat((60 * 0.393701).toFixed(2))} - ${parseFloat((61 * 0.393701).toFixed(2))}`}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Common</td>
-                                        <td className="px-4 py-2 border border-gray-300">Uncommon</td>
+                                        <td className="px-4 py-2 border border-slate-6">Common</td>
+                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
                                     </tr>
-                                    <tr className="bg-white">
-                                        <td className="px-4 py-2 border border-gray-300">2XL</td>
-                                        <td className="px-4 py-2 border border-gray-300">
+                                    <tr className="bg-custom-white dark:bg-cyan-1">
+                                        <td className="px-4 py-2 border border-slate-6">2XL</td>
+                                        <td className="px-4 py-2 border border-slate-6">
                                             {unit === 'cm' ? 62 : parseFloat((62 * 0.393701).toFixed(2))}
                                         </td>
-                                        <td className="px-4 py-2 border border-gray-300">Uncommon</td>
-                                        <td className="px-4 py-2 border border-gray-300">Rare</td>
+                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
+                                        <td className="px-4 py-2 border border-slate-6">Rare</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -151,13 +150,13 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                     {activeTab === 'measure' && (
                         <div>
                             <div className={"py-4 px-2 m-0 leading-5 text-black align-baseline border-0  lg:leading-5"}>
-                                <h3 className="text-lg font-bold text-gray-800">How to measure your head?</h3>
+                                <h3 className="text-lg font-bold text-slate-12">How to measure your head?</h3>
                             </div>
                             <div className={"pb-2 px-3 m-0 leading-5 text-black align-baseline border-0 text-md"}>
-                                <p className="text-gray-700 mt-2">Follow these steps to measure the circumference of
+                                <p className="text-slate-11 mt-2">Follow these steps to measure the circumference of
                                     your
                                     head:</p>
-                                <ol className="list-decimal pl-5 mt-2 text-gray-700 text-md">
+                                <ol className="list-decimal pl-5 mt-2 text-slate-11 text-md">
                                     <li>Use a soft measuring tape.</li>
                                     <li>Start from just above your eyebrows and wrap the tape around the back of your
                                         head

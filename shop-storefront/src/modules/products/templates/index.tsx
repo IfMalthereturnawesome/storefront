@@ -14,8 +14,10 @@ import usePageSettings from "@/utils/hooks/usePageSettings";
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
 import Image from 'next/image';
 
+
 type ProductTemplateProps = {
     product: PricedProduct
+
 }
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
@@ -38,7 +40,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
             {/*    /!*<ThinFeature/>*!/*/}
 
             {/*</div>*/}
-            <div className={"bg-custom-white h-full"}>
+            <div className={"bg-custom-white dark:bg-cyan-1 h-full"}>
                 <div className="content-container__big flex flex-col small:flex-row small:items-start py-6 relative">
                     <div className="flex flex-col gap-y-8 w-full">
                         <ZoomableImageGallery images={productImagePaths}/>
@@ -47,16 +49,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
                         {/* Ensuring that sticky container has a larger height or equal to the scrolling container */}
                         <div style={{ minHeight: 'calc(100vh - 64px)' }}>
                             <div
-                                className="sticky top-0 bg-white py-8 px-14 flex flex-col gap-y-12"
+                                className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-14 flex flex-col gap-y-12"
                                 ref={info}
                             >
-                                <ProductInfo product={product}/>
+                                <ProductInfo product={product} />
                                 <ProductTabs product={product}/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="content-container bg-custom-white px-6 small:px-8">
+                <div className="content-container bg-custom-white dark:bg-cyan-1 px-6 small:px-8">
                     <RelatedProducts product={product}/>
                 </div>
                 <MobileActions product={product} show={!inView}/>
