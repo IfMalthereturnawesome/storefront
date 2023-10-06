@@ -15,16 +15,20 @@ import ParticlesBackground from "@/components/animations/ParticlesBackground";
 
 
 import usePageSettings from "@/utils/hooks/usePageSettings";
+import ThinFeatureDandelions from "@/components/sleepMask/ThinFeatureDandelions";
 
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MorphSVGPlugin, TextPlugin, SplitText, CustomEase);
 }
 
+interface MinimalWeightProps {
+    setShouldPlayParticles: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const MinimalWeight: React.FC = () => {
+const MinimalWeight: React.FC<MinimalWeightProps> = ({ setShouldPlayParticles }) => {
 
-    const [shouldPlayParticles, setShouldPlayParticles] = useState(false);
+
     const textHeight = 96;
 
     // usePageSettings();
@@ -318,7 +322,7 @@ const MinimalWeight: React.FC = () => {
 
     return (
         <>
-            <ParticlesBackground shouldPlayParticles={shouldPlayParticles}/>
+            {/*<ParticlesBackground shouldPlayParticles={shouldPlayParticles}/>*/}
 
 
             <section
@@ -431,6 +435,7 @@ const MinimalWeight: React.FC = () => {
                 </div>
 
             </section>
+
         </>
     );
 };

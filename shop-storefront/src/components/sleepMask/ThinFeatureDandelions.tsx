@@ -163,15 +163,9 @@ const ThinFeatureDandelions: React.FC = () => {
 
             <section
                 className="relative h-[100vh] max-h-100 flex flex-col justify-center items-center pinThinFeature"
-                style={{
-                    background: 'linear-gradient(to bottom, #242424, #2B2B2B, #252525, #2B2B2B, #242424)'
-                }}
-            >
-                <div className="grain">
-                    <div className="grain-texture">
 
-                    </div>
-                </div>
+            >
+
                 <div className="mx-auto flex flex-col justify-center mt-10">
 
                     {/* Text above the image always visible but cut in half */}
@@ -201,14 +195,14 @@ const ThinFeatureDandelions: React.FC = () => {
                     {/* Container for Image Sequence */}
                     <div
                         ref={containerRef}
-                        className="overflow-hidden relative border border-amber-10 w-screen rounded-[2rem] bg-white z-[1] shadow-gray-900 shadow-2xl  "
+                        className="overflow-hidden relative border border-amber-10 w-[99vw] rounded-[2rem] bg-white z-[1] shadow-gray-900 shadow-2xl  "
                         style={{
                             height: '0px',
                             perspective: '1000px' // Perspective for 3D effect
                         }}
                     >
                         {/* Canvas for Image Sequence */}
-                        <canvas ref={canvasRef} className="object-cover w-[100vw]"></canvas>
+                        <canvas ref={canvasRef} className="object-cover w-full "></canvas>
                     </div>
 
 
