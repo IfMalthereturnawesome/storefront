@@ -15,6 +15,7 @@ const MaskSequence: React.FC = () => {
 
 
     useEffect(() => {
+        let ctx = gsap.context(() => {
 
         const lenis = new Lenis();
         // Update ScrollTrigger on scroll
@@ -128,6 +129,8 @@ const MaskSequence: React.FC = () => {
 
 
         }
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
     }, [])
 
     return (

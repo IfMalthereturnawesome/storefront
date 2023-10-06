@@ -8,6 +8,7 @@ import ThinFeature from "@/components/sleepMask/ThinFeature";
 import DoubleImageSection from "@/components/sleepMask/imageSections/DoubleImageSection";
 import InteractiveImageSection from "@/components/sleepMask/imageSections/InteractiveImageSection";
 import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSection";
+import FaceStory from "@/components/sleepMask/FaceStory";
 
 
 export const metadata = {
@@ -44,9 +45,12 @@ export default function About() {
             {/*<div className="spacer"></div>*/}
 
 
-            <MinimalWeight/>
-            <ThinFeature/>
-
+            {/*<MinimalWeight/>*/}
+            {/*<ThinFeature/>*/}
+            <FaceStory
+                headline="Every face tells a story."
+                description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+            />
 
 
         </>
