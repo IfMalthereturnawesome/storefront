@@ -9,6 +9,7 @@ import DoubleImageSection from "@/components/sleepMask/imageSections/DoubleImage
 import InteractiveImageSection from "@/components/sleepMask/imageSections/InteractiveImageSection";
 import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSection";
 import FaceStory from "@/components/sleepMask/FaceStory";
+import ThinFeatureDandelions from "@/components/sleepMask/ThinFeatureDandelions";
 
 
 export const metadata = {
@@ -47,10 +48,11 @@ export default function About() {
 
             {/*<MinimalWeight/>*/}
             {/*<ThinFeature/>*/}
-            <FaceStory
-                headline="Every face tells a story."
-                description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
-            />
+            <ThinFeatureDandelions/>
+            {/*<FaceStory*/}
+            {/*    headline="Every face tells a story."*/}
+            {/*    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."*/}
+            {/*/>*/}
 
 
         </>

@@ -84,29 +84,6 @@ const ThinFeature: React.FC = () => {
                 onUpdate: render,
             });
 
-            /// RENDERING ENDS HERE
-
-
-            /// FUNCTIONS START HERE
-
-            // const revealSecondHalf = () => {
-            //     if (!hasReachedHeight && containerRef.current && containerRef.current.offsetHeight >= 60) {
-            //         setHasReachedHeight(true);
-            //         gsap.to(textTopAnimatedRef.current, {
-            //             opacity: 1,
-            //             zIndex: 2,
-            //             duration: 1,
-            //         });
-            //     } else if (hasReachedHeight && containerRef.current && containerRef.current.offsetHeight >= 60) {
-            //         setHasReachedHeight(false);
-            //         gsap.to(textTopAnimatedRef.current, {
-            //             opacity: 1,
-            //             zIndex: 1,
-            //             duration: 0.5,
-            //         });
-            //     }
-            // }
-
 
             const handleMouseMove = (event: MouseEvent) => {
                 if (containerRef.current) {
