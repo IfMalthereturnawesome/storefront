@@ -1,21 +1,16 @@
-'use client';
-
 // MinimalWeight.tsx
 
-import React, {useEffect, useRef, useMemo, useState, useCallback} from 'react';
+import React, {useEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {ScrollSmoother} from 'gsap/ScrollSmoother';
 import {MorphSVGPlugin} from 'gsap/MorphSVGPlugin';
-
 import {TextPlugin} from 'gsap/TextPlugin';
 import {SplitText} from 'gsap/SplitText';
 import {CustomEase} from "gsap/CustomEase";
-import ParticlesBackground from "@/components/animations/ParticlesBackground";
-
-
+import {ArrowDownIcon} from "@heroicons/react/24/solid";
 import usePageSettings from "@/utils/hooks/usePageSettings";
-import ThinFeatureDandelions from "@/components/sleepMask/ThinFeatureDandelions";
+import Link from "next/link";
 
 
 if (typeof window !== 'undefined') {
@@ -26,8 +21,7 @@ interface MinimalWeightProps {
     setShouldPlayParticles: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MinimalWeight: React.FC<MinimalWeightProps> = ({ setShouldPlayParticles }) => {
-
+const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) => {
 
     const textHeight = 96;
 
@@ -36,295 +30,330 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({ setShouldPlayParticles })
     useEffect(() => {
         let ctx = gsap.context(() => {
 
-        const lever = document.getElementById('lever');
-        const leftSide = document.getElementById('leftSide');
-        const rightSide = document.getElementById('rightSide');
-
-        if (lever && leftSide && rightSide) {
-            const x = Number(gsap.getProperty(lever, 'x'));
-            const y = Number(gsap.getProperty(lever, 'y'));
-
-            gsap.set(leftSide, {x, y});
-            gsap.set(rightSide, {x, y});
-
-
-        }
-        CustomEase.create("myFirstEase", "M0,0,C0.079,0.122,0.15,0.23,0.214,0.324,0.277,0.417,0.333,0.497,0.384,0.564,0.453,0.656,0.512,0.725,0.565,0.775,0.591,0.799,0.619,0.968,0.722,1.026,0.788,1.063,0.913,1,1,1")
-
-        let initialFallingCompleteLeft = false; // Flag for left side
-        let initialFallingCompleteRight = false; // Flag for right side
-        const leftSideTL = gsap.timeline({
-            onComplete: () => {
-                initialFallingCompleteLeft = true;
-
-                gsap.set(rightSide, {
-                    rotation: "2",
-                })
-            }
-        });
-
-        const rightSideTL = gsap.timeline();
-
-        const makeRightSideTurn = gsap.timeline();
-
-
-
-        const masterTL = gsap.timeline({paused: true})
-
-
-        const syncWithLever = () => {
-
             const lever = document.getElementById('lever');
             const leftSide = document.getElementById('leftSide');
             const rightSide = document.getElementById('rightSide');
+            const initialScrollText = document.getElementById('initialScrollText');
+            let isScrollBarTimelineTriggered = false;
 
-            if (lever) {
-                const rotationInDegrees = Number(gsap.getProperty(lever, 'rotation'));
-                const rotationInRadians = rotationInDegrees * (Math.PI / 180);
+            if (lever && leftSide && rightSide) {
                 const x = Number(gsap.getProperty(lever, 'x'));
                 const y = Number(gsap.getProperty(lever, 'y'));
 
-                const L = 250;
-
-                const deltaY = L * Math.sin(rotationInRadians);
-                const deltaX = L * (1 - Math.cos(rotationInRadians));
+                gsap.set(leftSide, {x, y});
+                gsap.set(rightSide, {x, y});
 
 
-                // Update the state
+            }
+            CustomEase.create("myFirstEase", "M0,0,C0.079,0.122,0.15,0.23,0.214,0.324,0.277,0.417,0.333,0.497,0.384,0.564,0.453,0.656,0.512,0.725,0.565,0.775,0.591,0.799,0.619,0.968,0.722,1.026,0.788,1.063,0.913,1,1,1")
+
+            let initialFallingCompleteLeft = false; // Flag for left side
+            let initialFallingCompleteRight = false; // Flag for right side
+            const leftSideTL = gsap.timeline({
+                onComplete: () => {
+                    initialFallingCompleteLeft = true;
+
+                    gsap.set(rightSide, {
+                        rotation: "2",
+                    })
+                }
+            });
+
+            const rightSideTL = gsap.timeline();
+
+            const makeRightSideTurn = gsap.timeline();
+            const makeRightSideScrollBar = gsap.timeline();
+            const scrollTextTimeline = gsap.timeline({});
+
+            const masterTL = gsap.timeline({paused: true})
 
 
-                if (leftSide && initialFallingCompleteLeft) {
+            const syncWithLever = () => {
 
-                    const calculate3DRotationY = (rotationInDegrees: number) => {
-                        if (Math.abs(rotationInDegrees) > 5) {  // You can adjust this threshold
-                            return rotationInDegrees * 2;  // Amplify the 3D effect when rotation is significant
+                const lever = document.getElementById('lever');
+                const leftSide = document.getElementById('leftSide');
+                const rightSide = document.getElementById('rightSide');
+
+                if (lever) {
+                    const rotationInDegrees = Number(gsap.getProperty(lever, 'rotation'));
+                    const rotationInRadians = rotationInDegrees * (Math.PI / 180);
+                    const x = Number(gsap.getProperty(lever, 'x'));
+                    const y = Number(gsap.getProperty(lever, 'y'));
+
+                    const L = 250;
+
+                    const deltaY = L * Math.sin(rotationInRadians);
+                    const deltaX = L * (1 - Math.cos(rotationInRadians));
+
+
+                    // Update the state
+
+
+                    if (leftSide && initialFallingCompleteLeft) {
+
+                        const calculate3DRotationY = (rotationInDegrees: number) => {
+                            if (Math.abs(rotationInDegrees) > 5) {  // You can adjust this threshold
+                                return rotationInDegrees * 2;  // Amplify the 3D effect when rotation is significant
+                            }
+                            return rotationInDegrees * 0.4;  // Otherwise, maintain a softer rotation
+                        };
+                        gsap.to(leftSide, {
+                            duration: 0.2,  // Increased duration for smoother movement
+                            rotation: rotationInDegrees,
+                            x: x + deltaX,
+                            y: y - deltaY + rotationInDegrees,
+                            skewX: Math.sin(rotationInDegrees) * 2,  // Lower magnitude for a lighter skew
+                            skewY: Math.cos(rotationInDegrees),  // Lower magnitude for a lighter skew
+                            rotationX: rotationInDegrees * 0.3,  // Lower multiplier for a softer rotation
+                            rotationY: calculate3DRotationY(rotationInDegrees),  // Lower multiplier for a softer rotation
+                            rotationZ: rotationInDegrees * 2.2,  // Lower multiplier for a softer rotation
+                            transformPerspective: 800,
+                            ease: "sine.out"  // Smooth easing for a feather-like motion
+                        });
+
+
+                        if (rotationInDegrees >= 10) {  // 10 is just an example, adjust as needed
+                            shootAndMorphLeftSide();
+
                         }
-                        return rotationInDegrees * 0.4;  // Otherwise, maintain a softer rotation
-                    };
-                    gsap.to(leftSide, {
-                        duration: 0.2,  // Increased duration for smoother movement
-                        rotation: rotationInDegrees,
-                        x: x + deltaX,
-                        y: y - deltaY + rotationInDegrees,
-                        skewX: Math.sin(rotationInDegrees) * 2,  // Lower magnitude for a lighter skew
-                        skewY: Math.cos(rotationInDegrees),  // Lower magnitude for a lighter skew
-                        rotationX: rotationInDegrees * 0.3,  // Lower multiplier for a softer rotation
-                        rotationY: calculate3DRotationY(rotationInDegrees),  // Lower multiplier for a softer rotation
-                        rotationZ: rotationInDegrees * 2.2,  // Lower multiplier for a softer rotation
-                        transformPerspective: 800,
-                        ease: "sine.out"  // Smooth easing for a feather-like motion
-                    });
-
-
-                    if (rotationInDegrees >= 10) {  // 10 is just an example, adjust as needed
-                        shootAndMorphLeftSide();
 
                     }
 
+
+                    if (rightSide && initialFallingCompleteRight) {
+
+
+                        const adjustment = 35;
+                        gsap.to(rightSide, {
+                            duration: 0.05,
+                            rotation: rotationInDegrees,
+                            x: x - deltaX,
+                            y: y + deltaY - rotationInDegrees,
+
+                        });
+                        gsap.to("#topWordRight", {
+                            duration: 0.3,
+                            marginBottom: '-30px',
+
+                        });
+
+
+                    }
                 }
+            };
 
 
-                if (rightSide && initialFallingCompleteRight) {
+            const shootAndMorphLeftSide = () => {
+                const tl = gsap.timeline({
+                    onStart: () => {
 
-
-                    const adjustment = 35;
-                    gsap.to(rightSide, {
-                        duration: 0.05,
-                        rotation: rotationInDegrees,
-                        x: x - deltaX,
-                        y: y + deltaY - rotationInDegrees,
-
-                    });
-                    gsap.to("#topWordRight", {
-                        duration: 0.3,
-                        marginBottom: '-30px',
-
-                    });
-
-
-                }
-            }
-        };
-
-
-        const shootAndMorphLeftSide = () => {
-            const tl = gsap.timeline({
-                onStart: () => {
-
-
-                },
-                onComplete: () => {
-
-
-                }
-            });
-
-            // Combine all properties for #leftSide into a single .to() method call
-            tl.to("#leftSide", {
-                y: "-190",
-                x: "+215",
-                rotation: 0,
-                scale: 1.4,
-                duration: 5,
-                skewX: 0,
-                skewY: 0,
-                rotationX: 0,
-                rotationY: 0,
-                rotationZ: 0,
-                ease: "back.inOut(1.7)",
-            })
-                .to("#leftSideTop", {
-                    morphSVG: {
-                        shape: "#topTextToMorph"
-                    },
-                    duration: 3,
-                    fill: "rgba(253,197,0,0)",
-                    stroke: "#ffffff",
-                    stagger: 2.1,
-                    x: "+=35",
-
-
-                    ease: "back.inOut(1.7)"
-                }, "<")
-                .to("#leftSideBottom", {
-                    morphSVG: {
-                        shape: "#bottomTextToMorph",
 
                     },
-                    duration: 4.5,
-                    fill: "#ffffff",
+                    onComplete: () => {
 
 
-                    stagger: 2.1,
-                    ease: "power2.inOut"
-                }, "<");
+                    }
+                });
 
-            // Animations from animateInSpace
-            tl.to(["#lever", "#triangle", "#rightSide"], {
-                y: "+=360px",
-                duration: 5,
-                ease: "slow",
-                opacity: 0,
-            }, "<+0.1");
+                // Combine all properties for #leftSide into a single .to() method call
+                tl.to("#leftSide", {
+                    y: "-190",
+                    x: "+215",
+                    rotation: 0,
+                    scale: 1.4,
+                    duration: 5,
+                    skewX: 0,
+                    skewY: 0,
+                    rotationX: 0,
+                    rotationY: 0,
+                    rotationZ: 0,
+                    ease: "back.inOut(1.7)",
+                })
+                    .to("#leftSideTop", {
+                        morphSVG: {
+                            shape: "#topTextToMorph"
+                        },
+                        duration: 3,
+                        fill: "rgba(253,197,0,0)",
+                        stroke: "#ffffff",
+                        stagger: 2.1,
+                        x: "+=35",
 
 
-        };
+                        ease: "back.inOut(1.7)"
+                    }, "<")
+                    .to("#leftSideBottom", {
+                        morphSVG: {
+                            shape: "#bottomTextToMorph",
+
+                        },
+                        duration: 4.5,
+                        fill: "#ffffff",
 
 
-        const oscillateLever = () => {
-            gsap.to("#lever", {
-                rotation: "-=4",
-                duration: 1,
-                yoyo: true,
-                repeat: 1,
+                        stagger: 2.1,
+                        ease: "power2.inOut"
+                    }, "<");
 
-                ease: "sine.inOut",
-                onUpdate: syncWithLever,
+                // Animations from animateInSpace
+                tl.to(["#lever", "#triangle"], {
+                    y: "+=360px",
+                    duration: 6,
+                    ease: "slow",
+                    opacity: 0,
+                }, "<+0.1");
+
+
+            };
+
+
+            const oscillateLever = () => {
+                gsap.to("#lever", {
+                    rotation: "-=4",
+                    duration: 1,
+                    yoyo: true,
+                    repeat: 1,
+
+                    ease: "sine.inOut",
+                    onUpdate: syncWithLever,
+                });
+            };
+
+
+            leftSideTL
+                .from('#leftSide', {
+                    y: '-300px',
+                    x: '-=100px',
+                    duration: 4,
+                    ease: 'sine.in',
+                    rotation: 0,
+                    scale: 0,
+                    onStart: () => {
+                        setShouldPlayParticles(true);
+                    },
+                    onComplete: () => {
+                        initialFallingCompleteLeft = true;
+                    }
+                })
+                .add(oscillateLever)
+
+
+                .to('#lever', {
+                    skewX: 3,
+                    rotation: "-=2",
+                    duration: 1,
+
+                    onUpdate: syncWithLever
+                })
+
+
+            rightSideTL
+                .from('#rightSide', {
+                    y: '-300px',
+                    duration: 1,
+                    ease: 'power3.in',
+                    scale: 0,
+                    onUpdate: syncWithLever,
+
+
+                    onComplete: () => {
+                        initialFallingCompleteRight = true;
+                    }
+
+                })
+
+                .to('#lever', {
+                    rotation: "+=15",
+                    skewX: -3,
+                    duration: 0.4,
+                    onUpdate: syncWithLever,
+
+                })
+
+
+            makeRightSideTurn
+                .to('#rightSide', {
+                    x: "400px",
+                    y: "+=360px",
+                    duration: 4,
+                    opacity: 0,
+                    onStart: () => {
+                        syncWithLever()
+
+                    },
+                })
+
+            makeRightSideScrollBar
+                .to('#rightSide', {
+                    rotation: "-=15",
+                    duration: 2,
+                    delay: 0.4,
+                    opacity: 0,
+                })
+                .to("#initialScrollText", {
+                    opacity: 0.4,
+                    onStart: () => {
+                        isScrollBarTimelineTriggered = true;
+                    }
+                });
+
+
+            scrollTextTimeline
+                .to("#initialScrollText", {
+                    opacity: 0.2,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: ".pinMinimalWeightFeature",
+                        start: "center center",
+                        end: "+=100%",
+                        scrub: true,
+                        onUpdate: self => {
+                            if (isScrollBarTimelineTriggered) {
+                                // If the scrollbar timeline has been triggered, set opacity to 0.4
+                                gsap.set("#initialScrollText", {opacity: 0.4});
+                            } else {
+                                let progress = self.progress;
+                                let newOpacity = 0.2 * progress;
+                                gsap.set("#initialScrollText", {opacity: newOpacity}); // Set the opacity between 0 and 0.2 based on scroll progress
+                            }
+                        }
+                    }
+                });
+            ;
+
+
+            masterTL
+                .add(leftSideTL)
+                .add(rightSideTL)
+                .add(makeRightSideTurn)
+                .add(makeRightSideScrollBar, "<")
+                .add(scrollTextTimeline)
+
+            ScrollTrigger.create({
+                trigger: '.pinMinimalWeightFeature',
+                start: 'center center',  // Adjust according to your needs
+                end: '+=200%',  // Adjust according to your needs
+                pin: true,
+                scrub: true,
+                anticipatePin: 1,
+
+                onEnter: () => masterTL.play(),
+                onLeave: () => masterTL.pause(),
+                onEnterBack: () => masterTL.play(),
+                onLeaveBack: () => masterTL.pause(),
+                onScrubComplete: () => masterTL.reverse(),
+
+
             });
-        };
-
-
-
-
-        leftSideTL
-            .from('#leftSide', {
-                y: '-300px',
-                x: '-=100px',
-                duration: 4,
-                ease: 'sine.in',
-                rotation: 0,
-                scale: 0,
-                onStart: () => {
-                    setShouldPlayParticles(true);
-                },
-                onComplete: () => {
-                    initialFallingCompleteLeft = true;
-                }
-            })
-            .add(oscillateLever)
-
-
-            .to('#lever', {
-                skewX: 3,
-                rotation: "-=2",
-                duration: 1,
-
-                onUpdate: syncWithLever
-            })
-
-
-        rightSideTL
-            .from('#rightSide', {
-                y: '-300px',
-                duration: 1,
-                ease: 'power3.in',
-                scale: 0,
-                onUpdate: syncWithLever,
-
-
-                onComplete: () => {
-                    initialFallingCompleteRight = true;
-                }
-
-            })
-
-            .to('#lever', {
-                rotation: "+=15",
-                skewX: -3,
-                duration: 0.4,
-                onUpdate: syncWithLever,
-
-            })
-
-
-
-        makeRightSideTurn
-            .to('#rightSide', {
-                x: "40",
-                duration: 4,
-
-                onStart: () => {
-                    syncWithLever()
-
-                },
-
-
-            })
-
-
-        masterTL
-            .add(leftSideTL)
-            .add(rightSideTL)
-            .add(makeRightSideTurn)
-
-        ScrollTrigger.create({
-            trigger: '.pinMinimalWeightFeature',
-            start: 'center center',  // Adjust according to your needs
-            end: '+=300%',  // Adjust according to your needs
-            pin: true,
-            scrub: true,
-            anticipatePin: 1,
-
-            onEnter: () => masterTL.play(),
-            onLeave: () => masterTL.pause(),
-            onEnterBack: () => masterTL.play(),
-            onLeaveBack: () => masterTL.pause(),
-            onScrubComplete: () => masterTL.reverse(),
-
 
         });
-
-    });
-    return () => ctx.revert(); // <-- CLEANUP!
+        return () => ctx.revert(); // <-- CLEANUP!
 
     }, []);
 
 
     return (
         <>
-            {/*<ParticlesBackground shouldPlayParticles={shouldPlayParticles}/>*/}
-
-
             <section
                 className="relative z-[1] h-[100vh] max-h-100 flex flex-col justify-center items-center  pinMinimalWeightFeature bg-transparent">
 
@@ -433,6 +462,41 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({ setShouldPlayParticles })
                         </div>
                     </div>
                 </div>
+
+                <Link href="#AnchorThinFeatureDandelions" style={{textDecoration: 'none'}} className={"group"}>
+                    <div
+                        id={"initialScrollText"}
+                        style={{
+                            position: 'fixed',
+                            right: 20,
+                            bottom: 20,
+                            writingMode: 'vertical-rl',
+                            display: 'flex',
+                            flexDirection: 'row'
+                        }}
+                        className={"opacity-0"}
+                    >
+                        <span
+                            className={"font-poppins text-9xl scale-[1.2] font-extrabold text-[#faf7f7] mb-14 "}>Discover </span>
+                        <div>
+                            <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>
+                            <div
+                                className="stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"
+                                style={{
+                                    WebkitTextStroke: "1px white",
+                                    WebkitTextFillColor: "transparent"
+                                }}
+                            >
+                                Comfort
+                            </div>
+                        </div>
+                        <span>
+                    <ArrowDownIcon width={40} height={40} className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4"}/>
+
+        </span>
+                    </div>
+                </Link>
+
 
             </section>
 

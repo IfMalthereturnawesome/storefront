@@ -161,7 +161,7 @@ const ThinFeatureDandelions: React.FC = () => {
     return (
         <>
 
-            <section
+            <section id={"AnchorThinFeatureDandelions"}
                 className="relative h-[100vh] max-h-100 flex flex-col justify-center items-center pinThinFeature"
 
             >
