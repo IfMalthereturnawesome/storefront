@@ -15,9 +15,16 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const VideoAnimation: React.FC = () => {
-    // usePageSettings();
+interface VideoAnimationProps {
+    product: string,
+    description1: string;
+    description2: string;
+    description3: string;
+}
 
+const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, description2, description3}) => {
+    // usePageSettings();
+    const [isLoading, setIsLoading] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const videoContainerRef = useRef<HTMLDivElement>(null);
@@ -88,6 +95,7 @@ const VideoAnimation: React.FC = () => {
 
 
     useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
         let mm = gsap.matchMedia();
         mm.add('(max-width: 399px)', () => {
             setState(false);
@@ -120,11 +128,15 @@ const VideoAnimation: React.FC = () => {
         });
 
         return () => mm.revert();
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
     }, [state, smoothDisappear]);
 
 
     // VIDEO
     useEffect(() => {
+        let ctx = gsap.context(() => {
+
         if (headerRef.current) {
 
             headerRef.current.style.opacity = '0';
@@ -198,12 +210,16 @@ const VideoAnimation: React.FC = () => {
             clearTimeout(timer);
 
         };
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
+
     }, []);
 
 
     // ACHIEVE YOUR DREAMS - HEADER
     const useShowHeaderAnimation = (showHeaderText: boolean, headerRef: RefObject<HTMLDivElement>) => {
         useEffect(() => {
+            let ctx = gsap.context(() => {
             if (headerRef.current) {
                 const splitText = new SplitType(headerRef.current, {types: 'words, chars'});
 
@@ -265,6 +281,9 @@ const VideoAnimation: React.FC = () => {
 
             }
 
+        });
+        return () => ctx.revert(); // <-- CLEANUP!
+
 
         }, [showHeaderText, headerRef]);
     };
@@ -273,6 +292,7 @@ const VideoAnimation: React.FC = () => {
     //  ONE NIGHT AT A TIME - Header
     useEffect(() => {
 
+        let ctx = gsap.context(() => {
         if (oneNightRef.current && showOneNightText) {
             oneNightRef.current.style.opacity = '1';
             const splitTextNight = new SplitType(oneNightRef.current, {types: 'words, chars'});
@@ -288,14 +308,15 @@ const VideoAnimation: React.FC = () => {
                         descriptionRef3.current
                     ) {
                         // Set initial state
-                        gsap.set([descriptionRef1.current, descriptionRef2.current, descriptionRef3.current], { opacity: 0.2, color: 'rgb(255,255,255)'
-                             });
+                        gsap.set([descriptionRef1.current, descriptionRef2.current, descriptionRef3.current], {
+                            opacity: 0.2, color: 'rgb(255,255,255)'
+                        });
 
-                        const tl = gsap.timeline({ defaults: { duration: 1, stagger: 0.5, color: "#e7ecef"} });
+                        const tl = gsap.timeline({defaults: {duration: 1, stagger: 0.5, color: "#e7ecef"}});
 
-                        tl.to(descriptionRef1.current, { opacity: 0.9}, "+=3")
-                            .to(descriptionRef2.current, { opacity: 0.9}, "+=1.2")
-                            .to(descriptionRef3.current, { opacity: 0.9}, "+=1.2");
+                        tl.to(descriptionRef1.current, {opacity: 0.9}, "+=3")
+                            .to(descriptionRef2.current, {opacity: 0.9}, "+=1.2")
+                            .to(descriptionRef3.current, {opacity: 0.9}, "+=1.2");
                     }
 
                 },
@@ -361,15 +382,16 @@ const VideoAnimation: React.FC = () => {
                         }
                     }, index * 0.1);  // stagger time between each char
                 });
-            }
+            }}
 
-
-        }
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
     }, [showOneNightText]);
 
 
     // Smaller "achieve your dreams" Text
     useEffect(() => {
+        let ctx = gsap.context(() => {
         if (smallDreamRef.current && showSmallDreamText) {
             smallDreamRef.current.style.opacity = '1';
 
@@ -395,14 +417,13 @@ const VideoAnimation: React.FC = () => {
 
         }
 
+    });
+    return () => ctx.revert(); // <-- CLEANUP!
 
     }, []);
 
 
-
-
     useShowHeaderAnimation(showHeaderText, headerRef);
-
 
 
     const smoothAppear = () => {
@@ -540,11 +561,11 @@ const VideoAnimation: React.FC = () => {
                                 <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[28vw] 3xl:px-[30vw]"
                                      data-aos="fade-up">
                                     <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl  3xl:text-xl font-semibold font-sans !leading-normal tracking-wide text-center">
-                                        <span ref={descriptionRef1} className="text-[#e7ecef] inline">Enter a new sleep era where total blackout meets unmatched comfort. </span>
+                                        <span ref={descriptionRef1} className="text-[#e7ecef] inline">{description1}</span>
 
-                                        <span ref={descriptionRef2} className="text-[#e7ecef] inline">Custom-fit for your unique face. </span>
+                                        <span ref={descriptionRef2} className="text-[#e7ecef] inline">{description2}</span>
 
-                                        <span ref={descriptionRef3} className="text-[#e7ecef] ">Elevate your peak performance, no matter where you are and how you sleep.</span>
+                                        <span ref={descriptionRef3} className="text-[#e7ecef] ">{description3}</span>
                                     </p>
 
                                 </div>
@@ -562,10 +583,12 @@ const VideoAnimation: React.FC = () => {
 
                 <div ref={videoContainerRef} className="relative "
                      style={{display: showVideo ? 'block' : 'none', opacity: showVideo ? 1 : 0}}>
-                    <div
-                        className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0 ${showVideo ? 'block' : 'hidden'} sm:p-4 lg:p-0`}>
-                        <div
-                            className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
+                    {isLoading && <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                      <div className="loading-spinner"></div>
+                    </div>}
+
+                    <div className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0 ${showVideo ? 'block' : 'hidden'} sm:p-4 lg:p-0`}>
+                        <div className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
                             <video
                                 ref={videoRef}
                                 className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
@@ -573,16 +596,18 @@ const VideoAnimation: React.FC = () => {
                                 muted={true}
                                 autoPlay={false}
                                 src={"/videos/Eight-Athletics-sleep-mask-commercial-web.mp4"}
-                                // src={"/videos/test-video-for-animation.mp4"}
-
+                                onLoadedData={() => setIsLoading(false)}
+                                onWaiting={() => setIsLoading(true)}
                             >
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                     </div>
+
                     <button
                         onClick={togglePlayPause}
-                        className="absolute bottom-4 right-4 z-10 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center"
+                        id={"play-pause-button"}
+                        className="absolute bottom-[35rem] right-[1rem] z-10 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center"
                         style={{width: '2.3rem', height: '2.3rem'}}
                     >
                         {isPlaying ? (

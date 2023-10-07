@@ -9,7 +9,7 @@ import ThinFeature from "@/components/sleepMask/ThinFeature";
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Shop all available models only at the ACME. Worldwide Shipping. Secure Payment.",
+    "Eight Athletics is a performance sleep-tech brand that creates products to help you sleep better, recover faster, and perform at your peak.",
 }
 
 export default function Home() {
@@ -17,7 +17,12 @@ export default function Home() {
     return (
         <>
             <div  className="bg-mask-black">
-                <VideoAnimation/>
+                <VideoAnimation
+                    product={"Sleep Mask"}
+                    description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
+                    description2={"Custom-fit for your unique face. "}
+                    description3={"Elevate your peak performance, no matter where you are and how you sleep."}
+                />
 
                 <div className="spacer"></div>
 
