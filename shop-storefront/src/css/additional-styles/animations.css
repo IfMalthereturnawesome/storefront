@@ -170,7 +170,7 @@
 
 
 .grain {
-  z-index: 9999;
+  z-index: 0;
   justify-content: center;
   align-items: center;
   display: flex;

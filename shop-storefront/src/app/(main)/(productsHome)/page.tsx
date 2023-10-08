@@ -1,4 +1,3 @@
-
 import { Metadata } from "next"
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
 import MinimalWeight from "@/components/sleepMask/MinimalWeight";
@@ -16,6 +15,7 @@ export default function Home() {
 
     return (
         <>
+
             <div  className="bg-mask-black">
                 <VideoAnimation
                     product={"Sleep Mask"}
