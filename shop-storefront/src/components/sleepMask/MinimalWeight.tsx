@@ -491,7 +491,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                             </div>
                         </div>
                         <span>
-                    <ArrowDownIcon width={40} height={40} className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4"}/>
+                    <ArrowDownIcon width={40} height={40} className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>
 
         </span>
                     </div>
