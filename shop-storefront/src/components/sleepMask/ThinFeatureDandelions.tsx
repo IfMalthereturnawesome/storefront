@@ -285,12 +285,12 @@ const ThinFeatureDandelions: React.FC = () => {
 
                     <div ref={plusIconTopRef} className="absolute top-[52.1%] left-[50%] z-[3] opacity-75"
                          style={{transform: 'translate(-50%, -50%)'}}>
-                        <PlusIcon width={60} height={60} className={"text-white fill-white"}/>
+                        <PlusIcon width={60} height={60} className={"text-white fill-white dark:fill-amberA-12"}/>
                     </div>
 
                     <div ref={plusIconBottomRef} className="absolute top-[52.1%] left-[50%] z-[3] opacity-0"
                          style={{transform: 'translate(-50%, -50%)'}}>
-                        <PlusIcon width={60} height={60} className={"text-white fill-white"}/>
+                        <PlusIcon width={60} height={60} className={"text-white fill-white dark:fill-amberA-12"}/>
                     </div>
 
 
