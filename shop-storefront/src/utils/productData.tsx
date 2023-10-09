@@ -76,7 +76,7 @@ export const SleepMaskCustomData: ProductData = {
         {
             icon: <CustomFitIcon size={32}/>,
             headline: "Custom Fit",
-            description: "A fit that's as unique as you"
+            description: "A fit that's as unique as you are"
         },
         {
             icon: < TotalDarknessIcon size={32}/>,

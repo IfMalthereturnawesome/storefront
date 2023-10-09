@@ -56,7 +56,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
 
     const renderFeatures = (features: Feature[]) => {
         return features.map((feature, index) => (
-            <div key={index} className="text-white pb-8 px-vw-4">
+            <div key={index} className="text-white pb-8 px-vw-4 lg:px-vw-1 justify-between flex-grow flex-col">
                 {React.cloneElement(feature.icon, {className: "mx-auto mb-2"})}
                 <h4 className="max-w-full font-sans text-base font-semibold mx-0 leading-[1.23536] text-slate-1 dark:text-slate-12">{feature.headline}</h4>
                 {feature.description &&
@@ -122,7 +122,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
             <div className="grain">
                 <div className="grain-texture"></div>
             </div>
-            <div className="leading-6 text-neutral-100 mx-auto px-4 md:px-0 max-w-full md:max-w-[80vw] lg:max-w-[68vw]">
+            <div className="leading-6 text-neutral-100 mx-auto px-0 sm:px-4  md:px-0 max-w-full md:max-w-[80vw] lg:max-w-[68vw]">
                 <div className="text-left mx-auto">
                     <header className="bg-transparent content-start pb-10 text-neutral-100 md:items-baseline">
                         <div className="inline-block">
@@ -133,7 +133,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                 </div>
                 <div className="rounded-[2.5rem] bg-black shadow shadow-amberA-10 dark:shadow-amberA-12">
                     <div className="text-center">
-                        <div className="mx-auto max-w-full md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[40vw]">
+                        <div className="mx-auto max-w-[98vw] md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[40vw]">
 
                             {/* Product Sections */}
                             <div className="flex flex-col md:flex-row justify-center pt-8 md:pt-24 xl:pt-24 text-neutral-100">
@@ -153,11 +153,12 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                             {/* Feature Sections for Desktop */}
                             <div className="hidden md:flex flex-row gap-6 justify-center pb-vw-10">
                                 {products.map(product => (
-                                    <div key={product.title + "-features"} className="w-1/2 px-2">
+                                    <div key={product.title + "-features"} className="flex flex-col w-1/2 px-2 justify-between">
                                         {renderFeatures(product.features)}
                                     </div>
                                 ))}
                             </div>
+
 
                         </div>
                     </div>
