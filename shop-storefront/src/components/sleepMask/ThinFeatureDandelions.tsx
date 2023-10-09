@@ -32,64 +32,6 @@ const ThinFeatureDandelions: React.FC = () => {
     // usePageSettings();
     let masterTimeline = gsap.timeline();
 
-    function initiateHighlightAnimations() {
-
-        const slimTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'center center',
-                end: '+=1000',
-                scrub: true,
-
-            },
-        });
-
-
-        // Slim feature animations
-        slimTimeline
-            .to("#AnchorThinFeatureDandelions", {zIndex: 40})
-            .to(textTopRef.current, {scale: 0.8, duration: 2.5, ease: "Power2.easeInOut"}, '<')
-            .to(plusIconTopRef.current, {opacity: 1}, '<')
-            .to(canvasRef.current, {marginTop: '-15vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
-            .to(containerRef.current, {marginTop: '-14.5vh', height: '88.95vh', ease: 'Power3.out', duration: 8}, '<')
-            .to([hotspotTopRef.current, "#slimLine"],
-                {opacity: 0.8, duration: 2.5, stagger: 1.5, ease: "Power2.easeInOut"})
-            .to(descTopRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
-            .to({}, {duration: 4, delay: 4})  // Adding a pause
-            .to(textTopRef.current, {scale: 0.7, duration: 2.5, ease: "Power2.easeInOut"}, '-=2.5')
-            .to(plusIconTopRef.current, {opacity: 0.5}, '<')
-            .to(descTopRef.current, {opacity: 0.7, duration: 3, ease: "none", color: '#e3dcdc'}, '<');
-
-        const softTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'bottom top',
-                end: '+=1000',
-                scrub: true,
-
-            },
-        });
-
-
-        // Soft feature animations
-        softTimeline
-            .to("#AnchorThinFeatureDandelions", {zIndex: 40})
-            .to([hotspotTopRef.current, "#slimLine"], {opacity: 0, duration: 3, ease: "none"}, '<')
-            .to(canvasRef.current, {marginTop: '-23vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
-            .to(containerRef.current, {height: '99vh', marginTop: '-4.4vh', ease: 'Power3.out', duration: 8}, '<')
-            .to(textBottomRef.current, {opacity: 1, scale: 0.8, duration: 2.5, ease: "Power2.easeInOut"}, '<')
-            .to(plusIconBottomRef.current, {opacity: 1}, '<')
-            .to([hotspotBottomRef.current, "#softLine"],
-                {opacity: 0.9, duration: 2.5, stagger: 0.5, ease: "Power2.easeInOut"})
-            .to(descBottomRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
-            .to({}, {duration: 4, delay: 4})  // Adding a pause
-            .to([hotspotBottomRef.current, "#softLine"], {opacity: 0, duration: 3, ease: "none", delay: 2}, '<')
-
-
-        masterTimeline.add(slimTimeline);
-        masterTimeline.add(softTimeline, '+=10');  // This value should be adjusted based on the desired delay
-
-    }
 
 
     useEffect(() => {
@@ -256,6 +198,66 @@ const ThinFeatureDandelions: React.FC = () => {
 
                 // Add child timelines to master timeline
                 masterTimeline.add(containerTimeline).add(textTimeline, '<');
+
+                const initiateHighlightAnimations = () => {
+
+                    const slimTimeline = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: containerRef.current,
+                            start: 'center center',
+                            end: '+=1000',
+                            scrub: true,
+
+                        },
+                    });
+
+
+                    // Slim feature animations
+                    slimTimeline
+                        .to("#AnchorThinFeatureDandelions", {zIndex: 40})
+                        .to(textTopRef.current, {scale: 0.8, duration: 2.5, ease: "Power2.easeInOut"}, '<')
+                        .to(plusIconTopRef.current, {opacity: 1}, '<')
+                        .to(canvasRef.current, {marginTop: '-15vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
+                        .to(containerRef.current, {marginTop: '-14.5vh', height: '88.95vh', ease: 'Power3.out', duration: 8}, '<')
+                        .to([hotspotTopRef.current, "#slimLine"],
+                            {opacity: 0.8, duration: 2.5, stagger: 1.5, ease: "Power2.easeInOut"})
+                        .to(descTopRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
+                        .to({}, {duration: 4, delay: 4})  // Adding a pause
+                        .to(textTopRef.current, {scale: 0.7, duration: 2.5, ease: "Power2.easeInOut"}, '-=2.5')
+                        .to(plusIconTopRef.current, {opacity: 0.5}, '<')
+                        .to(descTopRef.current, {opacity: 0.7, duration: 3, ease: "none", color: '#e3dcdc'}, '<');
+
+                    const softTimeline = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: containerRef.current,
+                            start: 'bottom top',
+                            end: '+=1000',
+                            scrub: true,
+
+                        },
+                    });
+
+
+                    // Soft feature animations
+                    softTimeline
+                        .to("#AnchorThinFeatureDandelions", {zIndex: 40})
+                        .to([hotspotTopRef.current, "#slimLine"], {opacity: 0, duration: 3, ease: "none"}, '<')
+                        .to(canvasRef.current, {marginTop: '-23vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
+                        .to(containerRef.current, {height: '99vh', marginTop: '-4.4vh', ease: 'Power3.out', duration: 8}, '<')
+                        .to(textBottomRef.current, {opacity: 1, scale: 0.8, duration: 2.5, ease: "Power2.easeInOut"}, '<')
+                        .to(plusIconBottomRef.current, {opacity: 1}, '<')
+                        .to([hotspotBottomRef.current, "#softLine"],
+                            {opacity: 0.9, duration: 2.5, stagger: 0.5, ease: "Power2.easeInOut"})
+                        .to(descBottomRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
+                        .to({}, {duration: 4, delay: 4})  // Adding a pause
+                        .to([hotspotBottomRef.current, "#softLine"], {opacity: 0, duration: 3, ease: "none", delay: 2}, '<')
+
+
+                    masterTimeline.add(slimTimeline);
+                    masterTimeline.add(softTimeline, '+=10');  // This value should be adjusted based on the desired delay
+
+                }
+
 
 
                 return () => {

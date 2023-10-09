@@ -19,7 +19,7 @@ const ScrollBar: React.FC<ScrollBarProps> = ({ children }) => {
             const container = scrollContainerRef.current;
             const text = scrollTextRef.current;
 
-            gsap.set(text, { y: 0, opacity: 0.4 });
+            gsap.set(text, { y: 0, opacity: 0 });
 
             const moveRange = container.offsetHeight - text.offsetHeight;
 
@@ -34,9 +34,9 @@ const ScrollBar: React.FC<ScrollBarProps> = ({ children }) => {
 
                         // Adjust opacity based on scroll progress
                         let newOpacity = 0.4;
-                        if (scrollProgress < 0.15) {
+                        if (scrollProgress < 0.20) {
                             newOpacity = scrollProgress * 2; // First 15% of scroll: opacity from 0 to 0.5
-                        } else if (scrollProgress < 0.85) {
+                        } else if (scrollProgress < 0.80) {
                             newOpacity = 0.4; // Middle 50% of scroll: opacity stays at 0.5
                         } else {
                             newOpacity = 0.4 - ((scrollProgress - 0.85) * 2); // Last 25% of scroll: opacity from 0.5 to 0
