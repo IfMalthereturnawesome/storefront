@@ -247,7 +247,7 @@ export default function Blog() {
                           </div>
                           <Button>
                             <Link
-                              className="btn-sm group relative  btn-sm group text-slate-12 custom-button-neo"
+                              className="btn-sm group relative  group text-slate-12 custom-button-neo"
                               href={"/resources"}
                             >
                               <span className="relative inline-flex items-center">

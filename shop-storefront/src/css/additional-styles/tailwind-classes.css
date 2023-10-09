@@ -92,4 +92,8 @@
         @apply transition duration-150 ease-in-out hover:text-slate-1 text-slate-12 border-2 border-solid cursor-pointer focus:outline-black bg-white hover:bg-custom-white group-hover:bg-black group-hover:text-slate-1 rounded-[0.3rem] dark:text-slate-12 dark:bg-black dark:hover:bg-cyan-3 dark:border-cyan-10 dark:hover:border-cyan-10 dark:hover:text-slate-12 dark:group-hover:bg-cyan-3 dark:group-hover:text-slate-12 dark:group-hover:border-cyan-10 border-black focus:border-black group-hover:border-black dark:border-black dark:focus:border-sky-7 dark:focus:outline-sky-9;
     }
 
+    .header-bg-clip{
+        @apply my-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text  font-bold text-transparent transition duration-500  ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text  dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300  dark:hover:from-caction-300 dark:hover:via-cgreen-200 dark:hover:to-caction-200;
+    }
+
 }

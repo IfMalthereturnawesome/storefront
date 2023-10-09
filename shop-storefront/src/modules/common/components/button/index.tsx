@@ -6,7 +6,7 @@ import {Button as NextUIButton, ButtonProps as NextButtonProps} from '@nextui-or
 
 type MyButtonProps = {
     isLoading?: boolean;
-    myVariant?: "primary" | "secondary";
+    myVariant?: "primary" | "secondary" | "third";
 };
 
 type ButtonProps = MyButtonProps & Omit<NextButtonProps, "variant">;
@@ -29,6 +29,8 @@ const Button: React.FC<ButtonProps> = ({
                         myVariant === "primary",
                     "text-gray-900 bg-transparent border-gray-920 hover:bg-gray-100":
                         myVariant === "secondary",
+                    "text-sky-2 dark:text-sky-11 bg-sky-8 border-sky-8 hover:bg-sky-8  hover:bg-opacity-40 hover:text-white disabled:hover:bg-sky-8 disabled:hover:text-white bg-opacity-20":
+                        myVariant === "third",
                 },
                 className
             )}

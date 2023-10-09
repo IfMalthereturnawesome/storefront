@@ -11,7 +11,8 @@ import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSect
 import FaceStory from "@/components/sleepMask/FaceStory";
 import ThinFeatureDandelions from "@/components/sleepMask/ThinFeatureDandelions";
 import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
-
+import ProductChoice from '@/components/sleepMask/ProductChoice';
+import { SleepMaskOneData, SleepMaskCustomData } from '@/utils/productData';
 
 export const metadata = {
     title: 'About us - Open PRO',
@@ -50,11 +51,16 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
             {/*<div className="spacer"></div>*/}
 
-            <WrappedComponent />
+            {/*<WrappedComponent />*/}
 
             {/*<MinimalWeight/>*/}
 
-            {/*<ThinFeatureDandelions/>*/}
+
+
+                <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
+
+
+
             {/*<FaceStory*/}
             {/*    headline="Every face tells a story."*/}
             {/*    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."*/}

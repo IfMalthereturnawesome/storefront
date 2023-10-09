@@ -4,7 +4,7 @@ import React from "react"
 
 type ButtonProps = {
     isLoading?: boolean
-    variant?: "primary" | "secondary"
+    variant?: "primary" | "secondary" | "third"
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const SecondaryButton = ({
@@ -24,6 +24,8 @@ const SecondaryButton = ({
                         variant === "primary",
                     "text-gray-900 bg-white dark:bg-black border-gray-920 hover:bg-black":
                         variant === "secondary",
+                    "text-sky-2 dark:text-sky-11 bg-sky-8 border-sky-8 hover:bg-sky-8  hover:bg-opacity-40 hover:text-white disabled:hover:bg-sky-8 disabled:hover:text-white bg-opacity-20":
+                        variant === "third",
                 },
                 className
             )}
