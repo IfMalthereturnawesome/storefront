@@ -56,7 +56,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
 
     const renderFeatures = (features: Feature[]) => {
         return features.map((feature, index) => (
-            <div key={index} className="text-white pb-8 ">
+            <div key={index} className="text-white pb-8 px-vw-4">
                 {React.cloneElement(feature.icon, {className: "mx-auto mb-2"})}
                 <h4 className="max-w-full font-sans text-base font-semibold mx-0 leading-[1.23536] text-slate-1 dark:text-slate-12">{feature.headline}</h4>
                 {feature.description &&
@@ -71,8 +71,8 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
         const handleColorClick = product.title === product1.title ? handleColorClick1 : handleColorClick2;
 
         return (
-            <div className="flex flex-col justify-between max-w-1/2 px-6">
-                <div className="flex relative flex-col items-center pb-12 px-[1.0588em] z-10">
+            <div className="flex flex-col justify-between max-w-full px-2 md:max-w-1/2 md:px-vw-3">
+                <div className="flex relative flex-col items-center justify-between pb-12 px-[1.0588em] z-10 h-[450px] md:h-[500px]">
                     <Link href={`/products/${product.title}`}>
                         <div className="flex flex-col justify-end items-center mt-0 mb-8 max-w-full -order-1">
                             <Image src={selectedImage} alt={product.title} width={300} height={300}/>
@@ -96,20 +96,19 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                         <span>{product.news}</span>
                     </div>
 
-
                     <h3 className="header-bg-clip text-2xl font-sans hidden dark:block">{product.title}</h3>
-                    <h3 className="my-4  font-bold text-slate-1 text-2xl font-sans dark:hidden ">{product.title}</h3>
+                    <h3 className="my-4 font-bold text-slate-1 text-2xl font-sans dark:hidden ">{product.title}</h3>
                     <p className="mt-2 max-w-full font-sans text-base font-semibold text-zinc-500 mx-0 leading-[1.42859]">
                         {productPriceData.cheapestPrice?.calculated_price || product.price}
                     </p>
-                    <div className="flex flex-wrap gap-4 justify-center items-center mt-6 max-w-full">
+                    <div className="flex flex-wrap gap-4 justify-center items-center mt-6 max-w-full min-h-[5vh] max-h-[5vh]">
                         {renderButton(product.title)}
                         <Link href={`/buy/${product.title}`}
                               className="inline-flex min-h-[40px] items-center group mx-0 mb-0 font-sans text-base font-normal text-center ">
-                        <span
-                            className="leading-5 text-sky-2 dark:text-sky-11 group-hover:text-sky-9 group-hover:underline underline-offset-2">Buy now</span>
+                            <span
+                                className="leading-5 text-sky-2 dark:text-sky-11 group-hover:text-sky-9 group-hover:underline underline-offset-2">Buy now</span>
                             <ChevronRightIcon
-                                className="ml-1 text-sky-2 dark:text-sky-11   group-hover:text-sky-9 group-hover:translate-x-1 transition duration-150 ease-in-out transform"/>
+                                className="ml-1 text-sky-2 dark:text-sky-11 group-hover:text-sky-9 group-hover:translate-x-1 transition duration-150 ease-in-out transform"/>
                         </Link>
                     </div>
                 </div>
@@ -118,37 +117,55 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
     return (
-        <section className="relative pt-32 pb-20 tracking-tight leading-6 text-neutral-100"
+        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100"
                  style={{background: 'linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919)'}}>
             <div className="grain">
                 <div className="grain-texture"></div>
             </div>
-            <div className="leading-6 text-neutral-100 mx-auto">
-                <div className="px-0 max-w-[68%] mx-auto">
-                    <div className="text-left mx-auto">
-                        <header className="bg-transparent content-start pb-10 text-neutral-100 md:items-baseline">
-                            <div className="inline-block">
-                                <h2 className="inline-block max-w-none font-sans text-6xl font-semibold tracking-normal text-slate-10">Find
-                                    the Sleep Mask that fits you.</h2>
+            <div className="leading-6 text-neutral-100 mx-auto px-4 md:px-0 max-w-full md:max-w-[80vw] lg:max-w-[68vw]">
+                <div className="text-left mx-auto">
+                    <header className="bg-transparent content-start pb-10 text-neutral-100 md:items-baseline">
+                        <div className="inline-block">
+                            <h2 className="inline-block max-w-none font-sans text-4xl md:text-6xl font-semibold tracking-normal text-slate-10">Find
+                                the Sleep Mask that fits you.</h2>
+                        </div>
+                    </header>
+                </div>
+                <div className="rounded-[2.5rem] bg-black shadow shadow-amberA-10 dark:shadow-amberA-12">
+                    <div className="text-center">
+                        <div className="mx-auto max-w-full md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[40vw]">
+
+                            {/* Product Sections */}
+                            <div className="flex flex-col md:flex-row justify-center pt-8 md:pt-24 xl:pt-24 text-neutral-100">
+                                {products.map((product, index) => (
+                                    <div key={product.title} className="flex flex-col space-y-6 md:space-y-0 w-full md:w-1/2">
+                                        {renderProductSection(product)}
+                                        <div className="w-full border-t border-solid border-zinc-700 my-4 py-6 hidden md:block"></div>
+                                        <div className="md:hidden px-vw-14">
+                                            {renderFeatures(product.features)}
+                                            {index === 0 && <div className="w-full border-t border-solid border-zinc-700 my-4 py-6"></div>}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        </header>
-                    </div>
-                    <div className="rounded-[2.5rem] bg-black  shadow shadow-amberA-10 dark:shadow-amberA-12">
-                        <div className="text-center">
-                            <div
-                                className="flex-nowrap justify-center pt-12 pb-24 mb-6 xl:pt-24 text-neutral-100 mx-auto max-w-[60%]">
-                                <div
-                                    className="flex justify-center">{products.map(product => renderProductSection(product))}</div>
-                                <div className="w-full border-t border-solid border-zinc-700 my-4"></div>
-                                <div className="flex gap-6 justify-center ">{products.map(product => <div
-                                    className="max-w-1/2 px-2 mt-8">{renderFeatures(product.features)}</div>)}</div>
+
+
+                            {/* Feature Sections for Desktop */}
+                            <div className="hidden md:flex flex-row gap-6 justify-center pb-vw-10">
+                                {products.map(product => (
+                                    <div key={product.title + "-features"} className="w-1/2 px-2">
+                                        {renderFeatures(product.features)}
+                                    </div>
+                                ))}
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     );
-}
 
-export default ProductChoice;
+}
+    export default ProductChoice;
