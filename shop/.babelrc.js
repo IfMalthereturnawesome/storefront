@@ -14,8 +14,9 @@ module.exports = {
       {
         root: ['./'],
         alias: {
-          '@email': '../react-email-starter',
+          '@email': 'shop/react-email-starter',
         },
+        debug: true,  // Enable debugging
       },
     ],
   ],
