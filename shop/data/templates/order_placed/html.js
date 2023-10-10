@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _orderPlaced = _interopRequireDefault(require("shop/react-email-starter/emails/order-placed"));
+var _orderPlaced = _interopRequireDefault(require("../../../react-email-starter/emails/order-placed.js"));
 var OrderPlacedEmail = function OrderPlacedEmail(_ref) {
   var customerName = _ref.customerName,
     orderNumber = _ref.orderNumber;

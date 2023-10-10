@@ -8,17 +8,5 @@ if (process.env.NODE_ENV !== `test`) {
 
 module.exports = {
   presets: [["babel-preset-medusa-package"], ["@babel/preset-typescript"]],
-  plugins: [
-    [
-      'module-resolver',
-      {
-        root: ['./'],
-        alias: {
-          '@email': 'shop/react-email-starter',
-        },
-        debug: true,  // Enable debugging
-      },
-    ],
-  ],
   ignore,
 }

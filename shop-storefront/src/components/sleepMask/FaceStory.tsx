@@ -94,10 +94,9 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
                 // Fade in the mask
                 gsap.from(canvasRefImage.current, {
-                    duration: 1, // Duration in seconds
+                    duration: 2, // Duration in seconds
                     opacity: 0,
                     ease: "power2.out",
-                    delay: 1,
 
 
                 });
@@ -111,15 +110,13 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 });
 
 
-                // Add scaling at the end of the ScrollTrigger
                 gsap.to(canvasRefImage.current, {
                     scale: 1,
                     ease: "none",
-                    y: "-20px",
 
                     scrollTrigger: {
                         trigger: ".pin-video",
-                        start: "top top",
+                        start: "center center",
                         end: "+=100%",
                         scrub: true,
 
