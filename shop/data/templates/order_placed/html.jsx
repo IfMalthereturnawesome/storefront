@@ -76,7 +76,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, paid_total, 
             <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
               <Column style={{ width: '170px' }}>
                 <Text style={global.paragraphWithBold}>Total</Text>
-                <Text style={track.number}>{items.total / 100} {region.currency_code}</Text>
+                <Text style={track.number}>{items.paid_total / 100} {region.currency_code}</Text>
               </Column>
             </Row>
           </Section>

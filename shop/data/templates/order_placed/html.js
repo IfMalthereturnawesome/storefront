@@ -88,7 +88,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Total"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, items.total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, items.paid_total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
