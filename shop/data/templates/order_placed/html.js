@@ -102,7 +102,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
         color: '#7F7F7F',
         textDecoration: 'uppercase'
       })
-    }, item.unit_price * item.quantity / 100, "  ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    }, total / item.quantity, "  ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         color: '#7F7F7F'
       })
