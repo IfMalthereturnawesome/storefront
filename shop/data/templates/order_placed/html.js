@@ -12,7 +12,9 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 var baseUrl = process.env.VERCEL_URL ? "https://".concat(process.env.VERCEL_URL) : '';
 var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
   var shipping_address = _ref.shipping_address,
-    display_id = _ref.display_id;
+    display_id = _ref.display_id,
+    items = _ref.items,
+    total = _ref.total;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null, /*#__PURE__*/React.createElement("title", null, "Order Received")), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main
   }, /*#__PURE__*/React.createElement(_components.Container, {
@@ -37,7 +39,18 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: summaryHeader
   }, "Order Summary:"), /*#__PURE__*/React.createElement(_components.Text, {
     style: paragraph
-  }, "Order Number: ", display_id)), /*#__PURE__*/React.createElement(_components.Button, {
+  }, "Order Number: ", display_id), /*#__PURE__*/React.createElement(_components.Text, {
+    style: paragraph
+  }, "Shipping Address:"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: paragraph
+  }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), items.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(_components.Text, {
+      key: index,
+      style: paragraph
+    }, "Item: ", item.title, " (Quantity: ", item.quantity, ") - Price: ", item.unit_price / 100, " ", total.currency_code);
+  }), /*#__PURE__*/React.createElement(_components.Text, {
+    style: paragraph
+  }, "Total: ", total.total / 100, " ", total.currency_code)), /*#__PURE__*/React.createElement(_components.Button, {
     pX: 12,
     pY: 12,
     style: button,
