@@ -19,15 +19,13 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     display_id = _ref.display_id,
     items = _ref.items,
     region = _ref.region,
-    paid_total = _ref.paid_total,
-    total = _ref.total;
-  // Calculate the total price
-  var totalPrice = items.reduce(function (acc, item) {
-    return acc + item.quantity * item.unit_price + item.tax_total;
-  }, 0);
+    total = _ref.total,
+    subtotal = _ref.subtotal,
+    shipping_total = _ref.shipping_total,
+    tax_total = _ref.tax_total;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
-    className: "bg-cyan-1"
+    className: "bg-white"
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
@@ -67,44 +65,113 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
       paddingTop: '40px',
-      paddingBottom: '40px'
+      paddingBottom: '10px'
     })
-  }, items.map(function (item, index) {
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    style: adressTitle
+  }, "Order Summary"), items.map(function (item, index) {
     return /*#__PURE__*/React.createElement(_components.Row, {
-      key: index
+      key: index,
+      style: {
+        borderBottom: '1px solid #e0e0e0',
+        paddingTop: '10px',
+        paddingBottom: '10px'
+      }
     }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
-        fontWeight: '500'
+        fontWeight: '500',
+        color: '#2C2C2C',
+        marginBottom: '0px'
       })
-    }, "Item: ", item.title, " (Quantity: ", item.quantity, ") - Price: ", item.unit_price / 100, " ", region.currency_code)));
-  })), /*#__PURE__*/React.createElement(_components.Hr, {
-    style: global.hr
-  }), /*#__PURE__*/React.createElement(_components.Section, {
-    style: global.defaultPadding
+    }, item.title), /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F'
+      })
+    }, item.size, " / ", item.color)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F'
+      })
+    }, item.unit_price / 100, " ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F'
+      })
+    }, "x ", item.quantity)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      style: {
+        textAlign: 'right'
+      }
+    }, total)));
+  }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
+    style: _objectSpread(_objectSpread({}, paddingX), {}, {
+      paddingBottom: '10px'
+    })
   }, /*#__PURE__*/React.createElement(_components.Row, {
     style: {
-      display: 'inline-flex',
-      marginBottom: 40
+      justifyContent: 'space-between'
     }
-  }, /*#__PURE__*/React.createElement(_components.Column, {
+  }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      fontWeight: 'normal',
+      color: '#2C2C2C'
+    })
+  }, "Subtotal")), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      textAlign: 'right',
+      marginRight: '10px'
+    })
+  }, subtotal, " ", region.currency_code))), /*#__PURE__*/React.createElement(_components.Row, {
     style: {
-      width: '170px'
+      justifyContent: 'space-between',
+      marginTop: '10px'
     }
-  }, /*#__PURE__*/React.createElement(_components.Text, {
-    style: global.paragraphWithBold
-  }, "Total"), /*#__PURE__*/React.createElement(_components.Text, {
-    style: track.number
-  }, totalPrice / 100, " ", region.currency_code), /*#__PURE__*/React.createElement(_components.Text, {
-    style: track.number
-  }, paid_total, " ", region.currency_code), /*#__PURE__*/React.createElement(_components.Text, {
-    style: track.number
+  }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      fontWeight: 'normal',
+      color: '#2C2C2C'
+    })
+  }, "Shipping")), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      textAlign: 'right',
+      marginRight: '10px'
+    })
+  }, shipping_total, " ", region.currency_code))), /*#__PURE__*/React.createElement(_components.Row, {
+    style: {
+      justifyContent: 'space-between',
+      marginTop: '10px'
+    }
+  }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      fontWeight: 'normal',
+      color: '#2C2C2C'
+    })
+  }, "Tax")), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      textAlign: 'right',
+      marginRight: '10px'
+    })
+  }, tax_total, " ", region.currency_code))), /*#__PURE__*/React.createElement(_components.Row, {
+    style: {
+      justifyContent: 'space-between',
+      marginTop: '10px'
+    }
+  }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      fontWeight: 'bold',
+      color: '#2C2C2C'
+    })
+  }, "Total")), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, paragraph), {}, {
+      fontWeight: 'bold',
+      textAlign: 'right',
+      marginRight: '10px'
+    })
   }, total, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
   }, /*#__PURE__*/React.createElement(_components.Link, {
     style: global.button,
-    href: "https://www.eightathletics.com"
+    href: "https://www.eightathletics.com",
+    className: "mx-auto"
   }, "Visit our website")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
