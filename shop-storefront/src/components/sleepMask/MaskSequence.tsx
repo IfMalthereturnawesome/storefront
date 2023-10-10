@@ -90,7 +90,7 @@ const MaskSequence: React.FC = () => {
 
             // Fade in the mask
             gsap.from(canvasRefVideo.current, {
-                duration: 1, // Duration in seconds
+                duration: 0.5, // Duration in seconds
                 opacity: 0,
                 ease: "power2.out",
                 delay: 1,

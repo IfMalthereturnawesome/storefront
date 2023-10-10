@@ -55,17 +55,17 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
             {/*<div className="spacer"></div>*/}
 
-            <WrappedComponent />
+            {/*<WrappedComponent />*/}
 
             {/*<MinimalWeight/>*/}
 
 
 
-                {/*<ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlueSecond product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlackGray product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlackBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
+                <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
+                <ProductChoiceBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
+                <ProductChoiceBlueSecond product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
+                <ProductChoiceBlackGray product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
+                <ProductChoiceBlackBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
 
 
 
