@@ -14,7 +14,7 @@ module.exports = {
       {
         root: ['./'],
         alias: {
-          '@': '../react-email-starter',
+          '@email': '../react-email-starter',
         },
       },
     ],
