@@ -55,7 +55,7 @@ const ThinFeatureDandelions: React.FC = () => {
                 canvas.height = containerRef.current.offsetHeight;
 
 
-                const frameCount = 1;
+                const frameCount = 8;
                 const currentFrame = (index: number) =>
                     `/images/thinSequence/thinmask_${(index)
                         .toString()

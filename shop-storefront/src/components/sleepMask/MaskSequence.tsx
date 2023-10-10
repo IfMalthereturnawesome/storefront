@@ -34,11 +34,12 @@ const MaskSequence: React.FC = () => {
             canvas.width = 960;
             canvas.height = 640;
 
-            const frameCount = 45;
+            const frameCount = 46;
             const currentFrame = (index: number) =>
                 `/images/sequence/sleepmask_${(index + 100)
                     .toString()
                     .padStart(1, "0")}.png`;
+
 
 
             const images: any[] = [];
@@ -136,7 +137,8 @@ const MaskSequence: React.FC = () => {
     return (
         <div className="m-0 p-0" >
             <div className="canvas-container h-[35vh] md:h-[50vh] xl:min-h-[45vh] 2xl:min-h-[50vh] 3xl:min-h-[61vh]">
-                <canvas ref={canvasRefVideo} id="hero-lightpass" className={"max-h-[40vh] 2xs:max-h-[45vh] mt-[38vh] max-w-[98vw] md:max-h-[50vh] md:mt-[20vh] md:max-w-[100vw]"} />
+                <canvas ref={canvasRefVideo} id="hero-lightpass" className={"max-h-[40vh]  2xs:max-h-[45vh] mt-[38vh] max-w-[98vw] md:max-h-[50vh] md:mt-[20vh] md:max-w-[100vw]"} />
+
             </div>
         </div>
     );
