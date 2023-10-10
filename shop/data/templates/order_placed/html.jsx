@@ -21,8 +21,8 @@ import {
 const baseUrl = 'https://www.eightathletics.com';
 
 const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, total, subtotal_ex_tax, shipping_total, tax_total, shipping_methods }) => {
-  const serviceName = shipping_address.metadata.selectedServicePoint.name;
-  const shippingMethodName = shipping_methods.shipping_option.name;
+  const serviceName = shipping_address.metadata?.selectedServicePoint?.name;
+  const shippingMethodName = shipping_methods?.shipping_option?.name;
 
   return (
       <Html>

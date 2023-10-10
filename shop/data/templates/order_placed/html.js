@@ -15,6 +15,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var baseUrl = 'https://www.eightathletics.com';
 var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
+  var _shipping_address$met, _shipping_methods$shi;
   var shipping_address = _ref.shipping_address,
     display_id = _ref.display_id,
     items = _ref.items,
@@ -24,8 +25,8 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     shipping_total = _ref.shipping_total,
     tax_total = _ref.tax_total,
     shipping_methods = _ref.shipping_methods;
-  var serviceName = shipping_address.metadata.selectedServicePoint.name;
-  var shippingMethodName = shipping_methods.shipping_option.name;
+  var serviceName = (_shipping_address$met = shipping_address.metadata) === null || _shipping_address$met === void 0 || (_shipping_address$met = _shipping_address$met.selectedServicePoint) === null || _shipping_address$met === void 0 ? void 0 : _shipping_address$met.name;
+  var shippingMethodName = shipping_methods === null || shipping_methods === void 0 || (_shipping_methods$shi = shipping_methods.shipping_option) === null || _shipping_methods$shi === void 0 ? void 0 : _shipping_methods$shi.name;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white"
