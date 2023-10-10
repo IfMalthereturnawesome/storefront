@@ -64,9 +64,7 @@ const OrderPlacedTemplate = ({
 
     return (
         <Html>
-            <Head>
-                <title>Order Received</title>
-            </Head>
+            <Head/>
             <Preview>Thank you for your order {shipping_address.first_name} {shipping_address.last_name}</Preview>
             <Body style={main}>
                 <Container style={container}>

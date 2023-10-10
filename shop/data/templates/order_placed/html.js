@@ -18,12 +18,13 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
   var shipping_address = _ref.shipping_address,
     display_id = _ref.display_id,
     items = _ref.items,
-    region = _ref.region;
+    region = _ref.region,
+    order = _ref.order;
   // Calculate the total price
   var paid_total = items.reduce(function (acc, item) {
     return acc + item.total;
   }, 0);
-  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null, /*#__PURE__*/React.createElement("title", null, "Order Received")), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
+  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
@@ -91,7 +92,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Total"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, paid_total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, order.total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY

@@ -17,16 +17,14 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderPlacedTemplate = ({ shipping_address, display_id, items, region }) => {
+const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, order }) => {
   // Calculate the total price
   const paid_total = items.reduce((acc, item) => acc + item.total, 0);
 
 
   return (
     <Html>
-      <Head>
-        <title>Order Received</title>
-      </Head>
+      <Head/>
       <Preview>Thank you for your order {shipping_address.first_name} {shipping_address.last_name}</Preview>
       <Body style={main}>
         <Container style={container}>
@@ -78,7 +76,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region }) =>
             <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
               <Column style={{ width: '170px' }}>
                 <Text style={global.paragraphWithBold}>Total</Text>
-                <Text style={track.number}>{paid_total / 100} {region.currency_code}</Text>
+                <Text style={track.number}>{order.total / 100} {region.currency_code}</Text>
               </Column>
             </Row>
           </Section>
