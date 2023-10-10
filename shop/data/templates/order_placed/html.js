@@ -21,7 +21,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     region = _ref.region;
   // Calculate the total price
   var paid_total = items.reduce(function (acc, item) {
-    return acc + item.unit_price;
+    return acc + item.total;
   }, 0);
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null, /*#__PURE__*/React.createElement("title", null, "Order Received")), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main

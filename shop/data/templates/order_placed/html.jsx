@@ -19,7 +19,7 @@ const baseUrl = 'https://www.eightathletics.com';
 
 const OrderPlacedTemplate = ({ shipping_address, display_id, items, region }) => {
   // Calculate the total price
-  const paid_total = items.reduce((acc, item) => acc + item.unit_price, 0);
+  const paid_total = items.reduce((acc, item) => acc + item.total, 0);
 
 
   return (
