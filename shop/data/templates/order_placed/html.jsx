@@ -63,9 +63,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   Shipping Method:
                   {shipping_methods.shipping_option.name}
                 </Text>
-                <Text style={{...global.text, fontSize: 14}}>
-                  {shipping_address.metadata.selectedServicePoint.name}
-                </Text>
+
               </Section>
               <Hr style={global.hr}/>
               <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}}>
