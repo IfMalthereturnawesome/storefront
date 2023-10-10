@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   Body,
   Container,
@@ -19,8 +20,7 @@ const baseUrl = 'https://www.eightathletics.com';
 
 const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, order }) => {
   // Calculate the total price
-  const paid_total = items.reduce((acc, item) => acc + item.total, 0);
-
+  const paid_total = items.reduce((acc, item) => acc + item.unit_price + item.tax_total, 0);
 
   return (
     <Html>
@@ -76,7 +76,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, orde
             <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
               <Column style={{ width: '170px' }}>
                 <Text style={global.paragraphWithBold}>Total</Text>
-                <Text style={track.number}>{order.total / 100} {region.currency_code}</Text>
+                <Text style={track.number}>{paid_total / 100} {region.currency_code}</Text>
               </Column>
             </Row>
           </Section>

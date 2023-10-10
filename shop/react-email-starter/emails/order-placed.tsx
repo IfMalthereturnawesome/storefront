@@ -32,6 +32,7 @@ interface OrderPlacedTemplateProps {
         title?: string;
         quantity?: number;
         unit_price?: number;
+        tax_total?: number;
     }[];
     region: {
         currency_code?: string;
@@ -51,14 +52,14 @@ const OrderPlacedTemplate = ({
                                  },
                                  display_id = '123456',
                                  items = [
-                                     { title: 'Item 1', quantity: 2, unit_price: 2000 }
+                                     { title: 'Item 1', quantity: 2, unit_price: 2000, tax_total: 200 },
                                  ],
                                  region = {
                                      currency_code: 'USD'
                                  }
                              }: OrderPlacedTemplateProps) => {
     // Calculate the total price
-    const paid_total = items.reduce((acc, item) => acc + item.unit_price, 0);
+    const paid_total = items.reduce((acc, item) => acc + item.unit_price + item.tax_total, 0);
 
 
 
