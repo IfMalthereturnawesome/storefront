@@ -34,11 +34,11 @@ const MaskSequence: React.FC = () => {
             canvas.width = 960;
             canvas.height = 640;
 
-            const frameCount = 46;
+            const frameCount = 20;
             const currentFrame = (index: number) =>
-                `/images/sequence/sleepmask_${(index + 100)
+                `/images/sequence/sleepmask_${(index)
                     .toString()
-                    .padStart(1, "0")}.png`;
+                    .padStart(3, "0")}.png`;
 
 
 
@@ -55,33 +55,32 @@ const MaskSequence: React.FC = () => {
 
 
             const render = () => {
-                const canvas = canvasRefVideo.current;
-
                 if (canvas) {
                     const context = canvas.getContext("2d");
-                    if (sleepMask.frame === frameCount - 1) {
-                        // Stick to the last frame
-                        context?.drawImage(images[frameCount - 1], 0, 0);
-                    } else {
-                        context?.drawImage(images[sleepMask.frame], 0, 0);
+                    const img = images[sleepMask.frame];
 
-                    }
+                    // Set canvas size to image size
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    context?.clearRect(0, 0, canvas.width, canvas.height);
+                    context?.drawImage(img, 0, 0, canvas.width, canvas.height);
+
                 }
-            }
+            };
 
-            //  get current scale of the canvas
-            const scale = gsap.getProperty(canvasRefVideo.current, "scale");
 
 
             gsap.to(sleepMask, {
                 frame: frameCount - 1,
                 snap: "frame",
-                ease: "none",
+                ease: "slow",
                 scrollTrigger: {
                     trigger: ".pin-video",
                     start: "top top",
-                    end: "+=100%",
+                    end: "+=50%",
                     scrub: true,
+
 
                 },
                 onUpdate: render,
@@ -124,8 +123,6 @@ const MaskSequence: React.FC = () => {
                 },
             });
 
-
-
             images[0].onload = render;
 
 
@@ -137,7 +134,7 @@ const MaskSequence: React.FC = () => {
     return (
         <div className="m-0 p-0" >
             <div className="canvas-container h-[35vh] md:h-[50vh] xl:min-h-[45vh] 2xl:min-h-[50vh] 3xl:min-h-[61vh]">
-                <canvas ref={canvasRefVideo} id="hero-lightpass" className={"max-h-[40vh]  2xs:max-h-[45vh] mt-[38vh] max-w-[98vw] md:max-h-[50vh] md:mt-[20vh] md:max-w-[100vw]"} />
+                <canvas ref={canvasRefVideo} id="hero-lightpass" className={"max-h-[40vh]  2xs:max-h-[45vh] mt-[38vh] max-w-[98vw] md:max-h-[65vh] md:mt-[20vh] md:max-w-[100vw]"} />
 
             </div>
         </div>

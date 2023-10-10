@@ -2,6 +2,9 @@ import { Metadata } from "next"
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
 import MinimalWeight from "@/components/sleepMask/MinimalWeight";
 import ThinFeature from "@/components/sleepMask/ThinFeature";
+import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
+import React from "react";
+import DoubleImageSection from "@/components/sleepMask/imageSections/DoubleImageSection";
 
 
 
@@ -24,7 +27,14 @@ export default function Home() {
                     description3={"Elevate your peak performance, no matter where you are and how you sleep."}
                 />
 
-                <div className="spacer"></div>
+                    <DoubleImageSection
+                        headerLine1={"Greet each day with "}
+                        headerLine2={"undivided focus."}
+                        descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                        image1Src={"/images/test-images-for-feature2.jpg"}
+                        image2Src={"/images/test-images-for-feature1.jpg"}
+                    />
+
 
                 {/*<ThinFeature/>*/}
 
