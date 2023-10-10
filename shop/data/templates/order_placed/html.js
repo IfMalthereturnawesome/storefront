@@ -20,10 +20,12 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     items = _ref.items,
     region = _ref.region,
     total = _ref.total,
-    subtotal = _ref.subtotal,
+    subtotal_ex_tax = _ref.subtotal_ex_tax,
     shipping_total = _ref.shipping_total,
     tax_total = _ref.tax_total,
     shipping_methods = _ref.shipping_methods;
+  var serviceName = shipping_address.metadata.selectedServicePoint.name;
+  var shippingMethodName = shipping_methods.shipping_option.name;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white"
@@ -63,7 +65,9 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     })
   }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), /*#__PURE__*/React.createElement(_components.Text, {
     style: adressTitle
-  }, "Shipping Method:", shipping_methods.shipping_option.name)), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Shipping Method:", shippingMethodName), /*#__PURE__*/React.createElement(_components.Text, {
+    style: adressTitle
+  }, "Shipping Method:", serviceName)), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
@@ -122,7 +126,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       textAlign: 'right',
       marginRight: '10px'
     })
-  }, subtotal))), /*#__PURE__*/React.createElement(_components.Row, {
+  }, subtotal_ex_tax))), /*#__PURE__*/React.createElement(_components.Row, {
     style: {
       justifyContent: 'space-between',
       marginTop: '10px'

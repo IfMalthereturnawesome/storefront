@@ -20,7 +20,9 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, total, subtotal, shipping_total, tax_total, shipping_methods }) => {
+const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, total, subtotal_ex_tax, shipping_total, tax_total, shipping_methods }) => {
+  const serviceName = shipping_address.metadata.selectedServicePoint.name;
+  const shippingMethodName = shipping_methods.shipping_option.name;
 
   return (
       <Html>
@@ -61,7 +63,11 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                 </Text>
                 <Text style={adressTitle}>
                   Shipping Method:
-                  {shipping_methods.shipping_option.name}
+                  {shippingMethodName}
+                </Text>
+                <Text style={adressTitle}>
+                  Shipping Method:
+                  {serviceName}
                 </Text>
 
               </Section>
@@ -107,7 +113,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   </Column>
                   <Column>
                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                      {subtotal}
+                      {subtotal_ex_tax}
                     </Text>
                   </Column>
                 </Row>
