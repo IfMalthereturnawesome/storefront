@@ -17,7 +17,7 @@ const baseUrl = process.env.VERCEL_URL
     : '';
 
 
-const OrderPlacedTemplate = ({ shipping_address, display_id }) => (
+const OrderPlacedTemplate = ({ shipping_address, display_id, items, total }) => (
     <Html>
       <Head>
         <title>Order Received</title>
@@ -27,7 +27,6 @@ const OrderPlacedTemplate = ({ shipping_address, display_id }) => (
       </Preview>
       <Body style={main}>
         <Container style={container}>
-
           <Img
               src={`${baseUrl}/images/eight-athletics-black-logo.png`}
               width="103"
@@ -43,8 +42,19 @@ const OrderPlacedTemplate = ({ shipping_address, display_id }) => (
           <Hr style={hr} />
           <Section style={orderSummary}>
             <Text style={summaryHeader}>Order Summary:</Text>
-            {/* You can add more details about the order here */}
             <Text style={paragraph}>Order Number: {display_id}</Text>
+            <Text style={paragraph}>Shipping Address:</Text>
+            <Text style={paragraph}>
+              {shipping_address.address_1}, {shipping_address.address_2} {shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}
+            </Text>
+            {items.map((item, index) => (
+                <Text key={index} style={paragraph}>
+                  Item: {item.title} (Quantity: {item.quantity}) - Price: {item.unit_price / 100} {total.currency_code}
+                </Text>
+            ))}
+            <Text style={paragraph}>
+              Total: {total.total / 100} {total.currency_code}
+            </Text>
           </Section>
           <Button pX={12} pY={12} style={button} href="https://www.eightathletics.com">
             Visit our website
