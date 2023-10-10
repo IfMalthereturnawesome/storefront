@@ -87,13 +87,14 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                           {item.title}
                         </Text>
                         <Text style={{...paragraph, color: '#7F7F7F'}}>
-                          {item.size} / {item.color}
+                          {item.description}
                         </Text>
                       </Column>
                       <Column>
                         <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
-                          {(item.unit_price + ( item.tax_total / item.quantity))}  {region.currency_code}
+                          {((item.unit_price + ( item.tax_total / item.quantity)) / 100)}  {region.currency_code}
                         </Text>
+
                       </Column>
                       <Column>
                         <Text style={{...paragraph, color: '#7F7F7F'}}>

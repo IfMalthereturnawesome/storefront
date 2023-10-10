@@ -97,12 +97,12 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         color: '#7F7F7F'
       })
-    }, item.size, " / ", item.color)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    }, item.description)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         color: '#7F7F7F',
         textDecoration: 'uppercase'
       })
-    }, item.unit_price + item.tax_total / item.quantity, "  ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    }, (item.unit_price + item.tax_total / item.quantity) / 100, "  ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         color: '#7F7F7F'
       })
