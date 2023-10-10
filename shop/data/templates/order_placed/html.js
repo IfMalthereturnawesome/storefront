@@ -22,7 +22,8 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     total = _ref.total,
     subtotal = _ref.subtotal,
     shipping_total = _ref.shipping_total,
-    tax_total = _ref.tax_total;
+    tax_total = _ref.tax_total,
+    shipping_methods = _ref.shipping_methods;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white"
@@ -60,7 +61,13 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: _objectSpread(_objectSpread({}, global.text), {}, {
       fontSize: 14
     })
-  }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code)), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), /*#__PURE__*/React.createElement(_components.Text, {
+    style: adressTitle
+  }, "Shipping Method:", shipping_methods.shipping_option.name), /*#__PURE__*/React.createElement(_components.Text, {
+    style: _objectSpread(_objectSpread({}, global.text), {}, {
+      fontSize: 14
+    })
+  }, shipping_address.metadata.selectedServicePoint.name)), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
@@ -89,9 +96,10 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       })
     }, item.size, " / ", item.color)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
-        color: '#7F7F7F'
+        color: '#7F7F7F',
+        textDecoration: 'uppercase'
       })
-    }, item.unit_price / 100, " ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    }, "(", item.unit_price / 100, " + ", item.tax_total, ") ", region.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         color: '#7F7F7F'
       })
@@ -118,7 +126,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       textAlign: 'right',
       marginRight: '10px'
     })
-  }, subtotal, " ", region.currency_code))), /*#__PURE__*/React.createElement(_components.Row, {
+  }, subtotal))), /*#__PURE__*/React.createElement(_components.Row, {
     style: {
       justifyContent: 'space-between',
       marginTop: '10px'
@@ -133,7 +141,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       textAlign: 'right',
       marginRight: '10px'
     })
-  }, shipping_total, " ", region.currency_code))), /*#__PURE__*/React.createElement(_components.Row, {
+  }, shipping_total))), /*#__PURE__*/React.createElement(_components.Row, {
     style: {
       justifyContent: 'space-between',
       marginTop: '10px'
@@ -148,7 +156,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       textAlign: 'right',
       marginRight: '10px'
     })
-  }, tax_total, " ", region.currency_code))), /*#__PURE__*/React.createElement(_components.Row, {
+  }, tax_total))), /*#__PURE__*/React.createElement(_components.Row, {
     style: {
       justifyContent: 'space-between',
       marginTop: '10px'
@@ -164,7 +172,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       textAlign: 'right',
       marginRight: '10px'
     })
-  }, total, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, total)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY

@@ -20,7 +20,7 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, total, subtotal, shipping_total, tax_total }) => {
+const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, total, subtotal, shipping_total, tax_total, shipping_methods }) => {
 
   return (
       <Html>
@@ -59,6 +59,13 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                 <Text style={{...global.text, fontSize: 14}}>
                   {shipping_address.address_1}, {shipping_address.address_2} {shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}
                 </Text>
+                <Text style={adressTitle}>
+                  Shipping Method:
+                  {shipping_methods.shipping_option.name}
+                </Text>
+                <Text style={{...global.text, fontSize: 14}}>
+                  {shipping_address.metadata.selectedServicePoint.name}
+                </Text>
               </Section>
               <Hr style={global.hr}/>
               <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}}>
@@ -77,8 +84,8 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                         </Text>
                       </Column>
                       <Column>
-                        <Text style={{...paragraph, color: '#7F7F7F'}}>
-                          {item.unit_price / 100} {region.currency_code}
+                        <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
+                          ({item.unit_price / 100} + {item.tax_total}) {region.currency_code}
                         </Text>
                       </Column>
                       <Column>
@@ -102,7 +109,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   </Column>
                   <Column>
                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                      {subtotal} {region.currency_code}
+                      {subtotal}
                     </Text>
                   </Column>
                 </Row>
@@ -112,7 +119,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   </Column>
                   <Column>
                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                      {shipping_total} {region.currency_code}
+                      {shipping_total}
                     </Text>
                   </Column>
                 </Row>
@@ -122,7 +129,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   </Column>
                   <Column>
                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                      {tax_total} {region.currency_code}
+                      {tax_total}
                     </Text>
                   </Column>
                 </Row>
@@ -133,7 +140,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   <Column>
                     <Text
                         style={{...paragraph, fontWeight: 'bold', textAlign: 'right', marginRight: '10px'}}>
-                      {total} {region.currency_code}
+                      {total}
                     </Text>
                   </Column>
                 </Row>
