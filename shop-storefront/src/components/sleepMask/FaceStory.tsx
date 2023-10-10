@@ -66,18 +66,11 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                         canvas.width = img.width;
                         canvas.height = img.height;
 
-                        // Translate to the right edge of the image, then scale negatively to flip
-                        context?.translate(canvas.width, 0);
-                        context?.scale(-1, 1);
-
                         context?.clearRect(0, 0, canvas.width, canvas.height);
                         context?.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                        // Reset transformations
-                        context?.setTransform(1, 0, 0, 1, 0, 0);
                     }
                 };
-
 
                 //  get current scale of the canvas
                 const scale = gsap.getProperty(canvasRefImage.current, "scale");
@@ -89,7 +82,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                         ease: "none",
                         scrollTrigger: {
                             trigger: ".pinFaceStory",
-                            start: "top top",
+                            start: "center center",
                             end: "+=100%",
                             scrub: true,
 
@@ -155,10 +148,10 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
     }, [])
 
     return (
-        <div ref={faceStoryRef} className="flex pinFaceStory bg-purple-1">
+        <div ref={faceStoryRef} className="flex pinFaceStory bg-[#130612]">
             {/* Image Sequence to the left */}
             <div className="w-[49vw] ml-2 h-screen ">
-                <canvas ref={canvasRefImage} className="w-[98%] h-full "/>
+                <canvas ref={canvasRefImage} className="w-full h-full "/>
             </div>
             {/* Text to the right of the center */}
             <div className="w-[49vw] flex flex-col justify-center pl-8 -mt-[3rem] ">
