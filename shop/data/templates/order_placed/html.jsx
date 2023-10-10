@@ -17,10 +17,12 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderPlacedTemplate = ({ shipping_address, display_id, items, paid_total, region }) => (
+const OrderPlacedTemplate = ({ shipping_address, display_id, items, region }) => {
+  // Calculate the total price
+  const paid_total = items.reduce((acc, item) => acc + item.unit_price, 0);
 
 
-
+  return (
     <Html>
       <Head>
         <title>Order Received</title>
@@ -76,7 +78,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, paid_total, 
             <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
               <Column style={{ width: '170px' }}>
                 <Text style={global.paragraphWithBold}>Total</Text>
-                <Text style={track.number}>{items.paid_total / 100} {region.currency_code}</Text>
+                <Text style={track.number}>{paid_total / 100} {region.currency_code}</Text>
               </Column>
             </Row>
           </Section>
@@ -116,9 +118,12 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, paid_total, 
         </Container>
       </Body>
     </Html>
-);
+  );
+
+};
 
 export default OrderPlacedTemplate;
+
 
 const paddingX = {
   paddingLeft: '40px',
@@ -149,6 +154,7 @@ const global = {
     fontWeight: '700',
     textAlign: 'center',
     letterSpacing: '-1px',
+    color: '#000',
   },
   text: {
     ...paragraph,

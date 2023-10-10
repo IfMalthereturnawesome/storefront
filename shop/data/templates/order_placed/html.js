@@ -18,8 +18,11 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
   var shipping_address = _ref.shipping_address,
     display_id = _ref.display_id,
     items = _ref.items,
-    paid_total = _ref.paid_total,
     region = _ref.region;
+  // Calculate the total price
+  var paid_total = items.reduce(function (acc, item) {
+    return acc + item.unit_price;
+  }, 0);
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null, /*#__PURE__*/React.createElement("title", null, "Order Received")), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main
   }, /*#__PURE__*/React.createElement(_components.Container, {
@@ -88,7 +91,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Total"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, items.paid_total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, paid_total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
@@ -160,7 +163,8 @@ var global = {
     lineHeight: '1.3',
     fontWeight: '700',
     textAlign: 'center',
-    letterSpacing: '-1px'
+    letterSpacing: '-1px',
+    color: '#000'
   },
   text: _objectSpread(_objectSpread({}, paragraph), {}, {
     color: '#747474',
