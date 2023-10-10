@@ -14,7 +14,7 @@ import {
     Section,
     Text,
 } from '@react-email/components';
-
+import {Tailwind} from '@react-email/components';
 const baseUrl = 'https://www.eightathletics.com';
 
 interface OrderPlacedTemplateProps {
@@ -65,9 +65,10 @@ const OrderPlacedTemplate = ({
 
     return (
         <Html>
+            <Tailwind>
             <Head/>
             <Preview>Thank you for your order {shipping_address.first_name} {shipping_address.last_name}</Preview>
-            <Body style={main}>
+            <Body style={main} className={"bg-white"}>
                 <Container style={container}>
                     <Section style={track.container}>
                         <Row>
@@ -126,7 +127,7 @@ const OrderPlacedTemplate = ({
                     </Section>
                     <Hr style={global.hr}/>
                     <Section style={paddingY}>
-                        <Link style={global.button} href="https://www.eightathletics.com">
+                        <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
                             Visit our website
                         </Link>
                     </Section>
@@ -159,6 +160,7 @@ const OrderPlacedTemplate = ({
                     </Section>
                 </Container>
             </Body>
+            </Tailwind>
         </Html>
     );
 

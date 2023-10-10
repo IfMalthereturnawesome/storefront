@@ -15,18 +15,22 @@ import {
   Section,
   Text,
 } from '@react-email/components';
+import {Tailwind} from '@react-email/components';
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, order }) => {
+const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, paid_total, total }) => {
   // Calculate the total price
-  const paid_total = items.reduce((acc, item) => acc + item.unit_price + item.tax_total, 0);
+   const totalPrice = items.reduce((acc, item) => {
+    return acc + item.quantity * item.unit_price + item.tax_total;
+   } , 0);
 
   return (
     <Html>
+    <Tailwind>
       <Head/>
       <Preview>Thank you for your order {shipping_address.first_name} {shipping_address.last_name}</Preview>
-      <Body style={main}>
+      <Body style={main} className={"bg-cyan-1"}>
         <Container style={container}>
           <Section style={track.container}>
             <Row>
@@ -76,7 +80,9 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, orde
             <Row style={{ display: 'inline-flex', marginBottom: 40 }}>
               <Column style={{ width: '170px' }}>
                 <Text style={global.paragraphWithBold}>Total</Text>
-                <Text style={track.number}>{paid_total / 100} {region.currency_code}</Text>
+                <Text style={track.number}>{totalPrice / 100} {region.currency_code}</Text>
+                <Text style={track.number}>{paid_total} {region.currency_code}</Text>
+                <Text style={track.number}>{total} {region.currency_code}</Text>
               </Column>
             </Row>
           </Section>
@@ -115,6 +121,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, orde
           </Section>
         </Container>
       </Body>
+    </Tailwind>
     </Html>
   );
 

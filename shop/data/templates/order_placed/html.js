@@ -19,13 +19,15 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     display_id = _ref.display_id,
     items = _ref.items,
     region = _ref.region,
-    order = _ref.order;
+    paid_total = _ref.paid_total,
+    total = _ref.total;
   // Calculate the total price
-  var paid_total = items.reduce(function (acc, item) {
-    return acc + item.unit_price + item.tax_total;
+  var totalPrice = items.reduce(function (acc, item) {
+    return acc + item.quantity * item.unit_price + item.tax_total;
   }, 0);
-  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
-    style: main
+  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
+    style: main,
+    className: "bg-cyan-1"
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
@@ -92,7 +94,11 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Total"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, paid_total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, totalPrice / 100, " ", region.currency_code), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, paid_total, " ", region.currency_code), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, total, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
@@ -137,7 +143,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: paddingY
   }, /*#__PURE__*/React.createElement(_components.Text, {
     style: footer.text
-  }, "Eight Athletics | Sofiegade 5, Copenhagen K, Denmark")))));
+  }, "Eight Athletics | Sofiegade 5, Copenhagen K, Denmark"))))));
 };
 var _default = exports["default"] = OrderPlacedTemplate;
 var paddingX = {
