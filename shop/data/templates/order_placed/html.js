@@ -15,7 +15,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var baseUrl = 'https://www.eightathletics.com';
 var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
-  var _shipping_address$met, _shipping_methods$shi;
+  var _shipping_address$met;
   var shipping_address = _ref.shipping_address,
     display_id = _ref.display_id,
     items = _ref.items,
@@ -26,7 +26,6 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     tax_total = _ref.tax_total,
     shipping_methods = _ref.shipping_methods;
   var serviceName = (_shipping_address$met = shipping_address.metadata) === null || _shipping_address$met === void 0 || (_shipping_address$met = _shipping_address$met.selectedServicePoint) === null || _shipping_address$met === void 0 ? void 0 : _shipping_address$met.name;
-  var shippingMethodName = shipping_methods === null || shipping_methods === void 0 || (_shipping_methods$shi = shipping_methods.shipping_option) === null || _shipping_methods$shi === void 0 ? void 0 : _shipping_methods$shi.name;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white"
@@ -64,11 +63,14 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: _objectSpread(_objectSpread({}, global.text), {}, {
       fontSize: 14
     })
-  }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), /*#__PURE__*/React.createElement(_components.Text, {
+  }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), shipping_methods.map(function (method, index) {
+    return /*#__PURE__*/React.createElement(_components.Text, {
+      style: adressTitle,
+      key: index
+    }, "Shipping Method:", method.shipping_option.name);
+  }), /*#__PURE__*/React.createElement(_components.Text, {
     style: adressTitle
-  }, "Shipping Method:", shippingMethodName), /*#__PURE__*/React.createElement(_components.Text, {
-    style: adressTitle
-  }, "Shipping Method:", serviceName)), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Service Point:", serviceName)), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
