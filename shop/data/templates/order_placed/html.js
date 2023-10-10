@@ -88,7 +88,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Total"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, paid_total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, items.total / 100, " ", region.currency_code)))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
@@ -200,7 +200,8 @@ var track = {
     margin: '12px 0 0 0',
     fontWeight: 500,
     lineHeight: '1.4',
-    color: '#6F6F6F'
+    color: '#6F6F6F',
+    textTransform: 'uppercase'
   }
 };
 var message = {
