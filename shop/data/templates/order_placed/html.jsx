@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderPlacedTemplate from '@email/emails/order-placed.tsx';
+import OrderPlacedTemplate from '/../react-email-starter/emails/order-placed';
 
 const OrderPlacedEmail = ({ customerName, orderNumber }) => (
 
