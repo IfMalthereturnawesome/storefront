@@ -6,9 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
+var _renderEmail = require("shop-storefront/src/emails/renderEmail.js");
 var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
   var customerName = _ref.customerName,
     orderNumber = _ref.orderNumber;
-  return /*#__PURE__*/_react["default"].createElement("table", null, /*#__PURE__*/_react["default"].createElement("tbody", null, /*#__PURE__*/_react["default"].createElement("tr", null, /*#__PURE__*/_react["default"].createElement("td", null, /*#__PURE__*/_react["default"].createElement("h1", null, "Thank you for your order, ", customerName, "!"), /*#__PURE__*/_react["default"].createElement("p", null, "Your order number is: ", orderNumber), /*#__PURE__*/_react["default"].createElement("p", null, "We'll notify you once it's shipped.")))));
+  return (0, _renderEmail.getWelcomeEmailHtml)(customerName);
 };
 var _default = exports["default"] = OrderPlacedTemplate;

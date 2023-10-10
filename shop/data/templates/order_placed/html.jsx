@@ -1,17 +1,8 @@
 import React from 'react';
+import { getWelcomeEmailHtml } from 'shop-storefront/src/emails/renderEmail.js';
 
 const OrderPlacedTemplate = ({ customerName, orderNumber }) => (
-    <table>
-      <tbody>
-      <tr>
-        <td>
-          <h1>Thank you for your order, {customerName}!</h1>
-          <p>Your order number is: {orderNumber}</p>
-          <p>We'll notify you once it's shipped.</p>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    getWelcomeEmailHtml(customerName)
 );
 
 export default OrderPlacedTemplate;

@@ -38,11 +38,11 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 canvas.width = 960;
                 canvas.height = 640;
 
-                const frameCount = 45;
+                const frameCount = 25;
                 const currentFrame = (index: number) =>
-                    `/images/sequence/sleepmask_${(index + 100)
+                    `/images/facestory/facestory_${(index)
                         .toString()
-                        .padStart(1, "0")}.png`;
+                        .padStart(1, "1")}.png`;
 
 
                 const images: any[] = [];
@@ -58,19 +58,26 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
 
                 const render = () => {
-                    const canvas = canvasRefImage.current;
-
                     if (canvas) {
                         const context = canvas.getContext("2d");
-                        if (sleepMask.frame === frameCount - 1) {
-                            // Stick to the last frame
-                            context?.drawImage(images[frameCount - 1], 0, 0);
-                        } else {
-                            context?.drawImage(images[sleepMask.frame], 0, 0);
+                        const img = images[sleepMask.frame];
 
-                        }
+                        // Set canvas size to image size
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+
+                        // Translate to the right edge of the image, then scale negatively to flip
+                        context?.translate(canvas.width, 0);
+                        context?.scale(-1, 1);
+
+                        context?.clearRect(0, 0, canvas.width, canvas.height);
+                        context?.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        // Reset transformations
+                        context?.setTransform(1, 0, 0, 1, 0, 0);
                     }
-                }
+                };
+
 
                 //  get current scale of the canvas
                 const scale = gsap.getProperty(canvasRefImage.current, "scale");
@@ -151,7 +158,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
         <div ref={faceStoryRef} className="flex pinFaceStory bg-purple-1">
             {/* Image Sequence to the left */}
             <div className="w-[49vw] ml-2 h-screen ">
-                <canvas ref={canvasRefImage} className="w-[98%] h-full"/>
+                <canvas ref={canvasRefImage} className="w-[98%] h-full "/>
             </div>
             {/* Text to the right of the center */}
             <div className="w-[49vw] flex flex-col justify-center pl-8 -mt-[3rem] ">

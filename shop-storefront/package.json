@@ -40,6 +40,7 @@
     "@react-email/button": "0.0.10",
     "@react-email/components": "^0.0.7",
     "@react-email/html": "0.0.4",
+    "@react-email/render": "0.0.7",
     "@stripe/react-stripe-js": "^1.7.2",
     "@stripe/stripe-js": "^1.29.0",
     "@studio-freight/lenis": "^1.0.19",

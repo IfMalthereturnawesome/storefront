@@ -61,18 +61,18 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
 
 
-                <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
-                <ProductChoiceBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
-                <ProductChoiceBlueSecond product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
-                <ProductChoiceBlackGray product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
-                <ProductChoiceBlackBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />
+                {/*<ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
+                {/*<ProductChoiceBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
+                {/*<ProductChoiceBlueSecond product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
+                {/*<ProductChoiceBlackGray product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
+                {/*<ProductChoiceBlackBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
 
 
 
-            {/*<FaceStory*/}
-            {/*    headline="Every face tells a story."*/}
-            {/*    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."*/}
-            {/*/>*/}
+            <FaceStory
+                headline="Every face tells a story."
+                description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+            />
 
 
         </>
