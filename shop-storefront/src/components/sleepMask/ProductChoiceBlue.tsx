@@ -14,7 +14,7 @@ interface ProductChoiceProps {
     currentProductTitle: string; // Title of the current product
 }
 
-const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, currentProductTitle}) => {
+const ProductChoiceBlue: React.FC<ProductChoiceProps> = ({product1, product2, currentProductTitle}) => {
 
     let products = [product1, product2];
 
@@ -134,7 +134,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                         </div>
                     </header>
                 </div>
-                <div className="rounded-[2.5rem] bg-black shadow shadow-amberA-10 dark:shadow-amberA-12">
+                <div className="rounded-[2.5rem] bg-cyan-1 shadow shadow-amberA-10 dark:shadow-amberA-12">
                     <div className="text-center">
                         <div
                             className="mx-auto max-w-[98vw] md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[40vw]">
@@ -178,4 +178,4 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     );
 
 }
-export default ProductChoice;
+export default ProductChoiceBlue;

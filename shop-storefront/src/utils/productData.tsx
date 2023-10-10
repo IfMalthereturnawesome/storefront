@@ -27,7 +27,7 @@ import TotalDarknessIcon from "@modules/common/icons/total-darkness-icon";
 export const SleepMaskOneData: ProductData = {
     title: "Sleep Mask One",
     productId: "prod_01HAJJPFSZ3YCV83DF5WBR52B1",  // New field for the product ID
-    imageSrc: "/images/sequence/sleepmask_144.png",
+    imageSrc: "/images/product/sleepmask_transparent.png",
     imageArray: [
         "/images/sequence/sleepmask_141.png",
         "/images/sequence/sleepmask_142.png",
@@ -59,7 +59,7 @@ export const SleepMaskOneData: ProductData = {
 export const SleepMaskCustomData: ProductData = {
     title: "Sleep Mask One Custom",
     productId: 'prod_01HAJJPFSZ3YCV83DF5WBR52B1',
-    imageSrc: "/images/sequence/sleepmask_144.png",
+    imageSrc: "/images/product/sleepmask_transparent.png",
     imageArray: [
         "/images/sequence/sleepmask_141.png",
         "/images/sequence/sleepmask_142.png",

@@ -14,7 +14,7 @@ interface ProductChoiceProps {
     currentProductTitle: string; // Title of the current product
 }
 
-const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, currentProductTitle}) => {
+const ProductChoiceBlueSecond: React.FC<ProductChoiceProps> = ({product1, product2, currentProductTitle}) => {
 
     let products = [product1, product2];
 
@@ -119,8 +119,8 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
     return (
-        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100"
-                 style={{background: 'linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919)'}}>
+        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 bg-cyan-1"
+                 >
             <div className="grain">
                 <div className="grain-texture"></div>
             </div>
@@ -134,7 +134,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                         </div>
                     </header>
                 </div>
-                <div className="rounded-[2.5rem] bg-black shadow shadow-amberA-10 dark:shadow-amberA-12">
+                <div className="rounded-[2.5rem] shadow shadow-amberA-10 dark:shadow-amberA-12" style={{background: 'linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919)'}}>
                     <div className="text-center">
                         <div
                             className="mx-auto max-w-[98vw] md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[40vw]">
@@ -178,4 +178,4 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     );
 
 }
-export default ProductChoice;
+export default ProductChoiceBlueSecond;
