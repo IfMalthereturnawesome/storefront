@@ -17,13 +17,13 @@ const baseUrl = process.env.VERCEL_URL
     : '';
 
 
-const OrderPlacedTemplate = ({ customerName, orderNumber }) => (
+const OrderPlacedTemplate = ({ customer, display_id }) => (
     <Html>
       <Head>
         <title>Order Received</title>
       </Head>
       <Preview>
-        We have received your order: {orderNumber}.
+        Thank you for your order {customer.first_name} {customer.last_name}
       </Preview>
       <Body style={main}>
         <Container style={container}>
@@ -36,15 +36,15 @@ const OrderPlacedTemplate = ({ customerName, orderNumber }) => (
               style={logo}
           />
           <Text style={header}>Order Confirmation</Text>
-          <Text style={paragraph}>Hi {customerName},</Text>
+          <Text style={paragraph}>Hi {customer.first_name} {customer.last_name},</Text>
           <Text style={paragraph}>
-            Thank you for your order! We've received your order #{orderNumber} and will begin processing it shortly.
+            Thank you for your order! We've received your order #{display_id} and will begin processing it shortly.
           </Text>
           <Hr style={hr} />
           <Section style={orderSummary}>
             <Text style={summaryHeader}>Order Summary:</Text>
             {/* You can add more details about the order here */}
-            <Text style={paragraph}>Order Number: {orderNumber}</Text>
+            <Text style={paragraph}>Order Number: {display_id}</Text>
           </Section>
           <Button pX={12} pY={12} style={button} href="https://www.eightathletics.com">
             Visit our website

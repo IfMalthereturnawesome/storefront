@@ -72,10 +72,6 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                     }
                 };
 
-                //  get current scale of the canvas
-                const scale = gsap.getProperty(canvasRefImage.current, "scale");
-
-
                 gsap.to(sleepMask, {
                         frame: frameCount - 1,
                         snap: "frame",
@@ -94,7 +90,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
                 // Fade in the mask
                 gsap.from(canvasRefImage.current, {
-                    duration: 2, // Duration in seconds
+                    duration: 1, // Duration in seconds
                     opacity: 0,
                     ease: "power2.out",
 
@@ -103,10 +99,10 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
                 // fade in the mask from 0 to 1
                 gsap.to(canvasRefImage.current, {
-                    duration: 3, // Duration in seconds
+                    duration: 10, // Duration in seconds
                     opacity: 1,
                     ease: "power2.out",
-                    delay: 1,
+
                 });
 
 

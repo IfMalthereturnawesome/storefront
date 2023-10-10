@@ -11,9 +11,9 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var baseUrl = process.env.VERCEL_URL ? "https://".concat(process.env.VERCEL_URL) : '';
 var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
-  var customerName = _ref.customerName,
-    orderNumber = _ref.orderNumber;
-  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null, /*#__PURE__*/React.createElement("title", null, "Order Received")), /*#__PURE__*/React.createElement(_components.Preview, null, "We have received your order: ", orderNumber, "."), /*#__PURE__*/React.createElement(_components.Body, {
+  var customer = _ref.customer,
+    display_id = _ref.display_id;
+  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Head, null, /*#__PURE__*/React.createElement("title", null, "Order Received")), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", customer.first_name, " ", customer.last_name), /*#__PURE__*/React.createElement(_components.Body, {
     style: main
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
@@ -27,9 +27,9 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: header
   }, "Order Confirmation"), /*#__PURE__*/React.createElement(_components.Text, {
     style: paragraph
-  }, "Hi ", customerName, ","), /*#__PURE__*/React.createElement(_components.Text, {
+  }, "Hi ", customer.first_name, " ", customer.last_name, ","), /*#__PURE__*/React.createElement(_components.Text, {
     style: paragraph
-  }, "Thank you for your order! We've received your order #", orderNumber, " and will begin processing it shortly."), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Thank you for your order! We've received your order #", display_id, " and will begin processing it shortly."), /*#__PURE__*/React.createElement(_components.Hr, {
     style: hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: orderSummary
@@ -37,7 +37,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: summaryHeader
   }, "Order Summary:"), /*#__PURE__*/React.createElement(_components.Text, {
     style: paragraph
-  }, "Order Number: ", orderNumber)), /*#__PURE__*/React.createElement(_components.Button, {
+  }, "Order Number: ", display_id)), /*#__PURE__*/React.createElement(_components.Button, {
     pX: 12,
     pY: 12,
     style: button,
