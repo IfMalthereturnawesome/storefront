@@ -92,7 +92,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                       </Column>
                       <Column>
                         <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
-                          ({item.unit_price / 100} + {item.tax_total}) {region.currency_code}
+                          {(item.unit_price + item.quantity) / 100}  {region.currency_code}
                         </Text>
                       </Column>
                       <Column>
