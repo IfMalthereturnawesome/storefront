@@ -20,7 +20,7 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderShippedTemplate = ({ shipping_address, display_id, items, total, tracking_number,shipping_methods }) => {
+const OrderShippedTemplate = ({ shipping_address, display_id, items, tracking_number,shipping_methods }) => {
   const trackingLink = `${baseUrl}/track-order?package_number=${tracking_number}`;
   const serviceName = shipping_address.metadata?.selectedServicePoint?.name;
   return (
@@ -53,12 +53,37 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, total, trac
         >
           <Head />
           <Preview>
-            Your tracking number is {tracking_number} for order {display_id} with {items[0].name}
+            Your tracking number is {tracking_number} for order {display_id} with {items[0].title}
             {items.length > 1 ? ' and more' : ''}
           </Preview>
 
           <Body style={main} className={"bg-white text-mask-black "}>
             <Container style={container}>
+              <Section style={track.container}>
+                <Row>
+                  <Column>
+                    <Text style={global.paragraphWithBold}>Order Number</Text>
+                    <Text style={track.number}>{display_id}</Text>
+                    <Text className={"text-sm "}>Your order has been shipped!</Text>
+                  </Column>
+                </Row>
+              </Section>
+              <Hr style={global.hr}/>
+              <Section style={message}>
+                <Img
+                    src={`${baseUrl}/images/eight-athletics-black-logo.png`}
+                    width="103"
+                    height="28"
+                    alt="Eight Athletics Logo"
+                    style={{margin: 'auto'}}
+                />
+                <Heading style={global.heading}>Shipping Confirmation</Heading>
+                <Text style={global.text}>
+                  Hi {shipping_address.first_name} {shipping_address.last_name}, <br></br>
+                  Your order #{display_id} is on its way. You can track the progress of your package using the tracking number provided below.
+                </Text>
+              </Section>
+              <Hr style={global.hr}/>
 
               {/* Shipping Details */}
               <Section className="px-10 py-6 mx-auto w-full">
@@ -93,8 +118,15 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, total, trac
                 {/* Tracking Details */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
                 <Text className="m-0 leading-6 text-sm mb-3">{tracking_number}</Text>
+                <Text className="m-0 leading-6  text-sm mb-1">
+                  Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
+                  {baseUrl}/track-order?package_number={tracking_number}
+                </Link> to track your order.
+                </Text>
+
+
                 <Link href={trackingLink} style={{ ...global.button, display: 'block', margin: '20px auto' }}>
-                  Track Your Order
+                  Track your order here
                 </Link>
               </Section>
 
@@ -111,7 +143,7 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, total, trac
                 <Text style={menu.title}>Get Help</Text>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href={`${baseUrl}/track-order`} style={menu.text}>
+                    <Link href={trackingLink} style={menu.text}>
                       Shipping Status
                     </Link>
                   </Column>

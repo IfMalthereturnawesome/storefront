@@ -19,7 +19,6 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
   var shipping_address = _ref.shipping_address,
     display_id = _ref.display_id,
     items = _ref.items,
-    total = _ref.total,
     tracking_number = _ref.tracking_number,
     shipping_methods = _ref.shipping_methods;
   var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(tracking_number);
@@ -53,12 +52,38 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", tracking_number, " for order ", display_id, " with ", items[0].name, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", tracking_number, " for order ", display_id, " with ", items[0].title, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white text-mask-black "
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
+    style: track.container
+  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Order Number"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, display_id), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "text-sm "
+  }, "Your order has been shipped!")))), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: message
+  }, /*#__PURE__*/React.createElement(_components.Img, {
+    src: "".concat(baseUrl, "/images/eight-athletics-black-logo.png"),
+    width: "103",
+    height: "28",
+    alt: "Eight Athletics Logo",
+    style: {
+      margin: 'auto'
+    }
+  }), /*#__PURE__*/React.createElement(_components.Heading, {
+    style: global.heading
+  }, "Shipping Confirmation"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.text
+  }, "Hi ", shipping_address.first_name, " ", shipping_address.last_name, ", ", /*#__PURE__*/React.createElement("br", null), "Your order #", display_id, " is on its way. You can track the progress of your package using the tracking number provided below.")), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
     className: "px-10 py-6 mx-auto w-full"
   }, /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 font-bold text-xl mb-2 "
@@ -93,13 +118,21 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     className: "m-0 leading-6 font-bold text-base mb-1"
   }, "Tracking Number:"), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-3"
-  }, tracking_number), /*#__PURE__*/React.createElement(_components.Link, {
+  }, tracking_number), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6  text-sm mb-1"
+  }, "Go to ", /*#__PURE__*/React.createElement(_components.Link, {
+    href: trackingLink,
+    style: _objectSpread(_objectSpread({}, global.text), {}, {
+      display: 'inline-block',
+      textDecoration: 'underline'
+    })
+  }, baseUrl, "/track-order?package_number=", tracking_number), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
     style: _objectSpread(_objectSpread({}, global.button), {}, {
       display: 'block',
       margin: '20px auto'
     })
-  }, "Track Your Order")), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Track your order here")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
@@ -121,7 +154,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     },
     colSpan: 1
   }, /*#__PURE__*/React.createElement(_components.Link, {
-    href: "".concat(baseUrl, "/track-order"),
+    href: trackingLink,
     style: menu.text
   }, "Shipping Status")), /*#__PURE__*/React.createElement(_components.Column, {
     style: {
