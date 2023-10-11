@@ -26,9 +26,38 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     tax_total = _ref.tax_total,
     shipping_methods = _ref.shipping_methods;
   var serviceName = (_shipping_address$met = shipping_address.metadata) === null || _shipping_address$met === void 0 || (_shipping_address$met = _shipping_address$met.selectedServicePoint) === null || _shipping_address$met === void 0 ? void 0 : _shipping_address$met.name;
-  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, null, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Thank you for your order ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Body, {
+  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
+    config: {
+      theme: {
+        screens: {
+          sm: {
+            max: '600px'
+          },
+          xs: {
+            max: '425px'
+          }
+        },
+        extend: {
+          colors: {
+            mask: {
+              black: '#030203'
+            },
+            custom: {
+              white: '#faf7f7'
+            }
+          },
+          spacing: {
+            full: '100%',
+            px: '1px',
+            0: '0',
+            2: '8px'
+          }
+        }
+      }
+    }
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Order Confirmation for Order # ", display_id, " - ", items[0].title, ": ", items[0].description, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
-    className: "bg-white"
+    className: "bg-white text-mask-black "
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
@@ -56,21 +85,37 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
   }, "Hi ", shipping_address.first_name, " ", shipping_address.last_name, ", Thank you for your order! We've received your order #", display_id, " and will begin processing it shortly.")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
-    style: global.defaultPadding
+    className: "px-10 py-6 mx-auto w-full"
   }, /*#__PURE__*/React.createElement(_components.Text, {
-    style: adressTitle
-  }, "Shipping to: ", shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Text, {
-    style: _objectSpread(_objectSpread({}, global.text), {}, {
-      fontSize: 14
-    })
-  }, shipping_address.address_1, ", ", shipping_address.address_2, " ", shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), shipping_methods.map(function (method, index) {
-    return /*#__PURE__*/React.createElement(_components.Text, {
-      style: adressTitle,
-      key: index
-    }, "Shipping Method:", method.shipping_option.name);
-  }), /*#__PURE__*/React.createElement(_components.Text, {
-    style: adressTitle
-  }, serviceName ? "Service Point: ".concat(serviceName) : null)), /*#__PURE__*/React.createElement(_components.Hr, {
+    className: "m-0 leading-6 font-bold text-xl mb-2 "
+  }, "Shipping Details"), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 font-bold text-base mb-1"
+  }, "Recipient:"), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 text-sm mb-3"
+  }, shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 font-bold text-base mb-1"
+  }, "Address:"), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 text-sm mb-1"
+  }, shipping_address.address_1), shipping_address.address_2 && /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 text-sm mb-1"
+  }, shipping_address.address_2), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 text-sm mb-3"
+  }, shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), shipping_methods.map(function (method, index) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: index,
+      className: "mb-3"
+    }, /*#__PURE__*/React.createElement(_components.Text, {
+      className: "m-0 leading-6 font-bold text-base mb-1"
+    }, "Shipping Method:"), /*#__PURE__*/React.createElement(_components.Text, {
+      className: "m-0 leading-6 text-sm"
+    }, method.shipping_option.name));
+  }), serviceName && /*#__PURE__*/React.createElement("div", {
+    className: "mb-3"
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 font-bold text-base mb-1"
+  }, "Service Point:"), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 text-sm"
+  }, serviceName))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
@@ -78,7 +123,8 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       paddingBottom: '10px'
     })
   }, /*#__PURE__*/React.createElement(_components.Text, {
-    style: adressTitle
+    style: adressTitle,
+    className: "text-xl"
   }, "Order Summary"), items.map(function (item, index) {
     return /*#__PURE__*/React.createElement(_components.Row, {
       key: index,
@@ -88,6 +134,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
         paddingBottom: '10px'
       }
     }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      className: "text-[16px]",
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         fontWeight: '500',
         color: '#2C2C2C',
@@ -109,7 +156,8 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     }, "x ", item.quantity)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: {
         textAlign: 'right'
-      }
+      },
+      className: "text-[18px]"
     }, total)));
   }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
@@ -197,7 +245,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     },
     colSpan: 1
   }, /*#__PURE__*/React.createElement(_components.Link, {
-    href: "/",
+    href: "".concat(baseUrl, "/trackorder"),
     style: menu.text
   }, "Shipping Status")), /*#__PURE__*/React.createElement(_components.Column, {
     style: {
@@ -205,7 +253,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     },
     colSpan: 1
   }, /*#__PURE__*/React.createElement(_components.Link, {
-    href: "/",
+    href: "".concat(baseUrl, "/terms/shipping-policy"),
     style: menu.text
   }, "Shipping & Delivery")), /*#__PURE__*/React.createElement(_components.Column, {
     style: {
@@ -213,7 +261,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     },
     colSpan: 1
   }, /*#__PURE__*/React.createElement(_components.Link, {
-    href: "/",
+    href: "".concat(baseUrl, "/terms/returns-policy"),
     style: menu.text
   }, "Returns & Exchanges")))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr

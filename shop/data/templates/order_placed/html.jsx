@@ -24,12 +24,42 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
   const serviceName = shipping_address.metadata?.selectedServicePoint?.name;
 
   return (
-      <Html>
-        <Tailwind>
+      <Html >
+        <Tailwind
+            config={{
+
+              theme: {
+                screens: {
+                  sm: {max: '600px'},
+                  xs: {max: '425px'},
+                },
+                extend: {
+                  colors: {
+                    mask:{
+                      black: '#030203',
+                    },
+                    custom:{
+                      white: '#faf7f7',
+                    },
+                  },
+                  spacing: {
+                    full: '100%',
+                    px: '1px',
+                    0: '0',
+                    2: '8px',
+                  }
+                }
+              },
+            }}
+        >
           <Head/>
-          <Preview>Thank you for your order {shipping_address.first_name} {shipping_address.last_name}</Preview>
-          <Body style={main} className={"bg-white"}>
-            <Container style={container}>
+          <Preview>
+            Order Confirmation for Order # {display_id} - {items[0].title}: {items[0].description}
+            {items.length > 1 ? ' and more' : ''}
+          </Preview>
+
+          <Body style={main} className={"bg-white text-mask-black "}>
+            <Container style={container} >
               <Section style={track.container}>
                 <Row>
                   <Column>
@@ -54,35 +84,50 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                 </Text>
               </Section>
               <Hr style={global.hr}/>
-              <Section style={global.defaultPadding}>
-                <Text style={adressTitle}>Shipping
-                  to: {shipping_address.first_name} {shipping_address.last_name}</Text>
-                <Text style={{...global.text, fontSize: 14}}>
-                  {shipping_address.address_1}, {shipping_address.address_2} {shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}
-                </Text>
+              <Section className="px-10 py-6 mx-auto w-full">
+                <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Shipping Details</Text>
 
+                {/* Recipient Name */}
+                <Text className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.first_name} {shipping_address.last_name}</Text>
+
+                {/* Address */}
+                <Text className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
+                <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_1}</Text>
+                {shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_2}</Text>}
+
+                <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}</Text>
+
+                {/* Shipping Method */}
                 {shipping_methods.map((method, index) => (
-                    <Text style={adressTitle} key={index}>
-                      Shipping Method:
-                      {method.shipping_option.name}
-                    </Text>
+                    <div key={index} className="mb-3">
+                      <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
+                      <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
+                    </div>
                 ))}
 
-                <Text style={adressTitle}>
-                  {serviceName ? `Service Point: ${serviceName}` : null}
-                </Text>
-
-
+                {/* Service Point */}
+                {serviceName && (
+                    <div className="mb-3">
+                      <Text className="m-0 leading-6 font-bold text-base mb-1">Service Point:</Text>
+                      <Text className="m-0 leading-6 text-sm">{serviceName}</Text>
+                    </div>
+                )}
               </Section>
+
+
+
               <Hr style={global.hr}/>
-              <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}}>
-                <Text style={adressTitle}>Order Summary
+              <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}} >
+                <Text style={adressTitle} className={"text-xl"}>Order Summary
                 </Text>
                 {items.map((item, index) => (
                     <Row key={index}
+
                          style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
                       <Column>
                         <Text
+                            className={"text-[16px]"}
                             style={{...paragraph, fontWeight: '500', color: '#2C2C2C', marginBottom: '0px'}}>
                           {item.title}
                         </Text>
@@ -102,7 +147,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                         </Text>
                       </Column>
                       <Column>
-                        <Text style={{textAlign: 'right'}}>
+                        <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
                           {total}
                         </Text>
                       </Column>
@@ -164,17 +209,17 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                 <Text style={menu.title}>Get Help</Text>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href="/" style={menu.text}>
+                    <Link href={`${baseUrl}/trackorder`} style={menu.text}>
                       Shipping Status
                     </Link>
                   </Column>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href="/" style={menu.text}>
+                    <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>
                       Shipping & Delivery
                     </Link>
                   </Column>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href="/" style={menu.text}>
+                    <Link href={`${baseUrl}/terms/returns-policy`} style={menu.text}>
                       Returns & Exchanges
                     </Link>
                   </Column>

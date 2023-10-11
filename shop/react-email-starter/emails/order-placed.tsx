@@ -27,10 +27,15 @@ interface OrderPlacedTemplateProps {
         city?: string;
         postal_code?: string;
         country_code?: string;
+        metadata?: {
+            selectedServicePoint?: {
+                name?: string;
+            };
+        };
     };
     display_id?: string;
     total?: number;
-    subtotal?: number;
+    subtotal_ex_tax?: number;
     shipping_total?: number;
     tax_total?: number;
     items: {
@@ -38,16 +43,17 @@ interface OrderPlacedTemplateProps {
         quantity?: number;
         unit_price?: number;
         tax_total?: number;
-        size?: string;
-        color?: string;
+        description?: string;
     }[];
     region: {
         currency_code?: string;
-        tax?: number;
-        shipping?: number;
-    }
+    };
+    shipping_methods?: {
+        shipping_option: {
+            name?: string;
+        };
+    }[];
 }
-
 const OrderPlacedTemplate = ({
                                  shipping_address = {
                                      first_name: 'John',
@@ -56,31 +62,75 @@ const OrderPlacedTemplate = ({
                                      address_2: 'Apt 4B',
                                      city: 'Springfield',
                                      postal_code: '12345',
-                                     country_code: 'US'
+                                     country_code: 'US',
+                                     metadata: {
+                                         selectedServicePoint: {
+                                             name: 'Default Service Point'
+                                         }
+                                     }
                                  },
                                  display_id = '123456',
-                                 total = 2000,
-                                 subtotal = 1800,
+                                 total = 0,
+                                 subtotal_ex_tax = 0,
                                  shipping_total = 0,
-                                 tax_total = 200,
+                                 tax_total = 0,
                                  items = [
-                                     {title: 'Sleep Maks One', quantity: 2, unit_price: 2000, tax_total: 200, color: 'Black', size: 'M'},
+                                        {
+                                            title: 'Sleep Mask One', description: 'M / Black', quantity: 1, unit_price: 1000, tax_total: 25
+                                        }
                                  ],
                                  region = {
-                                     currency_code: 'USD',
-                                     tax: 200,
-                                     shipping: 0
-                                 }
+                                     currency_code: 'USD'
+                                 },
+                                 shipping_methods = [
+                                        {
+                                            shipping_option: {
+                                                name: 'Dao Service Point'
+                                            }
+                                        }
+                                 ]
                              }: OrderPlacedTemplateProps) => {
+
+    const serviceName = shipping_address.metadata?.selectedServicePoint?.name;
 
 
     return (
-        <Html>
-            <Tailwind>
+        <Html >
+            <Tailwind
+                config={{
+
+                    theme: {
+                        screens: {
+                            sm: {max: '600px'},
+                            xs: {max: '425px'},
+                        },
+                        extend: {
+                            colors: {
+                                mask:{
+                                    black: '#030203',
+                                },
+                                custom:{
+                                    white: '#faf7f7',
+                                },
+                            },
+                            spacing: {
+                                full: '100%',
+                                px: '1px',
+                                0: '0',
+                                2: '8px',
+                            }
+                        }
+                    },
+                }}
+            >
                 <Head/>
-                <Preview>Thank you for your order {shipping_address.first_name} {shipping_address.last_name}</Preview>
-                <Body style={main} className={"bg-white"}>
-                    <Container style={container}>
+                <Preview>
+                    Order Confirmation for Order # {display_id} - {items[0].title}: {items[0].description}
+                    {items.length > 1 ? ' and more' : ''}
+                </Preview>
+
+                <Body style={main} className={"bg-white text-mask-black "}>
+                    <Container style={container} >
                         <Section style={track.container}>
                             <Row>
                                 <Column>
@@ -105,33 +155,62 @@ const OrderPlacedTemplate = ({
                             </Text>
                         </Section>
                         <Hr style={global.hr}/>
-                        <Section style={global.defaultPadding}>
-                            <Text style={adressTitle}>Shipping
-                                to: {shipping_address.first_name} {shipping_address.last_name}</Text>
-                            <Text style={{...global.text, fontSize: 14}}>
-                                {shipping_address.address_1}, {shipping_address.address_2} {shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}
-                            </Text>
+                        <Section className="px-10 py-6 mx-auto w-full">
+                            <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Shipping Details</Text>
+
+                            {/* Recipient Name */}
+                            <Text className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
+                            <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.first_name} {shipping_address.last_name}</Text>
+
+                            {/* Address */}
+                            <Text className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
+                            <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_1}</Text>
+                            {shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_2}</Text>}
+
+                            <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}</Text>
+
+                            {/* Shipping Method */}
+                            {shipping_methods.map((method, index) => (
+                                <div key={index} className="mb-3">
+                                    <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
+                                    <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
+                                </div>
+                            ))}
+
+                            {/* Service Point */}
+                            {serviceName && (
+                                <div className="mb-3">
+                                    <Text className="m-0 leading-6 font-bold text-base mb-1">Service Point:</Text>
+                                    <Text className="m-0 leading-6 text-sm">{serviceName}</Text>
+                                </div>
+                            )}
                         </Section>
+
+
+
                         <Hr style={global.hr}/>
-                        <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}}>
-                            <Text style={adressTitle}>Order Summary
+                        <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}} >
+                            <Text style={adressTitle} className={"text-xl"}>Order Summary
                             </Text>
                             {items.map((item, index) => (
                                 <Row key={index}
+
                                      style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
                                     <Column>
                                         <Text
+                                            className={"text-[16px]"}
                                             style={{...paragraph, fontWeight: '500', color: '#2C2C2C', marginBottom: '0px'}}>
                                             {item.title}
                                         </Text>
                                         <Text style={{...paragraph, color: '#7F7F7F'}}>
-                                            {item.size} / {item.color}
+                                            {item.description}
                                         </Text>
                                     </Column>
                                     <Column>
-                                        <Text style={{...paragraph, color: '#7F7F7F'}}>
-                                            {item.unit_price / 100} {region.currency_code}
+                                        <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
+                                            {((item.unit_price + ( item.tax_total / item.quantity)) / 100)}  {region.currency_code}
                                         </Text>
+
                                     </Column>
                                     <Column>
                                         <Text style={{...paragraph, color: '#7F7F7F'}}>
@@ -139,7 +218,7 @@ const OrderPlacedTemplate = ({
                                         </Text>
                                     </Column>
                                     <Column>
-                                        <Text style={{textAlign: 'right'}}>
+                                        <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
                                             {total}
                                         </Text>
                                     </Column>
@@ -154,7 +233,7 @@ const OrderPlacedTemplate = ({
                                 </Column>
                                 <Column>
                                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                                        {subtotal} {region.currency_code}
+                                        {subtotal_ex_tax}
                                     </Text>
                                 </Column>
                             </Row>
@@ -164,7 +243,7 @@ const OrderPlacedTemplate = ({
                                 </Column>
                                 <Column>
                                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                                        {shipping_total} {region.currency_code}
+                                        {shipping_total}
                                     </Text>
                                 </Column>
                             </Row>
@@ -174,7 +253,7 @@ const OrderPlacedTemplate = ({
                                 </Column>
                                 <Column>
                                     <Text style={{...paragraph, textAlign: 'right', marginRight: '10px'}}>
-                                        {tax_total} {region.currency_code}
+                                        {tax_total}
                                     </Text>
                                 </Column>
                             </Row>
@@ -185,7 +264,7 @@ const OrderPlacedTemplate = ({
                                 <Column>
                                     <Text
                                         style={{...paragraph, fontWeight: 'bold', textAlign: 'right', marginRight: '10px'}}>
-                                        {total} {region.currency_code}
+                                        {total}
                                     </Text>
                                 </Column>
                             </Row>

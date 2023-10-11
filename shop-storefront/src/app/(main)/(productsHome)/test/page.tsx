@@ -55,7 +55,7 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
             {/*<div className="spacer"></div>*/}
 
-            {/*<WrappedComponent />*/}
+            <WrappedComponent />
 
             {/*<MinimalWeight/>*/}
 
