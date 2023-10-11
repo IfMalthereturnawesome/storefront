@@ -20,8 +20,8 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shipping_methods, order }) => {
-  const trackingLink = `${baseUrl}/track-order?package_number=${tracking_number}`;
+const OrderShippedTemplate = ({ order, shipment }) => {
+  const trackingLink = `${baseUrl}/track-order?package_number=${shipment.tracking_number}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
   return (
       <Html>
@@ -53,7 +53,7 @@ const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shippin
         >
           <Head />
           <Preview>
-            Your tracking number is {tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
+            Your tracking number is {shipment.tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
             {order.items.length > 1 ? ' and more' : ''}
           </Preview>
 
@@ -117,10 +117,10 @@ const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shippin
 
                 {/* Tracking Details */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{tracking_number}</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{shipment.tracking_number}</Text>
                 <Text className="m-0 leading-6  text-sm mb-1">
                   Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
-                  {baseUrl}/track-order?package_number={tracking_number}
+                  {baseUrl}/track-order?package_number={shipment.tracking_number}
                 </Link> to track your order.
                 </Text>
 
@@ -163,8 +163,8 @@ const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shippin
                         </Text>
                       </Column>
                       <Column>
-                        <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
-                          {order.total}
+                        <Text style={{textAlign: 'right'}} className={"text-[18px] uppercase"}>
+                          {order.total / 100} {order.currency_code}
                         </Text>
                       </Column>
                     </Row>
