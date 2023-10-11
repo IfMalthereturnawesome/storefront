@@ -18,6 +18,7 @@ import {
 } from '@react-email/components';
 
 
+
 const baseUrl = 'https://www.eightathletics.com';
 
 const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
@@ -118,7 +119,7 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
               </Section>
               <Hr style={global.hr} />
               <Section style={menu.container}>
-                <Text style={menu.title}>Get Help</Text>
+                <Text style={menu.title}>Reach out</Text>
                 <Row style={menu.content}>
                   <Column style={{width: '50%'}} colSpan={1}>
                     <Text style={global.text}>

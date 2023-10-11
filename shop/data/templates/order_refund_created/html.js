@@ -102,7 +102,7 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: menu.container
   }, /*#__PURE__*/React.createElement(_components.Text, {
     style: menu.title
-  }, "Get Help"), /*#__PURE__*/React.createElement(_components.Row, {
+  }, "Reach out"), /*#__PURE__*/React.createElement(_components.Row, {
     style: menu.content
   }, /*#__PURE__*/React.createElement(_components.Column, {
     style: {
