@@ -18,7 +18,6 @@ import {
 } from '@react-email/components';
 
 
-
 const baseUrl = 'https://www.eightathletics.com';
 
 const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
