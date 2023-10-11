@@ -15,10 +15,11 @@ const TopNav = () => {
                     </Link>
                 </li>
                 <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
-                    <Link href="/trackorder"
-                          className="text-xs font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
+
+                    <a href="/track-order" className="text-xs font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
                         Track order
-                    </Link>
+                    </a>
+
                 </li>
                 <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
                     <Link href="/membership"
@@ -52,9 +53,9 @@ export const TopNavMobile = () => {
                 </Link>
             </li>
             <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
-                <Link href="/trackorder" className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
-                        Track order
-                </Link>
+                <a href="/track-order" className="text-xs font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
+                    Track order
+                </a>
             </li>
             <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
                 <Link href="/membership" className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">

@@ -247,7 +247,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     },
     colSpan: 1
   }, /*#__PURE__*/React.createElement(_components.Link, {
-    href: "".concat(baseUrl, "/trackorder"),
+    href: "".concat(baseUrl, "/track-order"),
     style: menu.text
   }, "Shipping Status")), /*#__PURE__*/React.createElement(_components.Column, {
     style: {

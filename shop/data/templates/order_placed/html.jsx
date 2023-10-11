@@ -210,7 +210,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                 <Text style={menu.title}>Get Help</Text>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href={`${baseUrl}/trackorder`} style={menu.text}>
+                    <Link href={`${baseUrl}/track-order`} style={menu.text}>
                       Shipping Status
                     </Link>
                   </Column>
