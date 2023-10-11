@@ -74,7 +74,7 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: global.heading
   }, "Refund Confirmation"), /*#__PURE__*/React.createElement(_components.Text, {
     style: global.text
-  }, order.shipping_address.first_name, ", the refunded amount ", refund_amount, " will be credited to your original payment method within 3-7 business days.")), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "The refunded amount ", refund_amount, " will be credited to your original payment method within 3-7 business days.")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: track.container
