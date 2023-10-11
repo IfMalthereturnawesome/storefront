@@ -81,9 +81,7 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
                 />
                 <Heading style={global.heading}>Refund Confirmation</Heading>
                 <Text style={global.text}>
-                  Hi {order.customer.first_name},
-                  hey {order.shipping_address.first_name},
-                  The refunded amount {refund_amount} will be credited to your original payment method within 3-7 business days.
+                  {order.shipping_address.first_name}, the refunded amount {refund_amount} will be credited to your original payment method within 3-7 business days.
                 </Text>
               </Section>
               <Hr style={global.hr} />
