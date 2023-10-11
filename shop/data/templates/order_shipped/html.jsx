@@ -21,7 +21,7 @@ import {
 const baseUrl = 'https://www.eightathletics.com';
 
 const OrderShippedTemplate = ({ order, shipment }) => {
-  const trackingLink = `${baseUrl}/track-order?package_number=${shipment.tracking_number}`;
+  const trackingLink = `${baseUrl}/track-order?package_number=${order.tracking_number}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
   return (
       <Html>
@@ -53,7 +53,7 @@ const OrderShippedTemplate = ({ order, shipment }) => {
         >
           <Head />
           <Preview>
-            Your tracking number is {shipment.tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
+            Your tracking number is {order.tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
             {order.items.length > 1 ? ' and more' : ''}
           </Preview>
 
@@ -117,10 +117,10 @@ const OrderShippedTemplate = ({ order, shipment }) => {
 
                 {/* Tracking Details */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{shipment.tracking_number}</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{order.tracking_number}</Text>
                 <Text className="m-0 leading-6  text-sm mb-1">
                   Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
-                  {baseUrl}/track-order?package_number={shipment.tracking_number}
+                  {baseUrl}/track-order?package_number={order.tracking_number}
                 </Link> to track your order.
                 </Text>
 
