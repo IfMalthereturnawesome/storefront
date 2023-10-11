@@ -20,9 +20,11 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderShippedTemplate = ({ order, shipment, tracking_links }) => {
+const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_numbers }) => {
   const trackingLink = `${baseUrl}/track-order?package_number=${shipment.tracking_numbers[0]}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
+  console.log("Props:", { order, shipment, tracking_links, tracking_numbers });
+
   return (
       <Html>
         <Tailwind

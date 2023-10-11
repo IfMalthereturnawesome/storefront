@@ -18,9 +18,16 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
   var _order$shipping_addre;
   var order = _ref.order,
     shipment = _ref.shipment,
-    tracking_links = _ref.tracking_links;
+    tracking_links = _ref.tracking_links,
+    tracking_numbers = _ref.tracking_numbers;
   var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(shipment.tracking_numbers[0]);
   var serviceName = (_order$shipping_addre = order.shipping_address) === null || _order$shipping_addre === void 0 || (_order$shipping_addre = _order$shipping_addre.metadata) === null || _order$shipping_addre === void 0 || (_order$shipping_addre = _order$shipping_addre.selectedServicePoint) === null || _order$shipping_addre === void 0 ? void 0 : _order$shipping_addre.name;
+  console.log("Props:", {
+    order: order,
+    shipment: shipment,
+    tracking_links: tracking_links,
+    tracking_numbers: tracking_numbers
+  });
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
     config: {
       theme: {
