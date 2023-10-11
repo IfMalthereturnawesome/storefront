@@ -58,8 +58,8 @@ const OrderRefundCreatedTemplate = ({
         >
           <Head />
           <Preview>
-            Refund Confirmation for Order # {display_id} - {items[0].title}: {items[0].description}
-            {items.length > 1 ? ' and more' : ''}
+            Refund Confirmation for Order # {display_id}
+
           </Preview>
 
           <Body style={main} className={"bg-white text-mask-black "}>

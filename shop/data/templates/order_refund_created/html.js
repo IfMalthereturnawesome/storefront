@@ -52,7 +52,7 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Refund Confirmation for Order # ", display_id, " - ", items[0].title, ": ", items[0].description, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Refund Confirmation for Order # ", display_id), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white text-mask-black "
   }, /*#__PURE__*/React.createElement(_components.Container, {
