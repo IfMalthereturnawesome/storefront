@@ -54,7 +54,7 @@ const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shippin
           <Head />
           <Preview>
             Your tracking number is {tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
-            {items.length > 1 ? ' and more' : ''}
+            {order.items.length > 1 ? ' and more' : ''}
           </Preview>
 
           <Body style={main} className={"bg-white text-mask-black "}>
@@ -133,6 +133,42 @@ const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shippin
 
 
               <Hr style={global.hr}/>
+              {/* order item for the product here*/}
+              <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}} >
+                <Text style={adressTitle} className={"text-xl"}>Order Summary
+                </Text>
+                {order.items.map((item, index) => (
+                    <Row key={index}
+
+                         style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
+                      <Column>
+                        <Text
+                            className={"text-[16px]"}
+                            style={{...paragraph, fontWeight: '500', color: '#2C2C2C', marginBottom: '0px'}}>
+                          {item.title}
+                        </Text>
+                        <Text style={{...paragraph, color: '#7F7F7F'}}>
+                          {item.description}
+                        </Text>
+                      </Column>
+                      <Column>
+                        <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
+                          {((item.unit_price + ( item.tax_total / item.quantity)) / 100)}  {order.currency_code}
+                        </Text>
+
+                      </Column>
+                      <Column>
+                        <Text style={{...paragraph, color: '#7F7F7F'}}>
+                          x {item.quantity}
+                        </Text>
+                      </Column>
+                      <Column>
+                        <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
+                          {order.total}
+                        </Text>
+                      </Column>
+                    </Row>
+                ))}                        </Section>
               <Section style={paddingY}>
                 <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
                   Visit our website

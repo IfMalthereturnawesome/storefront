@@ -52,7 +52,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", tracking_number, " for order ", order.display_id, " with ", order.items[0].title, "  ", order.items[0].description, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", tracking_number, " for order ", order.display_id, " with ", order.items[0].title, "  ", order.items[0].description, order.items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white text-mask-black "
   }, /*#__PURE__*/React.createElement(_components.Container, {
@@ -135,6 +135,48 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
   }, "Track your order here")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: _objectSpread(_objectSpread({}, paddingX), {}, {
+      paddingTop: '40px',
+      paddingBottom: '10px'
+    })
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    style: adressTitle,
+    className: "text-xl"
+  }, "Order Summary"), order.items.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(_components.Row, {
+      key: index,
+      style: {
+        borderBottom: '1px solid #e0e0e0',
+        paddingTop: '10px',
+        paddingBottom: '10px'
+      }
+    }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      className: "text-[16px]",
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        fontWeight: '500',
+        color: '#2C2C2C',
+        marginBottom: '0px'
+      })
+    }, item.title), /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F'
+      })
+    }, item.description)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F',
+        textDecoration: 'uppercase'
+      })
+    }, (item.unit_price + item.tax_total / item.quantity) / 100, "  ", order.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F'
+      })
+    }, "x ", item.quantity)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      style: {
+        textAlign: 'right'
+      },
+      className: "text-[18px]"
+    }, order.total)));
+  }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
   }, /*#__PURE__*/React.createElement(_components.Link, {
     style: global.button,
