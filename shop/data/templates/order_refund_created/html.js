@@ -15,14 +15,9 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var baseUrl = 'https://www.eightathletics.com';
 var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
-  var _ref$items = _ref.items,
-    items = _ref$items === void 0 ? [] : _ref$items,
-    _ref$refund = _ref.refund,
-    refund = _ref$refund === void 0 ? {} : _ref$refund,
-    _ref$display_id = _ref.display_id,
-    display_id = _ref$display_id === void 0 ? '' : _ref$display_id,
-    _ref$total = _ref.total,
-    total = _ref$total === void 0 ? '' : _ref$total;
+  var order = _ref.order,
+    refund = _ref.refund,
+    refund_amount = _ref.refund_amount;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
     config: {
       theme: {
@@ -52,7 +47,7 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Refund Confirmation for Order # ", display_id), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Refund Confirmation for Order # ", order.display_id, " - Refunded Amount: ", refund_amount), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white text-mask-black "
   }, /*#__PURE__*/React.createElement(_components.Container, {
@@ -61,11 +56,17 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: track.container
   }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
     style: global.paragraphWithBold
-  }, "Refund Number"), /*#__PURE__*/React.createElement(_components.Text, {
+  }, "Refund Number:"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
   }, refund.id), /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Order id:"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, order.display_id)))), /*#__PURE__*/React.createElement(_components.Section, {
+    style: paddingY
+  }, /*#__PURE__*/React.createElement(_components.Text, {
     className: "text-sm "
-  }, "Amount refunded: ", refund.amount, " ", refund.reason !== "discount" ? "due to ".concat(refund.reason) : "")))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Amount refunded: ", refund_amount, " (including tax)")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: message
@@ -81,12 +82,7 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: global.heading
   }, "Refund Confirmation"), /*#__PURE__*/React.createElement(_components.Text, {
     style: global.text
-  }, "We regret the inconvenience. We've processed a refund for your order #", display_id, ".", refund.note && " Note: ".concat(refund.note), "  ", total > 0 && "Your new total is ".concat(total)), /*#__PURE__*/React.createElement(_components.Text, {
-    style: global.text
-  }, "If you have any questions, please contact us at", /*#__PURE__*/React.createElement(_components.Link, {
-    href: "mailto:support@eightathletics.com",
-    style: global.text
-  }, "support@eightathletics.com"))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Hi ", order.email, ", We've processed your refund for order #", order.id, ". The refunded amount is ", refund_amount, ".", refund.note && /*#__PURE__*/React.createElement(_components.Text, null, "Note: ", refund.note))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
@@ -94,13 +90,21 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: global.button,
     href: "https://www.eightathletics.com",
     className: "mx-auto"
-  }, "Visit our website")), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Shop Again")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: menu.container
   }, /*#__PURE__*/React.createElement(_components.Text, {
     style: menu.title
   }, "Get Help"), /*#__PURE__*/React.createElement(_components.Row, {
+    style: menu.content
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.text
+  }, "If you have any questions, please contact us at", /*#__PURE__*/React.createElement(_components.Link, {
+    href: "mailto:support@eightathletics.com",
+    style: global.text,
+    className: "text-blue-600"
+  }, "support@eightathletics.com"))), /*#__PURE__*/React.createElement(_components.Row, {
     style: menu.content
   }, /*#__PURE__*/React.createElement(_components.Column, {
     style: {

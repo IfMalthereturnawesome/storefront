@@ -21,12 +21,7 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderRefundCreatedTemplate = ({
-  items = [],
-  refund = {},
-  display_id = '',
-  total = ''
-}) => {
+const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
 
   return (
       <Html>
@@ -58,8 +53,7 @@ const OrderRefundCreatedTemplate = ({
         >
           <Head />
           <Preview>
-            Refund Confirmation for Order # {display_id}
-
+            Refund Confirmation for Order # {order.display_id} - Refunded Amount: {refund_amount}
           </Preview>
 
           <Body style={main} className={"bg-white text-mask-black "}>
@@ -67,13 +61,18 @@ const OrderRefundCreatedTemplate = ({
               <Section style={track.container}>
                 <Row>
                   <Column>
-                    <Text style={global.paragraphWithBold}>Refund Number</Text>
+                    <Text style={global.paragraphWithBold}>Refund Number:</Text>
                     <Text style={track.number}>{refund.id}</Text>
-                    <Text className={"text-sm "}>
-                      Amount refunded: {refund.amount} {refund.reason !== "discount" ? `due to ${refund.reason}` : ""}
-                    </Text>
+                    <Text style={global.paragraphWithBold}>Order id:</Text>
+                    <Text style={track.number}>{order.display_id}</Text>
+
                   </Column>
                 </Row>
+              </Section>
+              <Section style={paddingY}>
+                <Text className={"text-sm "}>
+                  Amount refunded: {refund_amount} (including tax)
+                </Text>
               </Section>
               <Hr style={global.hr} />
               <Section style={message}>
@@ -86,27 +85,29 @@ const OrderRefundCreatedTemplate = ({
                 />
                 <Heading style={global.heading}>Refund Confirmation</Heading>
                 <Text style={global.text}>
-                  We regret the inconvenience. We've processed a refund for your order #{display_id}.
-                  {refund.note && ` Note: ${refund.note}`}  {total > 0 && `Your new total is ${total}`}
+                  Hi {order.email}, We've processed your refund for order #{order.id}.
+                  The refunded amount is {refund_amount}.
+                  {refund.note && <Text>Note: {refund.note}</Text>}
                 </Text>
-                <Text style={global.text}>
-                  If you have any questions, please contact us at
-                  <Link href="mailto:support@eightathletics.com" style={global.text}>
-                    support@eightathletics.com
-                  </Link>
-                </Text>
-
               </Section>
               <Hr style={global.hr} />
 
               <Section style={paddingY}>
                 <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
-                  Visit our website
+                  Shop Again
                 </Link>
               </Section>
               <Hr style={global.hr} />
               <Section style={menu.container}>
                 <Text style={menu.title}>Get Help</Text>
+                <Row style={menu.content}>
+                  <Text style={global.text}>
+                    If you have any questions, please contact us at
+                    <Link href="mailto:support@eightathletics.com" style={global.text} className={"text-blue-600"}>
+                      support@eightathletics.com
+                    </Link>
+                  </Text>
+                </Row>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>
 
