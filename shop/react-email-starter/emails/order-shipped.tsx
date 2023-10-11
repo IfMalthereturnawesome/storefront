@@ -22,190 +22,236 @@ const baseUrl = 'https://www.eightathletics.com';
 
 
 const OrderShippedTemplate = ({
-                                  shipping_address = {
-                                      first_name: "John",
-                                      last_name: "Doe",
-                                      address_1: "123 Main St",
-                                      address_2: "Apt 4B",
-                                      city: "SampleCity",
-                                      postal_code: "12345",
-                                      country_code: "US",
-                                      metadata: {
-                                          selectedServicePoint: {
-                                              name: "Sample Service Point"
+                                  order = {
+                                      shipping_address: {
+                                          first_name: "John",
+                                          last_name: "Doe",
+                                          address_1: "123 Main St",
+                                          address_2: null,
+                                          city: "SampleCity",
+                                          postal_code: "12345",
+                                          country_code: "US",
+                                          metadata: {
+                                              selectedServicePoint: {
+                                                  name: "Sample Service Point"
+                                              }
                                           }
-                                      }
-                                  },
-                                  display_id = "ORD123456",
-                                  items = [
-                                      {
-                                          title: "Sample Product 1",
-                                          description: "This is a sample product description."
                                       },
-                                      {
-                                          title: "Sample Product 2",
-                                          description: "Another sample product description."
-                                      }
-                                  ],
-                                  total = "$100.00",
-                                  tracking_number = "TRACK1234",
-                                  shipping_methods = [
-                                      {
-                                          shipping_option: {
-                                              name: "Standard Delivery"
+                                      display_id: "ORD123456",
+                                      items: [
+                                          {
+                                              title: "Sample Product 1",
+                                              description: "This is a sample product description.",
+                                              unit_price: 1000,
+                                              quantity: 1,
+                                              tax_total: 100
+                                          },
+                                          {
+                                              title: "Sample Product 2",
+                                              description: "Another sample product description.",
+                                              unit_price: 1000,
+                                              quantity: 1,
+                                              tax_total: 100
                                           }
-                                      }
-                                  ]
+                                      ],
+                                      total: "$100.00",
+                                      currency_code: "usd",
+                                      shipping_methods: [
+                                          {
+                                              shipping_option: {
+                                                  name: "Standard Delivery"
+                                              }
+                                          }
+                                      ]
+                                  },
+                                  tracking_number = "TRACK1234"
                               }) => {
     const trackingLink = `${baseUrl}/track-order?package_number=${tracking_number}`;
-    const serviceName = shipping_address.metadata?.selectedServicePoint?.name;
-return (
-    <Html>
-        <Tailwind
-            config={{
-                theme: {
-                    screens: {
-                        sm: { max: '600px' },
-                        xs: { max: '425px' },
-                    },
-                    extend: {
-                        colors: {
-                            mask: {
-                                black: '#030203',
+    const serviceName = order.shipping_address.metadata?.selectedServicePoint?.name;
+
+    return (
+        <Html>
+            <Tailwind
+                config={{
+                    theme: {
+                        screens: {
+                            sm: { max: '600px' },
+                            xs: { max: '425px' },
+                        },
+                        extend: {
+                            colors: {
+                                mask: {
+                                    black: '#030203',
+                                },
+                                custom: {
+                                    white: '#faf7f7',
+                                },
                             },
-                            custom: {
-                                white: '#faf7f7',
+                            spacing: {
+                                full: '100%',
+                                px: '1px',
+                                0: '0',
+                                2: '8px',
                             },
                         },
-                        spacing: {
-                            full: '100%',
-                            px: '1px',
-                            0: '0',
-                            2: '8px',
-                        },
                     },
-                },
-            }}
-        >
-            <Head />
-            <Preview>
-                Your tracking number is {tracking_number} for order {display_id} with {items[0].title}
-                {items.length > 1 ? ' and more' : ''}
-            </Preview>
+                }}
+            >
+                <Head />
+                <Preview>
+                    Your tracking number is {tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
+                    {order.items.length > 1 ? ' and more' : ''}
+                </Preview>
 
-            <Body style={main} className={"bg-white text-mask-black "}>
-                <Container style={container}>
-                    <Section style={track.container}>
-                        <Row>
-                            <Column>
-                                <Text style={global.paragraphWithBold}>Order Number</Text>
-                                <Text style={track.number}>{display_id}</Text>
-                                <Text className={"text-sm "}>Your order has been shipped!</Text>
-                            </Column>
-                        </Row>
-                    </Section>
-                    <Hr style={global.hr}/>
-                    <Section style={message}>
-                        <Img
-                            src={`${baseUrl}/images/eight-athletics-black-logo.png`}
-                            width="103"
-                            height="28"
-                            alt="Eight Athletics Logo"
-                            style={{margin: 'auto'}}
-                        />
-                        <Heading style={global.heading}>Shipping Confirmation</Heading>
-                        <Text style={global.text}>
-                            Hi {shipping_address.first_name} {shipping_address.last_name}, <br></br>
-                            Your order #{display_id} is on its way. You can track the progress of your package using the tracking number provided below.
-                        </Text>
-                    </Section>
-                    <Hr style={global.hr}/>
+                <Body style={main} className={"bg-white text-mask-black "}>
+                    <Container style={container}>
+                        <Section style={track.container}>
+                            <Row>
+                                <Column>
+                                    <Text style={global.paragraphWithBold}>Order Number</Text>
+                                    <Text style={track.number}>{order.display_id}</Text>
+                                    <Text className={"text-sm "}>Your order has been shipped!</Text>
+                                </Column>
+                            </Row>
+                        </Section>
+                        <Hr style={global.hr}/>
+                        <Section style={message}>
+                            <Img
+                                src={`${baseUrl}/images/eight-athletics-black-logo.png`}
+                                width="103"
+                                height="28"
+                                alt="Eight Athletics Logo"
+                                style={{margin: 'auto'}}
+                            />
+                            <Heading style={global.heading}>Shipping Confirmation</Heading>
+                            <Text style={global.text}>
+                                Hi {order.shipping_address.first_name} {order.shipping_address.last_name}, <br></br>
+                                Your order #{order.display_id} is on its way. You can track the progress of your package using the tracking number provided below.
+                            </Text>
+                        </Section>
+                        <Hr style={global.hr}/>
 
-                    {/* Shipping Details */}
-                    <Section className="px-10 py-6 mx-auto w-full">
-                        <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Shipping Details</Text>
+                        {/* Shipping Details */}
+                        <Section className="px-10 py-6 mx-auto w-full">
+                            <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Shipping Details</Text>
 
-                        {/* Recipient Name */}
-                        <Text className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
-                        <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.first_name} {shipping_address.last_name}</Text>
+                            {/* Recipient Name */}
+                            <Text className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
+                            <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.first_name} {order.shipping_address.last_name}</Text>
 
-                        {/* Address */}
-                        <Text className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
-                        <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_1}</Text>
-                        {shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_2}</Text>}
-                        <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}</Text>
+                            {/* Address */}
+                            <Text className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
+                            <Text className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_1}</Text>
+                            {order.shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_2}</Text>}
+                            <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.city}, {order.shipping_address.postal_code} {order.shipping_address.country_code}</Text>
 
-                        {/* Shipping Method */}
-                        {shipping_methods.map((method, index) => (
-                            <div key={index} className="mb-3">
-                                <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
-                                <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
-                            </div>
-                        ))}
+                            {/* Shipping Method */}
+                            {order.shipping_methods.map((method, index) => (
+                                <div key={index} className="mb-3">
+                                    <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
+                                    <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
+                                </div>
+                            ))}
 
-                        {/* Service Point */}
-                        {serviceName && (
-                            <div className="mb-3">
-                                <Text className="m-0 leading-6 font-bold text-base mb-1">Service Point:</Text>
-                                <Text className="m-0 leading-6 text-sm">{serviceName}</Text>
-                            </div>
-                        )}
+                            {/* Service Point */}
+                            {serviceName && (
+                                <div className="mb-3">
+                                    <Text className="m-0 leading-6 font-bold text-base mb-1">Service Point:</Text>
+                                    <Text className="m-0 leading-6 text-sm">{serviceName}</Text>
+                                </div>
+                            )}
 
-                        {/* Tracking Details */}
-                        <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
-                        <Text className="m-0 leading-6 text-sm mb-3">{tracking_number}</Text>
-                        <Text className="m-0 leading-6  text-sm mb-1">
-                            Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
-                            {baseUrl}/track-order?package_number={tracking_number}
-                        </Link> to track your order.
-                        </Text>
-
-
-                        <Link href={trackingLink} style={{ ...global.button, display: 'block', margin: '20px auto' }}>
-                            Track your order here
-                        </Link>
-                    </Section>
+                            {/* Tracking Details */}
+                            <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
+                            <Text className="m-0 leading-6 text-sm mb-3">{tracking_number}</Text>
+                            <Text className="m-0 leading-6  text-sm mb-1">
+                                Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
+                                {baseUrl}/track-order?package_number={tracking_number}
+                            </Link> to track your order.
+                            </Text>
 
 
+                            <Link href={trackingLink} style={{ ...global.button, display: 'block', margin: '20px auto' }}>
+                                Track your order here
+                            </Link>
+                        </Section>
 
-                    <Hr style={global.hr}/>
-                    <Section style={paddingY}>
-                        <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
-                            Visit our website
-                        </Link>
-                    </Section>
-                    <Hr style={global.hr}/>
-                    <Section style={menu.container}>
-                        <Text style={menu.title}>Get Help</Text>
-                        <Row style={menu.content}>
-                            <Column style={{width: '33%'}} colSpan={1}>
-                                <Link href={trackingLink} style={menu.text}>
-                                    Shipping Status
-                                </Link>
-                            </Column>
-                            <Column style={{width: '33%'}} colSpan={1}>
-                                <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>
-                                    Shipping & Delivery
-                                </Link>
-                            </Column>
-                            <Column style={{width: '33%'}} colSpan={1}>
-                                <Link href={`${baseUrl}/terms/returns-policy`} style={menu.text}>
-                                    Returns & Exchanges
-                                </Link>
-                            </Column>
-                        </Row>
-                    </Section>
-                    <Hr style={global.hr}/>
-                    <Section style={paddingY}>
-                        <Text style={footer.text}>
-                            Eight Athletics | Sofiegade 5, Copenhagen K, Denmark
-                        </Text>
-                    </Section>
-                </Container>
-            </Body>
-        </Tailwind>
-    </Html>
-);
+
+
+                        <Hr style={global.hr}/>
+                        {/* order item for the product here*/}
+                        <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}} >
+                            <Text style={adressTitle} className={"text-xl"}>Order Summary
+                            </Text>
+                            {order.items.map((item, index) => (
+                                <Row key={index}
+
+                                     style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
+                                    <Column>
+                                        <Text
+                                            className={"text-[16px]"}
+                                            style={{...paragraph, fontWeight: '500', color: '#2C2C2C', marginBottom: '0px'}}>
+                                            {item.title}
+                                        </Text>
+                                        <Text style={{...paragraph, color: '#7F7F7F'}}>
+                                            {item.description}
+                                        </Text>
+                                    </Column>
+                                    <Column>
+                                        <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
+                                            {((item.unit_price + ( item.tax_total / item.quantity)) / 100)}  {order.currency_code}
+                                        </Text>
+
+                                    </Column>
+                                    <Column>
+                                        <Text style={{...paragraph, color: '#7F7F7F'}}>
+                                            x {item.quantity}
+                                        </Text>
+                                    </Column>
+                                    <Column>
+                                        <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
+                                            {order.total}
+                                        </Text>
+                                    </Column>
+                                </Row>
+                            ))}                        </Section>
+                        <Section style={paddingY}>
+                            <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
+                                Visit our website
+                            </Link>
+                        </Section>
+                        <Hr style={global.hr}/>
+                        <Section style={menu.container}>
+                            <Text style={menu.title}>Get Help</Text>
+                            <Row style={menu.content}>
+                                <Column style={{width: '33%'}} colSpan={1}>
+                                    <Link href={trackingLink} style={menu.text}>
+                                        Shipping Status
+                                    </Link>
+                                </Column>
+                                <Column style={{width: '33%'}} colSpan={1}>
+                                    <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>
+                                        Shipping & Delivery
+                                    </Link>
+                                </Column>
+                                <Column style={{width: '33%'}} colSpan={1}>
+                                    <Link href={`${baseUrl}/terms/returns-policy`} style={menu.text}>
+                                        Returns & Exchanges
+                                    </Link>
+                                </Column>
+                            </Row>
+                        </Section>
+                        <Hr style={global.hr}/>
+                        <Section style={paddingY}>
+                            <Text style={footer.text}>
+                                Eight Athletics | Sofiegade 5, Copenhagen K, Denmark
+                            </Text>
+                        </Section>
+                    </Container>
+                </Body>
+            </Tailwind>
+        </Html>
+    );
 };
 export default OrderShippedTemplate;
 

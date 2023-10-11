@@ -99,7 +99,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     className: "m-0 leading-6 text-sm mb-1"
   }, order.shipping_address.address_2), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-3"
-  }, order.shipping_address.city, ", ", order.shipping_address.postal_code, " ", order.shipping_address.country_code), order.shipping_methods.shipping_option.map(function (method, index) {
+  }, order.shipping_address.city, ", ", order.shipping_address.postal_code, " ", order.shipping_address.country_code), order.shipping_methods.map(function (method, index) {
     return /*#__PURE__*/React.createElement("div", {
       key: index,
       className: "mb-3"
@@ -107,7 +107,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
       className: "m-0 leading-6 font-bold text-base mb-1"
     }, "Shipping Method:"), /*#__PURE__*/React.createElement(_components.Text, {
       className: "m-0 leading-6 text-sm"
-    }, method.name));
+    }, method.shipping_option.name));
   }), serviceName && /*#__PURE__*/React.createElement("div", {
     className: "mb-3"
   }, /*#__PURE__*/React.createElement(_components.Text, {

@@ -100,10 +100,10 @@ const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shippin
                 <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.city}, {order.shipping_address.postal_code} {order.shipping_address.country_code}</Text>
 
                 {/* Shipping Method */}
-                {order.shipping_methods.shipping_option.map((method, index) => (
+                {order.shipping_methods.map((method, index) => (
                     <div key={index} className="mb-3">
                       <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
-                      <Text className="m-0 leading-6 text-sm">{method.name}</Text>
+                      <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
                     </div>
                 ))}
 
