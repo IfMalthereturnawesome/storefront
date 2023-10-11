@@ -61,19 +61,15 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
               <Section style={track.container}>
                 <Row>
                   <Column>
-                    <Text style={global.paragraphWithBold}>Refund Number:</Text>
-                    <Text style={track.number}>{refund.id}</Text>
-                    <Text style={global.paragraphWithBold}>Order id:</Text>
-                    <Text style={track.number}>{order.display_id}</Text>
+                    <Heading style={global.heading}>Refund Processed</Heading>
+                    <Text style={global.text}>
+                      We've successfully processed your refund for order #{order.display_id}.
+                    </Text>
 
                   </Column>
                 </Row>
               </Section>
-              <Section style={paddingY}>
-                <Text className={"text-sm "}>
-                  Amount refunded: {refund_amount} (including tax)
-                </Text>
-              </Section>
+
               <Hr style={global.hr} />
               <Section style={message}>
                 <Img
@@ -85,12 +81,34 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
                 />
                 <Heading style={global.heading}>Refund Confirmation</Heading>
                 <Text style={global.text}>
-                  Hi {order.email}, We've processed your refund for order #{order.id}.
-                  The refunded amount is {refund_amount}.
-                  {refund.note && <Text>Note: {refund.note}</Text>}
+                  The refunded amount {refund_amount} will be credited to your original payment method within 3-7 business days.
                 </Text>
               </Section>
               <Hr style={global.hr} />
+              <Section style={track.container}>
+                <Row>
+                  <Column>
+                    <Text style={global.paragraphWithBold}>Refund ID:</Text>
+                    <Text style={track.number}>{refund.id}</Text>
+                  </Column>
+                  <Column>
+                    <Text style={global.paragraphWithBold}>Order ID:</Text>
+                    <Text style={track.number}>{order.display_id}</Text>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <Text style={global.paragraphWithBold}>Refunded Amount:</Text>
+                    <Text style={track.number}>{refund_amount} (incl. tax)</Text>
+                  </Column>
+                  {refund.note && (
+                      <Column>
+                        <Text style={global.paragraphWithBold}>Note:</Text>
+                        <Text style={track.number}>{refund.note}</Text>
+                      </Column>
+                  )}
+                </Row>
+              </Section>
 
               <Section style={paddingY}>
                 <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
@@ -110,7 +128,9 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
                 </Row>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>
-
+                    <Link href={`${baseUrl}/terms/terms-and-conditions`} style={menu.text}>
+                      Terms & Conditions
+                    </Link>
                   </Column>
                   <Column style={{width: '33%'}} colSpan={1}>
                     <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>

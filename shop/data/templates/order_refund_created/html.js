@@ -54,19 +54,11 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
     style: track.container
-  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
-    style: global.paragraphWithBold
-  }, "Refund Number:"), /*#__PURE__*/React.createElement(_components.Text, {
-    style: track.number
-  }, refund.id), /*#__PURE__*/React.createElement(_components.Text, {
-    style: global.paragraphWithBold
-  }, "Order id:"), /*#__PURE__*/React.createElement(_components.Text, {
-    style: track.number
-  }, order.display_id)))), /*#__PURE__*/React.createElement(_components.Section, {
-    style: paddingY
-  }, /*#__PURE__*/React.createElement(_components.Text, {
-    className: "text-sm "
-  }, "Amount refunded: ", refund_amount, " (including tax)")), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Heading, {
+    style: global.heading
+  }, "Refund Processed"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.text
+  }, "We've successfully processed your refund for order #", order.display_id, ".")))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: message
@@ -82,9 +74,27 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: global.heading
   }, "Refund Confirmation"), /*#__PURE__*/React.createElement(_components.Text, {
     style: global.text
-  }, "Hi ", order.email, ", We've processed your refund for order #", order.id, ". The refunded amount is ", refund_amount, ".", refund.note && /*#__PURE__*/React.createElement(_components.Text, null, "Note: ", refund.note))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "The refunded amount ", refund_amount, " will be credited to your original payment method within 3-7 business days.")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: track.container
+  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Refund ID:"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, refund.id)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Order ID:"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, order.display_id))), /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Refunded Amount:"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, refund_amount, " (incl. tax)")), refund.note && /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Note:"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, refund.note)))), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
   }, /*#__PURE__*/React.createElement(_components.Link, {
     style: global.button,
@@ -111,7 +121,10 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
       width: '33%'
     },
     colSpan: 1
-  }), /*#__PURE__*/React.createElement(_components.Column, {
+  }, /*#__PURE__*/React.createElement(_components.Link, {
+    href: "".concat(baseUrl, "/terms/terms-and-conditions"),
+    style: menu.text
+  }, "Terms & Conditions")), /*#__PURE__*/React.createElement(_components.Column, {
     style: {
       width: '33%'
     },
