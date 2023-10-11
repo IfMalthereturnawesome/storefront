@@ -120,7 +120,7 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links }) => {
                 <Text className="m-0 leading-6 text-sm mb-3">{shipment.tracking_numbers[0]}</Text>
                 <Text className="m-0 leading-6  text-sm mb-1">
                   Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
-                  {baseUrl}/track-order?package_number={shipment.tracking_links.tracking_number}
+                  {baseUrl}/track-order?package_number={shipment.tracking_numbers[0]}
                 </Link> to track your order.
                 </Text>
 

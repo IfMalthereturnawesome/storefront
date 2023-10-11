@@ -124,7 +124,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
       display: 'inline-block',
       textDecoration: 'underline'
     })
-  }, baseUrl, "/track-order?package_number=", shipment.tracking_links.tracking_number), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
+  }, baseUrl, "/track-order?package_number=", shipment.tracking_numbers[0]), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
     style: _objectSpread(_objectSpread({}, global.button), {}, {
       display: 'block',
