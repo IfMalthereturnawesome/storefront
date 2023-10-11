@@ -22,7 +22,7 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderCanceledTemplate = ({ shipping_address, display_id, items, region }) => {
+const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_at }) => {
 
   return (
       <Html >
@@ -65,7 +65,8 @@ const OrderCanceledTemplate = ({ shipping_address, display_id, items, region }) 
                   <Column>
                     <Text style={global.paragraphWithBold}>Order Number</Text>
                     <Text style={track.number}>{display_id}</Text>
-                    <Text className={"text-sm text-red-600 "}>Unfortunately, your order has been canceled. If you have any questions, please contact our support.</Text>
+                    <Text className={"text-sm "}>Unfortunately, your order has been canceled. If you have any questions, please contact our support.</Text>
+                    <Text className={"text-sm"}>Date of cancellation: {canceled_at}</Text>
                   </Column>
                 </Row>
               </Section>

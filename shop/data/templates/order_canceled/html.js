@@ -1,0 +1,156 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _typeof = require("@babel/runtime/helpers/typeof");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+var React = _interopRequireWildcard(require("react"));
+var _components = require("@react-email/components");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var baseUrl = 'https://www.eightathletics.com';
+var OrderCanceledTemplate = function OrderCanceledTemplate(_ref) {
+  var shipping_address = _ref.shipping_address,
+    display_id = _ref.display_id,
+    items = _ref.items,
+    canceled_at = _ref.canceled_at;
+  return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
+    config: {
+      theme: {
+        screens: {
+          sm: {
+            max: '600px'
+          },
+          xs: {
+            max: '425px'
+          }
+        },
+        extend: {
+          colors: {
+            mask: {
+              black: '#030203'
+            },
+            custom: {
+              white: '#faf7f7'
+            }
+          },
+          spacing: {
+            full: '100%',
+            px: '1px',
+            0: '0',
+            2: '8px'
+          }
+        }
+      }
+    }
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Order Cancellation for Order # ", display_id, " - ", items[0].title, ": ", items[0].description, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+    style: main,
+    className: "bg-white text-mask-black "
+  }, /*#__PURE__*/React.createElement(_components.Container, {
+    style: container
+  }, /*#__PURE__*/React.createElement(_components.Section, {
+    style: track.container
+  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Order Number"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
+  }, display_id), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "text-sm "
+  }, "Unfortunately, your order has been canceled. If you have any questions, please contact our support."), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "text-sm"
+  }, "Date of cancellation: ", canceled_at)))), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: message
+  }, /*#__PURE__*/React.createElement(_components.Img, {
+    src: "".concat(baseUrl, "/images/eight-athletics-black-logo.png"),
+    width: "103",
+    height: "28",
+    alt: "Eight Athletics Logo",
+    style: {
+      margin: 'auto'
+    }
+  }), /*#__PURE__*/React.createElement(_components.Heading, {
+    style: global.heading
+  }, "Order Cancellation"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.text
+  }, "Hi ", shipping_address.first_name, " ", shipping_address.last_name, ", We regret to inform you that your order #", display_id, " has been canceled. If you have any questions or concerns, please reach out to us.")), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
+    className: "px-10 py-6 mx-auto w-full"
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    className: "m-0 leading-6 font-bold text-xl mb-2 "
+  }, "Order Details"), items.map(function (item, index) {
+    return /*#__PURE__*/React.createElement(_components.Row, {
+      key: index,
+      style: {
+        borderBottom: '1px solid #e0e0e0',
+        paddingTop: '10px',
+        paddingBottom: '10px'
+      }
+    }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+      className: "text-[16px]",
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        fontWeight: '500',
+        color: '#2C2C2C',
+        marginBottom: '0px'
+      })
+    }, item.title), /*#__PURE__*/React.createElement(_components.Text, {
+      style: _objectSpread(_objectSpread({}, paragraph), {}, {
+        color: '#7F7F7F'
+      })
+    }, item.description)));
+  })), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: paddingY
+  }, /*#__PURE__*/React.createElement(_components.Link, {
+    style: global.button,
+    href: "https://www.eightathletics.com",
+    className: "mx-auto"
+  }, "Shop Again")), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: menu.container
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    style: menu.title
+  }, "Get Help"), /*#__PURE__*/React.createElement(_components.Row, {
+    style: menu.content
+  }, /*#__PURE__*/React.createElement(_components.Column, {
+    style: {
+      width: '33%'
+    },
+    colSpan: 1
+  }, /*#__PURE__*/React.createElement(_components.Link, {
+    href: "".concat(baseUrl, "/support"),
+    style: menu.text
+  }, "Customer Support")), /*#__PURE__*/React.createElement(_components.Column, {
+    style: {
+      width: '33%'
+    },
+    colSpan: 1
+  }, /*#__PURE__*/React.createElement(_components.Link, {
+    href: "".concat(baseUrl, "/terms/shipping-policy"),
+    style: menu.text
+  }, "Shipping & Delivery")), /*#__PURE__*/React.createElement(_components.Column, {
+    style: {
+      width: '33%'
+    },
+    colSpan: 1
+  }, /*#__PURE__*/React.createElement(_components.Link, {
+    href: "".concat(baseUrl, "/terms/returns-policy"),
+    style: menu.text
+  }, "Returns & Exchanges")))), /*#__PURE__*/React.createElement(_components.Hr, {
+    style: global.hr
+  }), /*#__PURE__*/React.createElement(_components.Section, {
+    style: paddingY
+  }, /*#__PURE__*/React.createElement(_components.Text, {
+    style: footer.text
+  }, "Eight Athletics | Sofiegade 5, Copenhagen K, Denmark"))))));
+};
+var _default = exports["default"] = OrderCanceledTemplate;
