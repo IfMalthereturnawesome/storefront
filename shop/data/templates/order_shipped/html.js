@@ -115,7 +115,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     className: "m-0 leading-6 font-bold text-base mb-1"
   }, "Tracking Number:"), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-3"
-  }, order.tracking_number), /*#__PURE__*/React.createElement(_components.Text, {
+  }, order.tracking_links[0].tracking_number), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6  text-sm mb-1"
   }, "Go to ", /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
@@ -123,7 +123,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
       display: 'inline-block',
       textDecoration: 'underline'
     })
-  }, baseUrl, "/track-order?package_number=", order.tracking_number), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
+  }, baseUrl, "/track-order?package_number=", shipment.tracking_links[0].tracking_number), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
     style: _objectSpread(_objectSpread({}, global.button), {}, {
       display: 'block',
