@@ -21,10 +21,10 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_at }) => {
+const OrderRefundCreatedTemplate = ({ refund, items, display_id, total }) => {
 
   return (
-      <Html >
+      <Html>
         <Tailwind
             config={{
               theme: {
@@ -34,10 +34,10 @@ const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_a
                 },
                 extend: {
                   colors: {
-                    mask:{
+                    mask: {
                       black: '#030203',
                     },
-                    custom:{
+                    custom: {
                       white: '#faf7f7',
                     },
                   },
@@ -51,25 +51,26 @@ const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_a
               },
             }}
         >
-          <Head/>
+          <Head />
           <Preview>
-            Order Cancellation for Order # {display_id} - {items[0].title}: {items[0].description}
+            Refund Confirmation for Order # {display_id} - {items[0].title}: {items[0].description}
             {items.length > 1 ? ' and more' : ''}
           </Preview>
 
           <Body style={main} className={"bg-white text-mask-black "}>
-            <Container style={container} >
+            <Container style={container}>
               <Section style={track.container}>
                 <Row>
                   <Column>
-                    <Text style={global.paragraphWithBold}>Order Number</Text>
-                    <Text style={track.number}>{display_id}</Text>
-                    <Text className={"text-sm "}>Unfortunately, your order has been canceled. If you have any questions, please contact our support.</Text>
-                    <Text className={"text-sm"}>Date of cancellation: {canceled_at}</Text>
+                    <Text style={global.paragraphWithBold}>Refund Number</Text>
+                    <Text style={track.number}>{refund.id}</Text>
+                    <Text className={"text-sm "}>
+                      Amount refunded: {refund.amount} {refund.reason !== "discount" ? `due to ${refund.reason}` : ""}
+                    </Text>
                   </Column>
                 </Row>
               </Section>
-              <Hr style={global.hr}/>
+              <Hr style={global.hr} />
               <Section style={message}>
                 <Img
                     src={`${baseUrl}/images/eight-athletics-black-logo.png`}
@@ -78,45 +79,32 @@ const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_a
                     alt="Eight Athletics Logo"
                     style={{margin: 'auto'}}
                 />
-                <Heading style={global.heading}>Order Cancellation</Heading>
+                <Heading style={global.heading}>Refund Confirmation</Heading>
                 <Text style={global.text}>
-                  Hi {shipping_address.first_name} {shipping_address.last_name},
-                  We regret to inform you that your order #{display_id} has been canceled. If you have any questions or concerns, please reach out to us.
+                  We regret the inconvenience. We've processed a refund for your order #{display_id}.
+                  {refund.note && ` Note: ${refund.note}`}  {total > 0 && `Your new total is ${total}`}
                 </Text>
+                <Text style={global.text}>
+                  If you have any questions, please contact us at
+                  <Link href="mailto:support@eightathletics.com" style={global.text}>
+                    support@eightathletics.com
+                  </Link>
+                </Text>
+
               </Section>
-              <Hr style={global.hr}/>
-              <Section className="px-10 py-6 mx-auto w-full">
-                <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Order Details</Text>
-                {items.map((item, index) => (
-                    <Row key={index}
-                         style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
-                      <Column>
-                        <Text
-                            className={"text-[16px]"}
-                            style={{...paragraph, fontWeight: '500', color: '#2C2C2C', marginBottom: '0px'}}>
-                          {item.title}
-                        </Text>
-                        <Text style={{...paragraph, color: '#7F7F7F'}}>
-                          {item.description}
-                        </Text>
-                      </Column>
-                    </Row>
-                ))}
-              </Section>
-              <Hr style={global.hr}/>
+              <Hr style={global.hr} />
+
               <Section style={paddingY}>
                 <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
-                  Shop Again
+                  Visit our website
                 </Link>
               </Section>
-              <Hr style={global.hr}/>
+              <Hr style={global.hr} />
               <Section style={menu.container}>
                 <Text style={menu.title}>Get Help</Text>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href={`${baseUrl}/support`} style={menu.text}>
-                      Customer Support
-                    </Link>
+
                   </Column>
                   <Column style={{width: '33%'}} colSpan={1}>
                     <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>
@@ -130,7 +118,7 @@ const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_a
                   </Column>
                 </Row>
               </Section>
-              <Hr style={global.hr}/>
+              <Hr style={global.hr} />
               <Section style={paddingY}>
                 <Text style={footer.text}>
                   Eight Athletics | Sofiegade 5, Copenhagen K, Denmark
@@ -141,10 +129,11 @@ const OrderCanceledTemplate = ({ shipping_address, display_id, items, canceled_a
         </Tailwind>
       </Html>
   );
-
 };
 
-export default OrderCanceledTemplate;
+export default OrderRefundCreatedTemplate;
+
+
 
 
 const paddingX = {
@@ -283,3 +272,4 @@ const footer = {
     textAlign: 'center',
   } ,
 };
+
