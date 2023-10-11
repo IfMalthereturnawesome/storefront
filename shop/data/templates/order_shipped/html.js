@@ -17,7 +17,6 @@ var baseUrl = 'https://www.eightathletics.com';
 var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
   var _order$shipping_addre;
   var shipping_address = _ref.shipping_address,
-    display_id = _ref.display_id,
     items = _ref.items,
     tracking_number = _ref.tracking_number,
     shipping_methods = _ref.shipping_methods,
@@ -53,7 +52,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", tracking_number, " for order ", display_id, " with ", items[0].title, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", tracking_number, " for order ", order.display_id, " with ", order.items[0].title, "  ", order.items[0].description, items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: "bg-white text-mask-black "
   }, /*#__PURE__*/React.createElement(_components.Container, {
@@ -64,7 +63,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Order Number"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, display_id), /*#__PURE__*/React.createElement(_components.Text, {
+  }, order.display_id), /*#__PURE__*/React.createElement(_components.Text, {
     className: "text-sm "
   }, "Your order has been shipped!")))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
@@ -82,7 +81,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     style: global.heading
   }, "Shipping Confirmation"), /*#__PURE__*/React.createElement(_components.Text, {
     style: global.text
-  }, "Hi ", shipping_address.first_name, " ", shipping_address.last_name, ", ", /*#__PURE__*/React.createElement("br", null), "Your order #", display_id, " is on its way. You can track the progress of your package using the tracking number provided below.")), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, "Hi ", order.shipping_address.first_name, " ", order.shipping_address.last_name, ", ", /*#__PURE__*/React.createElement("br", null), "Your order #", order.display_id, " is on its way. You can track the progress of your package using the tracking number provided below.")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     className: "px-10 py-6 mx-auto w-full"
@@ -92,15 +91,15 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     className: "m-0 leading-6 font-bold text-base mb-1"
   }, "Recipient:"), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-3"
-  }, shipping_address.first_name, " ", shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Text, {
+  }, order.shipping_address.first_name, " ", order.shipping_address.last_name), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 font-bold text-base mb-1"
   }, "Address:"), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-1"
-  }, shipping_address.address_1), shipping_address.address_2 && /*#__PURE__*/React.createElement(_components.Text, {
+  }, order.shipping_address.address_1), order.shipping_address.address_2 && /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-1"
-  }, shipping_address.address_2), /*#__PURE__*/React.createElement(_components.Text, {
+  }, order.shipping_address.address_2), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-3"
-  }, shipping_address.city, ", ", shipping_address.postal_code, " ", shipping_address.country_code), shipping_methods.map(function (method, index) {
+  }, order.shipping_address.city, ", ", order.shipping_address.postal_code, " ", order.shipping_address.country_code), order.shipping_methods.shipping_option.map(function (method, index) {
     return /*#__PURE__*/React.createElement("div", {
       key: index,
       className: "mb-3"
@@ -108,7 +107,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
       className: "m-0 leading-6 font-bold text-base mb-1"
     }, "Shipping Method:"), /*#__PURE__*/React.createElement(_components.Text, {
       className: "m-0 leading-6 text-sm"
-    }, method.shipping_option.name));
+    }, method.name));
   }), serviceName && /*#__PURE__*/React.createElement("div", {
     className: "mb-3"
   }, /*#__PURE__*/React.createElement(_components.Text, {

@@ -20,7 +20,7 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderShippedTemplate = ({ shipping_address, display_id, items, tracking_number,shipping_methods, order }) => {
+const OrderShippedTemplate = ({ shipping_address, items, tracking_number,shipping_methods, order }) => {
   const trackingLink = `${baseUrl}/track-order?package_number=${tracking_number}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
   return (
@@ -53,7 +53,7 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, tracking_nu
         >
           <Head />
           <Preview>
-            Your tracking number is {tracking_number} for order {display_id} with {items[0].title}
+            Your tracking number is {tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
             {items.length > 1 ? ' and more' : ''}
           </Preview>
 
@@ -63,7 +63,7 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, tracking_nu
                 <Row>
                   <Column>
                     <Text style={global.paragraphWithBold}>Order Number</Text>
-                    <Text style={track.number}>{display_id}</Text>
+                    <Text style={track.number}>{order.display_id}</Text>
                     <Text className={"text-sm "}>Your order has been shipped!</Text>
                   </Column>
                 </Row>
@@ -79,8 +79,8 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, tracking_nu
                 />
                 <Heading style={global.heading}>Shipping Confirmation</Heading>
                 <Text style={global.text}>
-                  Hi {shipping_address.first_name} {shipping_address.last_name}, <br></br>
-                  Your order #{display_id} is on its way. You can track the progress of your package using the tracking number provided below.
+                  Hi {order.shipping_address.first_name} {order.shipping_address.last_name}, <br></br>
+                  Your order #{order.display_id} is on its way. You can track the progress of your package using the tracking number provided below.
                 </Text>
               </Section>
               <Hr style={global.hr}/>
@@ -91,19 +91,19 @@ const OrderShippedTemplate = ({ shipping_address, display_id, items, tracking_nu
 
                 {/* Recipient Name */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.first_name} {shipping_address.last_name}</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.first_name} {order.shipping_address.last_name}</Text>
 
                 {/* Address */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
-                <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_1}</Text>
-                {shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{shipping_address.address_2}</Text>}
-                <Text className="m-0 leading-6 text-sm mb-3">{shipping_address.city}, {shipping_address.postal_code} {shipping_address.country_code}</Text>
+                <Text className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_1}</Text>
+                {order.shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_2}</Text>}
+                <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.city}, {order.shipping_address.postal_code} {order.shipping_address.country_code}</Text>
 
                 {/* Shipping Method */}
-                {shipping_methods.map((method, index) => (
+                {order.shipping_methods.shipping_option.map((method, index) => (
                     <div key={index} className="mb-3">
                       <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
-                      <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
+                      <Text className="m-0 leading-6 text-sm">{method.name}</Text>
                     </div>
                 ))}
 
