@@ -65,6 +65,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                   <Column>
                     <Text style={global.paragraphWithBold}>Order Number</Text>
                     <Text style={track.number}>{display_id}</Text>
+                    <Text className={"text-sm "}>Tracking information will come in a separate email, once the order has been shipped</Text>
                   </Column>
                 </Row>
               </Section>

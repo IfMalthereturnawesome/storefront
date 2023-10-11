@@ -136,6 +136,7 @@ const OrderPlacedTemplate = ({
                                 <Column>
                                     <Text style={global.paragraphWithBold}>Order Number</Text>
                                     <Text style={track.number}>{display_id}</Text>
+                                    <Text className={"text-sm "}>Tracking information will come in a separate email, once the order has been shipped</Text>
                                 </Column>
                             </Row>
                         </Section>
@@ -280,17 +281,17 @@ const OrderPlacedTemplate = ({
                             <Text style={menu.title}>Get Help</Text>
                             <Row style={menu.content}>
                                 <Column style={{width: '33%'}} colSpan={1}>
-                                    <Link href="/" style={menu.text}>
+                                    <Link href={`${baseUrl}/trackorder`} style={menu.text}>
                                         Shipping Status
                                     </Link>
                                 </Column>
                                 <Column style={{width: '33%'}} colSpan={1}>
-                                    <Link href="/" style={menu.text}>
+                                    <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>
                                         Shipping & Delivery
                                     </Link>
                                 </Column>
                                 <Column style={{width: '33%'}} colSpan={1}>
-                                    <Link href="/" style={menu.text}>
+                                    <Link href={`${baseUrl}/terms/returns-policy`} style={menu.text}>
                                         Returns & Exchanges
                                     </Link>
                                 </Column>
@@ -311,6 +312,8 @@ const OrderPlacedTemplate = ({
 };
 
 export default OrderPlacedTemplate;
+
+
 
 const paddingX = {
     paddingLeft: '40px',

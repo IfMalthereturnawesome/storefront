@@ -66,7 +66,9 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
     style: global.paragraphWithBold
   }, "Order Number"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, display_id)))), /*#__PURE__*/React.createElement(_components.Hr, {
+  }, display_id), /*#__PURE__*/React.createElement(_components.Text, {
+    className: "text-sm "
+  }, "Tracking information will come in a separate email, once the order has been shipped")))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
     style: message
