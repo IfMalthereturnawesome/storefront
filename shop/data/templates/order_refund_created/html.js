@@ -15,10 +15,14 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var baseUrl = 'https://www.eightathletics.com';
 var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
-  var refund = _ref.refund,
-    items = _ref.items,
-    display_id = _ref.display_id,
-    total = _ref.total;
+  var _ref$items = _ref.items,
+    items = _ref$items === void 0 ? [] : _ref$items,
+    _ref$refund = _ref.refund,
+    refund = _ref$refund === void 0 ? {} : _ref$refund,
+    _ref$display_id = _ref.display_id,
+    display_id = _ref$display_id === void 0 ? '' : _ref$display_id,
+    _ref$total = _ref.total,
+    total = _ref$total === void 0 ? '' : _ref$total;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
     config: {
       theme: {

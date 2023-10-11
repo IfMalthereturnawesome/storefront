@@ -21,7 +21,12 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderRefundCreatedTemplate = ({ refund, items, display_id, total }) => {
+const OrderRefundCreatedTemplate = ({
+  items = [],
+  refund = {},
+  display_id = '',
+  total = ''
+}) => {
 
   return (
       <Html>
