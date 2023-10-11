@@ -20,7 +20,7 @@ import {
 
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderShippedTemplate = ({ order, shipment }) => {
+const OrderShippedTemplate = ({ order, shipment, tracking_links }) => {
   const trackingLink = `${baseUrl}/track-order?package_number=${order.tracking_number}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
   return (
@@ -117,10 +117,11 @@ const OrderShippedTemplate = ({ order, shipment }) => {
 
                 {/* Tracking Details */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{order.tracking_links[0].tracking_number}</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{tracking_links.tracking_numbers}</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{order.fulfillment.tracking_links.tracking_number}</Text>
                 <Text className="m-0 leading-6  text-sm mb-1">
                   Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
-                  {baseUrl}/track-order?package_number={shipment.tracking_links[0].tracking_number}
+                  {baseUrl}/track-order?package_number={shipment.tracking_links.tracking_number}
                 </Link> to track your order.
                 </Text>
 
