@@ -121,12 +121,14 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
               <Section style={menu.container}>
                 <Text style={menu.title}>Get Help</Text>
                 <Row style={menu.content}>
-                  <Text style={global.text}>
-                    If you have any questions, please contact us at <br />
-                    <Link href="mailto:support@eightathletics.com" style={global.text} className={"text-blue-600"}>
-                      support@eightathletics.com
-                    </Link>
-                  </Text>
+                  <Column style={{width: '50%'}} colSpan={1}>
+                    <Text style={global.text}>
+                      If you have any questions, please contact us at:    <br></br>
+                      <Link href="mailto:support@eightathletics.com" style={global.text} className={"text-blue-600"}>
+                        support@eightathletics.com
+                      </Link>
+                    </Text>
+                  </Column>
                 </Row>
                 <Row style={menu.content}>
                   <Column style={{width: '33%'}} colSpan={1}>

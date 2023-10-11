@@ -255,6 +255,7 @@ const menu = {
     paddingLeft: '20px',
     paddingRight: '20px',
     fontWeight: 'bold',
+    color: '#000',
   },
   text: {
     fontSize: '13.5px',

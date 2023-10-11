@@ -365,7 +365,8 @@ var menu = {
   title: {
     paddingLeft: '20px',
     paddingRight: '20px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#000'
   },
   text: {
     fontSize: '13.5px',

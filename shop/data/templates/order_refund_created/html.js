@@ -104,13 +104,18 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: menu.title
   }, "Get Help"), /*#__PURE__*/React.createElement(_components.Row, {
     style: menu.content
+  }, /*#__PURE__*/React.createElement(_components.Column, {
+    style: {
+      width: '50%'
+    },
+    colSpan: 1
   }, /*#__PURE__*/React.createElement(_components.Text, {
     style: global.text
-  }, "If you have any questions, please contact us at ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(_components.Link, {
+  }, "If you have any questions, please contact us at:    ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(_components.Link, {
     href: "mailto:support@eightathletics.com",
     style: global.text,
     className: "text-blue-600"
-  }, "support@eightathletics.com"))), /*#__PURE__*/React.createElement(_components.Row, {
+  }, "support@eightathletics.com")))), /*#__PURE__*/React.createElement(_components.Row, {
     style: menu.content
   }, /*#__PURE__*/React.createElement(_components.Column, {
     style: {
