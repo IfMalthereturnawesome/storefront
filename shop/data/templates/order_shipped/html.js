@@ -15,14 +15,15 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var baseUrl = 'https://www.eightathletics.com';
 var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
-  var _shipping_address$met;
+  var _order$shipping_addre;
   var shipping_address = _ref.shipping_address,
     display_id = _ref.display_id,
     items = _ref.items,
     tracking_number = _ref.tracking_number,
-    shipping_methods = _ref.shipping_methods;
+    shipping_methods = _ref.shipping_methods,
+    order = _ref.order;
   var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(tracking_number);
-  var serviceName = (_shipping_address$met = shipping_address.metadata) === null || _shipping_address$met === void 0 || (_shipping_address$met = _shipping_address$met.selectedServicePoint) === null || _shipping_address$met === void 0 ? void 0 : _shipping_address$met.name;
+  var serviceName = (_order$shipping_addre = order.shipping_address) === null || _order$shipping_addre === void 0 || (_order$shipping_addre = _order$shipping_addre.metadata) === null || _order$shipping_addre === void 0 || (_order$shipping_addre = _order$shipping_addre.selectedServicePoint) === null || _order$shipping_addre === void 0 ? void 0 : _order$shipping_addre.name;
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
     config: {
       theme: {
