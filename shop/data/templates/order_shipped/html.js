@@ -53,7 +53,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", order.tracking_number, " for order ", order.display_id, " with ", order.items[0].title, " ", order.items[0].description, order.items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your recent order ", order.display_id, ", which includes ", order.items[0].title, " (", order.items[0].description, ")", order.items.length > 1 ? ', among other items,' : '', " has been assigned the tracking number: ", trackingNumber, "."), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
     className: 'bg-white text-mask-black '
   }, /*#__PURE__*/React.createElement(_components.Container, {

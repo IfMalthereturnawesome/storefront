@@ -61,9 +61,7 @@ const OrderShippedTemplate = ({
         >
           <Head/>
           <Preview>
-            Your tracking number is {order.tracking_number} for
-            order {order.display_id} with {order.items[0].title} {order.items[0].description}
-            {order.items.length > 1 ? ' and more' : ''}
+            Your recent order {order.display_id}, which includes {order.items[0].title} ({order.items[0].description}){order.items.length > 1 ? ', among other items,' : ''} has been assigned the tracking number: {trackingNumber}.
           </Preview>
 
           <Body style={main} className={'bg-white text-mask-black '}>
