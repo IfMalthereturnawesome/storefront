@@ -59,6 +59,7 @@ const plugins = [
       // webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
       automatic_payment_methods: true,
       capture: true,
+
     },
   },
   {
