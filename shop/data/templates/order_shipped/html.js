@@ -26,14 +26,10 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     tracking_links: tracking_links,
     tracking_numbers: tracking_numbers
   });
-  var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(shipment.tracking_numbers[0]);
+  var trackingLinkObj = tracking_links[0];
+  var trackingNumber = trackingLinkObj.tracking_number;
+  var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(trackingNumber);
   var serviceName = (_order$shipping_addre = order.shipping_address) === null || _order$shipping_addre === void 0 || (_order$shipping_addre = _order$shipping_addre.metadata) === null || _order$shipping_addre === void 0 || (_order$shipping_addre = _order$shipping_addre.selectedServicePoint) === null || _order$shipping_addre === void 0 ? void 0 : _order$shipping_addre.name;
-  console.log("Props:", {
-    order: order,
-    shipment: shipment,
-    tracking_links: tracking_links,
-    tracking_numbers: tracking_numbers
-  });
   return /*#__PURE__*/React.createElement(_components.Html, null, /*#__PURE__*/React.createElement(_components.Tailwind, {
     config: {
       theme: {
@@ -129,7 +125,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     className: "m-0 leading-6 font-bold text-base mb-1"
   }, "Tracking Number:"), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6 text-sm mb-3"
-  }, shipment.tracking_numbers[0]), /*#__PURE__*/React.createElement(_components.Text, {
+  }, trackingNumber), /*#__PURE__*/React.createElement(_components.Text, {
     className: "m-0 leading-6  text-sm mb-1"
   }, "Go to ", /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
@@ -137,7 +133,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
       display: 'inline-block',
       textDecoration: 'underline'
     })
-  }, baseUrl, "/track-order?package_number=", shipment.tracking_numbers[0]), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
+  }, baseUrl, "/track-order?package_number=", trackingNumber), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
     style: _objectSpread(_objectSpread({}, global.button), {}, {
       display: 'block',

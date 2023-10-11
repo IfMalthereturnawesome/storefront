@@ -22,9 +22,11 @@ const baseUrl = 'https://www.eightathletics.com';
 
 const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_numbers }) => {
   console.log("Props:", { order, shipment, tracking_links, tracking_numbers });
-  const trackingLink = `${baseUrl}/track-order?package_number=${shipment.tracking_numbers[0]}`;
+  const trackingLinkObj = tracking_links[0];
+  const trackingNumber = trackingLinkObj.tracking_number;
+
+  const trackingLink= `${baseUrl}/track-order?package_number=${trackingNumber}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
-  console.log("Props:", { order, shipment, tracking_links, tracking_numbers });
 
   return (
       <Html>
@@ -120,10 +122,10 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
 
                 {/* Tracking Details */}
                 <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{shipment.tracking_numbers[0]}</Text>
+                <Text className="m-0 leading-6 text-sm mb-3">{trackingNumber}</Text>
                 <Text className="m-0 leading-6  text-sm mb-1">
                   Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
-                  {baseUrl}/track-order?package_number={shipment.tracking_numbers[0]}
+                  {baseUrl}/track-order?package_number={trackingNumber}
                 </Link> to track your order.
                 </Text>
 
