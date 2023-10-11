@@ -54,10 +54,10 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
     style: track.container
-  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Heading, {
-    style: global.heading
-  }, "Refund Processed"), /*#__PURE__*/React.createElement(_components.Text, {
-    style: global.text
+  }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    style: global.paragraphWithBold
+  }, "Order Number"), /*#__PURE__*/React.createElement(_components.Text, {
+    style: track.number
   }, "We've successfully processed your refund for order #", order.display_id, ".")))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
@@ -80,13 +80,9 @@ var OrderRefundCreatedTemplate = function OrderRefundCreatedTemplate(_ref) {
     style: track.container
   }, /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
     style: global.paragraphWithBold
-  }, "Refund ID:"), /*#__PURE__*/React.createElement(_components.Text, {
+  }, "Order Number:"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
-  }, refund.id)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
-    style: global.paragraphWithBold
-  }, "Order ID:"), /*#__PURE__*/React.createElement(_components.Text, {
-    style: track.number
-  }, order.display_id))), /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+  }, order.display_id)), /*#__PURE__*/React.createElement(_components.Column, null)), /*#__PURE__*/React.createElement(_components.Row, null, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
     style: global.paragraphWithBold
   }, "Refunded Amount:"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
@@ -240,7 +236,8 @@ var menu = {
   title: {
     paddingLeft: '20px',
     paddingRight: '20px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#000'
   },
   text: {
     fontSize: '13.5px',

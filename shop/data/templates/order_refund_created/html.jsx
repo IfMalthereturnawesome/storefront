@@ -61,8 +61,8 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
               <Section style={track.container}>
                 <Row>
                   <Column>
-                    <Heading style={global.heading}>Refund Processed</Heading>
-                    <Text style={global.text}>
+                    <Text style={global.paragraphWithBold}>Order Number</Text>
+                    <Text style={track.number}>
                       We've successfully processed your refund for order #{order.display_id}.
                     </Text>
 
@@ -88,13 +88,13 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
               <Section style={track.container}>
                 <Row>
                   <Column>
-                    <Text style={global.paragraphWithBold}>Refund ID:</Text>
-                    <Text style={track.number}>{refund.id}</Text>
-                  </Column>
-                  <Column>
-                    <Text style={global.paragraphWithBold}>Order ID:</Text>
+                    <Text style={global.paragraphWithBold}>Order Number:</Text>
                     <Text style={track.number}>{order.display_id}</Text>
                   </Column>
+                  <Column>
+
+                  </Column>
+
                 </Row>
                 <Row>
                   <Column>
@@ -270,6 +270,7 @@ const menu = {
     paddingLeft: '20px',
     paddingRight: '20px',
     fontWeight: 'bold',
+    color: '#000',
   },
   text: {
     fontSize: '13.5px',
