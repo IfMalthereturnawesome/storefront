@@ -17,15 +17,18 @@ import {
   Tailwind,
 } from '@react-email/components';
 
-
 const baseUrl = 'https://www.eightathletics.com';
 
-const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_numbers }) => {
-  console.log("Props:", { order, shipment, tracking_links, tracking_numbers });
+const OrderShippedTemplate = ({
+  order,
+  shipment,
+  tracking_links,
+  tracking_numbers,
+}) => {
   const trackingLinkObj = tracking_links[0];
   const trackingNumber = trackingLinkObj.tracking_number;
 
-  const trackingLink= `${baseUrl}/track-order?package_number=${trackingNumber}`;
+  const trackingLink = `${baseUrl}/track-order?package_number=${trackingNumber}`;
   const serviceName = order.shipping_address?.metadata?.selectedServicePoint?.name;
 
   return (
@@ -34,8 +37,8 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
             config={{
               theme: {
                 screens: {
-                  sm: { max: '600px' },
-                  xs: { max: '425px' },
+                  sm: {max: '600px'},
+                  xs: {max: '425px'},
                 },
                 extend: {
                   colors: {
@@ -56,20 +59,22 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
               },
             }}
         >
-          <Head />
+          <Head/>
           <Preview>
-            Your tracking number is {order.tracking_number} for order {order.display_id} with {order.items[0].title}  {order.items[0].description}
+            Your tracking number is {order.tracking_number} for
+            order {order.display_id} with {order.items[0].title} {order.items[0].description}
             {order.items.length > 1 ? ' and more' : ''}
           </Preview>
 
-          <Body style={main} className={"bg-white text-mask-black "}>
+          <Body style={main} className={'bg-white text-mask-black '}>
             <Container style={container}>
               <Section style={track.container}>
                 <Row>
                   <Column>
                     <Text style={global.paragraphWithBold}>Order Number</Text>
                     <Text style={track.number}>{order.display_id}</Text>
-                    <Text className={"text-sm "}>Your order has been shipped!</Text>
+                    <Text className={'text-sm '}>Your order has been
+                      shipped!</Text>
                   </Column>
                 </Row>
               </Section>
@@ -85,71 +90,106 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
                 <Heading style={global.heading}>Shipping Confirmation</Heading>
                 <Text style={global.text}>
                   Hi {order.shipping_address.first_name} {order.shipping_address.last_name}, <br></br>
-                  Your order #{order.display_id} is on its way. You can track the progress of your package using the tracking number provided below.
+                  Your order #{order.display_id} is on its way. You can track
+                  the progress of your package using the tracking number
+                  provided below.
                 </Text>
               </Section>
               <Hr style={global.hr}/>
 
               {/* Shipping Details */}
               <Section className="px-10 py-6 mx-auto w-full">
-                <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Shipping Details</Text>
+                <Text className="m-0 leading-6 font-bold text-xl mb-2 ">Shipping
+                  Details</Text>
 
                 {/* Recipient Name */}
-                <Text className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.first_name} {order.shipping_address.last_name}</Text>
+                <Text
+                    className="m-0 leading-6 font-bold text-base mb-1">Recipient:</Text>
+                <Text
+                    className="m-0 leading-6 text-sm mb-3">{order.shipping_address.first_name} {order.shipping_address.last_name}</Text>
 
                 {/* Address */}
-                <Text className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
-                <Text className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_1}</Text>
-                {order.shipping_address.address_2 && <Text className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_2}</Text>}
-                <Text className="m-0 leading-6 text-sm mb-3">{order.shipping_address.city}, {order.shipping_address.postal_code} {order.shipping_address.country_code}</Text>
+                <Text
+                    className="m-0 leading-6 font-bold text-base mb-1">Address:</Text>
+                <Text
+                    className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_1}</Text>
+                {order.shipping_address.address_2 && <Text
+                    className="m-0 leading-6 text-sm mb-1">{order.shipping_address.address_2}</Text>}
+                <Text
+                    className="m-0 leading-6 text-sm mb-3">{order.shipping_address.city}, {order.shipping_address.postal_code} {order.shipping_address.country_code}</Text>
 
                 {/* Shipping Method */}
                 {order.shipping_methods.map((method, index) => (
                     <div key={index} className="mb-3">
-                      <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping Method:</Text>
-                      <Text className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
+                      <Text className="m-0 leading-6 font-bold text-base mb-1">Shipping
+                        Method:</Text>
+                      <Text
+                          className="m-0 leading-6 text-sm">{method.shipping_option.name}</Text>
                     </div>
                 ))}
 
                 {/* Service Point */}
                 {serviceName && (
                     <div className="mb-3">
-                      <Text className="m-0 leading-6 font-bold text-base mb-1">Service Point:</Text>
-                      <Text className="m-0 leading-6 text-sm">{serviceName}</Text>
+                      <Text className="m-0 leading-6 font-bold text-base mb-1">Service
+                        Point:</Text>
+                      <Text
+                          className="m-0 leading-6 text-sm">{serviceName}</Text>
                     </div>
                 )}
 
                 {/* Tracking Details */}
-                <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking Number:</Text>
-                <Text className="m-0 leading-6 text-sm mb-3">{trackingNumber}</Text>
+                <Text className="m-0 leading-6 font-bold text-base mb-1">Tracking
+                  Number:</Text>
+                <Text
+                    className="m-0 leading-6 text-sm mb-3">{trackingNumber}</Text>
                 <Text className="m-0 leading-6  text-sm mb-1">
-                  Go to <Link href={trackingLink} style={{ ...global.text, display: 'inline-block', textDecoration: 'underline' }}>
+                  Go to <Link href={trackingLink} style={{
+                  ...global.text,
+                  display: 'inline-block',
+                  textDecoration: 'underline',
+                }} className={'text-blue-500'}>
                   {baseUrl}/track-order?package_number={trackingNumber}
                 </Link> to track your order.
                 </Text>
 
 
-                <Link href={trackingLink} style={{ ...global.button, display: 'block', margin: '20px auto' }}>
+                <Link href={trackingLink} style={{
+                  ...global.button,
+                  display: 'block',
+                  margin: '20px auto',
+                }}>
                   Track your order here
                 </Link>
               </Section>
 
 
-
               <Hr style={global.hr}/>
               {/* order item for the product here*/}
-              <Section style={{...paddingX, paddingTop: '40px', paddingBottom: '10px'}} >
-                <Text style={adressTitle} className={"text-xl"}>Order Summary
+              <Section style={{
+                ...paddingX,
+                paddingTop: '40px',
+                paddingBottom: '10px',
+              }}>
+                <Text style={adressTitle} className={'text-xl'}>Order Summary
                 </Text>
                 {order.items.map((item, index) => (
                     <Row key={index}
 
-                         style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
+                         style={{
+                           borderBottom: '1px solid #e0e0e0',
+                           paddingTop: '10px',
+                           paddingBottom: '10px',
+                         }}>
                       <Column>
                         <Text
-                            className={"text-[16px]"}
-                            style={{...paragraph, fontWeight: '500', color: '#2C2C2C', marginBottom: '0px'}}>
+                            className={'text-[16px]'}
+                            style={{
+                              ...paragraph,
+                              fontWeight: '500',
+                              color: '#2C2C2C',
+                              marginBottom: '0px',
+                            }}>
                           {item.title}
                         </Text>
                         <Text style={{...paragraph, color: '#7F7F7F'}}>
@@ -157,8 +197,14 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
                         </Text>
                       </Column>
                       <Column>
-                        <Text style={{...paragraph, color: '#7F7F7F', textDecoration: 'uppercase'}}>
-                          {((item.unit_price + ( item.tax_total / item.quantity)) / 100)}  {order.currency_code}
+                        <Text style={{
+                          ...paragraph,
+                          color: '#7F7F7F',
+                          textDecoration: 'uppercase',
+                        }}>
+                          {((item.unit_price +
+                                  (item.tax_total / item.quantity)) /
+                              100)} {order.currency_code}
                         </Text>
 
                       </Column>
@@ -168,14 +214,17 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
                         </Text>
                       </Column>
                       <Column>
-                        <Text style={{textAlign: 'right'}} className={"text-[18px] uppercase"}>
+                        <Text style={{textAlign: 'right'}}
+                              className={'text-[16px] uppercase'}>
                           {order.total / 100} {order.currency_code}
                         </Text>
                       </Column>
                     </Row>
                 ))}                        </Section>
               <Section style={paddingY}>
-                <Link style={global.button} href="https://www.eightathletics.com" className={"mx-auto"}>
+                <Link style={global.button}
+                      href="https://www.eightathletics.com"
+                      className={'mx-auto'}>
                   Visit our website
                 </Link>
               </Section>
@@ -189,12 +238,14 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
                     </Link>
                   </Column>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href={`${baseUrl}/terms/shipping-policy`} style={menu.text}>
+                    <Link href={`${baseUrl}/terms/shipping-policy`}
+                          style={menu.text}>
                       Shipping & Delivery
                     </Link>
                   </Column>
                   <Column style={{width: '33%'}} colSpan={1}>
-                    <Link href={`${baseUrl}/terms/returns-policy`} style={menu.text}>
+                    <Link href={`${baseUrl}/terms/returns-policy`}
+                          style={menu.text}>
                       Returns & Exchanges
                     </Link>
                   </Column>
@@ -213,8 +264,6 @@ const OrderShippedTemplate = ({ order, shipment, tracking_links, tracking_number
   );
 };
 export default OrderShippedTemplate;
-
-
 
 const paddingX = {
   paddingLeft: '40px',
@@ -238,7 +287,7 @@ const global = {
     ...paddingX,
     ...paddingY,
   },
-  paragraphWithBold: { ...paragraph, fontWeight: 'bold' },
+  paragraphWithBold: {...paragraph, fontWeight: 'bold'},
   heading: {
     fontSize: '32px',
     lineHeight: '1.3',
@@ -262,7 +311,7 @@ const global = {
     textAlign: 'center',
     fontWeight: 500,
     color: '#000',
-  } ,
+  },
   hr: {
     borderColor: '#E5E5E5',
     margin: '0',
@@ -298,15 +347,13 @@ const track = {
 const message = {
   padding: '40px 74px',
   textAlign: 'center',
-} ;
+};
 
 const adressTitle = {
   ...paragraph,
   fontSize: '15px',
   fontWeight: 'bold',
 };
-
-
 
 const menu = {
   container: {
@@ -340,7 +387,6 @@ const menu = {
   },
 };
 
-
 const footer = {
   policy: {
     width: '166px',
@@ -351,5 +397,5 @@ const footer = {
     color: '#AFAFAF',
     fontSize: '13px',
     textAlign: 'center',
-  } ,
+  },
 };

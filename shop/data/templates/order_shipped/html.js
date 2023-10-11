@@ -20,12 +20,6 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     shipment = _ref.shipment,
     tracking_links = _ref.tracking_links,
     tracking_numbers = _ref.tracking_numbers;
-  console.log("Props:", {
-    order: order,
-    shipment: shipment,
-    tracking_links: tracking_links,
-    tracking_numbers: tracking_numbers
-  });
   var trackingLinkObj = tracking_links[0];
   var trackingNumber = trackingLinkObj.tracking_number;
   var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(trackingNumber);
@@ -59,9 +53,9 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         }
       }
     }
-  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", order.tracking_number, " for order ", order.display_id, " with ", order.items[0].title, "  ", order.items[0].description, order.items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
+  }, /*#__PURE__*/React.createElement(_components.Head, null), /*#__PURE__*/React.createElement(_components.Preview, null, "Your tracking number is ", order.tracking_number, " for order ", order.display_id, " with ", order.items[0].title, " ", order.items[0].description, order.items.length > 1 ? ' and more' : ''), /*#__PURE__*/React.createElement(_components.Body, {
     style: main,
-    className: "bg-white text-mask-black "
+    className: 'bg-white text-mask-black '
   }, /*#__PURE__*/React.createElement(_components.Container, {
     style: container
   }, /*#__PURE__*/React.createElement(_components.Section, {
@@ -71,7 +65,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
   }, "Order Number"), /*#__PURE__*/React.createElement(_components.Text, {
     style: track.number
   }, order.display_id), /*#__PURE__*/React.createElement(_components.Text, {
-    className: "text-sm "
+    className: 'text-sm '
   }, "Your order has been shipped!")))), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
@@ -132,7 +126,8 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     style: _objectSpread(_objectSpread({}, global.text), {}, {
       display: 'inline-block',
       textDecoration: 'underline'
-    })
+    }),
+    className: 'text-blue-500'
   }, baseUrl, "/track-order?package_number=", trackingNumber), " to track your order."), /*#__PURE__*/React.createElement(_components.Link, {
     href: trackingLink,
     style: _objectSpread(_objectSpread({}, global.button), {}, {
@@ -148,7 +143,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
     })
   }, /*#__PURE__*/React.createElement(_components.Text, {
     style: adressTitle,
-    className: "text-xl"
+    className: 'text-xl'
   }, "Order Summary"), order.items.map(function (item, index) {
     return /*#__PURE__*/React.createElement(_components.Row, {
       key: index,
@@ -158,7 +153,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         paddingBottom: '10px'
       }
     }, /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
-      className: "text-[16px]",
+      className: 'text-[16px]',
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         fontWeight: '500',
         color: '#2C2C2C',
@@ -173,7 +168,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         color: '#7F7F7F',
         textDecoration: 'uppercase'
       })
-    }, (item.unit_price + item.tax_total / item.quantity) / 100, "  ", order.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
+    }, (item.unit_price + item.tax_total / item.quantity) / 100, " ", order.currency_code)), /*#__PURE__*/React.createElement(_components.Column, null, /*#__PURE__*/React.createElement(_components.Text, {
       style: _objectSpread(_objectSpread({}, paragraph), {}, {
         color: '#7F7F7F'
       })
@@ -181,14 +176,14 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
       style: {
         textAlign: 'right'
       },
-      className: "text-[18px] uppercase"
+      className: 'text-[16px] uppercase'
     }, order.total / 100, " ", order.currency_code)));
   }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
   }, /*#__PURE__*/React.createElement(_components.Link, {
     style: global.button,
     href: "https://www.eightathletics.com",
-    className: "mx-auto"
+    className: 'mx-auto'
   }, "Visit our website")), /*#__PURE__*/React.createElement(_components.Hr, {
     style: global.hr
   }), /*#__PURE__*/React.createElement(_components.Section, {
