@@ -61,8 +61,8 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
               <Section style={track.container}>
                 <Row>
                   <Column>
-                    <Text style={global.paragraphWithBold}>Order Number</Text>
-                    <Text style={track.number}>
+                    <Text style={global.paragraphWithBold}>Order Refunded</Text>
+                    <Text style={global.text}>
                       We've successfully processed your refund for order #{order.display_id}.
                     </Text>
 
@@ -81,6 +81,8 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
                 />
                 <Heading style={global.heading}>Refund Confirmation</Heading>
                 <Text style={global.text}>
+                  Hi {order.customer.first_name},
+                  hey {order.shipping_address.first_name},
                   The refunded amount {refund_amount} will be credited to your original payment method within 3-7 business days.
                 </Text>
               </Section>
@@ -120,7 +122,7 @@ const OrderRefundCreatedTemplate = ({ order, refund, refund_amount }) => {
                 <Text style={menu.title}>Get Help</Text>
                 <Row style={menu.content}>
                   <Text style={global.text}>
-                    If you have any questions, please contact us at
+                    If you have any questions, please contact us at <br />
                     <Link href="mailto:support@eightathletics.com" style={global.text} className={"text-blue-600"}>
                       support@eightathletics.com
                     </Link>
