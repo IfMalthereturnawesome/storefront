@@ -19,6 +19,7 @@ const CartDropdown = () => {
   const { deleteItem } = useStore()
   const { state, open, close } = useCartDropdown()
   const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
+  
   return (
     <div className="h-full  z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full ">
@@ -60,17 +61,16 @@ const CartDropdown = () => {
               <>
                 <div className=" max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar">
                   {items
-                    .sort((a, b) => {
-                      return a.created_at > b.created_at ? -1 : 1
-                    })
-                    .map((item) => (
-                      <div
-                        className="grid grid-cols-[122px_1fr] gap-x-4"
-                        key={item.id}
-                      >
-                        <div className="w-[122px]">
-                          <Thumbnail thumbnail={item.thumbnail} size="full" />
-                        </div>
+                      .sort((a, b) => {
+                        return a.created_at > b.created_at ? -1 : 1
+                      })
+                      .map((item) => {
+                        const productHandle = item.title.replace(/\s+/g, '-').toLowerCase();  // Create handle from title
+                        return (
+                            <div className="grid grid-cols-[122px_1fr] gap-x-4" key={item.id}>
+                              <div className="w-[122px]">
+                                <Thumbnail productHandle={productHandle} size="full" />  {/* Updated line */}
+                              </div>
                         <div className="flex flex-col justify-between flex-1">
                           <div className="flex flex-col flex-1">
                             <div className="flex items-start justify-between">
@@ -108,7 +108,8 @@ const CartDropdown = () => {
                           </div>
                         </div>
                       </div>
-                    ))}
+                        )
+                        })}
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">

@@ -30,7 +30,7 @@ export default function Home() {
                     <DoubleImageSection
                         headerLine1={"Greet each day with "}
                         headerLine2={"undivided focus."}
-                        descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                        descriptionText={"The Eight Sleep Mask is designed to help you sleep better, recover faster, and perform at your peak. It’s the first sleep mask to combine total blackout with a custom fit for your unique face. The result? A sleep experience that’s truly elevated."}
                         image1Src={"/images/test-images-for-feature2.jpg"}
                         image2Src={"/images/test-images-for-feature1.jpg"}
                     />

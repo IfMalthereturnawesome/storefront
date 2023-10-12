@@ -12,7 +12,7 @@ const ProductPreview = ({
   return (
     <Link href={`/products/${handle}`}>
       <div>
-        <Thumbnail thumbnail={thumbnail} size="full" />
+        <Thumbnail productHandle={handle} size="full" />
         <div className="text-base-regular mt-2">
           <span>{title}</span>
           <div className="flex items-center gap-x-2 mt-1">

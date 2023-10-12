@@ -20,7 +20,7 @@ export type HitProps = {
 const Hit = ({ hit }: HitProps) => {
   return (
     <div key={hit.id} className="grid grid-cols-[86px_1fr] gap-4 w-full">
-      <Thumbnail thumbnail={hit.thumbnail} size="full" />
+      <Thumbnail productHandle={hit.handle} size="full" />
       <div className="flex flex-col justify-between">
         <div className="flex flex-col">
           {hit.collection_id && (

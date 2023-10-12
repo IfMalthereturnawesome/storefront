@@ -17,9 +17,7 @@ var baseUrl = 'https://www.eightathletics.com';
 var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
   var _order$shipping_addre;
   var order = _ref.order,
-    shipment = _ref.shipment,
-    tracking_links = _ref.tracking_links,
-    tracking_numbers = _ref.tracking_numbers;
+    tracking_links = _ref.tracking_links;
   var trackingLinkObj = tracking_links[0];
   var trackingNumber = trackingLinkObj.tracking_number;
   var trackingLink = "".concat(baseUrl, "/track-order?package_number=").concat(trackingNumber);

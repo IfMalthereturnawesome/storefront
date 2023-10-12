@@ -21,9 +21,7 @@ const baseUrl = 'https://www.eightathletics.com';
 
 const OrderShippedTemplate = ({
   order,
-  shipment,
   tracking_links,
-  tracking_numbers,
 }) => {
   const trackingLinkObj = tracking_links[0];
   const trackingNumber = trackingLinkObj.tracking_number;
