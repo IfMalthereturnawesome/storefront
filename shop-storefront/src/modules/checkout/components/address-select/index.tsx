@@ -56,7 +56,7 @@ const AddressSelect = ({ addresses }: AddressSelectProps) => {
   return (
     <Listbox onChange={handleSelect} value={selected}>
       <div className="relative">
-        <Listbox.Button className="relative w-full flex justify-between items-center px-4 py-[10px] text-left bg-white cursor-default focus:outline-none border border-gray-200 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-300 text-base-regular">
+        <Listbox.Button className="relative w-full flex justify-between items-center px-4 py-[10px] text-left bg-cyan-2 cursor-default focus:outline-none border border-gray-200 focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-300 text-base-regular">
           {({ open }) => (
             <>
               <span className="block truncate">
@@ -77,13 +77,13 @@ const AddressSelect = ({ addresses }: AddressSelectProps) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute z-20 w-full overflow-auto text-small-regular bg-white border border-gray-200 border-top-0 max-h-60 focus:outline-none sm:text-sm">
+          <Listbox.Options className="absolute z-20 w-full overflow-auto text-small-regular bg-cyan-2 border border-gray-200 border-top-0 max-h-60 focus:outline-none sm:text-sm">
             {addresses.map((address) => {
               return (
                 <Listbox.Option
                   key={address.id}
                   value={address.id}
-                  className="cursor-default select-none relative pl-6 pr-10 hover:bg-gray-50 py-4"
+                  className="cursor-default select-none relative pl-6 pr-10 hover:bg-cyan-1 py-4"
                 >
                   <div className="flex gap-x-4 items-start">
                     <Radio checked={selected === address.id} />
