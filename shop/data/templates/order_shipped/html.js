@@ -175,7 +175,7 @@ var OrderShippedTemplate = function OrderShippedTemplate(_ref) {
         textAlign: 'right'
       },
       className: 'text-[16px] uppercase'
-    }, order.total / 100, " ", order.currency_code)));
+    }, item.total / 100, " ", order.currency_code)));
   }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
     style: paddingY
   }, /*#__PURE__*/React.createElement(_components.Link, {

@@ -149,8 +149,8 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                         </Text>
                       </Column>
                       <Column>
-                        <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
-                          {item.total}
+                        <Text style={{textAlign: 'right'}} className={"text-[16px] uppercase"}>
+                          {item.total / 100} {region.currency_code}
                         </Text>
                       </Column>
                     </Row>

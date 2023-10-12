@@ -159,8 +159,8 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
       style: {
         textAlign: 'right'
       },
-      className: "text-[18px]"
-    }, item.total)));
+      className: "text-[16px] uppercase"
+    }, item.total / 100, " ", region.currency_code)));
   }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
       paddingBottom: '10px'

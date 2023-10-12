@@ -212,7 +212,7 @@ const OrderShippedTemplate = ({
                       <Column>
                         <Text style={{textAlign: 'right'}}
                               className={'text-[16px] uppercase'}>
-                          {order.total / 100} {order.currency_code}
+                          {item.total / 100} {order.currency_code}
                         </Text>
                       </Column>
                     </Row>
