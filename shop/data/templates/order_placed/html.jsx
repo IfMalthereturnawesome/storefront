@@ -123,6 +123,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                 <Text style={adressTitle} className={"text-xl"}>Order Summary
                 </Text>
                 {items.map((item, index) => (
+
                     <Row key={index}
 
                          style={{borderBottom: '1px solid #e0e0e0', paddingTop: '10px', paddingBottom: '10px'}}>
@@ -149,7 +150,7 @@ const OrderPlacedTemplate = ({ shipping_address, display_id, items, region, tota
                       </Column>
                       <Column>
                         <Text style={{textAlign: 'right'}} className={"text-[18px]"}>
-                          {total}
+                          {item.total}
                         </Text>
                       </Column>
                     </Row>

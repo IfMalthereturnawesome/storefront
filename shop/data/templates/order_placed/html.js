@@ -160,7 +160,7 @@ var OrderPlacedTemplate = function OrderPlacedTemplate(_ref) {
         textAlign: 'right'
       },
       className: "text-[18px]"
-    }, total)));
+    }, item.total)));
   }), "                        "), /*#__PURE__*/React.createElement(_components.Section, {
     style: _objectSpread(_objectSpread({}, paddingX), {}, {
       paddingBottom: '10px'
