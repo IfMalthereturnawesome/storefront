@@ -9,8 +9,8 @@ import Container from '@/components/elements/Container';
 import {Button} from '@nextui-org/button';
 
 export const metadata = {
-    title: 'Contact us - Open PRO',
-    description: 'Page description',
+    title: 'Resources - Eight Athletics',
+    description: 'Explore our science-backed sleep resources for practical advice and actionable tips. Discover how to elevate your sleep quality, harness the power of sleep, and transform your waking hours.',
 }
 
 const cardData = [

@@ -3,8 +3,8 @@ import ContactDetails from "@/components/ContactDetails";
 import FAQPage from "@/app/(main)/(other)/faq/page";
 
 export const metadata = {
-  title: 'Contact us - Open PRO',
-  description: 'Page description',
+  title: 'Contact us - Eight Athletics',
+  description: 'Contact us through our contact form or by email. We will get back to you as soon as possible.',
 }
 
 

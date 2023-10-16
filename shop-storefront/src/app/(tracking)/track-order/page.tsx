@@ -11,7 +11,7 @@ import React from "react";
 export async function generateMetadata(): Promise<Metadata> {
     return {
         title: 'Track order',
-        description: 'Track your order',
+        description: 'Track your package from Eight Athletics.',
     }
 }
 

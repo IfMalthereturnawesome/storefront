@@ -6,8 +6,8 @@ import NeoButton from "@/components/elements/NeoButton";
 import Container from '@/components/elements/Container';
 
 export const metadata = {
-    title: 'Contact us - Open PRO',
-    description: 'Page description',
+    title: 'FAQ - Eight Athletics',
+    description: 'Frequently asked questions about Eight Athletics products, orders, shipping, and more.',
 }
 
 const FAQPage: React.FC = () => {
