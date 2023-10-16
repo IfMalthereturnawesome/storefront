@@ -3,6 +3,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Checkout",
+    description: "Checkout for Eight Athletics",
 }
 
 export default function Checkout() {

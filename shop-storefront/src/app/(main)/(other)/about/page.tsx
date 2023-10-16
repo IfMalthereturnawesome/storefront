@@ -6,14 +6,11 @@ import ScrollSection from "@/components/about/ScrollSection";
 import React from "react";
 import HorizontalTextScroll from "@/components/about/HorizontalTextScroll";
 import {LogoSection} from "@/components/about/LogoSection";
-
-// Import headers from Next.js (as per your Next.js 13 guide)
-
 import { ConditionalRender } from '@/components/utils/ConditionalRender';
 
 export const metadata = {
-    title: 'About us - Open PRO',
-    description: 'Page description',
+    title: 'About us - Eight Athletics',
+    description: 'Eight Athletics mission is to create innovative sleep products that help you perform better, recover faster, and sleep deeper',
 };
 
 const About: React.FC = () => {
