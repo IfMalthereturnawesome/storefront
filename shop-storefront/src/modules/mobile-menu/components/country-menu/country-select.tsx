@@ -1,3 +1,5 @@
+'use client';
+
 import { useStore } from "@lib/context/store-context";
 import { useRegions } from "medusa-react";
 import { Fragment, useEffect, useMemo, useState } from "react";

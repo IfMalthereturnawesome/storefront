@@ -38,7 +38,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
                   clsx(
                     "text-left uppercase text-slate-12 text-small-regular pb-2 -mb-px border-b border-gray-200 dark:border-gray-800 transition-color duration-150 ease-in-out",
                     {
-                      "border-b border-slate-12 dark:border-gray-100": selected,
+                      "border-b border-slate-12 dark:border-gray-300": selected,
                     }
                   )
                 }

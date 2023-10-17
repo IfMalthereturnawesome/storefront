@@ -1,3 +1,5 @@
+'use client';
+
 import NativeSelect, {
   NativeSelectProps,
 } from "@modules/common/components/native-select"

@@ -33,7 +33,6 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
                         <ZoomableImageGallery images={productImagePaths}/>
                     </div>
                     <div className="flex-shrink-0 w-full small:max-w-[344px] medium:max-w-[490px] relative">
-                        {/* Ensuring that sticky container has a larger height or equal to the scrolling container */}
                         <div style={{ minHeight: 'calc(100vh - 64px)' }}>
                             <div
                                 className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-14 flex flex-col gap-y-12"
