@@ -23,6 +23,8 @@ import {useMobileMenu} from "@lib/context/mobile-menu-context";
 import CountryMenu from "@modules/mobile-menu/components/country-menu"
 import MainMenu from "@modules/mobile-menu/components/main-menu";
 import Container from "@modules/mobile-menu/components/container";
+import {format} from "logform";
+import label = format.label;
 
 
 
@@ -172,7 +174,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobil
                                             Click to select shipping country
                                         </span>
                                             <div className="flex items-center gap-x-2">
-                                                <ReactCountryFlag countryCode={countryCode || "us"} svg/>
+                                                <ReactCountryFlag countryCode={countryCode || "us"} svg alt={countries?.find((c) => c.country === countryCode)?.label}/>
                                                 <span className="normal-case">
                                                 Free Shipping to{" "}
                                                     {countries?.find((c) => c.country === countryCode)?.label}

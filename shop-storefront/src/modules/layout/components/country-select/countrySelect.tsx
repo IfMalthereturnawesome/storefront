@@ -61,6 +61,7 @@ export default function CountrySelectDesktop() {
                         marginRight: "8px"
                     }}
                     countryCode={current?.country}
+                    alt={current?.label}
                 />
                 <h3 className="font-semibold tracking-wider text-slate-12 ">
                     {current?.label}

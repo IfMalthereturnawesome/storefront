@@ -56,6 +56,7 @@ export default function CountrySelectFlag() {
                         marginRight: "6px"
                     }}
                     countryCode={current?.country}
+                    alt={current?.label}
                 />
             </Button>
             <Modal

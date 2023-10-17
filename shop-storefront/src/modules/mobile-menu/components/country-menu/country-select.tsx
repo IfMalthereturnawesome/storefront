@@ -60,6 +60,7 @@ export default function CountrySelectMobile() {
                         marginRight: "6px"
                     }}
                     countryCode={current?.country}
+                    alt={current?.label}
                 />
                <h3 className={"font-semibold tracking-wider text-slate-12"}> {current?.label}</h3>
                 <ChevronRightIcon className="ml-2 h-4 w-4 text-slate-12" aria-hidden="true" />
@@ -94,6 +95,7 @@ export default function CountrySelectMobile() {
                                                     height: "24px",
                                                 }}
                                                 countryCode={option.country}
+                                                alt={option.label}
                                             />
                                             <span style={{ marginLeft: "8px" }}>
                                                   {option.label} - {option.currency}
