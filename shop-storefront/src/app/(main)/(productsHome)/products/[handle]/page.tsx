@@ -1,7 +1,9 @@
 import { getProductByHandle } from "@lib/data"
-import ProductTemplate from "@modules/products/templates"
+import ProductSleepMaskOneTemplate from "@modules/products/templates/ProductSleepMaskOneTemplate"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import ProductSleepMaskOneCustomTemplate from "@modules/products/templates/ProductSleepMaskOneCustomTemplate";
+import ProductTemplate from "@modules/products/templates";
 
 type Props = {
   params: { handle: string }
@@ -30,7 +32,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CollectionPage({ params }: Props) {
   const { products } = await getProductByHandle(params.handle).catch((err) => {
     notFound()
-  })
+  });
 
-  return <ProductTemplate product={products[0]} />
+  const product = products[0];
+
+  // Decide which template to use based on handle
+  if (params.handle === "sleep-mask-one") {
+    return <ProductSleepMaskOneTemplate product={product} />;
+  } else if (params.handle === "sleep-mask-one-custom") {
+    return <ProductSleepMaskOneCustomTemplate product={product} />;
+  } else {
+    return <ProductTemplate product={product} />; // Default
+  }
 }
+

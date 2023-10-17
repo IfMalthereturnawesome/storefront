@@ -96,7 +96,7 @@ yarn dev
 
 Your site is now running at http://localhost:8000!
 
-Edit `/pages/index.tsx` to see your site update in real-time!
+Edit `/pages/ProductSleepMaskOneTemplate.tsx` to see your site update in real-time!
 
 # Product Module
 > The Product Module is currently in beta. You can learn more about it [here](https://docs.medusajs.com/modules/products/serverless-module). In addition, the product module in the Next.js storefront can't be used without the Medusa backend running at the moment.

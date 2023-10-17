@@ -1,18 +1,13 @@
 "use client"
 
-import {ProductProvider} from "@lib/context/product-context"
 import {useIntersection} from "@lib/hooks/use-in-view"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
 import React, {useRef} from "react"
-import ImageGallery from "../components/image-gallary"
-import MobileActions from "../components/mobile-actions"
+import MobileActions from "../../modules/products/components/mobile-actions"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
-import VideoAnimation from "@/components/sleepMask/VideoAnimation";
-import usePageSettings from "@/utils/hooks/usePageSettings";
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
-import Image from 'next/image';
 
 
 type ProductTemplateProps = {
@@ -30,16 +25,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
 
 
     return (
-        <ProductProvider product={product}>
 
-            {/*<div className="bg-mask-black">*/}
-            {/*    /!*<VideoAnimation/>*!/*/}
 
-            {/*    /!*<div className="spacer"></div>*!/*/}
-
-            {/*    /!*<ThinFeature/>*!/*/}
-
-            {/*</div>*/}
             <div className={"bg-custom-white dark:bg-cyan-1 h-full"}>
                 <div className="content-container__big flex flex-col small:flex-row small:items-start py-6 relative">
                     <div className="flex flex-col gap-y-8 w-full">
@@ -63,7 +50,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
                 </div>
                 <MobileActions product={product} show={!inView}/>
             </div>
-        </ProductProvider>
+
     )
 }
 
