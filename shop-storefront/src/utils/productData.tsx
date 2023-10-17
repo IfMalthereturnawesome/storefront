@@ -8,6 +8,7 @@ export type Feature = {
 
 export type ProductData = {
     title: string;
+    handle?: string;
     productId: string;
     price?: string;
     news?: string;
@@ -26,6 +27,7 @@ import TotalDarknessIcon from "@modules/common/icons/total-darkness-icon";
 
 export const SleepMaskOneData: ProductData = {
     title: "Sleep Mask One",
+    handle: "sleep-mask-one",
     productId: "prod_01HAJJPFSZ3YCV83DF5WBR52B1",  // New field for the product ID
     imageSrc: "/images/product/sleepmask_transparent.png",
     imageArray: [
@@ -58,6 +60,7 @@ export const SleepMaskOneData: ProductData = {
 
 export const SleepMaskCustomData: ProductData = {
     title: "Sleep Mask One Custom",
+    handle: "sleep-mask-one-custom",
     productId: 'prod_01HAJJPFSZ3YCV83DF5WBR52B1',
     imageSrc: "/images/product/sleepmask_transparent.png",
     imageArray: [

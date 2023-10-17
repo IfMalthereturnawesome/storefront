@@ -4,6 +4,8 @@ import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import ProductInfoSection from "@/components/productPageTemplates/ProductInfoSection";
 import ThinFeature from "@/components/sleepMask/ThinFeature";
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
+import ProductChoice from "@/components/sleepMask/ProductChoice";
+import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
 
 
 type ProductsTemplate = {
@@ -28,6 +30,8 @@ const ProductSleepMaskOneCustomTemplate: React.FC<ProductsTemplate> = ({product}
             {/*    <div className="spacer"></div>*/}
 
             {/*</div>*/}
+            <ProductChoice product1={SleepMaskCustomData} product2={SleepMaskOneData}
+                           currentProductTitle="Sleep Mask One Custom"/>
             <ProductInfoSection product={product}/>
         </ProductProvider>
     )

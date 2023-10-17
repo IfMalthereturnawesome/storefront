@@ -38,13 +38,15 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
         setSelectedImage2(product2.imageArray[index]);
     };
 
+
+
     const renderButton = (productTitle: string) => {
         if (productTitle === currentProductTitle) {
             return <span
                 className="block font-sans text-base font-normal tracking-normal text-zinc-500 leading-[1.28577] py-2">Currently viewing</span>;
         } else {
             return (
-                <Link href={`/products/${productTitle}`}>
+                <Link href={`/products/${product2.handle}`}>
                     <SecondaryButton variant={"third"}
                                      className={"rounded-[1.5rem] capitalize group text-md !py-2 px-2 min-h-[1.5rem] "}>
                         Read more
@@ -70,11 +72,18 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
         const selectedImage = product.title === product1.title ? selectedImage1 : selectedImage2;
         const handleColorClick = product.title === product1.title ? handleColorClick1 : handleColorClick2;
 
+        let linkHref;
+        if (product.title === currentProductTitle) {
+            linkHref = "#buy-now";
+        } else {
+            linkHref = `/products/${product.handle}#buy-now`;
+        }
+
         return (
             <div className="flex flex-col justify-between max-w-full px-2 md:max-w-1/2 md:px-vw-3">
                 <div
                     className="flex relative flex-col items-center justify-between pb-12 px-[1.0588em] z-10 h-[450px] md:h-[500px]">
-                    <Link href={`/products/${product.title}`}>
+                    <Link href={`${linkHref}`}>
                         <div className="flex flex-col justify-end items-center mt-0 mb-8 max-w-full -order-1">
                             <Image src={selectedImage} alt={product.title} width={300} height={300}/>
                         </div>
@@ -105,7 +114,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                     <div
                         className="flex flex-wrap gap-4 justify-center items-center mt-6 max-w-full min-h-[5vh] max-h-[5vh]">
                         {renderButton(product.title)}
-                        <Link href={`/buy/${product.title}`}
+                        <Link href={`${linkHref}`}
                               className="inline-flex min-h-[40px] items-center group mx-0 mb-0 font-sans text-base font-normal text-center ">
                             <span
                                 className="leading-5 text-sky-2 dark:text-sky-11 group-hover:text-sky-9 group-hover:underline underline-offset-2">Buy now</span>
