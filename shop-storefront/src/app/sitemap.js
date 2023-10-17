@@ -51,7 +51,14 @@ export default async function sitemap(){
    });
 
    const productRoutes = ['','/store',
-      '/products/sleep-mask-one', '/products/sleep-mask-one-custom']
+      '/products/sleep-mask-one', '/products/sleep-mask-one-custom'].map(route => {
+      return {
+         url: `${URL}${route}`,
+         lastModified: new Date().toISOString(),
+         changeFrequency: 'weekly',
+         priority: 1,
+      };
+   })
 
    return [...posts, ...helps, ...resources, ...terms, ...routes, ...productRoutes];
 
