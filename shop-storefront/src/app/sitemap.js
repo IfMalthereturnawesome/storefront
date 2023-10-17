@@ -53,7 +53,7 @@ export default async function sitemap(){
    const productRoutes = ['','/store',
       '/products/sleep-mask-one', '/products/sleep-mask-one-custom']
 
-   const sitemap = [...posts, ...helps, ...resources, ...terms, ...routes, ...productRoutes];
+   return [...posts, ...helps, ...resources, ...terms, ...routes, ...productRoutes];
 
 
 }
