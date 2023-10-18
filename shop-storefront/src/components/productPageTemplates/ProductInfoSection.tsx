@@ -27,8 +27,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
     return (
 
 
-            <div className={"bg-custom-white dark:bg-cyan-1 h-full pb-14"}>
-                <div id={"buy-now"} className="content-container__big flex flex-col small:flex-row small:items-start py-6 relative ">
+            <div className={"bg-custom-white dark:bg-cyan-1 h-full pb-14 "}>
+                <div id={"buy-now"} className="content-container__big  flex flex-col small:flex-row small:items-start py-6 relative ">
                     <div className="flex flex-col gap-y-8 w-full">
                         <ZoomableImageGallery images={productImagePaths}/>
                     </div>

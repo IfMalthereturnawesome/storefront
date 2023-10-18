@@ -5,6 +5,7 @@ import ProductInfoSection from "@/components/productPageTemplates/ProductInfoSec
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
 import ProductChoice from "@/components/sleepMask/ProductChoice";
 import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
+import FaceStory from "@/components/sleepMask/FaceStory";
 
 
 type ProductsTemplate = {

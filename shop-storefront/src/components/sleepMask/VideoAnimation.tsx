@@ -60,6 +60,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     }
 
 
+
     const smoothDisappear = () => {
         setShowHeaderText(false);
         if (headerRef.current) {
@@ -521,9 +522,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     };
 
 
+
     return (
         <>
-            <div ref={wrapperRef} className="relative h-screen lg:h-[120vh] pin-video" id={"smooth-content"}>
+            <div ref={wrapperRef} className="relative  min-h-screen lg:min-h-[120vh]  pin-video" id={"smooth-content"}>
 
                 <div ref={headerRef}
                      className="absolute top-[18vh] w-[99vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
@@ -556,7 +558,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         </div>
 
 
-                        <div className=" mt-4 z-[1]">
+                        <div className=" mt-4 z-[1] ">
                             {showDescription && (
                                 <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[28vw] 3xl:px-[30vw]"
                                      data-aos="fade-up">
@@ -581,8 +583,8 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
                 )}
 
-                <div ref={videoContainerRef} className="relative "
-                     style={{display: showVideo ? 'block' : 'none', opacity: showVideo ? 1 : 0}}>
+                <div ref={videoContainerRef} className="relative"
+                     style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                     {isLoading && <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                       <div className="loading-spinner"></div>
                     </div>}
