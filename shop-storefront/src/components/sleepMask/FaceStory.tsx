@@ -5,6 +5,7 @@ import React, {useEffect, useRef} from 'react';
 import Lenis from '@studio-freight/lenis';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 
+
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
@@ -47,7 +48,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
                 const images: any[] = [];
                 const sleepMask = {
-                    frame: 0,
+                    frame: 1,
                 };
 
                 for (let i = 0; i < frameCount; i++) {
@@ -55,6 +56,17 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                     img.src = currentFrame(i);
                     images.push(img);
                 }
+
+                images[1].onload = () => {
+                    if (canvasRefImage.current) {
+                        const context = canvasRefImage.current.getContext("2d");
+                        context?.clearRect(0, 0, canvasRefImage.current.width, canvasRefImage.current.height);
+                        context?.drawImage(images[1], 0, 0, canvasRefImage.current.width, canvasRefImage.current.height);
+                    }
+                };
+
+
+
 
 
                 const render = () => {
@@ -72,6 +84,8 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                     }
                 };
 
+
+
                 gsap.to(sleepMask, {
                         frame: frameCount - 1,
                         snap: "frame",
@@ -79,9 +93,9 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                         scrollTrigger: {
                             trigger: ".pinFaceStory",
                             start: "center center",
-                            end: "+=100%",
+                            end: "+=79%",
                             scrub: true,
-
+                            onEnter: render,
                         },
                         onUpdate: render,
                     }
@@ -145,11 +159,12 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
             {/* Image Sequence to the left */}
             <div className="w-[49vw] ml-2 h-screen ">
                 <canvas ref={canvasRefImage} className="w-full h-full "/>
+
             </div>
             {/* Text to the right of the center */}
             <div className="w-[49vw] flex flex-col justify-center pl-8 -mt-[3rem] ">
                 <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[40vw]">{headline}</h2>
-                <p className="font-sans font-semibold leading-7 tracking-tight text-left text-white max-w-[30vw]">{description}</p>
+                <p className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">{description}</p>
             </div>
         </div>
     );

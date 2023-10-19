@@ -28,13 +28,14 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({ imageSrc, headerLin
                 start: 'top center',
                 end: 'bottom center',
                 scrub: true,
+                markers: true,
             },
         });
 
         tl.fromTo(
             imageRef.current,
-            { scale: 1.22 },
-            { scale: 1, duration: 3 }
+            { scale: 1.22, y: -150},
+            { scale: 1, duration: 3, y:10}
         );
 
     }, []);
@@ -47,7 +48,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({ imageSrc, headerLin
                 </div>
             </div>
             <div className="w-full h-screen relative">
-                <Image src={imageSrc} ref={imageRef}  className="w-full h-screen object-cover" alt="" width={1920} height={1080} />
+                <Image src={imageSrc} ref={imageRef}  className="w-full h-screen object-cover" alt="Increase Melatonin Production with Eight Athletics Sleep Mask" width={1920} height={1080} />
                 <h3 ref={headerRef} className="absolute top-1/3 right-1/4 lg:right-1/3 transform -translate-y-1/2 text-8xl lg:text-9xl font-bold text-white break-words">
                     {headerLine1}
                 </h3>
