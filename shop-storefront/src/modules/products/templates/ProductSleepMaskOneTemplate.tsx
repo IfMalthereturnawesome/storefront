@@ -7,8 +7,8 @@ import ProductChoice from "@/components/sleepMask/ProductChoice";
 import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
 import FaceStory from "@/components/sleepMask/FaceStory";
 import DoubleImageSection from "@/components/sleepMask/imageSections/DoubleImageSection";
-import InteractiveImageSection from "@/components/sleepMask/imageSections/InteractiveImageSection";
 import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSection";
+import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
 
 
 type ProductsTemplate = {
@@ -52,6 +52,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                               headerLine1={"Increase melatonin production"}
                               descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
 
+            <WrappedComponent />
 
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>

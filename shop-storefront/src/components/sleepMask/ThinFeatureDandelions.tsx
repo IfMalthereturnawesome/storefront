@@ -98,7 +98,7 @@ const ThinFeatureDandelions: React.FC = () => {
                         end: '+=3500',
                         scrub: true,
                         pin: true,
-                        anticipatePin: 1,
+                        anticipatePin: 2,
 
                     },
                     onUpdate: render,

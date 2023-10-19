@@ -1,13 +1,12 @@
 'use client';
 // ParticlesBackground.tsx
-import React, {useState, useEffect, useRef, useCallback, createContext, useContext} from 'react';
+import React, {useState, useCallback} from 'react';
 import type {Container, Engine, ISourceOptions} from "tsparticles-engine";
 import Particles from "react-particles";
 import {loadFull} from "tsparticles";
 import {loadPolygonMaskPlugin} from "tsparticles-plugin-polygon-mask";
 import {loadParticlesCollisionsInteraction} from "tsparticles-interaction-particles-collisions";
 
-import {tsParticles} from "tsparticles-engine";
 
 
 const ParticlesBackground = ({shouldPlayParticles}) => {
@@ -285,6 +284,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
     }, [shouldPlayParticles, individualParticleOptions]);
 
     return (
+
         <Particles
             id={`tsparticles`}
             init={particlesInit}
@@ -294,6 +294,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
             // @ts-ignore
             options={particleOptions}
         />
+
     );
 };
 

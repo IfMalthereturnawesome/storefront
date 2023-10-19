@@ -82,7 +82,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     }, []);
 
     return (
-        <div className="relative bg-[#130612]">
+        <div className="relative bg-[#130612] z-[1]">
             <div className="grain">
                 <div className="grain-texture">
 

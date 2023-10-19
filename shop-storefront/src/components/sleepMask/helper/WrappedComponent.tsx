@@ -11,15 +11,13 @@ const WrappedComponent: React.FC = () => {
     const [shouldPlayParticles, setShouldPlayParticles] = useState(false);
 
     return (
-        <>
+        <div className="relative">
             <ParticlesBackground shouldPlayParticles={shouldPlayParticles} />
-
             <MinimalWeight setShouldPlayParticles={setShouldPlayParticles} />
             <ScrollBar>
-            <ThinFeatureDandelions />
-
+                <ThinFeatureDandelions />
             </ScrollBar>
-        </>
+        </div>
     );
 };
 

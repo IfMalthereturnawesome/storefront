@@ -524,7 +524,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     return (
         <>
-            <div ref={wrapperRef} className="relative  min-h-screen lg:min-h-[120vh]  pin-video" id={"smooth-content"}>
+            <div ref={wrapperRef} className="relative  min-h-screen lg:min-h-[120vh]  pin-video  z-[1]" id={"smooth-content"}>
 
                 <div ref={headerRef}
                      className="absolute top-[18vh] w-[99vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "

@@ -32,13 +32,13 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
     return (
         <>
             {/*<div className="spacer"></div>*/}
-                <DoubleImageSection
-                    headerLine1={"Greet each day with "}
-                    headerLine2={"undivided focus."}
-                    descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                    image1Src={"/images/test-images-for-feature2.jpg"}
-                    image2Src={"/images/test-images-for-feature1.jpg"}
-                />
+            {/*    <DoubleImageSection*/}
+            {/*        headerLine1={"Greet each day with "}*/}
+            {/*        headerLine2={"undivided focus."}*/}
+            {/*        descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}*/}
+            {/*        image1Src={"/images/test-images-for-feature2.jpg"}*/}
+            {/*        image2Src={"/images/test-images-for-feature1.jpg"}*/}
+            {/*    />*/}
 
             {/*<div className="spacer"></div>*/}
             {/*<InteractiveImageSection*/}
@@ -55,7 +55,7 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
             {/*<div className="spacer"></div>*/}
 
-            {/*<WrappedComponent />*/}
+            <WrappedComponent />
 
             {/*<MinimalWeight/>*/}
 
@@ -69,10 +69,10 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
 
 
-            <FaceStory
-                headline="Every face tells a story."
-                description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
-            />
+            {/*<FaceStory*/}
+            {/*    headline="Every face tells a story."*/}
+            {/*    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."*/}
+            {/*/>*/}
 
 
         </>

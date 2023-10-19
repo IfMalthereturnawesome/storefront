@@ -1,6 +1,6 @@
 // MinimalWeight.tsx
 
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {ScrollSmoother} from 'gsap/ScrollSmoother';
@@ -23,17 +23,13 @@ interface MinimalWeightProps {
 
 const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) => {
 
-    const textHeight = 96;
 
-    // usePageSettings();
-
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
             const lever = document.getElementById('lever');
             const leftSide = document.getElementById('leftSide');
             const rightSide = document.getElementById('rightSide');
-            const initialScrollText = document.getElementById('initialScrollText');
             let isScrollBarTimelineTriggered = false;
 
             if (lever && leftSide && rightSide) {
@@ -304,7 +300,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     duration: 1,
                     scrollTrigger: {
                         trigger: ".pinMinimalWeightFeature",
-                        start: "center center",
+                        start: "top center",
                         end: "+=100%",
                         scrub: true,
                         onUpdate: self => {
@@ -319,8 +315,6 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                         }
                     }
                 });
-            ;
-
 
             masterTL
                 .add(leftSideTL)
@@ -329,13 +323,19 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .add(makeRightSideScrollBar, "<")
                 .add(scrollTextTimeline)
 
+
+
             ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
-                start: 'center center',  // Adjust according to your needs
-                end: '+=200%',  // Adjust according to your needs
+                start: `top top`,
+                end: '+=200%',
                 pin: true,
                 scrub: true,
                 anticipatePin: 1,
+                pinSpacing: true,
+
+                markers: true,
+
 
                 onEnter: () => masterTL.play(),
                 onLeave: () => masterTL.pause(),
@@ -360,7 +360,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]">
                     <div id="scaleContainer"
                          className="flex justify-center items-center relative w-full h-full scale-150">
-                        <div id="leverWrapper" className="relative w-[850px] h-[1000px] bg-transparent">
+                        <div id="leverWrapper" className="relative w-[850px] h-[110vh] bg-transparent">
 
                             <svg id="triangle" className="absolute top-1/2 left-1/2 transform -translate-x-1/2"
                                  width="80"
@@ -368,7 +368,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                 <polygon points="0,90 80,90 40,0" fill="white"/>
                             </svg>
 
-                            <div id="lever" className="absolute top-1/2 left-[175px] w-[500px] h-[10px] bg-white"></div>
+                            <div id="lever" className="absolute  top-1/2 left-[175px] w-[500px] h-[10px] bg-white"></div>
 
                             <div id="leftSide"
                                  className="absolute top-[43.8%] left-[175px] text-3xl font-bold text-[#faf7f7] "
@@ -491,7 +491,8 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                             </div>
                         </div>
                         <span>
-                    <ArrowDownIcon width={40} height={40} className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>
+                    <ArrowDownIcon width={40} height={40}
+                                   className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>
 
         </span>
                     </div>

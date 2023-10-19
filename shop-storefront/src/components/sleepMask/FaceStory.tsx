@@ -155,7 +155,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
     }, [])
 
     return (
-        <div ref={faceStoryRef} className="flex pinFaceStory bg-[#130612]">
+        <div ref={faceStoryRef} className="flex pinFaceStory bg-[#130612] z-[1]">
             {/* Image Sequence to the left */}
             <div className="w-[49vw] ml-2 h-screen ">
                 <canvas ref={canvasRefImage} className="w-full h-full "/>
