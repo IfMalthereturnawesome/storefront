@@ -134,7 +134,7 @@ const MaskSequence: React.FC = () => {
     return (
         <div className="m-0 p-0" >
             <div className="canvas-container h-[35vh] md:h-[50vh] xl:min-h-[45vh] 2xl:min-h-[50vh] 3xl:min-h-[61vh]">
-                <canvas ref={canvasRefVideo} id="hero-lightpass" className={"max-h-[40vh]  2xs:max-h-[45vh] mt-[38vh] max-w-[98vw] md:max-h-[65vh] md:mt-[20vh] md:max-w-[100vw]"} />
+                <canvas ref={canvasRefVideo} id="hero-lightpass" className={"max-h-[40vh]  2xs:max-h-[45vh] mt-[38vh] max-w-[98vw] md:max-h-[65vh] md:mt-[18vh] md:max-w-[100vw]"} />
 
             </div>
         </div>

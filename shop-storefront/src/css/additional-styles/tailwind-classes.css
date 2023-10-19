@@ -95,5 +95,9 @@
     .header-bg-clip{
         @apply my-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text  font-bold text-transparent transition duration-500  ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text  dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300  dark:hover:from-caction-300 dark:hover:via-cgreen-200 dark:hover:to-caction-200;
     }
+    .header-bg-clip-light {
+        @apply my-4 bg-gradient-to-r from-caction-300 via-cgreen-100 to-cgreen-300 bg-clip-text font-bold text-transparent transition duration-500 ease-in-out hover:from-caction-300 hover:via-cgreen-200 hover:to-caction-200;
+    }
+
 
 }

@@ -21,9 +21,10 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             <div className="bg-mask-black">
                 <VideoAnimation
-                    product={"Sleep Mask"}
+                    product={"Sleep Mask One"}
                     description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
-                    description2={"Custom-fit for your unique face. "}
+                    // description2={"Custom-fit for your unique face. "}
+                    description2={"Tailored for all face shapes and sizes. "}
                     description3={"Elevate your peak performance, no matter where you are and how you sleep."}
                 />
 

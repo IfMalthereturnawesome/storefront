@@ -4,7 +4,6 @@ import React, {RefObject, useEffect, useLayoutEffect, useRef, useState} from 're
 import gsap from 'gsap';
 import {PauseIcon} from "@radix-ui/react-icons";
 import {PlayIcon} from '@heroicons/react/20/solid';
-import usePageSettings from "@/utils/hooks/usePageSettings";
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
 
@@ -23,7 +22,6 @@ interface VideoAnimationProps {
 }
 
 const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, description2, description3}) => {
-    // usePageSettings();
     const [isLoading, setIsLoading] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -535,8 +533,15 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
                 {(showSmallDreamText && showOneNightText) && (
+
                     <div
-                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[18vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[13vh] 3xl:pt-[16vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        <h3 className={"header-bg-clip text-2xl font-sans hidden dark:block"}>
+                            {product}
+                        </h3>
+                        <h3 className="header-bg-clip-light text-2xl font-sans dark:hidden">
+                            {product}
+                        </h3>
                         <div className="">  {/* Added minHeight */}
                             {showSmallDreamText && (
                                 <div ref={smallDreamRef}
@@ -562,7 +567,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                             {showDescription && (
                                 <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[28vw] 3xl:px-[30vw]"
                                      data-aos="fade-up">
-                                    <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl  3xl:text-xl font-semibold font-sans !leading-normal tracking-wide text-center">
+                                    <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
                                         <span ref={descriptionRef1} className="text-[#e7ecef] inline">{description1}</span>
 
                                         <span ref={descriptionRef2} className="text-[#e7ecef] inline">{description2}</span>
@@ -582,6 +587,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     </div>
 
                 )}
+
 
                 <div ref={videoContainerRef} className="relative"
                      style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
