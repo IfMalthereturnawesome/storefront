@@ -80,7 +80,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
         }
 
         return (
-            <div className="flex flex-col justify-between max-w-full px-2 md:max-w-1/2 md:px-vw-3">
+            <div className="flex flex-col justify-between max-w-full px-2 md:max-w-1/2 md:px-vw-3 ">
                 <div
                     className="flex relative flex-col items-center justify-between pb-12 px-[1.0588em] z-10 h-[450px] md:h-[500px]">
                     <Link href={`${linkHref}`}>
@@ -128,7 +128,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
     return (
-        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100"
+        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 "
                  style={{background: 'linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919)'}}>
             <div className="grain">
                 <div className="grain-texture"></div>

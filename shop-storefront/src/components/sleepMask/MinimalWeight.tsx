@@ -328,7 +328,6 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .add(scrollTextTimeline)
 
 
-
             ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
                 start: `center center`,
@@ -337,10 +336,6 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 scrub: true,
                 anticipatePin: 1,
                 pinSpacing: true,
-
-                markers: true,
-
-
                 onEnter: () => masterTL.play(),
                 onLeave: () => masterTL.pause(),
                 onEnterBack: () => masterTL.play(),
@@ -372,7 +367,8 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                 <polygon points="0,90 80,90 40,0" fill="white"/>
                             </svg>
 
-                            <div id="lever" className="absolute  top-1/2 left-[175px] w-[500px] h-[10px] bg-white"></div>
+                            <div id="lever"
+                                 className="absolute  top-1/2 left-[175px] w-[500px] h-[10px] bg-white"></div>
 
                             <div id="leftSide"
                                  className="absolute top-[43.8%] left-[175px] text-3xl font-bold text-[#faf7f7] "
