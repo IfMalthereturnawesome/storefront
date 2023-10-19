@@ -4,11 +4,10 @@ import {useIntersection} from "@lib/hooks/use-in-view"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
-import React, {useRef} from "react"
+import React, {useEffect, useRef} from "react"
 import MobileActions from "../../modules/products/components/mobile-actions"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
-
 
 type ProductTemplateProps = {
     product: PricedProduct
