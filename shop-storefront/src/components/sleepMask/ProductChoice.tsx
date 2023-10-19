@@ -107,7 +107,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                     </div>
 
                     <h3 className="header-bg-clip text-2xl font-sans hidden dark:block">{product.title}</h3>
-                    <h3 className="my-4 font-bold text-slate-1 text-2xl font-sans dark:hidden ">{product.title}</h3>
+                    <h3 className="my-4 font-bold header-bg-clip-light text-2xl font-sans dark:hidden ">{product.title}</h3>
                     <p className="mt-2 max-w-full font-sans text-base font-semibold text-zinc-500 mx-0 leading-[1.42859]">
                         {productPriceData.cheapestPrice?.calculated_price || product.price}
                     </p>

@@ -77,7 +77,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
 
             scrollTrigger: {
                 trigger: '.triggerMe',
-                start: '+=700',
+                start: 'top 80%',
                 end: 'top 50%',
                 onEnter: () => {
                     gsap.to('.truck-icon', {
