@@ -33,9 +33,10 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: image1Ref.current,
-                start: 'top top',
-                end: 'bottom top',
+                start: 'top bottom',
+                end: 'bottom center',
                 scrub: true,
+
             },
         });
 
@@ -69,7 +70,6 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                 start: 'top top',
                 end: '100% center',
                 scrub: true,
-
             }
         });
 

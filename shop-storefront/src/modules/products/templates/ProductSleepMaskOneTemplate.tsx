@@ -31,13 +31,18 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             </div>
 
-                <DoubleImageSection
-                    headerLine1={"Greet each day with "}
-                    headerLine2={"undivided focus."}
-                    descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                    image1Src={"/images/test-images-for-feature2.jpg"}
-                    image2Src={"/images/test-images-for-feature1.jpg"}
-                />
+            <DoubleImageSection
+                headerLine1={"Greet each day with "}
+                headerLine2={"undivided focus."}
+                descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                image1Src={"/images/test-images-for-feature2.jpg"}
+                image2Src={"/images/test-images-for-feature1.jpg"}
+            />
+
+            <FaceStory
+                headline="Every face tells a story."
+                description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+            />
 
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>

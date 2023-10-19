@@ -27,6 +27,7 @@ module.exports = {
         'medium': '1280px',
         'large': '1440px',
         'xlarge': '1680px',
+        'xxlarge': '1760px',
         '2xlarge': '1920px',
       },
       extend: {

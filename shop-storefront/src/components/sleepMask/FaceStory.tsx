@@ -133,7 +133,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                     end: "+=100%",
                     pin: ".pinFaceStory", // Pin the component
                     pinSpacing: true,
-                    markers: true,
+
                 });
             }
         });

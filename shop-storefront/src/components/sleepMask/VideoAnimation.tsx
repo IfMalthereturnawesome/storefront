@@ -38,7 +38,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [state, setState] = useState(true);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [showCanvas, setShowCanvas] = useState(true);
+    const [showCanvas, setShowCanvas] = useState(false);
     const descriptionRef1 = useRef(null);
     const descriptionRef2 = useRef(null);
     const descriptionRef3 = useRef(null);
@@ -59,7 +59,9 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
     const smoothDisappear = () => {
+        setShowCanvas(true);
         setShowHeaderText(false);
+
         if (headerRef.current) {
             headerRef.current.style.opacity = '0';
         }
@@ -562,9 +564,9 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         </div>
 
 
-                        <div className=" mt-4 z-[1] ">
+                        <div className=" mt-3 3xl:mt-4 z-[1] ">
                             {showDescription && (
-                                <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[28vw] 3xl:px-[30vw]"
+                                <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[24vw] xlarge:px-[26vw] xxlarge:px-[27.5vw] 3xl:px-[29vw]"
                                      data-aos="fade-up">
                                     <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
                                         <span ref={descriptionRef1}

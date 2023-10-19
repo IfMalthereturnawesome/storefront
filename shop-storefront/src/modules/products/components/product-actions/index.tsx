@@ -15,7 +15,7 @@ import Image from "next/image";
 import SplitType from 'split-type';
 import NativeSelect from "@modules/common/components/native-select";
 import {useStore} from "@lib/context/store-context";
-import {LineItem} from "@medusajs/medusa";
+
 
 
 type ProductActionsProps = {
