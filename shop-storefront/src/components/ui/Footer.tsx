@@ -14,13 +14,14 @@ import {
 import CountrySelect from "@modules/layout/components/country-select";
 import CountrySelectMobile from "@modules/mobile-menu/components/country-menu/country-select";
 import CountrySelectDesktop from "@modules/layout/components/country-select/countrySelect";
+import Sitemap from "@/app/(main)/(other)/sitemap/page";
 
 
 
 export default function Footer() {
   return (
     <footer className='z-10'>
-      <div className="bg-cyan-2 py-8 sm:py-24 border-t-2 border-amberA-12">
+      <div className="bg-cyan-2 pt-8 pb-6 sm:pt-24 sm:pb-20 border-t-2 border-amberA-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 px-8 sm:px-16 md:grid-cols-6 md:px-12 lg:gap-12 lg:px-16 xl:px-16">
             {/* 1st block */}
@@ -313,6 +314,12 @@ export default function Footer() {
               &copy; EightAthletics.com. All rights reserved 2023
             </div>
 
+
+          </div>
+          <div className={"mr-4  text-2xs text-slate-11 px-8 sm:flex sm:items-center sm:justify-between sm:px-16 md:grid-cols-6 md:px-12 lg:gap-12 lg:px-16 xl:px-16"}>
+            <Link href="/sitemap" className={"hover:text-indigo-500"}>
+              Sitemap
+            </Link>
           </div>
         </div>
       </div>

@@ -12,9 +12,9 @@ export default async function sitemap(){
       };
    });
 
-   const helps = allHelp.map((help) => {
+   const faqs = allHelp.map((help) => {
       return {
-         url: `${URL}/help/${help.slug}`,
+         url: `${URL}/faq/${help.slug}`,
          lastModified: help.updatedAt,
          changeFrequency: 'monthly',
          priority: 0.5,
@@ -60,7 +60,7 @@ export default async function sitemap(){
       };
    })
 
-   return [...posts, ...helps, ...resources, ...terms, ...routes, ...productRoutes];
+   return [...posts, ...faqs, ...resources, ...terms, ...routes, ...productRoutes];
 
 
 }
