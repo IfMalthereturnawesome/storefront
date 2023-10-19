@@ -524,7 +524,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     return (
         <>
-            <div ref={wrapperRef} className="relative  min-h-screen lg:min-h-[120vh]  pin-video  z-[1]" id={"smooth-content"}>
+            <div ref={wrapperRef} className="relative h-screen lg:h-[120vh]  pin-video  z-[1]" id={"smooth-content"}>
 
                 <div ref={headerRef}
                      className="absolute top-[18vh] w-[99vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
@@ -599,7 +599,8 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     </div>}
 
                     <div
-                        className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0 ${showVideo ? 'block' : 'hidden'} sm:p-4 lg:p-0`}>
+                        className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0  sm:p-4 lg:p-0`}
+                        style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
                             <video

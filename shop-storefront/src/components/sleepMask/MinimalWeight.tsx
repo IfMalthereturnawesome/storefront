@@ -9,7 +9,7 @@ import {TextPlugin} from 'gsap/TextPlugin';
 import {SplitText} from 'gsap/SplitText';
 import {CustomEase} from "gsap/CustomEase";
 import {ArrowDownIcon} from "@heroicons/react/24/solid";
-import usePageSettings from "@/utils/hooks/usePageSettings";
+
 import Link from "next/link";
 
 
@@ -69,6 +69,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 const lever = document.getElementById('lever');
                 const leftSide = document.getElementById('leftSide');
                 const rightSide = document.getElementById('rightSide');
+                const topWordRight = document.getElementById('topWordRight');
 
                 if (lever) {
                     const rotationInDegrees = Number(gsap.getProperty(lever, 'rotation'));
@@ -127,11 +128,14 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                             y: y + deltaY - rotationInDegrees,
 
                         });
-                        gsap.to("#topWordRight", {
-                            duration: 0.3,
-                            marginBottom: '-30px',
 
-                        });
+                        if (topWordRight) {
+                            gsap.to("#topWordRight", {
+                                duration: 0.3,
+                                marginBottom: '-30px',
+
+                            });
+                        }
 
 
                     }
@@ -300,7 +304,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     duration: 1,
                     scrollTrigger: {
                         trigger: ".pinMinimalWeightFeature",
-                        start: "top center",
+                        start: "top top",
                         end: "+=100%",
                         scrub: true,
                         onUpdate: self => {
@@ -327,7 +331,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
             ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
-                start: `top top`,
+                start: `center center`,
                 end: '+=200%',
                 pin: true,
                 scrub: true,
@@ -355,12 +359,12 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
     return (
         <>
             <section
-                className="relative z-[1] h-[100vh] max-h-100 flex flex-col justify-center items-center  pinMinimalWeightFeature bg-transparent">
+                className="relative z-[1] h-[100vh]  flex flex-col justify-center items-center pinMinimalWeightFeature  bg-transparent">
 
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]">
-                    <div id="scaleContainer"
+                    <div id=""
                          className="flex justify-center items-center relative w-full h-full scale-150">
-                        <div id="leverWrapper" className="relative w-[850px] h-[110vh] bg-transparent">
+                        <div id="leverWrapper" className=" w-[850px] h-[1000px] bg-transparent">
 
                             <svg id="triangle" className="absolute top-1/2 left-1/2 transform -translate-x-1/2"
                                  width="80"
