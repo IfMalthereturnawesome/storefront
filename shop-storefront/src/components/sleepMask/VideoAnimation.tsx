@@ -536,7 +536,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 {(showSmallDreamText && showOneNightText) && (
 
                     <div
-                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[13vh] 3xl:pt-[16vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] h-full pt-[14vh] lg:pt-[13vh] 3xl:pt-[16vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
                         <h3 className={"header-bg-clip text-2xl font-sans hidden dark:block"}>
                             {product}
                         </h3>

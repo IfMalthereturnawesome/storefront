@@ -224,7 +224,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .from('#leftSide', {
                     y: '-300px',
                     x: '-=100px',
-                    duration: 4,
+                    duration: 3,
                     ease: 'sine.in',
                     rotation: 0,
                     scale: 0,
