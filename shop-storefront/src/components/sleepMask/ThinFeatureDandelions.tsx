@@ -214,7 +214,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
                     // Slim feature animations
                     slimTimeline
-                        .to("#AnchorThinFeatureDandelions", {zIndex: 40})
+                        .to("#SlimAndSoft", {zIndex: 40})
 
                         .to(canvasRef.current, {marginTop: '-15vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
                         .to(containerRef.current, {marginTop: '-14.5vh', height: '88.95vh', ease: 'Power3.out', duration: 8}, '<')
@@ -241,7 +241,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
                     // Soft feature animations
                     softTimeline
-                        .to("#AnchorThinFeatureDandelions", {zIndex: 40})
+                        .to("#SlimAndSoft", {zIndex: 40})
                         .to([hotspotTopRef.current, "#slimLine"], {opacity: 0, duration: 3, ease: "none"}, '<')
                         .to(canvasRef.current, {marginTop: '-23vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
                         .to(containerRef.current, {height: '99vh', marginTop: '-4.4vh', ease: 'Power3.out', duration: 8}, '<')
@@ -273,7 +273,7 @@ const ThinFeatureDandelions: React.FC = () => {
     return (
         <>
 
-            <section id={"AnchorThinFeatureDandelions"}
+            <section id={"SlimAndSoft"}
                      className="relative h-[100vh] max-h-100 flex flex-col justify-center items-center pinThinFeature"
 
             >

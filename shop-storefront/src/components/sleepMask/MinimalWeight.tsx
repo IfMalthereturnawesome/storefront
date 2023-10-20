@@ -331,7 +331,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
             ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
                 start: `center center`,
-                end: '+=200%',
+                end: '+=125%',
                 pin: true,
                 scrub: true,
                 anticipatePin: 1,
@@ -463,7 +463,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     </div>
                 </div>
 
-                <Link href="#AnchorThinFeatureDandelions" style={{textDecoration: 'none'}} className={"group"}>
+                <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>
                     <div
                         id={"initialScrollText"}
                         style={{
