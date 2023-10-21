@@ -536,7 +536,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 {(showSmallDreamText && showOneNightText) && (
 
                     <div
-                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[6vh] 3xl:pt-[6vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[6vh] 3xl:pt-[10vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
                         <h3 className={"header-bg-clip text-2xl font-sans hidden dark:block"}>
                             {product}
                         </h3>
@@ -568,7 +568,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                             {showDescription && (
                                 <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[24vw] xlarge:px-[26vw] xxlarge:px-[27.5vw] 3xl:px-[29vw]"
                                      data-aos="fade-up">
-                                    <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
+                                    <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl large:text-[1.33rem] 2xl:text-[1.37rem] xxlarge:text-[1.4rem] 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
                                         <span ref={descriptionRef1}
                                               className="text-[#e7ecef] inline">{description1}</span>
 

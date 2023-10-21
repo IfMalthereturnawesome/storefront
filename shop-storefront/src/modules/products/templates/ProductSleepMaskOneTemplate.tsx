@@ -38,8 +38,8 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 headerLine1={"Greet each day with "}
                 headerLine2={"undivided focus."}
                 descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                image1Src={"/images/test-images-for-feature2.jpg"}
-                image2Src={"/images/test-images-for-feature1.jpg"}
+                image1Src={"/images/MerelysSwøm1.jpg"}
+                image2Src={"/images/Swim_2EightAthletics.jpg"}
             />
 
 
@@ -49,7 +49,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
             />
 
-            <ZoomImageSection imageSrc={"/images/test-images-for-feature1.jpg"}
+            <ZoomImageSection imageSrc={"/images/RunningEightAthletics.jpg"}
                               headerLine1={"Increase melatonin production"}
                               descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Apple Watch Ultra 2 is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
 
