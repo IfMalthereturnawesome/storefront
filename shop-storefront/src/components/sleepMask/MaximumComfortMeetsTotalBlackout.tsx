@@ -30,7 +30,7 @@ const MaximumComfortMeetsTotalBlackout = () => {
 
         ScrollTrigger.create({
             trigger: whereverRef.current,
-            start: 'center center',
+            start: 'center-100px center',
             end: 'bottom center',
 
             onEnter: () => {

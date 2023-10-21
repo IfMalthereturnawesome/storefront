@@ -85,14 +85,14 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
         <div className="relative bg-[#130612] z-[1]" >
 
             <div className="relative z-0">
-                <Image src={image1Src} ref={image1Ref} className="w-full mx-auto h-full object-contain" alt="" width={1920} height={1080} />
+                <Image src={image1Src} ref={image1Ref} className="w-full mx-auto h-full object-contain" alt="" width={1920} height={1080} quality={100} />
                 <h3 ref={headerRef} className="absolute top-1/3 left-1/4 lg:left-1/4 transform -translate-y-1/2 text-8xl lg:text-9xl font-bold text-white break-words">
                     {headerLine1}<br />{headerLine2}
                 </h3>
             </div>
             <div className="relative z-10 mt-[-5%] lg:mt-[-5%]">
                 <div className="relative w-[95%] lg:w-[80%] h-[65vh] lg:h-screen mx-auto overflow-hidden">
-                    <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full" alt="" width={1920} height={1080}  />
+                    <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full" alt="" width={1920} height={1080} quality={100}  />
                 </div>
                 <div data-aos="fade-up" className="absolute top-1/3 right-4 lg:right-[20rem] p-4 lg:text-xl max-w-xs lg:max-w-md xl:max-w-lg hidden lg:block">
                     <p className={"font-sans font-semibold leading-7 tracking-tight text-left text-custom-white"}>
