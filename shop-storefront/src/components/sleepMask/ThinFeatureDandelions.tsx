@@ -323,7 +323,7 @@ const ThinFeatureDandelions: React.FC = () => {
                             <div className="w-5 h-5 rounded-full bg-white "></div>
                         </div>
                         {/* Description for Slim feature */}
-                        <div ref={descTopRef} className="absolute top-[19%] right-[23%] max-w-sm z-2 opacity-0">
+                        <div ref={descTopRef} className="absolute top-[19%] right-[23%] max-w-sm z-[2] opacity-0">
                             <p className="text-xl font-poppins text-slate-11 ">
                                 A detailed description about the slim feature.
                                 A detailed description about the slim feature.
@@ -336,7 +336,7 @@ const ThinFeatureDandelions: React.FC = () => {
                         </div>
 
                         {/* Description for Soft feature */}
-                        <div ref={descBottomRef} className="absolute max-w-sm bottom-[15%] left-[23%] z-2 opacity-0">
+                        <div ref={descBottomRef} className="absolute max-w-sm bottom-[15%] left-[23%] z-[2] opacity-0">
                             <p className="text-xl font-poppins text-slate-11 ">
                                 A detailed description about the soft feature.
                                 A detailed description about the soft feature.
@@ -360,7 +360,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
 
                         {/* Canvas for Image Sequence */}
-                        <canvas ref={canvasRef} className="object-contain object-center w-full h-[74vh] "></canvas>
+                        <canvas ref={canvasRef} className="object-contain object-center w-full h-[74vh] z-[1]"></canvas>
                         {/* Grain overlay */}
                         <div className="grain">
                             <div className="grain-texture"></div>

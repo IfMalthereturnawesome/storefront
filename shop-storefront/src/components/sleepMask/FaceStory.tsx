@@ -164,7 +164,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
             {/* Text to the right of the center */}
             <div className="w-[49vw] flex flex-col justify-center pl-8 -mt-[3rem] ">
                 <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[40vw]">{headline}</h2>
-                <p data-aos="fade-up"  className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw] transform duration-300 mb-[120px] translate-y-[120px]">{description}</p>
+                <p data-aos="fade-up"  className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">{description}</p>
             </div>
         </div>
     );
