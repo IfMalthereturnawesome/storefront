@@ -74,7 +74,7 @@ export default function Footer() {
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300 
   dark:hover:from-caction-300 dark:hover:via-cgreen-200 dark:hover:to-caction-200"
                   >
-                    Sleep Mask - DreamFIT
+                    Sleep Mask One
                   </h6>
                 </Link>
                 <ul>

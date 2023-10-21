@@ -80,9 +80,7 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300
   dark:hover:from-caction-300 dark:hover:via-cgreen-200 dark:hover:to-caction-200"
-                          >
-                            Sleep Mask - DreamFIT
-                          </h3>
+                          >Sleep Mask One</h3>
                         </Link>
                         {products.map(item => (
                             <div
@@ -156,9 +154,7 @@ export function  ProductNavPop() {
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300
   dark:hover:from-caction-300 dark:hover:via-cgreen-200 dark:hover:to-caction-200"
-                                            >
-                                                Sleep Mask - DreamFIT
-                                            </h3>
+                                            >Sleep Mask One</h3>
                                         </Link>
                                         {products.map(item => (
                                             <div
@@ -239,9 +235,7 @@ export function ProductNavMobile() {
   ease-in-out hover:from-caction-800 hover:via-csecondary-700 hover:to-caction-950 hover:bg-clip-text 
   dark:from-caction-300 dark:via-cgreen-100 dark:to-cgreen-300 
   dark:hover:from-caction-300 dark:hover:via-cgreen-200 dark:hover:to-caction-200"
-              >
-                Sleep Mask - DreamFIT
-              </h3>
+              >Sleep Mask One</h3>
             </Link>
             {products.map(item => (
               <Disclosure.Button
