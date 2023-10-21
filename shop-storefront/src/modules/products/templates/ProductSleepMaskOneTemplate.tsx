@@ -45,7 +45,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
 
             <FaceStory
-                headline="Every face tells a story."
+                headline="Crafted from thousands of unique faces"
                 description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
             />
 

@@ -60,6 +60,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
             const makeRightSideTurn = gsap.timeline();
             const makeRightSideScrollBar = gsap.timeline();
             const scrollTextTimeline = gsap.timeline({});
+            const descriptionTextTimeline = gsap.timeline({});
 
             const masterTL = gsap.timeline({paused: true})
 
@@ -313,17 +314,27 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                 gsap.set("#initialScrollText", {opacity: 0.4});
                             } else {
                                 let progress = self.progress;
-                                let newOpacity = 0.2 * progress;
+                                let newOpacity = 0 * progress;
                                 gsap.set("#initialScrollText", {opacity: newOpacity}); // Set the opacity between 0 and 0.2 based on scroll progress
                             }
                         }
                     }
                 });
 
+            descriptionTextTimeline
+                .to("#extraInfo", {
+                    opacity: 1,
+                    duration: 1,
+
+
+                })
+
+
             masterTL
                 .add(leftSideTL)
                 .add(rightSideTL)
                 .add(makeRightSideTurn)
+                .add(descriptionTextTimeline)
                 .add(makeRightSideScrollBar, "<")
                 .add(scrollTextTimeline)
 
@@ -353,15 +364,15 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
     return (
         <>
+
             <section
-                className="relative z-[1] h-[100vh]  flex flex-col justify-center items-center pinMinimalWeightFeature  bg-transparent">
+                className="relative z-[1]  flex flex-col justify-center items-center   bg-transparent">
 
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]">
-                    <div id=""
-                         className="flex justify-center items-center relative w-full h-full scale-150">
-                        <div id="leverWrapper" className=" w-[850px] h-[1000px] bg-transparent">
+                    <div className="flex justify-center items-center relative w-full h-full scale-150 ">
+                        <div id="leverWrapper" className="relative w-[850px] h-[870px] z-0 mt-48">
 
-                            <svg id="triangle" className="absolute top-1/2 left-1/2 transform -translate-x-1/2"
+                            <svg id="triangle" className="absolute top-1/2 left-1/2 transform -translate-x-1/2  z-0"
                                  width="80"
                                  height="90">
                                 <polygon points="0,90 80,90 40,0" fill="white"/>
@@ -409,7 +420,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
 
                             <div id="morphedText"
-                                 className="absolute top-[43.6%] left-[175px] invisible text-3xl font-bold text-[#faf7f7]"
+                                 className="absolute top-[39.6%] left-[175px] invisible text-3xl font-bold text-[#faf7f7]"
                                  style={{lineHeight: 1.1}}>
                                 <svg width="239.295" height="31.512" viewBox="0 0 239.295 31.512"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -459,6 +470,15 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                 </div>
                             </div>
 
+                            <div id={"extraInfo"}
+                                className="absolute top-[28%] left-[98px] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block scale-[0.667] opacity-0">
+                                <p data-aos="fade-up"  className={"font-sans font-semibold leading-7 tracking-tight text-center text-slate-12"}>
+                                    Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals.
+                                </p>
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -467,9 +487,9 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     <div
                         id={"initialScrollText"}
                         style={{
-                            position: 'fixed',
+                            position: 'absolute',
                             right: 20,
-                            bottom: 20,
+                            top: 320,
                             writingMode: 'vertical-rl',
                             display: 'flex',
                             flexDirection: 'row'
