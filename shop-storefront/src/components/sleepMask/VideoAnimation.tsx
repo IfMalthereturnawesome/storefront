@@ -337,15 +337,15 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     });
                 }
 
-                // Existing animations
-                tl.from(splitTextNight.chars, {
-                    opacity: 1,
-                    color: '#fdc500',
-                    scale: 1,
-                    stagger: {amount: 0.3},
-                    textShadow: '0px 0px 15px rgba(255, 255, 255, 0.8)', // Initial glow
-                    ease: 'back.out(1.7)',
-                });
+                // // Existing animations
+                // tl.from(splitTextNight.chars, {
+                //     opacity: 1,
+                //     color: '#fdc500',
+                //     scale: 1,
+                //     stagger: {amount: 0.3},
+                //     textShadow: '0px 0px 15px rgba(255, 255, 255, 0.8)', // Initial glow
+                //     ease: 'back.out(1.7)',
+                // });
 
                 tl.to(splitTextNight.chars, {
                     color: '#faf7f7',
@@ -362,7 +362,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                             duration: 0.1,
                             ease: 'power2.inOut',
                             stagger: {amount: 0.1},
-                            delay: 1.5,
+                            delay: 0.5,
                             onStart: () => {
                                 char.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.4)';
                                 // change the innerHTML of the char to different letters
@@ -536,7 +536,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 {(showSmallDreamText && showOneNightText) && (
 
                     <div
-                        className={`w-[99vw] h-full pt-[14vh] lg:pt-[13vh] 3xl:pt-[16vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] h-[100vh] pt-[14vh] lg:pt-[6vh] 3xl:pt-[6vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
                         <h3 className={"header-bg-clip text-2xl font-sans hidden dark:block"}>
                             {product}
                         </h3>

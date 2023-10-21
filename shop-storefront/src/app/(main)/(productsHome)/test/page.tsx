@@ -17,6 +17,7 @@ import ProductChoiceBlue from "@/components/sleepMask/ProductChoiceBlue";
 import ProductChoiceBlueSecond from "@/components/sleepMask/ProductChoiceBlueSecond";
 import ProductChoiceBlackGray from "@/components/sleepMask/ProductChoiceBlackGray";
 import ProductChoiceBlackBlue from "@/components/sleepMask/ProductChoiceBlackBlue";
+import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
 
 export const metadata = {
     title: 'About us - Open PRO',
@@ -55,7 +56,9 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
             {/*<div className="spacer"></div>*/}
 
-            <WrappedComponent />
+            {/*<WrappedComponent />*/}
+
+            <MaximumComfortMeetsTotalBlackout />
 
             {/*<MinimalWeight/>*/}
 

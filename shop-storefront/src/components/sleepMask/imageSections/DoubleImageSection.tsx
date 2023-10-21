@@ -82,7 +82,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     }, []);
 
     return (
-        <div className="relative bg-[#130612] z-[1]">
+        <div className="relative bg-[#130612] z-[1]" >
             <div className="grain">
                 <div className="grain-texture">
 
@@ -98,7 +98,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                 <div className="relative w-[95%] lg:w-[95%] h-[70vh] lg:h-screen mx-auto overflow-hidden">
                     <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-screen" alt="" width={1920} height={1080} />
                 </div>
-                <div className="absolute top-1/3 right-4 lg:right-[20rem] p-4 lg:text-xl max-w-xs lg:max-w-md xl:max-w-lg hidden lg:block">
+                <div data-aos="fade-up" className="absolute top-1/3 right-4 lg:right-[20rem] p-4 lg:text-xl max-w-xs lg:max-w-md xl:max-w-lg hidden lg:block">
                     <p className={"font-sans font-semibold leading-7 tracking-tight text-left text-custom-white"}>
                         {descriptionText}
                     </p>
