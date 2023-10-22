@@ -31,7 +31,6 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     description2={"Tailored for all face shapes and sizes. "}
                     description3={"Elevate your peak performance, no matter where you are and how you sleep."}
                 />
-
             </div>
 
             <DoubleImageSection
@@ -41,8 +40,6 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 image1Src={"/images/MerelysSwøm1.jpg"}
                 image2Src={"/images/Swim_2.jpg"}
             />
-
-
 
             <FaceStory
                 headline="Crafted from thousands of unique faces"

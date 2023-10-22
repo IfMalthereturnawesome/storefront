@@ -57,7 +57,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                 </h3>
             </div>
             <div
-                className="absolute top-[40%] right-1/4 lg:right-[50%] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block">
+                className="absolute top-[38.3%] right-1/4 lg:right-[50.7%] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block">
                 <p data-aos="fade-up"  className={"font-sans font-semibold leading-7 tracking-tight text-left text-slate-12"}>
                     {descriptionText}
                 </p>
