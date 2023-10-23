@@ -13,11 +13,16 @@ import SleepResources from '../../public/images/eight-athletics-sleep-resources.
 import SleepEssentialsSVG from '../../public/images/eight-athletics-sleep-essentials_resource.svg';
 import SleepScienceSVG from '../../public/images/eight-athletics-sleep-science_resource.svg';
 import SleepAthleticsSVG from '../../public/images/eight-athletics-sleep-athletics_resource.svg';
+
 import {QuestionMarkIcon, HomeIcon} from "@radix-ui/react-icons";
 import {PhoneIcon, PlayCircleIcon} from '@heroicons/react/20/solid';
 import {allPosts} from "contentlayer/generated";
 import Image from "next/image";
 import React from "react";
+import TotalDarknessIcon from "@modules/common/icons/total-darkness-icon";
+import UniversalFitIcon from "@modules/common/icons/universal-fit-icon";
+import DandelionIcon from "@modules/common/icons/dandelion-icon";
+import EightAthleticsIcon from "@modules/common/icons/eightAthleticsIcon";
 
 
 // Create React components for SVGs
@@ -31,6 +36,7 @@ const SleepAthleticsIcon = () => <Image src={SleepAthleticsSVG} width={28} heigh
 const SleepResourcesIcon = () => <Image src={SleepResources} width={28} height={26} className="my-0 mr-3 shrink-0"
                                         alt={"Eight Athletics' Sleep Resources"}/>
 
+
 const posts = allPosts;
 // Get 3 newest posts filter by publishedDate
 export const newestPosts = posts?.sort((a, b) => {
@@ -41,35 +47,37 @@ export const newestPosts = posts?.sort((a, b) => {
 
 export const products = [
     {
-        name: 'First ever custom sleep mask',
-        description: 'Get a better understanding of your traffic',
-        href: '#',
-        icon: ChartPieIcon,
-    },
-    {
-        name: 'Total Blackout',
-        description: 'Speak directly to your customers',
-        href: '#',
-        icon: CursorArrowRaysIcon,
-    },
-    {
-        name: 'Made for side sleepers, by side sleepers',
-        description: 'Speak directly to your customers',
-        href: '#',
-        icon: CursorArrowRaysIcon,
-    },
-    {
         name: 'Achieve your dreams, one night at a time',
-        description: 'Speak directly to your customers',
-        href: '#',
-        icon: FingerPrintIcon,
+        description: 'Wake up looking and feeling refreshed.',
+        href: '/products/sleep-mask-one',
+        icon: EightAthleticsIcon,
     },
     {
-        name: 'What people say',
-        description: 'Your customers data will be safe and secure',
-        href: '#',
-        icon: FingerPrintIcon,
+        name: 'Crafted from thousands of unique faces',
+        description: 'Tailored for all face shapes and sizes.',
+        href: '/products/sleep-mask-one#crafted-from-thousands-of-unique-faces',
+        icon: UniversalFitIcon,
     },
+    {
+        name: 'Increase Melatonin Production',
+        description: 'Sleep Mask One is the ultimate training partner.',
+        href: '/products/sleep-mask-one#increase-melatonin-production',
+        icon: ArrowPathRoundedSquareIcon,
+    },
+
+    {
+        name: 'Discover Maximum Comfort ',
+        description: 'Experience unparalleled comfort and fit.',
+        href: '/products/sleep-mask-one#discover-maximum-comfort',
+        icon: DandelionIcon,
+    },
+    {
+        name: 'Total blackout',
+        description: 'Ensures undisturbed sleep even in the brightest environments.',
+        href: '/products/sleep-mask-one#total-blackout',
+        icon: TotalDarknessIcon,
+    },
+
 ];
 
 export const callsToAction = [

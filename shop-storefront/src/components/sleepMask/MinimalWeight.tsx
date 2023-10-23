@@ -368,7 +368,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
             <section
                 className="relative z-[1]  flex flex-col justify-center items-center   bg-transparent">
 
-                <div className="mx-auto flex flex-col justify-center pt-[8vh]">
+                <div className="mx-auto flex flex-col justify-center pt-[8vh]"  id="discover-maximum-comfort">
                     <div className="flex justify-center items-center relative w-full h-full scale-150 ">
                         <div id="leverWrapper" className="relative w-[850px] h-[870px] z-0 mt-48">
 

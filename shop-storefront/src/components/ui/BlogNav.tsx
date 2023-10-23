@@ -57,7 +57,7 @@ export function BlogNavMobile() {
                 key={item._id}
                 as="a"
                 href={item.slug}
-                className="flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150"
+                className="flex items-center justify-start gap-x-3 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150"
               >
                 {item.title}
               </Disclosure.Button>

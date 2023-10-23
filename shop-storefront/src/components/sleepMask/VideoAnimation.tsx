@@ -451,8 +451,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     const scrollToTopAndPlayAgain = () => {
 
+        window.scrollTo({
+            top: 0,
+        });
 
-        window.scrollTo({top: 0, behavior: 'smooth'});
         setShowHeaderText(true);
 
         resetPage();
@@ -566,8 +568,9 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
                         <div className=" mt-3 3xl:mt-4 z-[1] ">
                             {showDescription && (
-                                <div className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[24vw] xlarge:px-[26vw] xxlarge:px-[27.5vw] 3xl:px-[29vw]"
-                                     data-aos="fade-up">
+                                <div
+                                    className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[24vw] xlarge:px-[26vw] xxlarge:px-[27.5vw] 3xl:px-[29vw]"
+                                    data-aos="fade-up">
                                     <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl large:text-[1.33rem] 2xl:text-[1.37rem] xxlarge:text-[1.4rem] 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
                                         <span ref={descriptionRef1}
                                               className="text-[#e7ecef] inline">{description1}</span>
@@ -637,10 +640,11 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
             {showPlayAgainButton && (
                 <button onClick={scrollToTopAndPlayAgain}
-                        className="fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center"
+                        className="fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center z-[2]"
                         style={{width: '2.3rem', height: '2.3rem'}}>
                     <PlayIcon className="w-4 h-4 text-white"/>
                 </button>
+
             )}
 
 

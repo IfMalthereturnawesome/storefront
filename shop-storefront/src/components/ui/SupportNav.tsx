@@ -104,7 +104,7 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
                         <Link
 
                             href={item.href}
-                            className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
+                            className="group flex items-center justify-center gap-x-3 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                         >
                           <item.icon
                               className="h-5 w-5 flex-none text-slate-11 group-hover:text-blue-600  group-hover:dark:text-cgreen-200"

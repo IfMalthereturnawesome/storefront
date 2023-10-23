@@ -47,8 +47,8 @@ export const ProductProvider = ({
 
   const { addItem } = useStore()
   const { cart } = useCart()
-  const variants = product.variants as unknown as Variant[]
 
+  const variants = product?.variants ? (product.variants as unknown as Variant[]) : [];
   useEffect(() => {
     // initialize the option state
     const optionObj: Record<string, string> = {}

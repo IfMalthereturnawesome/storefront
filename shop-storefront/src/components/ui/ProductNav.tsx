@@ -73,7 +73,7 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
                     >
                       <div className="mt-2"></div>
                       <div className="p-4">
-                        <Link href="/product">
+                        <Link href="/products/sleep-mask-one">
                           <h3
                               className="m-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-2xl font-bold
   text-transparent transition duration-500
@@ -89,7 +89,7 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
                             >
                               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg ">
                                 <item.icon
-                                    className="h-6 w-6 text-gray-600 group-hover:text-blue-600 dark:text-cgreen-50 group-hover:dark:text-cgreen-200"
+                                    className="h-5 w-5 text-gray-600 group-hover:text-blue-600 dark:text-cgreen-50 group-hover:dark:text-cgreen-200"
                                     aria-hidden="true"
                                 />
                               </div>
@@ -117,7 +117,7 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
                                 className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                             >
                                 <item.icon
-                                    className="h-5 w-5 flex-none text-slate-11 group-hover:text-blue-600  group-hover:dark:text-cgreen-200"
+                                    className="h-4 w-4 flex-none text-slate-11 group-hover:text-blue-600  group-hover:dark:text-cgreen-200"
                                     aria-hidden="true"
                                 />
                                 {item.name}
@@ -242,10 +242,10 @@ export function ProductNavMobile() {
                 key={item.name}
                 as="a"
                 href={item.href}
-                className="flex items-center justify-start gap-x-2 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 transition duration-150 hover:text-indigo-10"
+                className="flex items-center justify-start gap-x-3 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 transition duration-150 hover:text-indigo-10"
               >
                 <item.icon
-                  className="h-5 w-5 flex-none text-gray-400 dark:text-white "
+                  className="h-4 w-4 flex-none text-gray-400 dark:text-white "
                   aria-hidden="true"
                 />
                 {item.name}

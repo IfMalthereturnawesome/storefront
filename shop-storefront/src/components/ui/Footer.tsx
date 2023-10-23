@@ -66,7 +66,7 @@ export default function Footer() {
             <div className="grid gap-8  2xs:grid-cols-2 sm:grid-cols-3  md:col-span-6 ">
               {/* 2nd block */}
               <div className="text-base font-semibold">
-                <Link href="/product">
+                <Link href="/products/sleep-mask-one">
                   <h6
                     className="mb-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 

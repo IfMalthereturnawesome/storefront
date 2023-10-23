@@ -51,6 +51,7 @@ const MaximumComfortMeetsTotalBlackout = () => {
     return (
         <div className="relative z-[1]">
             <div
+                id="total-blackout"
                 className="w-full h-[100vh] flex flex-col justify-center items-center bg-black font-poppins text-8xl font-extrabold text-[#faf7f7] space-y-8 transform perspective-500 rotateX-25"
                 ref={crawlContainerRef}
             >
