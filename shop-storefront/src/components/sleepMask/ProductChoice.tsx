@@ -83,9 +83,9 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
             <div className="flex flex-col justify-between max-w-full px-2 md:max-w-1/2 md:px-vw-3 ">
                 <div
                     className="flex relative flex-col items-center justify-between pb-12 px-[1.0588em] z-10 h-[450px] md:h-[500px]">
-                    <Link href={`${linkHref}`}>
+                    <Link href={`${linkHref}`} className={"z-[1]"}>
                         <div className="flex flex-col justify-end items-center mt-0 mb-8 max-w-full -order-1">
-                            <Image src={selectedImage} alt={product.title} width={300} height={300}/>
+                            <Image src={selectedImage} alt={product.title} width={300} height={200} quality={100}/>
                         </div>
                     </Link>
                     {/* Colors for each product here */}

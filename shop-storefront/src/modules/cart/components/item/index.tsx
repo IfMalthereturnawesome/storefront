@@ -15,8 +15,8 @@ const Item = ({ item, region }: ItemProps) => {
   const { updateItem, deleteItem } = useStore()
   const productHandle = item.title.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens
   return (
-    <div className="grid grid-cols-[122px_1fr] gap-x-4">
-      <div className="w-[122px]">
+    <div className="grid grid-cols-[160px_1fr] gap-x-4">
+      <div className="w-[160px]">
         <Thumbnail productHandle={productHandle} size="full" />
       </div>
       <div className="text-base-regular flex flex-col gap-y-8">

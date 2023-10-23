@@ -29,11 +29,11 @@ export const SleepMaskOneData: ProductData = {
     title: "Sleep Mask One",
     handle: "sleep-mask-one",
     productId: "prod_01HAJJPFSZ3YCV83DF5WBR52B1",  // New field for the product ID
-    imageSrc: "/images/product/sleepmask_transparent.png",
+    imageSrc: "/images/product/eight-athletics-sleep-mask-one_transparent.png",
     imageArray: [
-        "/images/sequence/sleepmask_141.png",
-        "/images/sequence/sleepmask_142.png",
-        "/images/sequence/sleepmask_143.png"
+        "/images/sequence/sleepmask_017.png",
+        "/images/sequence/sleepmask_018.png",
+        "/images/sequence/sleepmask_019.png"
     ],
     news: "New",
     colors: ["#422020", "#090606", "#1a1919"],
@@ -62,11 +62,11 @@ export const SleepMaskCustomData: ProductData = {
     title: "Sleep Mask One Custom",
     handle: "sleep-mask-one-custom",
     productId: 'prod_01HAJJPFSZ3YCV83DF5WBR52B1',
-    imageSrc: "/images/product/sleepmask_transparent.png",
+    imageSrc: "/images/product/eight-athletics-sleep-mask-one_transparent.png",
     imageArray: [
-        "/images/sequence/sleepmask_141.png",
-        "/images/sequence/sleepmask_142.png",
-        "/images/sequence/sleepmask_143.png"
+        "/images/sequence/sleepmask_017.png",
+        "/images/sequence/sleepmask_018.png",
+        "/images/sequence/sleepmask_019.png"
     ],
     news: "Coming soon",
     colors: ["#002536", "#1a1919", "#881212"],
