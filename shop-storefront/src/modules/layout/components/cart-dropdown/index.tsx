@@ -19,7 +19,7 @@ const CartDropdown = () => {
   const { deleteItem } = useStore()
   const { state, open, close } = useCartDropdown()
   const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
-  
+
   return (
     <div className="h-full  z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full ">
@@ -118,14 +118,11 @@ const CartDropdown = () => {
                       <span className="font-normal">(incl. taxes)</span>
                     </span>
                     <span className="text-large-semi">
-                      {formatAmount({
-                        amount: cart.subtotal || 0,
-                        region: cart.region,
-                        includeTaxes: true,
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-
-                      })}
+                      <LineItemPrice
+                          region={cart.region}
+                          item={items[0]}
+                          style="tight"
+                      />
                     </span>
                   </div>
                   <Link href="/cart" passHref>

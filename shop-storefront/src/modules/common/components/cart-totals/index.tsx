@@ -1,5 +1,5 @@
 import { Cart } from "@medusajs/medusa"
-import { formatAmount } from "medusa-react"
+import { formatAmount} from "medusa-react"
 import React from "react"
 import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
@@ -15,6 +15,8 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     tax_total,
     shipping_total,
     total,
+
+
   } = cart
   const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
   const getAmount = (amount: number | null | undefined) => {
@@ -30,12 +32,12 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
 
   const getAmountTotal = (amount: number | null | undefined) => {
     return formatAmount({
-      amount: amount || 0,
-      region: cart.region,
-      includeTaxes: false,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-
+        amount: amount || 0,
+        region: cart.region,
+        includeTaxes: false,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+        locale: locale
     })
   }
 

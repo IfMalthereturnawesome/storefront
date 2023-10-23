@@ -20,6 +20,8 @@ const LineItemPrice = ({
         (item.variant as CalculatedVariant).original_price * item.quantity
     const hasReducedPrice = (item.total || 0) < originalPrice
 
+
+
     const locale = getLocaleForRegion(region.name) || "en-US";
 
     console.log("locale", locale)
@@ -34,9 +36,9 @@ const LineItemPrice = ({
       >
 
         {formatAmount({
-            amount: item.total || 0,
+            amount: originalPrice,
             region: region,
-            includeTaxes: false,
+            includeTaxes: true,
             minimumFractionDigits: 0,
             maximumFractionDigits: 2,
             locale: locale
@@ -53,7 +55,7 @@ const LineItemPrice = ({
               {formatAmount({
                   amount: originalPrice,
                   region: region,
-                  includeTaxes: false,
+                  includeTaxes: true,
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 2,
                   locale: locale

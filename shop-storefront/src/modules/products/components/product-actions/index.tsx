@@ -167,7 +167,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                                 "text-rose-600": selectedPrice.price_type === "sale",
                             })}
                         >
-                            {selectedPrice.calculated_price}
+                            {selectedPrice.original_price}
                         </span>
                         {selectedPrice.price_type === "sale" && (
                             <>
