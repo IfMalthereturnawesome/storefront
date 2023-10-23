@@ -53,8 +53,9 @@ export type ProductPreviewType = {
   title: string
   handle: string | null
   thumbnail: string | null
+  region: string
   price?: {
-    calculated_price: string
+    calculated_price: number
     original_price: string
     difference: string
     price_type: "default" | "sale"

@@ -118,11 +118,14 @@ const CartDropdown = () => {
                       <span className="font-normal">(incl. taxes)</span>
                     </span>
                     <span className="text-large-semi">
-                      <LineItemPrice
-                          region={cart.region}
-                          item={items[0]}
-                          style="tight"
-                      />
+                      {formatAmount({
+                        amount: cart.subtotal || 0,
+                        region: cart.region,
+
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+
+                      })}
                     </span>
                   </div>
                   <Link href="/cart" passHref>

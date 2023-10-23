@@ -50,7 +50,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       calculated_price: formatAmount({
         amount: cheapestVariant.calculated_price,
         region: cart.region,
-        includeTaxes: true,
+        includeTaxes: false,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
         locale: locale,
@@ -58,7 +58,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       original_price: formatAmount({
         amount: cheapestVariant.original_price,
         region: cart.region,
-        includeTaxes: true,
+        includeTaxes: false,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
         locale: locale,
@@ -88,7 +88,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       calculated_price: formatAmount({
         amount: variant.calculated_price,
         region: cart.region,
-        includeTaxes: true,
+        includeTaxes: false,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
         locale: locale,
@@ -96,7 +96,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       original_price: formatAmount({
         amount: variant.original_price,
         region: cart.region,
-        includeTaxes: true,
+        includeTaxes: false,
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,
         locale: locale,

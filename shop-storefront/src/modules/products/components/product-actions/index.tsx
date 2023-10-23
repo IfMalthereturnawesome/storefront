@@ -164,12 +164,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                     <div className="flex items-baseline gap-x-4 text-slate-12">
                         <span
                             className={clsx("font-bold text-base", {
-                                "text-rose-600": selectedPrice.price_type === "sale",
+                                "text-rose-600": selectedPrice.price_type === "default",
                             })}
                         >
-                            {selectedPrice.original_price}
+                            {selectedPrice.calculated_price}
                         </span>
-                        {selectedPrice.price_type === "sale" && (
+                        {selectedPrice.price_type === "default" && (
                             <>
                                 <span className="line-through">
                                     {selectedPrice.original_price}

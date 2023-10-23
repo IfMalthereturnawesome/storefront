@@ -55,7 +55,10 @@ const CollectionTemplate: React.FC<{ collection: ProductCollection }> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasNextPage])
 
-  return (
+
+
+
+    return (
     <div className="content-container py-6">
       <div className="mb-8 text-2xl-semi">
         <h1>{collection.title}</h1>
