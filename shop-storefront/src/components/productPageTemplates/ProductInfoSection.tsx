@@ -18,8 +18,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
     const info = useRef<HTMLDivElement>(null)
 
     const inView = useIntersection(info, "0px")
+    const productHandle = product?.handle || "sleep-mask-one";
 
-    const productImageDirectory = `/images/products/${product.handle}/`;
+    const productImageDirectory = `/images/products/${productHandle}/`;
     const productImagePaths = Array(8).fill(null).map((_, idx) => `${productImageDirectory}image${idx + 1}.jpg`);
 
 
