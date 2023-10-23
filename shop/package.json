@@ -33,7 +33,7 @@
     "@medusajs/event-bus-redis": "^1.8.9",
     "@medusajs/file-local": "^1.0.2",
     "@medusajs/icons": "^1.0.0",
-    "@medusajs/medusa": "^1.15.0",
+    "@medusajs/medusa": "^1.17.2",
     "@medusajs/ui": "^2.0.0",
     "@react-email/button": "0.0.10",
     "@react-email/components": "^0.0.7",
