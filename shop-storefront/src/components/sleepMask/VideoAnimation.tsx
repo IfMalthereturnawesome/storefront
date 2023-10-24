@@ -538,14 +538,14 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 {(showSmallDreamText && showOneNightText) && (
 
                     <div
-                        className={`w-[99vw] h-[120vh] pt-[14vh] lg:pt-[6vh] 3xl:pt-[10vh] px-8 2xs:px-10 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
-                        <h3 className={"header-bg-clip text-2xl font-sans hidden dark:block"}>
+                        className={`w-[99vw] h-[120vh] pt-[8vh] md:pt-[5vh] lg:pt-[6vh] 3xl:pt-[10vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        <h3 className={"header-bg-clip text-xl lg:text-2xl font-sans hidden my-0 md:my-2 dark:block"}>
                             {product}
                         </h3>
-                        <h3 className="header-bg-clip-light text-2xl font-sans dark:hidden">
+                        <h3 className="header-bg-clip-light  text-xl lg:text-2xl font-sans dark:hidden">
                             {product}
                         </h3>
-                        <div className="">  {/* Added minHeight */}
+                        <div className="">
                             {showSmallDreamText && (
                                 <div ref={smallDreamRef}
                                      className="flex items-center justify-center text-[#e7ecef] text-opacity-50 font-bold text-lg 2xs:text-xl xs:text-2xl lg:text-3xl ">
@@ -553,10 +553,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 </div>
                             )}
                         </div>
-                        <div className="">  {/* Added minHeight */}
+                        <div className="">
                             {showOneNightText && (
                                 <div ref={oneNightRef}
-                                     className="flex items-center justify-center text-[#faf7f7] text-opacity-60 font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl"
+                                     className="flex items-center justify-center text-[#faf7f7] text-opacity-60 font-bold text-3xl 2xs:text-6xl xs:text-7xl  lg:text-8xl"
                                      style={{opacity: 1}}
 
                                 >
@@ -571,7 +571,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 <div
                                     className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[24vw] xlarge:px-[26vw] xxlarge:px-[27.5vw] 3xl:px-[29vw]"
                                     data-aos="fade-up">
-                                    <p className="text-[#e7ecef] mx-auto text-xl xs:text-2xl large:text-[1.33rem] 2xl:text-[1.37rem] xxlarge:text-[1.4rem] 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
+                                    <p className="text-[#e7ecef] mx-auto text-lg xs:text-2xl large:text-[1.33rem] 2xl:text-[1.37rem] xxlarge:text-[1.4rem] 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
                                         <span ref={descriptionRef1}
                                               className="text-[#e7ecef] inline">{description1}</span>
 

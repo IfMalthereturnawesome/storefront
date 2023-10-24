@@ -6,7 +6,7 @@ import VideoAnimation from "@/components/sleepMask/VideoAnimation";
 import ProductChoice from "@/components/sleepMask/ProductChoice";
 import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
 import FaceStory from "@/components/sleepMask/FaceStory";
-import DoubleImageSection from "@/components/sleepMask/imageSections/DoubleImageSection";
+import DoubleImageSection, {MobileDoubleImageSection} from "@/components/sleepMask/imageSections/DoubleImageSection";
 import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSection";
 import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
 import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
@@ -33,14 +33,26 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 />
             </div>
 
-            <DoubleImageSection
+            <div className={"hidden md:block"}>
+                <DoubleImageSection
+                    headerLine1={"Greet each day with "}
+                    headerLine2={"undivided focus."}
+                    descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                    image1Src={"/images/MerelysSwøm1.jpg"}
+                    image2Src={"/images/Swim_2.jpg"}
+                />
+            </div>
+
+            <div className={"md:hidden block"}>
+
+            <MobileDoubleImageSection
                 headerLine1={"Greet each day with "}
                 headerLine2={"undivided focus."}
                 descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
                 image1Src={"/images/MerelysSwøm1.jpg"}
                 image2Src={"/images/Swim_2.jpg"}
             />
-
+            </div>
             <FaceStory
                 headline="Crafted from thousands of unique faces"
                 description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
