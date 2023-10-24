@@ -53,6 +53,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                                   headerLine1={"Increase melatonin production"}
                                   descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
 
+                <WrappedComponent />
             </div>
 
             {/*MOBILE PART */}
@@ -84,7 +85,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
 
 
-            <WrappedComponent />
+
 
             <MaximumComfortMeetsTotalBlackout />
 

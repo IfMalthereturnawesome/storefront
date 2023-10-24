@@ -12,10 +12,10 @@ const WrappedComponent: React.FC = () => {
 
     return (
       <>
-          <div className={"hidden md:block"}>
+
 
             <ParticlesBackground shouldPlayParticles={shouldPlayParticles} />
-          </div>
+
             <MinimalWeight setShouldPlayParticles={setShouldPlayParticles} />
 
             <ScrollBar>
