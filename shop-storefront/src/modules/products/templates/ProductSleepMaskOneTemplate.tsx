@@ -10,6 +10,7 @@ import DoubleImageSection, {MobileDoubleImageSection} from "@/components/sleepMa
 import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSection";
 import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
 import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
+import MobileFaceStory from "@/components/sleepMask/mobile/FaceStoryMobile";
 
 
 type ProductsTemplate = {
@@ -41,7 +42,14 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     image1Src={"/images/greeteveryday.jpg"}
                     image2Src={"/images/Swim_2.jpg"}
                 />
+
+                <FaceStory
+                    headline="Crafted from thousands of unique faces"
+                    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+                />
             </div>
+
+            {/*MOBILE PART */}
 
             <div className={"md:hidden block"}>
 
@@ -50,13 +58,18 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 headerLine2={"undivided focus."}
                 descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
                 image1Src={"/images/greeteveryday-mobile.jpg"}
-                image2Src={"/images/Swim_2.jpg"}
+                image2Src={"/images/swimming-mobile.jpg"}
             />
+
+                <MobileFaceStory
+                    headline="Crafted from thousands of unique faces"
+                    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+                    imageSrc="/images/facestory-1-mobile.png"
+                    imageSrcTwo="/images/facestory-2-mobile.png"
+                />
+
             </div>
-            <FaceStory
-                headline="Crafted from thousands of unique faces"
-                description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
-            />
+
 
             <ZoomImageSection imageSrc={"/images/RunningNEw.jpg"}
                               headerLine1={"Increase melatonin production"}

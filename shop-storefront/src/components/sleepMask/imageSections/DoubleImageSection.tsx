@@ -146,8 +146,11 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
         tl1.fromTo(
             image1Ref.current,
-            { scale: 1.05, filter: 'grayscale(50%)' },
-            { scale: 1, filter: 'grayscale(0%)' }
+            //  Make the image zoommed in without using scale.
+
+            { scale: 1.05, filter: 'grayscale(100%)' },
+
+            { scale: 1, filter: 'grayscale(0%)'  }
         );
 
         const tl2 = gsap.timeline({
@@ -201,11 +204,11 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
             <div className="relative z-10 mt-[-15%] mx-auto w-[90%]">
                 <div className="relative h-[55vh] overflow-hidden">
-                    <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full" alt="Fast Athlethe swimming" width={1920} height={1080} quality={100} />
+                    <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full" alt="Fast Athlethe swimming" width={400} height={500} quality={100} />
                 </div>
 
                 {/* Description for mobile */}
-                <div className="text-left mt-6 py-8 px-4 flex justify-center items-center max-w-xs sm:max-w-sm mx-auto min-h-[300px] h-[40vh]">
+                <div className="text-left mt-6 py-8 px-4 flex justify-center items-center max-w-xs xs:max-w-sm sm:max-w-lg mx-auto min-h-[300px] h-[40vh]">
                     <p className="font-semibold tracking-tighter text-lg text-slate-12">
                         {descriptionText}
                     </p>
