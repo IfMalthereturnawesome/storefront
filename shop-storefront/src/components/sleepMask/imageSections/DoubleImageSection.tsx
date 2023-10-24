@@ -168,8 +168,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
             { scale: 1 }
         );
 
-        // Consider if you really need the header to move on mobile
-        // If you do, maybe reduce the amount of movement for subtlety.
+
         const tl3 = gsap.timeline({
             scrollTrigger: {
                 trigger: image1Ref.current,
@@ -209,7 +208,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
                 {/* Description for mobile */}
                 <div className="text-left mt-6 py-8 px-4 flex justify-center items-center max-w-xs xs:max-w-sm sm:max-w-lg mx-auto min-h-[300px] h-[40vh]">
-                    <p className="font-semibold tracking-tighter text-lg text-slate-12">
+                    <p className="font-semibold tracking-tighter text-lg text-slate-1 dark:text-custom-white">
                         {descriptionText}
                     </p>
                 </div>

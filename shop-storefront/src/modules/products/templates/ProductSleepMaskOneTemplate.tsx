@@ -11,6 +11,7 @@ import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSect
 import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
 import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
 import MobileFaceStory from "@/components/sleepMask/mobile/FaceStoryMobile";
+import MobileZoomImageSection from "@/components/sleepMask/mobile/ZoomImageSectionMobile";
 
 
 type ProductsTemplate = {
@@ -40,13 +41,18 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     headerLine2={"undivided focus."}
                     descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
                     image1Src={"/images/greeteveryday.jpg"}
-                    image2Src={"/images/Swim_2.jpg"}
+                    image2Src={"/images/swimming.jpg"}
                 />
 
                 <FaceStory
                     headline="Crafted from thousands of unique faces"
                     description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
                 />
+
+                <ZoomImageSection imageSrc={"/images/increase-melatonin-production.jpg"}
+                                  headerLine1={"Increase melatonin production"}
+                                  descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
+
             </div>
 
             {/*MOBILE PART */}
@@ -57,7 +63,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 headerLine1={"Greet each day with "}
                 headerLine2={"undivided focus."}
                 descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                image1Src={"/images/greeteveryday-mobile.jpg"}
+                image1Src={"/images/greeteveryday-mobile-.jpg"}
                 image2Src={"/images/swimming-mobile.jpg"}
             />
 
@@ -68,12 +74,15 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     imageSrcTwo="/images/facestory-2-mobile.png"
                 />
 
+                <MobileZoomImageSection imageSrc={"/images/increase-melatonin-production-mobile.jpg"}
+                                        headerLine1={"Increase melatonin production"}
+                                        descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                />
+
+
             </div>
 
 
-            <ZoomImageSection imageSrc={"/images/RunningNEw.jpg"}
-                              headerLine1={"Increase melatonin production"}
-                              descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
 
             <WrappedComponent />
 
