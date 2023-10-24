@@ -19,7 +19,6 @@ const WrappedComponent: React.FC = () => {
 
             <ScrollBar>
                 <ThinFeatureDandelions />
-
             </ScrollBar>
       </>
     );

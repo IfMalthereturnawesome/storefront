@@ -223,9 +223,9 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
             leftSideTL
                 .from('#leftSide', {
-                    y: '-300px',
+                    y: '-30vh',
                     x: '-=100px',
-                    duration: 3,
+                    duration: 2.8,
                     ease: 'sine.in',
                     rotation: 0,
                     scale: 0,
@@ -343,10 +343,8 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 trigger: '.pinMinimalWeightFeature',
                 start: `center center`,
                 end: '+=125%',
-                pin: true,
-                scrub: true,
-                anticipatePin: 1,
-                pinSpacing: true,
+                pin: false,
+
                 onEnter: () => masterTL.play(),
                 onLeave: () => masterTL.pause(),
                 onEnterBack: () => masterTL.play(),
@@ -366,11 +364,11 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
         <>
 
             <section
-                className="relative z-[1]  flex flex-col justify-center items-center   bg-transparent">
+                className="relative z-[1]  flex flex-col justify-center items-center pinMinimalWeightFeature  bg-transparent">
 
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]"  id="discover-maximum-comfort">
                     <div className="flex justify-center items-center relative w-full h-full scale-150 ">
-                        <div id="leverWrapper" className="relative w-[850px] h-[870px] z-0 mt-48">
+                        <div id="leverWrapper" className="relative w-[850px] h-[890px] z-0 mt-48">
 
                             <svg id="triangle" className="absolute top-1/2 left-1/2 transform -translate-x-1/2  z-0"
                                  width="80"

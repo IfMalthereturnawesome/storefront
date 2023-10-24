@@ -29,8 +29,8 @@ const MaximumComfortMeetsTotalBlackout = () => {
         });
 
         ScrollTrigger.create({
-            trigger: whereverRef.current,
-            start: 'center-100px center',
+            trigger: crawlContainerRef.current,
+            start: 'center-=150 center',
             end: 'bottom center',
 
             onEnter: () => {
@@ -40,7 +40,7 @@ const MaximumComfortMeetsTotalBlackout = () => {
                 );
                 gsap.to(
                     wheneverRef.current,
-                    { opacity: 1, delay: 0.67, duration: 1 }
+                    { opacity: 1, delay: 0.7, duration: 1 }
                 );
             }
         });

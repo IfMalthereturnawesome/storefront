@@ -1,10 +1,7 @@
-// Inside your pages/app/index.tsx or equivalent homepage file
-
 import { getProductByHandle } from "@lib/data";
 import ProductSleepMaskOneTemplate from "@modules/products/templates/ProductSleepMaskOneTemplate";
-import { NextResponse } from 'next/server';
 import {notFound} from "next/navigation";
-import {Metadata} from "next";
+
 
 
 async function Home({ product }) {
