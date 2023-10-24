@@ -76,7 +76,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
         tl3.fromTo(
             headerRef.current,
             { y: 0 },
-            { y: 100 }
+            { y: 150 }
         );
 
     }, []);
@@ -185,28 +185,33 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     }, []);
 
     return (
-        <div className="relative bg-[#130612] z-[1] block 3xs:block 2xs:block xs:block sm:block md:hidden" >
+        <div className="relative bg-[#130612] z-[1] block  md:hidden" >
 
-            {/* Mobile-specific layout here */}
-            <div className="relative z-0">
-                <Image src={image1Src} ref={image1Ref} className="w-full mx-auto h-full object-contain" alt="Athlethe waking up and is ready to greet the day" width={1920} height={1080} quality={100} />
-                <h3 ref={headerRef} className="absolute top-1/3 left-1/4 transform -translate-y-1/2 text-6xl font-bold text-white break-words">
-                    {headerLine1}<br />{headerLine2}
-                </h3>
+
+            <div className="relative flex flex-col justify-start items-center z-0 h-[100vh]">
+                <Image src={image1Src} ref={image1Ref} className="absolute inset-0 w-full h-full object-cover" alt="Athlethe waking up and is ready to greet the day" width={400} height={800} quality={100} />
+                <div className="pt-28 flex justify-center w-full xs:max-w-lg sm:max-w-xl">
+                    <h3 ref={headerRef} className="pr-4 pl-8 sm:px-10  text-11xl tracking-wide !leading-[2.8rem] sm:!leading-[3.77rem] font-bold text-custom-white break-words">
+                        {headerLine1} {headerLine2}
+                    </h3>
+                </div>
             </div>
 
-            <div className="relative z-10 mt-[-5%]">
-                <div className="relative w-full h-[50vh] mx-auto overflow-hidden">
-                    <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full" alt="Fast Athlethe swimming" width={1920} height={1080} quality={100}  />
+
+
+            <div className="relative z-10 mt-[-15%] mx-auto w-[90%]">
+                <div className="relative h-[55vh] overflow-hidden">
+                    <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full" alt="Fast Athlethe swimming" width={1920} height={1080} quality={100} />
                 </div>
 
                 {/* Description for mobile */}
-                <div className="text-left py-8 px-4 flex justify-center items-center max-w-xs sm:max-w-sm  mx-auto min-h-[300px] h-[40vh]">
-                    <p className={"font-semibold tracking-tighter text-lg text-slate-12"}>
+                <div className="text-left mt-6 py-8 px-4 flex justify-center items-center max-w-xs sm:max-w-sm mx-auto min-h-[300px] h-[40vh]">
+                    <p className="font-semibold tracking-tighter text-lg text-slate-12">
                         {descriptionText}
                     </p>
                 </div>
             </div>
+
         </div>
     );
 };

@@ -38,7 +38,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}
                     descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                    image1Src={"/images/MerelysSwøm1.jpg"}
+                    image1Src={"/images/greeteveryday.jpg"}
                     image2Src={"/images/Swim_2.jpg"}
                 />
             </div>
@@ -49,7 +49,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 headerLine1={"Greet each day with "}
                 headerLine2={"undivided focus."}
                 descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                image1Src={"/images/MerelysSwøm1.jpg"}
+                image1Src={"/images/greeteveryday-mobile.jpg"}
                 image2Src={"/images/Swim_2.jpg"}
             />
             </div>
