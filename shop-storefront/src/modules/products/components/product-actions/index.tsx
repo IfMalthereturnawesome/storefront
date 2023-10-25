@@ -15,6 +15,7 @@ import Image from "next/image";
 import SplitType from 'split-type';
 import NativeSelect from "@modules/common/components/native-select";
 import {useStore} from "@lib/context/store-context";
+import SizeOptionSelect from "../option-select/SizeOptionSelect";
 
 
 
@@ -135,7 +136,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                     {(product.options || []).map((option) => {
                         const additionalElem = option.title.toLowerCase() === "size" ? (
                             <button
-                                className={"p-0 m-0 leading-5 text-center underline underline-offset-2 bg-transparent cursor-pointer transition duration-150 text-sm text-slate-12 hover:text-black dark:text-amberA-12 dark:hover:text-amber-11"}
+                                className={"p-0 m-0 leading-5 text-center  underline underline-offset-2 bg-transparent cursor-pointer transition duration-150 text-sm text-slate-12 hover:text-black dark:text-amberA-12 dark:hover:text-amber-11"}
                                 onClick={() => setModalOpen(true)}
                             >
                                 Size Guide
@@ -144,17 +145,31 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
 
                         return (
                             <div key={option.id}>
-                                <OptionSelect
-                                    option={option}
-                                    current={options[option.id]}
-                                    updateOption={updateOptions}
-                                    title={option.title}
-                                    additionalElement={additionalElem}
-                                />
+                                {option.title.toLowerCase() === "color" &&
+                                    <OptionSelect
+                                        option={option}
+                                        current={options[option.id]}
+                                        updateOption={updateOptions}
+                                        title={option.title}
+                                        additionalElement={additionalElem}
+                                    />
+                                }
+
                                 {option.title.toLowerCase() === "size" &&
-                                    <SizeGuideModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>}
+                                    <>
+                                      <SizeOptionSelect
+                                          option={option}
+                                          current={options[option.id]}
+                                          updateOption={updateOptions}
+                                          title={option.title}
+                                          additionalElement={additionalElem}
+                                      />
+                                      <SizeGuideModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
+                                    </>
+
+                                }
                             </div>
-                        );
+                        )
                     })}
                 </div>
             )}
