@@ -12,6 +12,7 @@ import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
 import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
 import MobileFaceStory from "@/components/sleepMask/mobile/FaceStoryMobile";
 import MobileZoomImageSection from "@/components/sleepMask/mobile/ZoomImageSectionMobile";
+import HeaderOverlayOnImage from "@/components/sleepMask/imageSections/HeaderOverlayOnImage";
 
 
 type ProductsTemplate = {
@@ -53,6 +54,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                                   headerLine1={"Increase melatonin production"}
                                   descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
 
+
                 <WrappedComponent />
             </div>
 
@@ -64,7 +66,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 headerLine1={"Greet each day with "}
                 headerLine2={"undivided focus."}
                 descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                image1Src={"/images/greeteveryday-mobile-.jpg"}
+                image1Src={"/images/greeteveryday-mobile.jpg"}
                 image2Src={"/images/swimming-mobile.jpg"}
             />
 
@@ -89,8 +91,23 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             <MaximumComfortMeetsTotalBlackout />
 
+
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>
+            <HeaderOverlayOnImage
+                imageUrl="/images/test-images-for-feature2.jpg"
+                line1="Made for "
+                line2="side sleepers"
+                line3="by side sleepers"
+                textPosition={"left"}
+            />
+            <HeaderOverlayOnImage
+                imageUrl="/images/eight-athletics-symptoms-of-sleep-deprivation.jpg"
+                line1="Sleeping on the "
+                line2="right side of "
+                line3="comfort & design"
+                textPosition={"right"}
+            />
             <ProductInfoSection product={product}/>
 
 
