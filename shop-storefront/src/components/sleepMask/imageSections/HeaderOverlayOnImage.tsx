@@ -93,24 +93,30 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
     }, []);
     return (
         <div className="relative z-[1] bg-[#EAEEF1] h-full py-10">
+
             {/* Image */}
-            <Image src={imageUrl} className="rounded-3xl object-cover w-[60vw] mx-auto" alt="Background" width={1200}
-                   height={1000}/>
+            <Image src={imageUrl} className="rounded-3xl object-cover w-[60vw] mx-auto z-[10] relative" alt="Background" width={1200}
+                   height={1000} quality={100}/>
 
             {/* Overlay header */}
-            <div className={`absolute top-[15%] ${textPosition === 'left' ? 'left-16' : 'right-16'} p-8 uppercase`}>
+            <div className={`absolute top-[15%] ${textPosition === 'left' ? 'left-16' : 'right-0'} p-8 uppercase z-[11]`}>
                 <div ref={line1Ref}
                      className="bg-[#EAEEF1] w-fit text-left rounded-3xl p-2 text-8xl font-normal text-mask-black tracking-wide sm:!leading-[3.5rem]">
-                    <h3 className="p-2 mr-4">{line1}</h3>
+                    <h3 className={`p-2 ${textPosition === 'left' ? 'mr-4' : 'ml-4'}`}>{line1}</h3>
                 </div>
                 <div ref={line2Ref}
                      className="bg-[#E5EAED] w-fit text-left rounded-3xl p-2 text-8xl font-normal text-mask-black tracking-wide sm:!leading-[3.5rem]">
-                    <h3 className="p-2 mr-4">{line2}</h3>
+                    <h3 className={`p-2 ${textPosition === 'left' ? 'mr-4' : 'ml-4'}`}>{line2}</h3>
                 </div>
                 <div ref={line3Ref}
                      className="bg-[#E3E7EB] w-fit text-left rounded-3xl p-2 text-8xl font-normal text-mask-black tracking-wide sm:!leading-[3.5rem]">
-                    <h3 className="p-2 mr-4">{line3}</h3>
+                    <h3 className={`p-2 ${textPosition === 'left' ? 'mr-4' : 'ml-4'}`}>{line3}</h3>
                 </div>
+            </div>
+            <div className={"grain"}>
+                <div className={"grain-texture"}/>
+
+
             </div>
         </div>
     );

@@ -102,12 +102,13 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 textPosition={"left"}
             />
             <HeaderOverlayOnImage
-                imageUrl="/images/eight-athletics-symptoms-of-sleep-deprivation.jpg"
-                line1="Sleeping on the "
-                line2="right side of "
-                line3="comfort & design"
+                imageUrl="/images/swimming.jpg"
+                line1="Experience"
+                line2="weightless comfort"
+                line3="in total darkness"
                 textPosition={"right"}
             />
+
             <ProductInfoSection product={product}/>
 
 
