@@ -1,21 +1,24 @@
 import { getProductByHandle } from "@lib/data";
 import ProductSleepMaskOneTemplate from "@modules/products/templates/ProductSleepMaskOneTemplate";
-import {notFound} from "next/navigation";
-
 
 
 async function Home({ product }) {
     let params = { handle: "sleep-mask-one" };
-    const { products } = await getProductByHandle(params.handle).catch((err) => {
-        notFound()
-    });
+    let products;
+    try {
+        const result = await getProductByHandle(params.handle);
+        products = result.products;
+    } catch (err) {
+        return { notFound: true };
+    }
+
 
     const producta = products[0];
 
-    return <ProductSleepMaskOneTemplate product={producta} />;
+    return <ProductSleepMaskOneTemplate product={producta} />
 }
 
-export const metadata: ({params}: { params: any }) => Promise<{ description: string; title: string }> = async ({ params }) => {
+ const metadata: ({params}: { params: any }) => Promise<{ description: string; title: string }> = async ({ params }) => {
     let productHandle = "sleep-mask-one";
     const { products } = await getProductByHandle(productHandle);
     const product = products[0];
@@ -32,5 +35,5 @@ export const metadata: ({params}: { params: any }) => Promise<{ description: str
     };
 }
 
-
 export default Home;
+

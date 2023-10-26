@@ -29,8 +29,8 @@ const CartTemplate = () => {
     return (
         <div className="bg-cyan-1 py-12">
             <nav className="flex items-center h-full justify-between content-container">
-                <button className="text-small-semi text-slate-11 flex items-center gap-x-2 uppercase   "
-                        onClick={() => router.back()}>
+                <Link href={"/"} className="text-small-semi text-slate-11 flex items-center gap-x-2 uppercase"
+                >
                     <>
                         <ChevronDown className="rotate-90" size={16}/>
                         <span
@@ -38,7 +38,7 @@ const CartTemplate = () => {
                             Back to Shop
                 </span>
                     </>
-                </button>
+                </Link>
                 <div className="flex-1 basis-0"/>
             </nav>
             <div className="content-container">
