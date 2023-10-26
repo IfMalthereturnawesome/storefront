@@ -127,8 +127,8 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
         },
         particles: {
             color: {value: "#ffffff"},
-            number: {value: 25, density: {enable: true, area: 1500}},
-            size: {value: {min: 3, max: 25}, random: false, anim: {speed: 4, size_min: 10}},
+            number: {value: 16, density: {enable: true, area: 1500}},
+            size: {value: {min: 3, max: 20}, random: false, anim: {speed: 4, size_min: 10}},
             opacity: {
 
                 random: false,

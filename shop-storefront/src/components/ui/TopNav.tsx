@@ -4,7 +4,7 @@ import CountrySelectFlag from "@modules/layout/components/country-select/Country
 const TopNav = () => {
     return (
         <>
-            <ul className="hidden p-0 m-0  leading-5 text-black lg:flex lg:h-8 lg:flex-row  lg:items-center lg:justify-end mx-24">
+            <ul className="hidden p-0 m-0 leading-5 text-black lg:flex lg:h-8 lg:flex-row lg:items-center lg:justify-end mx-36">
                 <li  className="flex relative items-center mr-2 leading-5 text-left">
                     <CountrySelectFlag/>
                 </li>

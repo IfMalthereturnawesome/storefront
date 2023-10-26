@@ -39,7 +39,6 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
 
-
     const renderButton = (productTitle: string) => {
         if (productTitle === currentProductTitle) {
             return <span
@@ -128,11 +127,8 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
     return (
-        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 "
-                 style={{background: 'linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919)'}}>
-            <div className="grain">
-                <div className="grain-texture"></div>
-            </div>
+        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 bg-cyan-1"
+                 >
             <div
                 className="leading-6 text-neutral-100 mx-auto px-0 sm:px-4  md:px-0 max-w-full md:max-w-[80vw] lg:max-w-[68vw]">
                 <div className="text-left mx-auto">

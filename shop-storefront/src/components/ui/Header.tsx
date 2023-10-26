@@ -20,8 +20,7 @@ import TopNav from "@/components/ui/TopNav";
 import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
 import {useRouter, usePathname, useSearchParams} from 'next/navigation'
 import SecondaryButton from "@modules/common/components/button/SecondaryButton";
-import Button from "@modules/common/components/button"
-import Spinner from "@modules/common/icons/spinner"
+
 import {useCart} from "medusa-react";
 
 
@@ -35,10 +34,10 @@ export default function Header({className}: HeaderProps) {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollPosition, setLastScrollPosition] = useState(0);
     const [topNavBanner, setTopNavBanner] = useState(true);
-    const router = useRouter();
-    const cartItemsCount = 0;
+
+
     const pathname = usePathname();
-    const searchParams = useSearchParams();
+
     const isOnProductPage = pathname.includes('/products/') || pathname === '/';
 
 
@@ -61,7 +60,7 @@ export default function Header({className}: HeaderProps) {
             if (currentScrollPosition < lastScrollPosition) {
                 setIsVisible(true);
             } else {
-                setIsVisible(false);  // This makes the header (and thereby topNav) disappear instantly when scrolling downwards
+                setIsVisible(false);
             }
 
             if (scrollDifference >= scrollThreshold) {
@@ -85,7 +84,7 @@ export default function Header({className}: HeaderProps) {
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
 
             <header id="header_1"
-                    className={`z-30  ${className || 'bg-cyan-1'} mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '} ${topNavBanner ? 'headerFullWidth' : 'headerOnScroll'}`}>
+                    className={`z-30  ${className || 'bg-cyan-1'} mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '} ${topNavBanner ? 'headerFullWidth' : 'headerOnScroll bg-cyan-2 dark:bg-mask-black'}`}>
 
             {topNavBanner && <TopNav/>}
 

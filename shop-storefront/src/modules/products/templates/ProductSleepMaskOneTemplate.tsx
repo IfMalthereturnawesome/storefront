@@ -36,6 +36,8 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 />
             </div>
 
+            {/*DESKTOP START */}
+
             <div className={"hidden md:block"}>
                 <DoubleImageSection
                     headerLine1={"Greet each day with "}
@@ -55,20 +57,22 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                                   descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
 
 
-                <WrappedComponent />
+                <WrappedComponent/>
             </div>
 
-            {/*MOBILE PART */}
+            {/*DESKTOP END*/}
+
+            {/*MOBILE START */}
 
             <div className={"md:hidden block"}>
 
-            <MobileDoubleImageSection
-                headerLine1={"Greet each day with "}
-                headerLine2={"undivided focus."}
-                descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
-                image1Src={"/images/greeteveryday-mobile.jpg"}
-                image2Src={"/images/swimming-mobile.jpg"}
-            />
+                <MobileDoubleImageSection
+                    headerLine1={"Greet each day with "}
+                    headerLine2={"undivided focus."}
+                    descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                    image1Src={"/images/greeteveryday-mobile.jpg"}
+                    image2Src={"/images/swimming-mobile.jpg"}
+                />
 
                 <MobileFaceStory
                     headline="Crafted from thousands of unique faces"
@@ -85,15 +89,13 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             </div>
 
+            {/*MOBILE END */}
+
+
+            <MaximumComfortMeetsTotalBlackout/>
 
 
 
-
-            <MaximumComfortMeetsTotalBlackout />
-
-
-            <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
-                           currentProductTitle="Sleep Mask One"/>
             <HeaderOverlayOnImage
                 imageUrl="/images/test-images-for-feature2.jpg"
                 line1="Made for "
@@ -110,7 +112,8 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             />
 
             <ProductInfoSection product={product}/>
-
+            <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
+                           currentProductTitle="Sleep Mask One"/>
 
         </ProductProvider>
     )

@@ -233,8 +233,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
     </span>
             </div>
 
-
-
+            <Link href={"/cart"}>
 
             <BuyNowButton
                 title={isBothSelected ? "Add to cart" : "Choose color and size"}
@@ -242,7 +241,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                 message={"Add to cart"}
                 disabled={!isBothSelected}
             />
-
+            </Link>
 
         </div>
     )
