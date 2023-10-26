@@ -21,7 +21,7 @@ const CartDropdown = () => {
   const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
 
   return (
-    <div className="h-full  z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
+    <div className="h-full pl-3 z-50 flex lg:w-1/6 justify-center items-center" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full ">
         <Popover.Button className="h-full">
           <div className="relative inline-flex pt-1 ">

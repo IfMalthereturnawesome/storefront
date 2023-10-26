@@ -542,7 +542,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         <h3 className={"header-bg-clip text-lg xs:text-xl lg:text-2xl font-sans hidden my-0 md:my-2 dark:block"}>
                             {product}
                         </h3>
-                        <h3 className="header-bg-clip-light  text-lg xs:text-xl lg:text-2xl font-sans dark:hidden">
+                        <h3 className="header-bg-clip-light  text-lg xs:text-xl lg:text-2xl font-sans my-0 md:my-2 dark:hidden">
                             {product}
                         </h3>
                         <div className="">

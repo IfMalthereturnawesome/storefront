@@ -58,18 +58,31 @@ Form.Message {
     top: 0;
     left: 0;
     right: 0;
-
-
-    transition: transform 0.3s ease-in-out;
-
+    visibility: visible;
+    transition: visibility 0.1s;
 }
 
 .headerHidden {
     position: fixed;
-    top: -100px;
+    top: 0;
     left: 0;
     right: 0;
-    transition: top 0.3s ease-in-out;
+    visibility: hidden;
+    transition: visibility 0.1s;
+}
+
+
+.headerFullWidth {
+    width: 99.2vw;
+    margin: 0 auto!important;
+    transition: width 0.3s ease-in-out;
+}
+
+.headerOnScroll {
+    width: 80%;
+    margin: 32px auto 0 auto!important;
+    border-radius: 15px;
+    transition: width 0.1s ease-in-out, margin-top 0.1s ease-in-out, border-radius 0.1s ease-in-out;
 }
 
 

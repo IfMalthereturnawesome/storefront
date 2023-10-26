@@ -18,19 +18,31 @@ import DesktopSearchModal from "@modules/search/templates/desktop-search-modal";
 import CartDropdown from "@modules/layout/components/cart-dropdown";
 import TopNav from "@/components/ui/TopNav";
 import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
+import {useRouter, usePathname, useSearchParams} from 'next/navigation'
+import SecondaryButton from "@modules/common/components/button/SecondaryButton";
+import Button from "@modules/common/components/button"
+import Spinner from "@modules/common/icons/spinner"
+import {useCart} from "medusa-react";
 
 
 interface HeaderProps {
     className?: string;
 }
 
-export default function Header({ className }: HeaderProps) {
+export default function Header({className}: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollPosition, setLastScrollPosition] = useState(0);
     const [topNavBanner, setTopNavBanner] = useState(true);
+    const router = useRouter();
+    const cartItemsCount = 0;
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const isOnProductPage = pathname.includes('/products/') || pathname === '/';
 
+
+    const { cart, totalItems } = useCart()
 
     const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
 
@@ -44,6 +56,12 @@ export default function Header({ className }: HeaderProps) {
                 setTopNavBanner(true);
             } else {
                 setTopNavBanner(false);
+            }
+
+            if (currentScrollPosition < lastScrollPosition) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);  // This makes the header (and thereby topNav) disappear instantly when scrolling downwards
             }
 
             if (scrollDifference >= scrollThreshold) {
@@ -66,9 +84,10 @@ export default function Header({ className }: HeaderProps) {
         <>
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
 
+            <header id="header_1"
+                    className={`z-30  ${className || 'bg-cyan-1'} mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '} ${topNavBanner ? 'headerFullWidth' : 'headerOnScroll'}`}>
 
-            <header id="header_1" className={`z-30  ${className || 'bg-cyan-1'} mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '}`}>
-                {topNavBanner && <TopNav/>}
+            {topNavBanner && <TopNav/>}
 
                 <nav
                     className="relative mx-auto flex items-center justify-between px-4 py-4"
@@ -125,12 +144,12 @@ export default function Header({ className }: HeaderProps) {
                     </div>
 
                     <div className="hidden lg:flex lg:w-1/2 justify-center">
-                        <Popover.Group className="hidden lg:flex lg:gap-x-6">
-                            <NavigationMenuDropdowns className={className} />
+                        <Popover.Group className="hidden lg:flex lg:gap-x-6 w-[99vw]">
+                            <NavigationMenuDropdowns className={className}/>
                         </Popover.Group>
                     </div>
 
-                    <div className="flex lg:w-1/4 justify-center items-center pr-2">
+                    <div className="flex lg:w-1/4 justify-center items-center  pr-2">
                         <ThemeToggle/>
                         <Search/>
 
@@ -141,7 +160,19 @@ export default function Header({ className }: HeaderProps) {
                                           aria-hidden="true"/>
                             </Link>
                         </div>
-                        <CartDropdown/>
+
+                        <div className={"pl-4 z-[2]"}>
+                        {isOnProductPage && totalItems === 0 ? (
+                            <Link href="#buy-now" >
+                                <SecondaryButton variant={"fourth"}
+                                                 className={"rounded-[0.5rem] capitalize group text-md !py-2 !px-4 !min-h-[1.5rem]"}>
+                                    Buy now
+                                </SecondaryButton>
+                            </Link>
+                        ) : (
+                            <CartDropdown/>
+                        )}
+                        </div>
                     </div>
                 </nav>
                 <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen}/>
