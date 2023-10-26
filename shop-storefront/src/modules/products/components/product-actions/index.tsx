@@ -16,6 +16,7 @@ import SplitType from 'split-type';
 import NativeSelect from "@modules/common/components/native-select";
 import {useStore} from "@lib/context/store-context";
 import SizeOptionSelect from "../option-select/SizeOptionSelect";
+import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect";
 
 
 
@@ -146,7 +147,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                         return (
                             <div key={option.id}>
                                 {option.title.toLowerCase() === "color" &&
-                                    <OptionSelect
+                                    <ColorOptionSelect
                                         option={option}
                                         current={options[option.id]}
                                         updateOption={updateOptions}

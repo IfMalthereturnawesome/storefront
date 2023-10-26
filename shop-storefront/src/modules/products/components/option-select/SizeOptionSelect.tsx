@@ -46,11 +46,11 @@ const SizeOptionSelect: React.FC<SizeOptionSelectProps> = ({
                             key={v}
                             className={clsx(
                                 "flex-row justify-between p-0 mx-px mt-px mb-2 w-full h-full ",
-                                "text-left rounded-none cursor-pointer",
-                                "sm:leading-5 sm:tracking-wide flex items-center py-3 px-4 transition-all duration-200",
+                                "text-left rounded-none cursor-pointer rounded-[5px]",
+                                "sm:leading-5 sm:tracking-wide flex items-center py-2 px-3 transition-all duration-200",
                                 {
-                                    "custom-button-neo__dark-black hover:text-slate-12 hover:bg-slate-3 dark:border": v !== current,
-                                    "custom-button-neo-dark hover:bg-black hover:text-slate-1": v === current
+                                    "custom-button-neo__dark-black hover:text-slate-12 hover:bg-slate-3 dark:border-1 dark:border-cyan-3": v !== current,
+                                    "custom-button-neo-dark hover:bg-black hover:text-slate-1 ": v === current
                                 }
                             )}
 
