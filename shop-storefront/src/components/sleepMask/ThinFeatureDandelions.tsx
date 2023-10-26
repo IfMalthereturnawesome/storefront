@@ -6,10 +6,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {SplitText} from 'gsap/SplitText';
-import usePageSettings from "@/utils/hooks/usePageSettings";
+
 import {PlusIcon} from "@heroicons/react/24/solid";
 
-import Lenis from "@studio-freight/lenis";
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -33,19 +32,8 @@ const ThinFeatureDandelions: React.FC = () => {
     let masterTimeline = gsap.timeline();
 
 
-
     useEffect(() => {
         let ctx = gsap.context(() => {
-            const lenis = new Lenis();
-            // Update ScrollTrigger on scroll
-            lenis.on('scroll', ScrollTrigger.update);
-
-            const rafLoop = (time: number) => {
-                lenis.raf(time * 1000);
-            };
-
-            gsap.ticker.add(rafLoop);
-            gsap.ticker.lagSmoothing(0);
 
 
             if (containerRef.current && textTopRef.current && textBottomRef.current && canvasRef.current) {
@@ -53,43 +41,21 @@ const ThinFeatureDandelions: React.FC = () => {
                 const canvas = canvasRef.current;
                 canvas.width = containerRef.current.offsetWidth;
                 canvas.height = containerRef.current.offsetHeight;
+                const context = canvas.getContext("2d");
+                const img = new Image();
+                img.src = "/images/thinSequence/thinmask_000.png";
 
-
-                const frameCount = 8;
-                const currentFrame = (index: number) =>
-                    `/images/thinSequence/thinmask_${(index)
-                        .toString()
-                        .padStart(3, "0")}.png`;
-
-                const images: any[] = [];
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    context.drawImage(img, 0, 0);
+                };
                 const sleepMask = {
-                    frame: 0,
+                    frame: 0
                 };
-
-                for (let i = 0; i < frameCount; i++) {
-                    const img = new Image();
-                    img.src = currentFrame(i);
-                    images.push(img);
-                }
-
-                const render = () => {
-                    if (canvas) {
-                        const context = canvas.getContext("2d");
-                        const img = images[sleepMask.frame];
-
-                        // Set canvas size to image size
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-
-                        context?.clearRect(0, 0, canvas.width, canvas.height);
-                        context?.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                    }
-                };
-
 
                 gsap.to(sleepMask, {
-                    frame: frameCount - 1,
+                    frame: 0,  // It's always 0 since we're only using one image
                     snap: "frame",
                     ease: "none",
                     scrollTrigger: {
@@ -98,11 +64,10 @@ const ThinFeatureDandelions: React.FC = () => {
                         end: '+=3500',
                         scrub: true,
                         pin: true,
-                        anticipatePin: 2,
-
+                        anticipatePin: 1,
                     },
-                    onUpdate: render,
-                })
+
+                });
                 gsap.to(canvasRef.current, {
                     rotationX: -3,
                     rotationY: -3,
@@ -217,7 +182,12 @@ const ThinFeatureDandelions: React.FC = () => {
                         .to("#SlimAndSoft", {zIndex: 40})
 
                         .to(canvasRef.current, {marginTop: '-15vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
-                        .to(containerRef.current, {marginTop: '-14.5vh', height: '88.95vh', ease: 'Power3.out', duration: 8}, '<')
+                        .to(containerRef.current, {
+                            marginTop: '-14.5vh',
+                            height: '88.95vh',
+                            ease: 'Power3.out',
+                            duration: 8
+                        }, '<')
                         .to(textTopRef.current, {scale: 0.8, duration: 8, ease: "Power2.easeInOut"}, '<')
                         .to(plusIconTopRef.current, {opacity: 1, duration: 8}, '<')
                         .to([hotspotTopRef.current, "#slimLine"],
@@ -244,21 +214,30 @@ const ThinFeatureDandelions: React.FC = () => {
                         .to("#SlimAndSoft", {zIndex: 40})
                         .to([hotspotTopRef.current, "#slimLine"], {opacity: 0, duration: 3, ease: "none"}, '<')
                         .to(canvasRef.current, {marginTop: '-23vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
-                        .to(containerRef.current, {height: '99vh', marginTop: '-4.4vh', ease: 'Power3.out', duration: 8}, '<')
+                        .to(containerRef.current, {
+                            height: '99vh',
+                            marginTop: '-4.4vh',
+                            ease: 'Power3.out',
+                            duration: 8
+                        }, '<')
                         .to(textBottomRef.current, {opacity: 1, scale: 0.8, duration: 8, ease: "Power2.easeInOut"}, '<')
-                        .to(plusIconBottomRef.current, {opacity: 1, duration:8}, '<')
+                        .to(plusIconBottomRef.current, {opacity: 1, duration: 8}, '<')
                         .to([hotspotBottomRef.current, "#softLine"],
                             {opacity: 1, duration: 2.5, stagger: 0.5, ease: "Power2.easeInOut"})
                         .to(descBottomRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
                         .to({}, {duration: 4, delay: 4})  // Adding a pause
-                        .to([hotspotBottomRef.current, "#softLine"], {opacity: 0, duration: 3, ease: "none", delay: 2}, '<')
+                        .to([hotspotBottomRef.current, "#softLine"], {
+                            opacity: 0,
+                            duration: 3,
+                            ease: "none",
+                            delay: 2
+                        }, '<')
 
 
                     masterTimeline.add(slimTimeline);
                     masterTimeline.add(softTimeline, '+=10');  // This value should be adjusted based on the desired delay
 
                 }
-
 
 
                 return () => {
@@ -350,25 +329,15 @@ const ThinFeatureDandelions: React.FC = () => {
                                   className={"opacity-0 stroke-white"} strokeWidth="2"/>
                         </svg>
 
-
                         {/* SVG for the arrow for soft feature*/}
                         <svg className="absolute bottom-[8.6%] left-[28.5%] w-full h-full pointer-events-none z-[3]">
                             {/* Line from Soft hotspot to its description */}
                             <line id={"softLine"} x1="6%" y1="78%" x2="10%" y2="57%"
                                   className={"opacity-0 stroke-white"} strokeWidth="2"/>
                         </svg>
-
-
                         {/* Canvas for Image Sequence */}
                         <canvas ref={canvasRef} className="object-contain object-center w-full h-[74vh] z-[1]"></canvas>
-                        {/* Grain overlay */}
-                        <div className="grain">
-                            <div className="grain-texture"></div>
-                        </div>
-
                     </div>
-
-
                 </div>
             </section>
         </>

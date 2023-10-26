@@ -50,7 +50,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
             </div>
             <div className="w-full h-screen relative" id={"increase-melatonin-production"}>
                 <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
-                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask" width={1920} height={1080} quality={100}/>
+                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask" width={1920} height={1080} quality={90}/>
                 <h3 ref={headerRef}
                     className="absolute top-1/3 right-1/4 lg:right-1/3 transform -translate-y-1/2 text-8xl lg:text-9xl font-bold text-white break-words">
                     {headerLine1}
