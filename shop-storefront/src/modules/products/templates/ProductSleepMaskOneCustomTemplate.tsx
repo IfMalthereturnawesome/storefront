@@ -32,7 +32,7 @@ const ProductSleepMaskOneCustomTemplate: React.FC<ProductsTemplate> = ({product}
             {/*</div>*/}
             <ProductChoice product1={SleepMaskCustomData} product2={SleepMaskOneData}
                            currentProductTitle="Sleep Mask One Custom"/>
-            <ProductInfoSection product={product}/>
+            {/*<ProductInfoSection product={product}/>*/}
         </ProductProvider>
     )
 }
