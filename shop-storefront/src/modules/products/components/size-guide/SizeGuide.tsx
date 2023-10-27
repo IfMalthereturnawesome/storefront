@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import CustomSwitch from "components/elements/CustomSwitch";
 import Link from 'next/link';
+import Image from "next/image";
 
 
 interface SizeGuideModalProps {
@@ -78,7 +79,8 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                                     <thead>
                                     <tr className="bg-white dark:bg-cyan-2 text-slate-12 text-md">
                                         <th className="px-4 py-2 border border-slate-6">Size</th>
-                                        <th className="px-4 py-2 border border-slate-6">Head Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
+                                        <th className="px-4 py-2 border border-slate-6">Head
+                                            Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
                                         <th className="px-4 py-2 border border-slate-6">Typical Male</th>
                                         <th className="px-4 py-2 border border-slate-6">Typical Female</th>
                                     </tr>
@@ -122,25 +124,26 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
                     {activeTab === 'measure' && (
                         <div>
-                            <div className={"py-4 px-2 m-0 leading-5 text-black align-baseline border-0  lg:leading-5"}>
+                            <div className={"py-4 px-2 m-0 leading-5 text-black align-baseline border-0 lg:leading-5"}>
                                 <h3 className="text-lg font-bold text-slate-12">How to measure your head?</h3>
                             </div>
                             <div className={"pb-2 px-3 m-0 leading-5 text-black align-baseline border-0 text-md"}>
-                                <p className="text-slate-11 mt-2">Follow these steps to measure the circumference of
-                                    your
-                                    head:</p>
-                                <ol className="list-decimal pl-5 mt-2 text-slate-11 text-md">
-                                    <li>Use a soft measuring tape.</li>
-                                    <li>Start from just above your eyebrows and wrap the tape around the back of your
-                                        head
-                                        at the widest part.
-                                    </li>
-                                    <li>Note down the measurement.</li>
-                                    <li>Select the size that best fits your measurement from the size chart above.</li>
-                                </ol>
+                                <p className="text-slate-11 mt-2">Follow these steps to measure the circumference of your head:</p>
+                                <div className="flex items-center mt-2 ">
+                                    <ol className="list-decimal pl-5 text-slate-11 text-md flex-1">
+                                        <li className={"my-2"}>Use a soft measuring tape.</li>
+                                        <li className={"my-2"}>Start from just above your eyebrows and wrap the tape around the back of your head at the widest part.</li>
+                                        <li className={"my-2"}>Note down the measurement.</li>
+                                        <li className={"my-2"}>Select the size that best fits your measurement from the size chart above.</li>
+                                    </ol>
+                                    <div className="ml-2">
+                                        <Image src="/images/male-persons-head-head-size.png" alt="Head with measuring tape" height={200} width={200} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
+
 
 
                 </div>
