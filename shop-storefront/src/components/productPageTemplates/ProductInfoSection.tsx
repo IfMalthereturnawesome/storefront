@@ -36,7 +36,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
         <div className={"relative z-[1]"}>
             <div className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 opacity-90 h-full pb-14"}>
                 <div id={"buy-now"}
-                     className="content-container__big  flex flex-col small:flex-row small:items-start py-6 relative ">
+                     className="content-container__big  flex flex-col small:flex-row small:items-start pt-6 pb-12 relative ">
                     <div className="flex flex-col gap-y-8 w-full">
                         <ZoomableImageGallery images={productImagePaths}/>
 
