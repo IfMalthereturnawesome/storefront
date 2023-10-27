@@ -110,7 +110,7 @@ const ShippingInfoTab = () => {
           <div>
             <span className="font-semibold">Free Shipping in EU</span>
             <p className="max-w-sm">
-                We offer free shipping on all orders over 50€(excl taxes) within the EU.
+                We offer free shipping on all orders within the EU.
             </p>
           </div>
         </div>
