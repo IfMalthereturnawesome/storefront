@@ -78,68 +78,41 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                                     <thead>
                                     <tr className="bg-white dark:bg-cyan-2 text-slate-12 text-md">
                                         <th className="px-4 py-2 border border-slate-6">Size</th>
-                                        <th className="px-4 py-2 border border-slate-6">Head
-                                            Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
+                                        <th className="px-4 py-2 border border-slate-6">Head Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
                                         <th className="px-4 py-2 border border-slate-6">Typical Male</th>
                                         <th className="px-4 py-2 border border-slate-6">Typical Female</th>
                                     </tr>
                                     </thead>
                                     <tbody className="text-sm text-slate-12">
                                     <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">2XS</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? 52 : parseFloat((52 * 0.393701).toFixed(2))}
-                                        </td>
-                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
-                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
-                                    </tr>
-                                    <tr className="bg-white dark:bg-cyan-2">
                                         <td className="px-4 py-2 border border-slate-6">XS</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? 53 : parseFloat((53 * 0.393701).toFixed(2))}
-                                        </td>
+                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '52.0 - 54.5' : `${parseFloat((52.0 * 0.393701).toFixed(2))} - ${parseFloat((54.5 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
                                         <td className="px-4 py-2 border border-slate-6">Common</td>
-                                        <td className="px-4 py-2 border border-slate-6">Common</td>
-                                    </tr>
-                                    <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">Small</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? '54 - 55' : `${parseFloat((54 * 0.393701).toFixed(2))} - ${parseFloat((55 * 0.393701).toFixed(2))}`}
-                                        </td>
-                                        <td className="px-4 py-2 border border-slate-6">Average</td>
-                                        <td className="px-4 py-2 border border-slate-6">Average</td>
                                     </tr>
                                     <tr className="bg-white dark:bg-cyan-2">
-                                        <td className="px-4 py-2 border border-slate-6">Medium</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? '56 - 57' : `${parseFloat((56 * 0.393701).toFixed(2))} - ${parseFloat((57 * 0.393701).toFixed(2))}`}
-                                        </td>
+                                        <td className="px-4 py-2 border border-slate-6">S</td>
+                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '54.0 - 56.5' : `${parseFloat((54.0 * 0.393701).toFixed(2))} - ${parseFloat((56.5 * 0.393701).toFixed(2))}`}</td>
                                         <td className="px-4 py-2 border border-slate-6">Average</td>
                                         <td className="px-4 py-2 border border-slate-6">Average</td>
                                     </tr>
                                     <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">Large</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? '58 - 59' : `${parseFloat((58 * 0.393701).toFixed(2))} - ${parseFloat((59 * 0.393701).toFixed(2))}`}
-                                        </td>
+                                        <td className="px-4 py-2 border border-slate-6">M</td>
+                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '56.0 - 58.0' : `${parseFloat((56.0 * 0.393701).toFixed(2))} - ${parseFloat((58.0 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-4 py-2 border border-slate-6">Average</td>
+                                        <td className="px-4 py-2 border border-slate-6">Average</td>
+                                    </tr>
+                                    <tr className="bg-white dark:bg-cyan-2">
+                                        <td className="px-4 py-2 border border-slate-6">L</td>
+                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '57.5 - 60.0' : `${parseFloat((57.5 * 0.393701).toFixed(2))} - ${parseFloat((60.0 * 0.393701).toFixed(2))}`}</td>
                                         <td className="px-4 py-2 border border-slate-6">Common</td>
                                         <td className="px-4 py-2 border border-slate-6">Common</td>
                                     </tr>
-                                    <tr className="bg-white dark:bg-cyan-2">
+                                    <tr className="bg-custom-white dark:bg-cyan-1">
                                         <td className="px-4 py-2 border border-slate-6">XL</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? '60 - 61' : `${parseFloat((60 * 0.393701).toFixed(2))} - ${parseFloat((61 * 0.393701).toFixed(2))}`}
-                                        </td>
+                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '59.5 - 62.0' : `${parseFloat((59.5 * 0.393701).toFixed(2))} - ${parseFloat((62.0 * 0.393701).toFixed(2))}`}</td>
                                         <td className="px-4 py-2 border border-slate-6">Common</td>
                                         <td className="px-4 py-2 border border-slate-6">Uncommon</td>
-                                    </tr>
-                                    <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">2XL</td>
-                                        <td className="px-4 py-2 border border-slate-6">
-                                            {unit === 'cm' ? 62 : parseFloat((62 * 0.393701).toFixed(2))}
-                                        </td>
-                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
-                                        <td className="px-4 py-2 border border-slate-6">Rare</td>
                                     </tr>
                                     </tbody>
                                 </table>
