@@ -77,7 +77,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
     return (
         <ProductProvider product={product}>
 
-            <div className="bg-mask-black">
+            <div className="bg-mask-black " >
                 <VideoAnimation
                     product={"Sleep Mask One"}
                     description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
@@ -161,9 +161,13 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 textPosition={"right"}
             />
 
+
+
             <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnsFAQ}/>
+
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>
+
 
         </ProductProvider>
     )

@@ -33,10 +33,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
     return (
 
-        <div className={"relative z-[1]"}>
-            <div className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 opacity-90 h-full pb-14"}>
+        <div className={"relative md:z-[1]"}>
+            <div className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-12 md:pb-4"}
+                 ref={info}>
                 <div id={"buy-now"}
-                     className="content-container__big  flex flex-col small:flex-row small:items-start pt-6 pb-12 relative ">
+                     className="content-container__big  flex flex-col small:flex-row small:items-start pt-6 pb-0 md:pb-12 relative ">
                     <div className="flex flex-col gap-y-8 w-full">
                         <ZoomableImageGallery images={productImagePaths}/>
 
@@ -46,7 +47,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                         <div style={{minHeight: 'calc(100vh - 64px)'}}>
                             <div
                                 className="sticky top-0  py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
-                                ref={info}
+
                             >
                                 <ProductInfo product={product}/>
                                 <ProductTabs product={product}/>
@@ -61,11 +62,10 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                 </div>
 
 
-
-                <MobileActions product={product} show={!inView}/>
                 <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
 
             </div>
+            <MobileActions product={product} show={inView}/>
         </div>
     )
 }

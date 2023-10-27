@@ -10,7 +10,7 @@ interface ProductFAQProps {
 
 const ProductFAQ: React.FC<ProductFAQProps> = ({productFAQ, shippingFAQ, returnFAQ}) => {
     return (
-        <div className="mx-auto px-vw-8 py-vw-10  bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 opacity-90 z-0">
+        <div className="mx-auto px-vw-8 py-vw-10  bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  z-0">
 
             <div className="md:flex justify-center items-center text-center mb-4 mt-4 md:mt-6 md:mb-8">
                 <h3 className="text-4xl font-semibold z-10 mr-4">Questions?</h3>
@@ -45,7 +45,7 @@ const ProductFAQ: React.FC<ProductFAQProps> = ({productFAQ, shippingFAQ, returnF
                     ))}
                 </div>
             </div>
-            <div className="mt-8 mb-6 text-center">
+            <div className="mt-8 md:mb-2 text-center">
                 <Link href="/faq" className="text-sm font-medium underline">
                     Have more questions? Check our FAQ page.
                 </Link>

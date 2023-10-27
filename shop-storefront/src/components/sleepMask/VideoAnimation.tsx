@@ -10,6 +10,7 @@ import SplitType from 'split-type';
 import MaskSequence from "@/components/sleepMask/MaskSequence";
 
 
+
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
@@ -42,6 +43,9 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     const descriptionRef1 = useRef(null);
     const descriptionRef2 = useRef(null);
     const descriptionRef3 = useRef(null);
+
+
+
 
     const smoothDisappearOneNight = () => {
         if (oneNightRef.current) {

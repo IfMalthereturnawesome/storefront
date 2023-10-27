@@ -73,9 +73,15 @@ Form.Message {
 
 
 .headerFullWidth {
-    width: 99.2vw;
+    width: 99vw;
     margin: 0 auto!important;
     transition: width 0.3s ease-in-out;
+}
+/* Media query for headerFullWidth*/
+@media (min-width: 768px) {
+    .headerFullWidth {
+        width: 99.2vw;
+    }
 }
 
 .headerOnScroll {

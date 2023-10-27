@@ -50,7 +50,7 @@ export default function RootLayout({children}: RootLayoutProps) {
         {/*<BreakpointsIndicator />*/}
         <ProvidersNextUI>
             <Providers>
-                <div className="flex min-h-screen flex-col overflow-hidden bg-cyan-1 ">
+                <div className="flex min-h-screen flex-col overflow-hidden bg-mask-black ">
                     {children}
                 </div>
             </Providers>

@@ -82,7 +82,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
             <div className="flex flex-col justify-between max-w-full px-2 md:max-w-1/2 md:px-vw-3 ">
                 <div
                     className="flex relative flex-col items-center justify-between pb-12 px-[1.0588em] z-10 h-[450px] md:h-[500px]">
-                    <Link href={`${linkHref}`} className={"z-[1]"}>
+                    <Link href={`${linkHref}`} className={""}>
                         <div className="flex flex-col justify-end items-center mt-0 mb-8 max-w-full -order-1">
                             <Image src={selectedImage} alt={product.title} width={300} height={200} quality={100}/>
                         </div>
@@ -127,7 +127,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
     return (
-        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 opacity-90"
+        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 "
                  >
             <div
                 className="leading-6 text-neutral-100 mx-auto px-0 sm:px-4  md:px-0 max-w-full md:max-w-[80vw] lg:max-w-[68vw]">
