@@ -60,7 +60,7 @@ export const ThemeToggle = () => {
       data-tooltip-placement="bottom"
       type="button"
       id="theme-toggle"
-      className="z-20 rounded-lg  text-sm text-gray-500 dark:text-gray-400 "
+      className="z-20 rounded-lg  text-sm text-gray-500 dark:text-gray-400 pr-4 md:pr-0 "
     >
 
      <svg

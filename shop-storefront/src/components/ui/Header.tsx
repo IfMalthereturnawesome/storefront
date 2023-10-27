@@ -41,7 +41,7 @@ export default function Header({className}: HeaderProps) {
     const isOnProductPage = pathname.includes('/products/') || pathname === '/';
 
 
-    const { cart, totalItems } = useCart()
+    const {cart, totalItems} = useCart()
 
     const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
 
@@ -86,7 +86,7 @@ export default function Header({className}: HeaderProps) {
             <header id="header_1"
                     className={`z-30  ${className || 'bg-cyan-1'} mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '} ${topNavBanner ? 'headerFullWidth' : 'headerOnScroll bg-cyan-2 dark:bg-mask-black'}`}>
 
-            {topNavBanner && <TopNav/>}
+                {topNavBanner && <TopNav/>}
 
                 <nav
                     className="relative mx-auto flex items-center justify-between px-4 py-4"
@@ -94,21 +94,41 @@ export default function Header({className}: HeaderProps) {
                 >
                     <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
                         <Link href="/" aria-label="Eight Athletics" className={"z-[2]"}>
-
-                            <Image
-                                src={'/images/Eight-Athletics-black-logo.svg'}
-                                alt={'Eight Athletics Logo'}
-                                width={100}
-                                height={100}
-                                className="dark:hidden"
-                            />
-                            <Image
-                                src={'/images/Eight-Athletics-white-logo.svg'}
-                                alt={'Eight Athletics Logo'}
-                                width={100}
-                                height={100}
-                                className="hidden dark:block"
-                            />
+                            {(isOnProductPage && totalItems === 0) ? (
+                                <>
+                                    <Image
+                                        src={'/images/Eight-Athletics-black-logo-icon.svg'}
+                                        alt={'Eight Athletics Logo'}
+                                        width={24}
+                                        height={24}
+                                        className="dark:hidden"
+                                    />
+                                    <Image
+                                        src={'/images/Eight-Athletics-white-logo-icon.svg'}
+                                        alt={'Eight Athletics Logo'}
+                                        width={24}
+                                        height={24}
+                                        className="hidden dark:block"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <Image
+                                        src={'/images/Eight-Athletics-black-logo.svg'}
+                                        alt={'Eight Athletics Logo'}
+                                        width={80}
+                                        height={80}
+                                        className="dark:hidden"
+                                    />
+                                    <Image
+                                        src={'/images/Eight-Athletics-white-logo.svg'}
+                                        alt={'Eight Athletics Logo'}
+                                        width={80}
+                                        height={80}
+                                        className="hidden dark:block"
+                                    />
+                                </>
+                            )}
                         </Link>
                     </div>
 
@@ -131,7 +151,8 @@ export default function Header({className}: HeaderProps) {
                         </Link>
                     </div>
 
-                    <div className="flex lg:hidden lg:w-0 w-1/4 justify-start pl-2">
+                    <div className="flex lg:hidden lg:w-0 w-1/4 justify-start sm:pl-2">
+
                         <button
                             type="button"
                             className="-m-2.5 inline-flex items-center justify-center rounded-md p-3 text-black dark:text-white"
@@ -140,6 +161,7 @@ export default function Header({className}: HeaderProps) {
                             <span className="sr-only">Open main menu</span>
                             <Bars3Icon className="h-8 w-8" aria-hidden="true"/>
                         </button>
+
                     </div>
 
                     <div className="hidden lg:flex lg:w-1/2 justify-center">
@@ -148,9 +170,11 @@ export default function Header({className}: HeaderProps) {
                         </Popover.Group>
                     </div>
 
-                    <div className="flex lg:w-1/4 justify-center items-center  pr-2">
+                    <div className="flex lg:w-1/4 justify-center items-center  sm:pr-2">
                         <ThemeToggle/>
-                        <Search/>
+                        <div className={"hidden md:flex"}>
+                            <Search/>
+                        </div>
 
                         <div className="hidden lg:flex items-center gap-x-6 h-full">
                             {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal/>}
@@ -160,17 +184,19 @@ export default function Header({className}: HeaderProps) {
                             </Link>
                         </div>
 
-                        <div className={"pl-4 z-[2]"}>
-                        {isOnProductPage && totalItems === 0 ? (
-                            <Link href="#buy-now" >
-                                <SecondaryButton variant={"fourth"}
-                                                 className={"rounded-[0.5rem] capitalize group text-md !py-2 !px-4 !min-h-[1.5rem]"}>
-                                    Buy now
-                                </SecondaryButton>
-                            </Link>
-                        ) : (
-                            <CartDropdown/>
-                        )}
+                        <div className={"sm:pl-4 z-[2]"}>
+                            {isOnProductPage && totalItems === 0 ? (
+                                <Link href="#buy-now">
+                                    <SecondaryButton variant={"fourth"}
+                                                     className={"rounded-[0.5rem] capitalize group text-sm sm:text-md !py-1 !px-2 !min-h-[1.1rem] " +
+                                                         "2xs:!py-1 2xs:!px-3 2xs:!min-h-[1.2rem]" +
+                                                         "sm:!py-2 sm:!px-4 sm:!min-h-[1.5rem]"}>
+                                        Buy now
+                                    </SecondaryButton>
+                                </Link>
+                            ) : (
+                                <CartDropdown/>
+                            )}
                         </div>
                     </div>
                 </nav>

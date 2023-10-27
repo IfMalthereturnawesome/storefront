@@ -33,7 +33,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
     return (
 
-        <div className={"relative md:z-[1]"}>
+        <div className={"relative z-0 md:z-[1]"}>
             <div className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-12 md:pb-4"}
                  ref={info}>
                 <div id={"buy-now"}

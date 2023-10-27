@@ -8,7 +8,7 @@ export default function Search() {
   const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false)
 
   return (
-    <div className="mx-4 md:mx-4 flex justify-center items-center z-[2]">
+    <div className="mx-1 2xs:mx-3 md:mx-4 flex justify-center items-center z-[2]">
       {/*<button*/}
       {/*  className="3xs:hidden  xl:flex w-full sm:w-[130px] text-[15px] bg-white text-slate-400 inline-flex items-center justify-between leading-5 pl-3 pr-2 py-[7px] rounded border border-slate-200 hover:border-slate-300 shadow-sm whitespace-nowrap dark:text-slate-500 dark:bg-cyan-2 dark:border-slate-700 dark:hover:border-slate-600"*/}
       {/*  onClick={(e) => {*/}

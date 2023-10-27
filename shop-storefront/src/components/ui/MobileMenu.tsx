@@ -117,6 +117,10 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobil
 
                         </Link>
 
+                            <div className={"md:hidden"}>
+                                <Search/>
+                            </div>
+
                             <button
                                 type="button"
                                 className="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white"

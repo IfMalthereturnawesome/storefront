@@ -39,14 +39,20 @@ export default function SearchModal({
     Record<string, Post[]>
   >({}); // {topic: [posts]}
 
-  // close on click outside
+  // close on click outside or touch outside
   useEffect(() => {
     const clickHandler = ({target}: {target: EventTarget | null}): void => {
       if (!modalOpen || modalContent.current?.contains(target as Node)) return;
       setModalOpen(false);
     };
+
     document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    document.addEventListener('touchstart', clickHandler); // Add touch event listener
+
+    return () => {
+      document.removeEventListener('click', clickHandler);
+      document.removeEventListener('touchstart', clickHandler); // Remove touch event listener
+    };
   }, [modalOpen, modalContent, setModalOpen]);
 
   // close if the esc key is pressed

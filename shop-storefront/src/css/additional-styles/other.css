@@ -84,13 +84,22 @@ Form.Message {
     }
 }
 
+
 .headerOnScroll {
-    width: 80%;
-    margin: 32px auto 0 auto!important;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    transition: width 0.1s ease-in-out, margin-top 0.1s ease-in-out, border-radius 0.1s ease-in-out;
+    width: 99vw;
+
 }
+
+@media (min-width: 768px){
+    .headerOnScroll{
+        width: 80%;
+        margin: 32px auto 0 auto!important;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        transition: width 0.1s ease-in-out, margin-top 0.1s ease-in-out, border-radius 0.1s ease-in-out;
+    }
+}
+
 
 
 .buy-now--primary-container {
