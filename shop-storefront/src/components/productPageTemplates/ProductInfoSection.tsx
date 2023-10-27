@@ -34,7 +34,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
     return (
 
         <div className={"relative z-[1]"}>
-            <div className={"bg-custom-white dark:bg-cyan-1 h-full pb-14"}>
+            <div className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 opacity-90 h-full pb-14"}>
                 <div id={"buy-now"}
                      className="content-container__big  flex flex-col small:flex-row small:items-start py-6 relative ">
                     <div className="flex flex-col gap-y-8 w-full">
@@ -45,7 +45,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     <div className="flex-shrink-0 w-full small:max-w-[344px] medium:max-w-[490px] relative">
                         <div style={{minHeight: 'calc(100vh - 64px)'}}>
                             <div
-                                className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
+                                className="sticky top-0  py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
                                 ref={info}
                             >
                                 <ProductInfo product={product}/>

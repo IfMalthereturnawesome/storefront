@@ -127,7 +127,7 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
     };
 
     return (
-        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 bg-cyan-1"
+        <section className="relative pt-12 pb-12 md:pt-32 md:pb-20 tracking-tight leading-6 text-neutral-100 bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 opacity-90"
                  >
             <div
                 className="leading-6 text-neutral-100 mx-auto px-0 sm:px-4  md:px-0 max-w-full md:max-w-[80vw] lg:max-w-[68vw]">
