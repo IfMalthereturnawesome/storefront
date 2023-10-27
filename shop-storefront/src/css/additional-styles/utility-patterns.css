@@ -105,18 +105,19 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 
-*::-webkit-scrollbar {
-  width: 12px;
+@media (min-width: 1024px) {
+    *::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #F1FCFF;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: #07191D;
+    }
 }
 
-*::-webkit-scrollbar-track {
-  background: #F1FCFF;
- 
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #07191D;
- 
-}
 
 

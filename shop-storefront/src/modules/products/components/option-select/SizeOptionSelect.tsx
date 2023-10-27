@@ -45,7 +45,7 @@ const SizeOptionSelect: React.FC<SizeOptionSelectProps> = ({
                             onClick={() => updateOption({[option.id]: v})}
                             key={v}
                             className={clsx(
-                                "flex-row justify-between p-0 mx-px mt-px mb-2 w-full h-full ",
+                                "flex-row justify-between   p-0 mx-px mt-px mb-2 w-full h-full ",
                                 "text-left rounded-none cursor-pointer rounded-[5px]",
                                 "sm:leading-5 sm:tracking-wide flex items-center py-2 px-3 transition-all duration-200",
                                 {

@@ -50,7 +50,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
                         {/* Ensuring that sticky container has a larger height or equal to the scrolling container */}
                         <div style={{ minHeight: 'calc(100vh - 64px)' }}>
                             <div
-                                className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-14 flex flex-col gap-y-12"
+                                className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
                                 ref={info}
                             >
                                 <ProductInfo product={product} />

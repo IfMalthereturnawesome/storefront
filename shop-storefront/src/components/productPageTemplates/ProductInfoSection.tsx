@@ -15,10 +15,11 @@ type ProductTemplateProps = {
     product: PricedProduct
     productFAQ: { question: string; answer: string }[]
     shippingFAQ: { question: string; answer: string }[]
+    returnFAQ: { question: string; answer: string }[]
 
 }
 
-const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, shippingFAQ}) => {
+const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, shippingFAQ, returnFAQ}) => {
     const info = useRef<HTMLDivElement>(null)
 
     const inView = useIntersection(info, "0px")
@@ -44,11 +45,12 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     <div className="flex-shrink-0 w-full small:max-w-[344px] medium:max-w-[490px] relative">
                         <div style={{minHeight: 'calc(100vh - 64px)'}}>
                             <div
-                                className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-14 flex flex-col gap-y-12"
+                                className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
                                 ref={info}
                             >
                                 <ProductInfo product={product}/>
                                 <ProductTabs product={product}/>
+
 
                             </div>
 
@@ -58,9 +60,10 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
                 </div>
 
-                <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ}/>
+
 
                 <MobileActions product={product} show={!inView}/>
+                <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
 
             </div>
         </div>
