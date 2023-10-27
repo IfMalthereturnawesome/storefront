@@ -197,12 +197,19 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     }, "<");
 
                 // Animations from animateInSpace
-                tl.to(["#lever", "#triangle"], {
+                tl.to(["#lever","#circle"], {
                     y: "+=360px",
                     duration: 6,
                     ease: "slow",
-                    opacity: 0,
                 }, "<+0.1");
+                tl.to("#lever", {
+                    opacity: 0,
+                    duration: 3,
+                }, "<");
+                tl.to("#circle", {
+                    opacity: 0,
+                    duration: 6,
+                }, "<");
 
 
             };
@@ -370,11 +377,13 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     <div className="flex justify-center items-center relative w-full h-full scale-150 ">
                         <div id="leverWrapper" className="relative w-[850px] h-[890px] z-0 mt-48">
 
-                            <svg id="triangle" className="absolute top-1/2 left-1/2 transform -translate-x-1/2  z-0"
-                                 width="80"
-                                 height="90">
-                                <polygon points="0,90 80,90 40,0" fill="white"/>
+                            <svg id="circle" className="absolute top-[50.6%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
+                                 width="40"
+                                 height="40">
+                                <circle cx="20" cy="20" r="20" fill="white"/>
                             </svg>
+
+
 
                             <div id="lever"
                                  className="absolute  top-1/2 left-[175px] w-[500px] h-[10px] bg-white"></div>
