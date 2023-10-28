@@ -1,14 +1,9 @@
 'use client';
 
 import gsap from "gsap";
-import React, {useEffect, useRef} from 'react';
-import Lenis from '@studio-freight/lenis';
+import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 interface FaceStoryProps {
     headline: string;
@@ -19,19 +14,10 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
     const canvasRefImage = useRef<HTMLCanvasElement | null>(null);
     const faceStoryRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
-            const lenis = new Lenis();
-            // Update ScrollTrigger on scroll
-            lenis.on('scroll', ScrollTrigger.update);
 
-            const rafLoop = (time: number) => {
-                lenis.raf(time * 1000);
-            };
-
-            gsap.ticker.add(rafLoop);
-            gsap.ticker.lagSmoothing(0);
             // Canvas code
             if (canvasRefImage.current) {
                 const canvas = canvasRefImage.current;
@@ -66,9 +52,6 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 };
 
 
-
-
-
                 const render = () => {
                     if (canvas) {
                         const context = canvas.getContext("2d");
@@ -83,7 +66,6 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
                     }
                 };
-
 
 
                 gsap.to(sleepMask, {
@@ -102,22 +84,16 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 );
 
 
-                // Fade in the mask
-                gsap.from(canvasRefImage.current, {
-                    duration: 1, // Duration in seconds
-                    opacity: 0,
-                    ease: "power2.out",
-
-
-                });
-
-                // fade in the mask from 0 to 1
-                gsap.to(canvasRefImage.current, {
-                    duration: 10, // Duration in seconds
-                    opacity: 1,
-                    ease: "power2.out",
-
-                });
+                gsap.fromTo(canvasRefImage.current,
+                    {
+                        opacity: 0,
+                    },
+                    {
+                        duration: 10,
+                        opacity: 1,
+                        ease: "power2.out",
+                    }
+                );
 
 
                 gsap.to(canvasRefImage.current, {
@@ -139,13 +115,13 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
 
             }
-            // ScrollTrigger code for pinning the component
+
             if (faceStoryRef.current) {
                 ScrollTrigger.create({
                     trigger: faceStoryRef.current,
                     start: "center center",
                     end: "+=100%",
-                    pin: ".pinFaceStory", // Pin the component
+                    pin: ".pinFaceStory",
                     pinSpacing: true,
 
                 });
@@ -155,16 +131,18 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
     }, [])
 
     return (
-        <div id={"crafted-from-thousands-of-unique-faces"} ref={faceStoryRef} className="flex pinFaceStory bg-[#130612] z-[1]">
+        <div id={"crafted-from-thousands-of-unique-faces"} ref={faceStoryRef}
+             className="flex pinFaceStory bg-[#130612] z-[1]">
             {/* Image Sequence to the left */}
-            <div className="w-[49vw] ml-2 h-screen ">
-                <canvas ref={canvasRefImage} className="w-full h-full "/>
+            <div className="w-fit ml-2 h-screen ">
+                <canvas ref={canvasRefImage} className="w-full h-full object-contain"/>
 
             </div>
             {/* Text to the right of the center */}
-            <div className="w-[49vw] flex flex-col justify-center pl-8 -mt-[3rem] ">
-                <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[40vw]">{headline}</h2>
-                <p data-aos="fade-up"  className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">{description}</p>
+            <div className="w-auto mx-auto flex flex-col justify-center pl-8 -mt-[3rem] ">
+                <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[30vw] 3xl:max-w-[33vw]">{headline}</h2>
+                <p data-aos="fade-up"
+                   className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">{description}</p>
             </div>
         </div>
     );

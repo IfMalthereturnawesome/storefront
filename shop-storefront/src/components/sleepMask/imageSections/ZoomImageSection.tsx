@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useRef} from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import Image from 'next/image';
@@ -22,22 +22,32 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                                                            }) => {
     const imageRef = useRef(null);
     const headerRef = useRef(null);
+    const tl = useRef(null);
 
-    useEffect(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: imageRef.current,
-                start: 'top center',
-                end: 'bottom center',
-                scrub: true,
-            },
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            tl.current = gsap.timeline({
+                scrollTrigger: {
+                    trigger: imageRef.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    scrub: true,
+                },
+            });
+
+            tl.current.fromTo(
+                imageRef.current,
+                {scale: 1.22},
+                {scale: 1, duration: 3}
+            );
+
         });
+        return () => {
 
-        tl.fromTo(
-            imageRef.current,
-            {scale: 1.22},
-            {scale: 1, duration: 3}
-        );
+            ctx.revert();
+
+
+        };
 
     }, []);
 
@@ -50,7 +60,8 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
             </div>
             <div className="w-full h-screen relative" id={"increase-melatonin-production"}>
                 <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
-                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask" width={1920} height={1080} quality={90}/>
+                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask" width={1920} height={1080}
+                       quality={90}/>
                 <h3 ref={headerRef}
                     className="absolute top-1/3 right-1/4 lg:right-1/3 transform -translate-y-1/2 text-8xl lg:text-9xl font-bold text-white break-words">
                     {headerLine1}
@@ -58,7 +69,8 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
             </div>
             <div
                 className="absolute top-[38.3%] right-1/4 lg:right-[50.7%] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block">
-                <p data-aos="fade-up"  className={"font-sans font-semibold leading-7 tracking-tight text-left text-slate-12"}>
+                <p data-aos="fade-up"
+                   className={"font-sans font-semibold leading-7 tracking-tight text-left text-slate-12"}>
                     {descriptionText}
                 </p>
             </div>
