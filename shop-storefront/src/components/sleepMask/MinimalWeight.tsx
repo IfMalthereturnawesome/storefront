@@ -237,57 +237,63 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
             };
 
 
-            leftSideTL.current
-                .from(leftSideRef.current, {
+            leftSideTL.current.fromTo(
+                leftSideRef.current,
+                {
                     y: '-30vh',
-                    x: '-=100px',
-                    duration: 2.8,
-                    ease: 'sine.in',
+                    x: '-100px',
                     rotation: 0,
                     scale: 0,
-
+                    immediateRender: false,
+                },
+                {
+                    y: '0vh',
+                    x: '0px',
+                    scale: 1,
+                    duration: 2.8,
+                    ease: 'sine.in',
                     onStart: () => {
                         setShouldPlayParticles(true);
                     },
                     onComplete: () => {
                         initialFallingCompleteLeft = true;
                     }
-                })
-                .add(oscillateLever)
+                }
+            );
 
-
+            leftSideTL.current.add(oscillateLever)
                 .to(leverRef.current, {
                     skewX: 3,
                     rotation: "-=2",
                     duration: 1,
-
                     onUpdate: syncWithLever
-                })
+                });
 
 
             rightSideTL.current
-                .from(rightSideRef.current, {
-                    y: '-300px',
-                    duration: 1,
-                    ease: 'power3.in',
-                    scale: 0,
+                .fromTo(rightSideRef.current,
+                    {
+                        y: '-300px',
+                        scale: 0
+                    },
+                    {
+                        y: '0px',
+                        scale: 1,
+                        duration: 1,
+                        ease: 'power3.in',
+                        onUpdate: syncWithLever,
+                        onComplete: () => {
+                            initialFallingCompleteRight = true;
+                        }
+                    });
 
-                    onUpdate: syncWithLever,
 
-
-                    onComplete: () => {
-                        initialFallingCompleteRight = true;
-                    }
-
-                })
-
-                .to(leverRef.current, {
+                rightSideTL.current.to(leverRef.current, {
                     rotation: "+=15",
                     skewX: -3,
                     duration: 0.4,
-                    onUpdate: syncWithLever,
-
-                })
+                    onUpdate: syncWithLever
+                });
 
 
             makeRightSideTurn.current
@@ -363,9 +369,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .add(scrollTextTimeline.current)
 
 
-
-
-            let st = ScrollTrigger.create({
+          ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
                 start: `center center`,
                 end: '+=125%',
@@ -377,7 +381,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
             });
             return () => {
-                st.kill();
+
 
             };
 

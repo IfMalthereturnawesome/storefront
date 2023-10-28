@@ -2,40 +2,41 @@
 
 // ThinFeature.tsx
 
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import {SplitText} from 'gsap/SplitText';
 
 import {PlusIcon} from "@heroicons/react/24/solid";
 
-
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger, SplitText);
-}
 
 const ThinFeatureDandelions: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const textTopRef = useRef<HTMLDivElement>(null);
     const textBottomRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const textTopAnimatedRef = useRef<HTMLDivElement>(null);
-    let [hasReachedHeight, setHasReachedHeight] = useState(false);
     const plusIconTopRef = useRef<HTMLDivElement>(null);
     const plusIconBottomRef = useRef<HTMLDivElement>(null);
     const descTopRef = useRef<HTMLDivElement>(null);
     const descBottomRef = useRef<HTMLDivElement>(null);
     const hotspotTopRef = useRef<HTMLDivElement>(null);
     const hotspotBottomRef = useRef<HTMLDivElement>(null);
+    const SlimAndSoftRef = useRef<HTMLDivElement>(null);
+    const softLineRef = useRef<SVGLineElement>(null);
+    const slimLineRef = useRef<SVGLineElement>(null);
+
+    // Timeline REFS
+
+    const masterTimeline = useRef(null);
+    const containerTimelineRef = useRef(null);
+    const textTimelineRef = useRef(null);
+    const slimTimelineRef = useRef(null);
+    const softTimelineRef = useRef(null);
 
 
-    let masterTimeline = gsap.timeline();
-
-
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
-
+            masterTimeline.current = gsap.timeline();
             if (containerRef.current && textTopRef.current && textBottomRef.current && canvasRef.current) {
 
                 const canvas = canvasRef.current;
@@ -55,7 +56,7 @@ const ThinFeatureDandelions: React.FC = () => {
                 };
 
                 gsap.to(sleepMask, {
-                    frame: 0,  // It's always 0 since we're only using one image
+                    frame: 0,
                     snap: "frame",
                     ease: "none",
                     scrollTrigger: {
@@ -90,7 +91,7 @@ const ThinFeatureDandelions: React.FC = () => {
                 // ANIMATIONS START HERE
 
 
-                masterTimeline = gsap.timeline({
+                masterTimeline.current = gsap.timeline({
 
                     scrollTrigger: {
                         trigger: ".pinThinFeature",
@@ -104,7 +105,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
                 let animationsInitiated = false;
 
-                const containerTimeline = gsap.timeline({
+                containerTimelineRef.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: ".pinThinFeature",
                         start: 'center center',
@@ -120,15 +121,15 @@ const ThinFeatureDandelions: React.FC = () => {
                 });
 
 
-                containerTimeline.to(containerRef.current, {
+                containerTimelineRef.current.to(containerRef.current, {
                     height: '74vh',
                     ease: 'Power3.out',
                     duration: 0.5,
                 });
 
 // Text animation with easing
-                const textTimeline = gsap.timeline();
-                textTimeline
+                textTimelineRef.current = gsap.timeline();
+                textTimelineRef.current
                     .to([textTopRef.current], {
                         y: '-37vh',
                         x: '50px',
@@ -162,7 +163,9 @@ const ThinFeatureDandelions: React.FC = () => {
 
 
                 // Add child timelines to master timeline
-                masterTimeline.add(containerTimeline).add(textTimeline, '<');
+                masterTimeline.current
+                    .add(containerTimelineRef.current)
+                    .add(textTimelineRef.current, '<');
 
                 const initiateHighlightAnimations = () => {
 
@@ -179,7 +182,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
                     // Slim feature animations
                     slimTimeline
-                        .to("#SlimAndSoft", {zIndex: 40})
+                        .to(SlimAndSoftRef.current, {zIndex: 40})
 
                         .to(canvasRef.current, {marginTop: '-15vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
                         .to(containerRef.current, {
@@ -190,7 +193,7 @@ const ThinFeatureDandelions: React.FC = () => {
                         }, '<')
                         .to(textTopRef.current, {scale: 0.8, duration: 8, ease: "Power2.easeInOut"}, '<')
                         .to(plusIconTopRef.current, {opacity: 1, duration: 8}, '<')
-                        .to([hotspotTopRef.current, "#slimLine"],
+                        .to([hotspotTopRef.current, slimLineRef.current],
                             {opacity: 1, duration: 2.5, stagger: 1.5, ease: "Power2.easeInOut"})
                         .to(descTopRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
                         .to({}, {duration: 4, delay: 4})  // Adding a pause
@@ -211,8 +214,8 @@ const ThinFeatureDandelions: React.FC = () => {
 
                     // Soft feature animations
                     softTimeline
-                        .to("#SlimAndSoft", {zIndex: 40})
-                        .to([hotspotTopRef.current, "#slimLine"], {opacity: 0, duration: 3, ease: "none"}, '<')
+                        .to(SlimAndSoftRef.current, {zIndex: 40})
+                        .to([hotspotTopRef.current, slimLineRef.current], {opacity: 0, duration: 3, ease: "none"}, '<')
                         .to(canvasRef.current, {marginTop: '-23vh', ease: 'Power3.out', duration: 8, delay: 2}, '-=2.5')
                         .to(containerRef.current, {
                             height: '99vh',
@@ -222,11 +225,11 @@ const ThinFeatureDandelions: React.FC = () => {
                         }, '<')
                         .to(textBottomRef.current, {opacity: 1, scale: 0.8, duration: 8, ease: "Power2.easeInOut"}, '<')
                         .to(plusIconBottomRef.current, {opacity: 1, duration: 8}, '<')
-                        .to([hotspotBottomRef.current, "#softLine"],
+                        .to([hotspotBottomRef.current, softLineRef.current],
                             {opacity: 1, duration: 2.5, stagger: 0.5, ease: "Power2.easeInOut"})
                         .to(descBottomRef.current, {opacity: 1, duration: 5, ease: "none", color: '#fff'}, '<')
                         .to({}, {duration: 4, delay: 4})  // Adding a pause
-                        .to([hotspotBottomRef.current, "#softLine"], {
+                        .to([hotspotBottomRef.current, softLineRef.current], {
                             opacity: 0,
                             duration: 3,
                             ease: "none",
@@ -234,15 +237,14 @@ const ThinFeatureDandelions: React.FC = () => {
                         }, '<')
 
 
-                    masterTimeline.add(slimTimeline);
-                    masterTimeline.add(softTimeline, '+=10');  // This value should be adjusted based on the desired delay
+                    masterTimeline.current
+                        .add(slimTimelineRef.current);
+                    masterTimeline.current
+                        .add(softTimelineRef.current, '+=10');
 
                 }
 
 
-                return () => {
-
-                };
             }
         });
         return () => ctx.revert(); // <-- CLEANUP!
@@ -252,7 +254,7 @@ const ThinFeatureDandelions: React.FC = () => {
     return (
         <>
 
-            <section id={"SlimAndSoft"}
+            <section id={"SlimAndSoft"} ref={SlimAndSoftRef}
                      className="relative h-[100vh] max-h-100 flex flex-col  justify-center items-center pinThinFeature z-[1]"
 
             >
@@ -325,14 +327,14 @@ const ThinFeatureDandelions: React.FC = () => {
                         {/* SVG for the arrow for Slim feature */}
                         <svg className="absolute bottom-[8.4%] right-[0.6%] w-full h-full pointer-events-none z-[5]">
                             {/* Line from Slim hotspot to its description */}
-                            <line id={"slimLine"} x1="75%" y1="54%" x2="72%" y2="42%"
+                            <line ref={slimLineRef} x1="75%" y1="54%" x2="72%" y2="42%"
                                   className={"opacity-0 stroke-white"} strokeWidth="2"/>
                         </svg>
 
                         {/* SVG for the arrow for soft feature*/}
                         <svg className="absolute bottom-[8.6%] left-[28.5%] w-full h-full pointer-events-none z-[3]">
                             {/* Line from Soft hotspot to its description */}
-                            <line id={"softLine"} x1="6%" y1="78%" x2="10%" y2="57%"
+                            <line ref={softLineRef} x1="6%" y1="78%" x2="10%" y2="57%"
                                   className={"opacity-0 stroke-white"} strokeWidth="2"/>
                         </svg>
                         {/* Canvas for Image Sequence */}
