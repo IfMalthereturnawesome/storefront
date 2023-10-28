@@ -12,8 +12,10 @@ const WrappedComponent: React.FC = () => {
 
     return (
         <>
+            <div className={"relative w-full h-[100vh]"}>
             <ParticlesBackground shouldPlayParticles={shouldPlayParticles}/>
-            <MinimalWeight setShouldPlayParticles={setShouldPlayParticles}/>
+                <MinimalWeight setShouldPlayParticles={setShouldPlayParticles}/>
+            </div>
 
             <ScrollBar>
                 <ThinFeatureDandelions/>

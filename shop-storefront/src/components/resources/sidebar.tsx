@@ -74,7 +74,7 @@ export default function SupportSidebar() {
           unmount={false}
           as="aside"
           id="sidebar"
-          className=" prose  prose-slate fixed left-[2px] lg:top-[100px] top-[68px] 2xs:top-[72px] z-10 h-screen overflow-y-auto   w-64 border-r border-slate-200 bg-cyan-1 prose-a:no-underline prose-ul:list-none dark:border-slate-800  2xl:left-auto 2xl:!block 2xl:shrink-0 2xl:!opacity-100 "
+          className="prose prose-slate fixed left-[2px] lg:top-[100px] top-[68px] 2xs:top-[72px] z-10 h-[85vh] xl:overflow-y-auto 2xl:overflow-y-hidden  w-64 border-r border-slate-200 bg-cyan-1 prose-a:no-underline prose-ul:list-none dark:border-slate-800  2xl:left-auto 2xl:!block 2xl:shrink-0 2xl:!opacity-100 overflow-hidden"
           enter="transition ease-out duration-200 transform"
           enterFrom="opacity-0 -translate-x-full"
           enterTo="opacity-100 translate-x-0"

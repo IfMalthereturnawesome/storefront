@@ -78,9 +78,9 @@ export default function SecondaryNav() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <line x1="12" y1="19" x2="12" y2="5"></line>
                     <polyline points="5 12 12 5 19 12"></polyline>
@@ -94,7 +94,7 @@ export default function SecondaryNav() {
                 {links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a
-                      data-scrollspy-link
+                        data-scrollspy-link="true"
                       className="relative block py-1.5 pl-4 font-normal text-slate-11 before:absolute before:-left-px before:bottom-2 before:top-2 before:w-0.5"
                       href={`#${link.id}`}
                     >

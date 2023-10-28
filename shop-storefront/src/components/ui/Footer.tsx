@@ -20,7 +20,7 @@ import Sitemap from "@/app/(main)/(other)/sitemap/page";
 
 export default function Footer() {
   return (
-    <footer className='z-10'>
+    <footer className='z-10 flex-shrink-0'>
       <div className="bg-cyan-2 pt-8 pb-6 sm:pt-24 sm:pb-20 border-t-2 border-amberA-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 px-8 sm:px-16 md:grid-cols-6 md:px-12 lg:gap-12 lg:px-16 xl:px-16">

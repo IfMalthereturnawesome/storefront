@@ -22,12 +22,12 @@ export default function PageLayout({
     });
 
     return (
-        <>
-            <Header className={"bg-cyan-1 dark:bg-mask-black"}/>
-            <main className="grow bg-custom-white dark:bg-mask-black mt-[66px] lg:mt-[116px]">
+        <div className="flex flex-col min-h-screen">
+            <Header className="flex-shrink-0 bg-cyan-1 dark:bg-mask-black" />
+            <main className="flex-grow bg-custom-white dark:bg-mask-black mt-[66px] lg:mt-[116px]">
                 {children}
             </main>
-            <Footer/>
-        </>
-    )
+            <Footer  />
+        </div>
+    );
 }
