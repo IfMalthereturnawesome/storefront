@@ -177,7 +177,7 @@ export default function Header({className}: HeaderProps) {
                         </div>
 
                         <div className="hidden lg:flex items-center gap-x-6 h-full">
-                            {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal/>}
+                            {/*{process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal/>}*/}
                             <Link href="/account" className={"z-[2]"}>
                                 <UserIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white"
                                           aria-hidden="true"/>

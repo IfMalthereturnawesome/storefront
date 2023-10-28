@@ -8,23 +8,17 @@ import {BlogNavMobile} from './BlogNav';
 import {ProductNavMobile} from './ProductNav';
 import {SupportNavMobile} from './SupportNav';
 import {ResourceNavMobile} from './ResourceNav';
-import {ThemeToggle} from '../darkMode/ThemeToggle';
-import {Dialog, Popover} from '@headlessui/react';
+import {Dialog} from '@headlessui/react';
 import Search from '../resources/search';
-import {UserIcon, XMarkIcon} from "@heroicons/react/24/outline";
-import DesktopSearchModal from "@modules/search/templates/desktop-search-modal";
-import CartDropdown from "@modules/layout/components/cart-dropdown";
-import TopNav, {TopNavMobile} from "@/components/ui/TopNav";
+import { XMarkIcon} from "@heroicons/react/24/outline";
+import  {TopNavMobile} from "@/components/ui/TopNav";
 import ReactCountryFlag from "react-country-flag";
 import ChevronDown from "@modules/common/icons/chevron-down";
 import {useStore} from "@lib/context/store-context";
 import useCountryOptions from "@lib/hooks/use-country-options";
 import {useMobileMenu} from "@lib/context/mobile-menu-context";
 import CountryMenu from "@modules/mobile-menu/components/country-menu"
-import MainMenu from "@modules/mobile-menu/components/main-menu";
-import Container from "@modules/mobile-menu/components/container";
-import {format} from "logform";
-import label = format.label;
+
 
 
 

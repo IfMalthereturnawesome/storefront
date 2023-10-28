@@ -36,7 +36,6 @@ const productFAQ = [
     }
 
 ];
-
 const shippingFAQ = [
     {
         question: "What shipping and delivery options do you offer?",
@@ -53,7 +52,6 @@ const shippingFAQ = [
     },
 
 ];
-
 const returnsFAQ = [
     {
         question: "What is your return policy?",

@@ -23,60 +23,74 @@ interface MinimalWeightProps {
 
 const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) => {
 
+    const leverRef = useRef(null);
+    const leftSideRef = useRef(null);
+    const rightSideRef = useRef(null);
+    const topWordRightRef = useRef(null);
+    const initialScrollTextRef = useRef(null);
+    const extraInfoRef = useRef(null);
+    const leftSideTopRef = useRef(null);
+    const circleRef = useRef(null);
+    const leftSideBottomRef = useRef(null);
+    const bottomTextToMorphRef = useRef(null);
+    const topTextToMorphRef = useRef(null);
+
+    // Timelines REFS
+    const tl = useRef(null);
+    const rightSideTL = useRef(null);
+    const leftSideTL = useRef(null);
+    const makeRightSideTurn = useRef(null);
+    const makeRightSideScrollBar = useRef(null);
+    const scrollTextTimeline = useRef(null);
+    const descriptionTextTimeline = useRef(null);
+    const masterTL = useRef(null);
+
 
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-
-            const lever = document.getElementById('lever');
-            const leftSide = document.getElementById('leftSide');
-            const rightSide = document.getElementById('rightSide');
+        const ctx = gsap.context(() => {
             let isScrollBarTimelineTriggered = false;
 
-            if (lever && leftSide && rightSide) {
-                const x = Number(gsap.getProperty(lever, 'x'));
-                const y = Number(gsap.getProperty(lever, 'y'));
+            if (leverRef.current && leftSideRef.current && rightSideRef.current) {
+                const x = Number(gsap.getProperty(leverRef.current, 'x'));
+                const y = Number(gsap.getProperty(leverRef.current, 'y'));
 
-                gsap.set(leftSide, {x, y});
-                gsap.set(rightSide, {x, y});
+                gsap.set(leftSideRef.current, {x, y});
+                gsap.set(rightSideRef.current, {x, y});
 
 
             }
-            CustomEase.create("myFirstEase", "M0,0,C0.079,0.122,0.15,0.23,0.214,0.324,0.277,0.417,0.333,0.497,0.384,0.564,0.453,0.656,0.512,0.725,0.565,0.775,0.591,0.799,0.619,0.968,0.722,1.026,0.788,1.063,0.913,1,1,1")
 
             let initialFallingCompleteLeft = false; // Flag for left side
             let initialFallingCompleteRight = false; // Flag for right side
-            const leftSideTL = gsap.timeline({
+            leftSideTL.current = gsap.timeline({
                 onComplete: () => {
                     initialFallingCompleteLeft = true;
 
-                    gsap.set(rightSide, {
+                    gsap.set(rightSideRef.current, {
                         rotation: "2",
                     })
                 }
             });
 
-            const rightSideTL = gsap.timeline();
+            rightSideTL.current = gsap.timeline();
 
-            const makeRightSideTurn = gsap.timeline();
-            const makeRightSideScrollBar = gsap.timeline();
-            const scrollTextTimeline = gsap.timeline({});
-            const descriptionTextTimeline = gsap.timeline({});
+            makeRightSideTurn.current = gsap.timeline();
+            makeRightSideScrollBar.current = gsap.timeline();
+            scrollTextTimeline.current = gsap.timeline({});
+            descriptionTextTimeline.current = gsap.timeline({});
 
-            const masterTL = gsap.timeline({paused: true})
+            masterTL.current = gsap.timeline({paused: true})
+
 
 
             const syncWithLever = () => {
 
-                const lever = document.getElementById('lever');
-                const leftSide = document.getElementById('leftSide');
-                const rightSide = document.getElementById('rightSide');
-                const topWordRight = document.getElementById('topWordRight');
 
-                if (lever) {
-                    const rotationInDegrees = Number(gsap.getProperty(lever, 'rotation'));
+                if (leverRef.current) {
+                    const rotationInDegrees = Number(gsap.getProperty(leverRef.current, 'rotation'));
                     const rotationInRadians = rotationInDegrees * (Math.PI / 180);
-                    const x = Number(gsap.getProperty(lever, 'x'));
-                    const y = Number(gsap.getProperty(lever, 'y'));
+                    const x = Number(gsap.getProperty(leverRef.current, 'x'));
+                    const y = Number(gsap.getProperty(leverRef.current, 'y'));
 
                     const L = 250;
 
@@ -87,30 +101,30 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     // Update the state
 
 
-                    if (leftSide && initialFallingCompleteLeft) {
+                    if (leftSideRef.current && initialFallingCompleteLeft) {
 
                         const calculate3DRotationY = (rotationInDegrees: number) => {
-                            if (Math.abs(rotationInDegrees) > 5) {  // You can adjust this threshold
-                                return rotationInDegrees * 2;  // Amplify the 3D effect when rotation is significant
+                            if (Math.abs(rotationInDegrees) > 5) {
+                                return rotationInDegrees * 2;
                             }
-                            return rotationInDegrees * 0.4;  // Otherwise, maintain a softer rotation
+                            return rotationInDegrees * 0.4;
                         };
-                        gsap.to(leftSide, {
-                            duration: 0.2,  // Increased duration for smoother movement
+                        gsap.to(leftSideRef.current, {
+                            duration: 0.2,
                             rotation: rotationInDegrees,
                             x: x + deltaX,
                             y: y - deltaY + rotationInDegrees,
-                            skewX: Math.sin(rotationInDegrees) * 2,  // Lower magnitude for a lighter skew
-                            skewY: Math.cos(rotationInDegrees),  // Lower magnitude for a lighter skew
-                            rotationX: rotationInDegrees * 0.3,  // Lower multiplier for a softer rotation
-                            rotationY: calculate3DRotationY(rotationInDegrees),  // Lower multiplier for a softer rotation
-                            rotationZ: rotationInDegrees * 2.2,  // Lower multiplier for a softer rotation
+                            skewX: Math.sin(rotationInDegrees) * 2,
+                            skewY: Math.cos(rotationInDegrees),
+                            rotationX: rotationInDegrees * 0.3,
+                            rotationY: calculate3DRotationY(rotationInDegrees),
+                            rotationZ: rotationInDegrees * 2.2,
                             transformPerspective: 800,
-                            ease: "sine.out"  // Smooth easing for a feather-like motion
+                            ease: "sine.out"
                         });
 
 
-                        if (rotationInDegrees >= 10) {  // 10 is just an example, adjust as needed
+                        if (rotationInDegrees >= 10) {
                             shootAndMorphLeftSide();
 
                         }
@@ -118,11 +132,10 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     }
 
 
-                    if (rightSide && initialFallingCompleteRight) {
+                    if (rightSideRef.current && initialFallingCompleteRight) {
 
 
-                        const adjustment = 35;
-                        gsap.to(rightSide, {
+                        gsap.to(rightSideRef.current, {
                             duration: 0.05,
                             rotation: rotationInDegrees,
                             x: x - deltaX,
@@ -130,10 +143,10 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                         });
 
-                        if (topWordRight) {
-                            gsap.to("#topWordRight", {
-                                duration: 0.3,
-                                marginBottom: '-30px',
+                        if (topWordRightRef.current) {
+                            gsap.to(topWordRightRef.current, {
+                                duration: 0.05,
+                                marginBottom: '-8px',
 
                             });
                         }
@@ -141,23 +154,24 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                     }
                 }
+
             };
 
 
             const shootAndMorphLeftSide = () => {
-                const tl = gsap.timeline({
-                    onStart: () => {
 
+                tl.current = gsap.timeline({
+                    onStart: () => {
 
                     },
                     onComplete: () => {
 
-
                     }
-                });
+                },)
+
 
                 // Combine all properties for #leftSide into a single .to() method call
-                tl.to("#leftSide", {
+                tl.current.to(leftSideRef.current, {
                     y: "-190",
                     x: "+215",
                     rotation: 0,
@@ -170,72 +184,68 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     rotationZ: 0,
                     ease: "back.inOut(1.7)",
                 })
-                    .to("#leftSideTop", {
+                    .to(leftSideTopRef.current, {
                         morphSVG: {
-                            shape: "#topTextToMorph"
+                            shape: topTextToMorphRef.current
                         },
                         duration: 3,
                         fill: "rgba(253,197,0,0)",
                         stroke: "#ffffff",
                         stagger: 2.1,
                         x: "+=35",
-
-
                         ease: "back.inOut(1.7)"
                     }, "<")
-                    .to("#leftSideBottom", {
+                    .to(leftSideBottomRef.current, {
                         morphSVG: {
-                            shape: "#bottomTextToMorph",
+                            shape: bottomTextToMorphRef.current,
 
                         },
                         duration: 4.5,
                         fill: "#ffffff",
-
-
                         stagger: 2.1,
                         ease: "power2.inOut"
-                    }, "<");
+                    }, "<")
 
-                // Animations from animateInSpace
-                tl.to(["#lever","#circle"], {
-                    y: "+=360px",
-                    duration: 6,
-                    ease: "slow",
-                }, "<+0.1");
-                tl.to("#lever", {
-                    opacity: 0,
-                    duration: 3,
-                }, "<");
-                tl.to("#circle", {
-                    opacity: 0,
-                    duration: 6,
-                }, "<");
+                    // Animations from animateInSpace
+                    .to([leverRef.current, circleRef.current], {
+                        y: "+=360px",
+                        duration: 6,
+                        ease: "slow",
+                    }, "<+0.1")
+                    .to(leverRef.current, {
+                        opacity: 0,
+                        duration: 3,
+                    }, "<")
+                    .to(circleRef.current, {
+                        opacity: 0,
+                        duration: 6,
+                    }, "<");
 
 
             };
 
 
             const oscillateLever = () => {
-                gsap.to("#lever", {
+                gsap.to(leverRef.current, {
                     rotation: "-=4",
                     duration: 1,
                     yoyo: true,
                     repeat: 1,
-
                     ease: "sine.inOut",
                     onUpdate: syncWithLever,
                 });
             };
 
 
-            leftSideTL
-                .from('#leftSide', {
+            leftSideTL.current
+                .from(leftSideRef.current, {
                     y: '-30vh',
                     x: '-=100px',
                     duration: 2.8,
                     ease: 'sine.in',
                     rotation: 0,
                     scale: 0,
+
                     onStart: () => {
                         setShouldPlayParticles(true);
                     },
@@ -246,7 +256,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .add(oscillateLever)
 
 
-                .to('#lever', {
+                .to(leverRef.current, {
                     skewX: 3,
                     rotation: "-=2",
                     duration: 1,
@@ -255,12 +265,13 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 })
 
 
-            rightSideTL
-                .from('#rightSide', {
+            rightSideTL.current
+                .from(rightSideRef.current, {
                     y: '-300px',
                     duration: 1,
                     ease: 'power3.in',
                     scale: 0,
+
                     onUpdate: syncWithLever,
 
 
@@ -270,7 +281,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                 })
 
-                .to('#lever', {
+                .to(leverRef.current, {
                     rotation: "+=15",
                     skewX: -3,
                     duration: 0.4,
@@ -279,8 +290,8 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 })
 
 
-            makeRightSideTurn
-                .to('#rightSide', {
+            makeRightSideTurn.current
+                .to(rightSideRef.current, {
                     x: "400px",
                     y: "+=360px",
                     duration: 4,
@@ -291,14 +302,14 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     },
                 })
 
-            makeRightSideScrollBar
-                .to('#rightSide', {
+            makeRightSideScrollBar.current
+                .to(rightSideRef.current, {
                     rotation: "-=15",
                     duration: 2,
                     delay: 0.4,
                     opacity: 0,
                 })
-                .to("#initialScrollText", {
+                .to(initialScrollTextRef.current, {
                     opacity: 0.4,
                     onStart: () => {
                         isScrollBarTimelineTriggered = true;
@@ -306,8 +317,8 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 });
 
 
-            scrollTextTimeline
-                .to("#initialScrollText", {
+            scrollTextTimeline.current
+                .to(initialScrollTextRef.current, {
                     opacity: 0.2,
                     duration: 1,
                     scrollTrigger: {
@@ -318,18 +329,18 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                         onUpdate: self => {
                             if (isScrollBarTimelineTriggered) {
                                 // If the scrollbar timeline has been triggered, set opacity to 0.4
-                                gsap.set("#initialScrollText", {opacity: 0.4});
+                                gsap.set(initialScrollTextRef.current, {opacity: 0.4});
                             } else {
                                 let progress = self.progress;
                                 let newOpacity = 0 * progress;
-                                gsap.set("#initialScrollText", {opacity: newOpacity}); // Set the opacity between 0 and 0.2 based on scroll progress
+                                gsap.set(initialScrollTextRef.current, {opacity: newOpacity}); // Set the opacity between 0 and 0.2 based on scroll progress
                             }
                         }
                     }
                 });
 
-            descriptionTextTimeline
-                .to("#extraInfo", {
+            descriptionTextTimeline.current
+                .to(extraInfoRef.current, {
                     opacity: 1,
                     duration: 1,
 
@@ -337,32 +348,37 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 })
 
 
-            masterTL
-                .add(leftSideTL)
-                .add(rightSideTL)
-                .add(makeRightSideTurn)
-                .add(descriptionTextTimeline)
-                .add(makeRightSideScrollBar, "<")
-                .add(scrollTextTimeline)
+            masterTL.current
+                .add(leftSideTL.current)
+                .add(rightSideTL.current)
+                .add(makeRightSideTurn.current)
+                .add(descriptionTextTimeline.current)
+                .add(makeRightSideScrollBar.current, "<")
+                .add(scrollTextTimeline.current)
 
 
-            ScrollTrigger.create({
+            let st = ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
                 start: `center center`,
                 end: '+=125%',
                 pin: false,
+                markers: true,
 
-                onEnter: () => masterTL.play(),
-                onLeave: () => masterTL.pause(),
-                onEnterBack: () => masterTL.play(),
-                onLeaveBack: () => masterTL.pause(),
-                onScrubComplete: () => masterTL.reverse(),
+                onEnter: () => masterTL.current.play(),
 
 
             });
+            return () => {
+                st.kill(); // Cleanup ScrollTrigger
+            };
 
         });
-        return () => ctx.revert(); // <-- CLEANUP!
+        return () => {
+            ctx.revert();
+
+
+
+        };
 
     }, []);
 
@@ -371,24 +387,24 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
         <>
 
             <section
-                className="relative z-[1]  flex flex-col justify-center items-center pinMinimalWeightFeature  bg-transparent">
+                className="relative z-[1]  flex flex-col justify-center items-center  pinMinimalWeightFeature bg-transparent">
 
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]" id="discover-maximum-comfort">
                     <div className="flex justify-center items-center relative w-full h-full scale-150 ">
                         <div id="leverWrapper" className="relative w-[850px] h-[890px] z-0 mt-48">
 
-                            <svg id="circle" className="absolute top-[50.6%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
+                            <svg ref={circleRef}
+                                 className="absolute top-[50.6%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"
                                  width="40"
                                  height="40">
                                 <circle cx="20" cy="20" r="20" fill="white"/>
                             </svg>
 
 
-
-                            <div id="lever"
+                            <div ref={leverRef}
                                  className="absolute  top-1/2 left-[175px] w-[500px] h-[10px] bg-white"></div>
 
-                            <div id="leftSide"
+                            <div ref={leftSideRef}
                                  className="absolute top-[43.8%] left-[175px] text-3xl font-bold text-[#faf7f7] "
                                  style={{lineHeight: 1.1}}>
 
@@ -399,7 +415,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                        stroke="#faf7f7" strokeWidth="0.25mm"
 
                                        style={{stroke: "#faf7f7", fill: "#faf7f7"}}>
-                                        <path id={"leftSideTop"}
+                                        <path ref={leftSideTopRef}
                                               d="M 18.6083 10.0361 L 22.33 10.0361 L 22.33 31.2374 L 18.8524 31.2374 L 18.8524 16.7168 L 12.3852 31.2374 L 9.97529 31.2374 L 3.47763 16.7168 L 3.47763 31.2374 L 0 31.2374 L 0 10.0361 L 3.75217 10.0361 L 11.1955 26.6616 L 18.6083 10.0361 Z M 90.0827 21.3232 L 90.0827 31.2374 L 86.6356 31.2374 L 86.6356 21.8417 A 7.24078 7.24078 0 0 0 86.5197 20.5035 Q 86.3778 19.7491 86.0615 19.157 A 3.64052 3.64052 0 0 0 85.5069 18.3794 A 3.72197 3.72197 0 0 0 83.4047 17.2595 A 5.38971 5.38971 0 0 0 82.4258 17.1744 A 5.10448 5.10448 0 0 0 81.0817 17.3422 A 3.7113 3.7113 0 0 0 79.3295 18.3794 A 3.89433 3.89433 0 0 0 78.4369 19.9568 Q 78.2524 20.5639 78.2032 21.296 A 8.16937 8.16937 0 0 0 78.1856 21.8417 L 78.1856 31.2374 L 74.7384 31.2374 L 74.7384 21.8417 A 7.24078 7.24078 0 0 0 74.6225 20.5035 Q 74.4807 19.7491 74.1643 19.157 A 3.64052 3.64052 0 0 0 73.6097 18.3794 A 3.72197 3.72197 0 0 0 71.5076 17.2595 A 5.38971 5.38971 0 0 0 70.5287 17.1744 A 5.10448 5.10448 0 0 0 69.1846 17.3422 A 3.7113 3.7113 0 0 0 67.4324 18.3794 A 3.89433 3.89433 0 0 0 66.5398 19.9568 Q 66.3552 20.5639 66.3061 21.296 A 8.16937 8.16937 0 0 0 66.2884 21.8417 L 66.2884 31.2374 L 62.8108 31.2374 L 62.8108 14.4289 L 66.2884 14.4289 L 66.2884 16.3508 A 5.73534 5.73534 0 0 1 68.2823 14.813 A 6.70816 6.70816 0 0 1 68.4543 14.734 Q 69.766 14.1544 71.2608 14.1544 A 8.11842 8.11842 0 0 1 73.3837 14.4228 A 6.89027 6.89027 0 0 1 74.8605 15.0085 Q 76.4467 15.8627 77.3009 17.4795 Q 78.0635 15.9542 79.6803 15.0543 Q 81.2971 14.1544 83.158 14.1544 A 8.18462 8.18462 0 0 1 85.2583 14.4149 A 6.94457 6.94457 0 0 1 86.7118 14.978 Q 88.2829 15.8017 89.1828 17.4185 Q 90.0827 19.0352 90.0827 21.3232 Z M 50.334 21.3232 L 50.334 31.2374 L 46.8869 31.2374 L 46.8869 21.8417 A 7.24078 7.24078 0 0 0 46.771 20.5035 Q 46.6292 19.7491 46.3128 19.157 A 3.64052 3.64052 0 0 0 45.7582 18.3794 A 3.72197 3.72197 0 0 0 43.6561 17.2595 A 5.38971 5.38971 0 0 0 42.6772 17.1744 A 5.10448 5.10448 0 0 0 41.3331 17.3422 A 3.7113 3.7113 0 0 0 39.5809 18.3794 A 3.89433 3.89433 0 0 0 38.6883 19.9568 Q 38.5037 20.5639 38.4546 21.296 A 8.16937 8.16937 0 0 0 38.4369 21.8417 L 38.4369 31.2374 L 34.9593 31.2374 L 34.9593 14.4289 L 38.4369 14.4289 L 38.4369 16.3508 A 5.67341 5.67341 0 0 1 40.3334 14.8664 A 6.70358 6.70358 0 0 1 40.6181 14.734 Q 41.945 14.1544 43.4398 14.1544 A 8.18462 8.18462 0 0 1 45.5401 14.4149 A 6.94457 6.94457 0 0 1 46.9937 14.978 Q 48.5647 15.8017 49.4494 17.4185 Q 50.3218 19.0133 50.3337 21.2606 A 11.7644 11.7644 0 0 1 50.334 21.3232 Z M 107.105 16.8694 L 107.105 14.4289 L 110.613 14.4289 L 110.613 31.2374 L 107.105 31.2374 L 107.105 28.736 A 6.39273 6.39273 0 0 1 105.668 30.1267 A 8.17791 8.17791 0 0 1 104.695 30.7188 A 7.02389 7.02389 0 0 1 102.282 31.4491 A 8.80358 8.80358 0 0 1 101.217 31.512 Q 99.0513 31.512 97.2515 30.3985 A 7.83289 7.83289 0 0 1 94.5338 27.5335 A 9.33468 9.33468 0 0 1 94.3992 27.287 Q 93.3468 25.2889 93.3468 22.7569 A 10.3795 10.3795 0 0 1 93.6265 20.3 A 8.46497 8.46497 0 0 1 94.3992 18.2726 Q 95.4517 16.3203 97.2667 15.2373 Q 99.0818 14.1544 101.278 14.1544 A 8.54703 8.54703 0 0 1 103.026 14.3252 A 6.52909 6.52909 0 0 1 104.741 14.9323 A 7.80666 7.80666 0 0 1 106.145 15.8663 A 6.34453 6.34453 0 0 1 107.105 16.8694 Z M 107.105 22.8179 A 7.09771 7.09771 0 0 0 106.948 21.2914 A 5.42601 5.42601 0 0 0 106.388 19.7979 A 5.38605 5.38605 0 0 0 105.411 18.5203 A 4.73049 4.73049 0 0 0 104.512 17.8455 Q 103.353 17.1744 102.01 17.1744 Q 100.668 17.1744 99.5089 17.8303 A 4.8278 4.8278 0 0 0 97.8677 19.3714 A 5.88298 5.88298 0 0 0 97.6328 19.7521 A 5.42266 5.42266 0 0 0 97.0166 21.5193 A 7.29081 7.29081 0 0 0 96.9159 22.7569 A 7.13706 7.13706 0 0 0 97.0895 24.3652 A 5.63314 5.63314 0 0 0 97.6328 25.8075 A 5.43303 5.43303 0 0 0 98.5992 27.1003 A 4.74635 4.74635 0 0 0 99.5241 27.8056 Q 100.699 28.4919 102.01 28.4919 Q 103.353 28.4919 104.512 27.8208 A 4.84915 4.84915 0 0 0 106.104 26.3175 A 5.99067 5.99067 0 0 0 106.388 25.8532 Q 107.105 24.5567 107.105 22.8179 Z M 115.189 8.66338 L 118.666 8.66338 L 118.666 31.2374 L 115.189 31.2374 L 115.189 8.66338 Z M 26.9058 14.4289 L 30.3835 14.4289 L 30.3835 31.2374 L 26.9058 31.2374 L 26.9058 14.4289 Z M 54.7573 14.4289 L 58.235 14.4289 L 58.235 31.2374 L 54.7573 31.2374 L 54.7573 14.4289 Z M 28.6752 12.202 Q 27.7295 12.202 27.0889 11.5614 A 2.14942 2.14942 0 0 1 26.4486 10.0047 A 2.77051 2.77051 0 0 1 26.4483 9.97512 Q 26.4483 9.02945 27.0889 8.38883 A 2.14942 2.14942 0 0 1 28.6456 7.74852 A 2.77051 2.77051 0 0 1 28.6752 7.74822 A 2.11617 2.11617 0 0 1 30.2108 8.369 A 2.52006 2.52006 0 0 1 30.2309 8.38883 A 2.14942 2.14942 0 0 1 30.8712 9.94553 A 2.77051 2.77051 0 0 1 30.8715 9.97512 Q 30.8715 10.9208 30.2309 11.5614 A 2.11495 2.11495 0 0 1 28.7038 12.202 A 2.59602 2.59602 0 0 1 28.6752 12.202 Z M 56.5267 12.202 Q 55.581 12.202 54.9404 11.5614 A 2.14942 2.14942 0 0 1 54.3001 10.0047 A 2.77051 2.77051 0 0 1 54.2998 9.97512 Q 54.2998 9.02945 54.9404 8.38883 A 2.14942 2.14942 0 0 1 56.4971 7.74852 A 2.77051 2.77051 0 0 1 56.5267 7.74822 A 2.11617 2.11617 0 0 1 58.0623 8.369 A 2.52006 2.52006 0 0 1 58.0824 8.38883 A 2.14942 2.14942 0 0 1 58.7228 9.94553 A 2.77051 2.77051 0 0 1 58.7231 9.97512 Q 58.7231 10.9208 58.0824 11.5614 A 2.11495 2.11495 0 0 1 56.5553 12.202 A 2.59602 2.59602 0 0 1 56.5267 12.202 Z"
                                               vectorEffect="non-scaling-stroke">
 
@@ -416,7 +432,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                                        style={{stroke: "#faf7f7", fill: "rgba(250,247,247,0)"}}>
 
-                                        <path id={"leftSideBottom"}
+                                        <path ref={leftSideBottomRef}
                                               d="M 25.1785 2.66295 L 28.7605 2.66295 L 22.7123 23.0682 L 18.9249 23.0682 L 14.6383 7.6248 L 10.0875 23.0682 L 6.32939 23.0976 L 0.545455 2.66295 L 4.09802 2.66295 L 8.32587 19.2807 L 12.906 2.66295 L 16.6641 2.66295 L 20.9213 19.1927 L 25.1785 2.66295 Z M 69.5122 9.2396 L 69.5122 6.8908 L 72.8886 6.8908 L 72.8886 23.3324 A 9.05229 9.05229 0 0 1 72.6077 25.6281 A 7.58811 7.58811 0 0 1 71.9491 27.3107 Q 71.0096 29.0576 69.2333 30.0559 Q 67.457 31.0541 64.9908 31.0541 A 11.5664 11.5664 0 0 1 62.5474 30.8096 A 8.10807 8.10807 0 0 1 59.5298 29.5127 A 5.82504 5.82504 0 0 1 57.6889 27.4472 A 5.97007 5.97007 0 0 1 57.0636 25.3289 L 60.3813 25.3289 A 3.4821 3.4821 0 0 0 61.6247 27.1011 A 4.60601 4.60601 0 0 0 62.0107 27.3694 A 5.06226 5.06226 0 0 0 63.8572 28.0556 A 6.72844 6.72844 0 0 0 64.9908 28.1475 A 5.41899 5.41899 0 0 0 66.4547 27.9593 A 4.10336 4.10336 0 0 0 68.2644 26.9144 A 3.95333 3.95333 0 0 0 69.2647 25.2033 Q 69.4503 24.5846 69.4967 23.8415 A 8.17149 8.17149 0 0 0 69.5122 23.3324 L 69.5122 20.6313 Q 68.6608 21.7764 67.2075 22.5544 Q 65.7541 23.3324 63.9045 23.3324 Q 61.7905 23.3324 60.0436 22.2608 A 7.53056 7.53056 0 0 1 57.356 19.4002 A 8.94278 8.94278 0 0 1 57.2838 19.2661 Q 56.2708 17.343 56.2708 14.9061 A 9.98976 9.98976 0 0 1 56.5401 12.5414 A 8.14712 8.14712 0 0 1 57.2838 10.5902 Q 58.2967 8.71112 60.0436 7.66884 Q 61.7905 6.62656 63.9045 6.62656 A 8.03644 8.03644 0 0 1 65.7289 6.82562 A 6.48769 6.48769 0 0 1 67.2368 7.37524 A 7.37231 7.37231 0 0 1 68.4967 8.18675 A 5.69791 5.69791 0 0 1 69.5122 9.2396 Z M 69.5122 14.9648 A 6.8312 6.8312 0 0 0 69.3613 13.4956 A 5.22227 5.22227 0 0 0 68.8223 12.0582 A 5.18381 5.18381 0 0 0 67.8822 10.8286 A 4.55286 4.55286 0 0 0 67.0166 10.1791 Q 65.9009 9.53321 64.6091 9.53321 Q 63.3173 9.53321 62.2016 10.1644 A 4.64652 4.64652 0 0 0 60.622 11.6477 A 5.66209 5.66209 0 0 0 60.3959 12.0141 A 5.21904 5.21904 0 0 0 59.8029 13.715 A 7.01705 7.01705 0 0 0 59.706 14.9061 A 6.86908 6.86908 0 0 0 59.873 16.454 A 5.42163 5.42163 0 0 0 60.3959 17.8421 A 5.22903 5.22903 0 0 0 61.3261 19.0864 A 4.56813 4.56813 0 0 0 62.2163 19.7652 Q 63.3466 20.4258 64.6091 20.4258 Q 65.9009 20.4258 67.0166 19.7799 A 4.66708 4.66708 0 0 0 68.5486 18.333 A 5.76573 5.76573 0 0 0 68.8223 17.8861 Q 69.5122 16.6383 69.5122 14.9648 Z M 92.0901 13.5262 L 92.0901 23.0682 L 88.7724 23.0682 L 88.7724 14.0253 A 6.9689 6.9689 0 0 0 88.6609 12.7373 Q 88.5243 12.0112 88.2199 11.4413 A 3.50383 3.50383 0 0 0 87.6861 10.6929 A 3.58222 3.58222 0 0 0 85.6629 9.61512 A 5.18734 5.18734 0 0 0 84.7207 9.53321 A 4.91282 4.91282 0 0 0 83.4271 9.69469 A 3.57194 3.57194 0 0 0 81.7407 10.6929 A 3.74811 3.74811 0 0 0 80.8816 12.2111 Q 80.704 12.7954 80.6567 13.5 A 7.86262 7.86262 0 0 0 80.6397 14.0253 L 80.6397 23.0682 L 77.2926 23.0682 L 77.2926 1.34175 L 80.6397 1.34175 L 80.6397 8.76984 A 5.57048 5.57048 0 0 1 82.6362 7.25604 A 6.50971 6.50971 0 0 1 82.7977 7.1844 A 7.01882 7.01882 0 0 1 85.0854 6.64623 A 8.31213 8.31213 0 0 1 85.6603 6.62656 A 7.37671 7.37671 0 0 1 87.603 6.87406 A 6.26103 6.26103 0 0 1 88.9633 7.41928 A 5.59485 5.59485 0 0 1 91.1465 9.57666 A 6.76632 6.76632 0 0 1 91.2534 9.76809 Q 92.0669 11.281 92.0895 13.404 A 11.449 11.449 0 0 1 92.0901 13.5262 Z M 46.2297 16.2273 L 33.8691 16.2273 Q 34.0159 18.1651 35.3078 19.3395 A 4.48093 4.48093 0 0 0 38.1886 20.5068 A 5.80155 5.80155 0 0 0 38.4787 20.5139 A 4.9962 4.9962 0 0 0 40.0292 20.2875 Q 41.5327 19.7987 42.2955 18.2531 L 45.9067 18.2531 Q 45.1727 20.4845 43.2497 21.9085 A 7.13038 7.13038 0 0 1 40.2479 23.1792 A 9.78982 9.78982 0 0 1 38.4787 23.3324 Q 36.1592 23.3324 34.3242 22.2902 Q 32.4892 21.2479 31.4469 19.3541 A 8.35646 8.35646 0 0 1 30.5065 16.4657 A 10.7334 10.7334 0 0 1 30.4046 14.9648 A 10.4219 10.4219 0 0 1 30.6539 12.6369 A 8.24607 8.24607 0 0 1 31.4176 10.5755 Q 32.4305 8.68176 34.2655 7.65416 A 8.06726 8.06726 0 0 1 37.3148 6.69174 A 10.1386 10.1386 0 0 1 38.4787 6.62656 A 8.96774 8.96774 0 0 1 40.8656 6.93367 A 7.61189 7.61189 0 0 1 42.5597 7.6248 Q 44.3507 8.62304 45.3489 10.4287 A 7.97537 7.97537 0 0 1 46.2682 13.3048 A 10.0749 10.0749 0 0 1 46.3471 14.5831 Q 46.3471 15.4933 46.2297 16.2273 Z M 33.8985 13.5262 L 42.8533 13.5262 A 4.35498 4.35498 0 0 0 42.6081 12.1081 A 3.66355 3.66355 0 0 0 41.5321 10.5608 A 4.55815 4.55815 0 0 0 38.9696 9.47801 A 6.02733 6.02733 0 0 0 38.3319 9.44513 Q 36.5996 9.44513 35.3665 10.5461 A 4.36202 4.36202 0 0 0 34.0561 12.7147 A 5.90519 5.90519 0 0 0 33.8985 13.5262 Z M 104.186 9.62129 L 100.252 9.62129 L 100.252 18.5761 A 3.0646 3.0646 0 0 0 100.285 19.0444 Q 100.323 19.284 100.401 19.4733 A 1.15532 1.15532 0 0 0 100.678 19.8826 A 1.20758 1.20758 0 0 0 101.062 20.1163 Q 101.417 20.2567 101.956 20.2761 A 4.93043 4.93043 0 0 0 102.131 20.279 L 104.186 20.279 L 104.186 23.0682 L 101.544 23.0682 A 7.77807 7.77807 0 0 1 100.234 22.9651 Q 99.5112 22.8412 98.9363 22.5691 A 3.66766 3.66766 0 0 1 98.0796 22.0112 Q 96.8758 20.9543 96.8758 18.5761 L 96.8758 9.62129 L 94.9674 9.62129 L 94.9674 6.8908 L 96.8758 6.8908 L 96.8758 2.86847 L 100.252 2.86847 L 100.252 6.8908 L 104.186 6.8908 L 104.186 9.62129 Z M 49.6355 6.8908 L 52.9825 6.8908 L 52.9825 23.0682 L 49.6355 23.0682 L 49.6355 6.8908 Z M 51.3384 4.74752 Q 50.4282 4.74752 49.8116 4.13095 A 2.06871 2.06871 0 0 1 49.1954 2.63271 A 2.66648 2.66648 0 0 1 49.1951 2.60423 Q 49.1951 1.69407 49.8116 1.07751 A 2.06871 2.06871 0 0 1 51.3099 0.461241 A 2.66648 2.66648 0 0 1 51.3384 0.460947 A 2.03671 2.03671 0 0 1 52.8163 1.05842 A 2.42543 2.42543 0 0 1 52.8357 1.07751 A 2.06871 2.06871 0 0 1 53.452 2.57575 A 2.66648 2.66648 0 0 1 53.4523 2.60423 Q 53.4523 3.51439 52.8357 4.13095 A 2.03553 2.03553 0 0 1 51.366 4.74752 A 2.49854 2.49854 0 0 1 51.3384 4.74752 Z"
                                               vectorEffect="non-scaling-stroke"></path>
                                     </g>
@@ -436,7 +452,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                        stroke="#faf7f7" strokeWidth="0.25mm"
 
                                        style={{stroke: "#faf7f7", fill: "#faf7f7"}}>
-                                        <path id={"topTextToMorph"} vectorEffect="non-scaling-stroke"
+                                        <path ref={topTextToMorphRef} vectorEffect="non-scaling-stroke"
                                               d="M27.952579375290085,9.823165723113384 L31.20419646959057,9.823165723113384 L31.20419646959057,25.539315012232404 L27.952579375290085,25.539315012232404 L27.952579375290085,23.685322809341773 A5.1232935305109955,5.1232935305109955 0 0 1 26.35443809639837,25.00793232392698 A6.1871998254005405,6.1871998254005405 0 0 1 25.94171090907794,25.211301007105597 Q24.700962280989586,25.767498667972788 23.303337389579738,25.767498667972788 A7.6527093543931635,7.6527093543931635 0 0 1 21.33953180236405,25.523912615469925 A6.4932511536623325,6.4932511536623325 0 0 1 19.98041290286038,24.997378829848987 Q18.51148061903166,24.22725899172519 17.67005338848898,22.715542272445138 Q16.828626157946317,21.20382555316509 16.828626157946317,19.064603780598976 L16.828626157946317,9.823165723113384 L20.051720295279253,9.823165723113384 L20.051720295279253,18.579713512150658 A6.770209065817224,6.770209065817224 0 0 0 20.160107531755926,19.831015634316998 Q20.2930245112247,20.53638836012446 20.588807574978176,21.09001895486457 A3.4039296845071934,3.4039296845071934 0 0 0 21.107069703078537,21.817069127967375 A3.4800859796105477,3.4800859796105477 0 0 0 23.072586667712272,22.86414687824606 A5.0394360370264035,5.0394360370264035 0 0 0 23.987888356800894,22.943725928185522 A4.7727463893798285,4.7727463893798285 0 0 0 25.24489507036074,22.786849664864008 A3.4701029446719054,3.4701029446719054 0 0 0 26.882968489007027,21.817069127967375 A3.6412406864771936,3.6412406864771936 0 0 0 27.717550209877487,20.342147023175457 Q27.890114099531147,19.77454017952125 27.93603606024891,19.089989212300097 A7.63844787590939,7.63844787590939 0 0 0 27.952579375290085,18.579713512150658 L27.952579375290085,9.823165723113384 zM34.62695130569635,20.71893528471677 L37.99266022786702,20.71893528471677 A2.2433305654976605,2.2433305654976605 0 0 0 38.76734373910563,22.23692705452968 A3.072207694974609,3.072207694974609 0 0 0 38.948179286279895,22.387528267318338 A3.1660482233978424,3.1660482233978424 0 0 0 40.31671076158284,22.985654674927815 A4.3888273885966305,4.3888273885966305 0 0 0 41.13018549429731,23.057817756055716 A5.750513354227379,5.750513354227379 0 0 0 41.92597599369191,23.00619120394445 Q42.73545751243091,22.892955064783287 43.25514578837965,22.530143052156077 Q44.01100414801968,22.00246834825644 44.01100414801968,21.17530259619754 Q44.01100414801968,20.291090930203545 43.169576917477,19.863246575690326 A7.076260394079015,7.076260394079015 0 0 0 42.61851338886399,19.61595253878168 Q41.814736461518464,19.29107605892131 40.50268044101125,18.921988995761236 A38.2404431768221,38.2404431768221 0 0 1 39.36461445800609,18.591978383646705 Q38.35204948565814,18.280222463991404 37.62186178728891,17.980731415832146 Q36.509466465554524,17.524364104351378 35.69656219197941,16.58310652442229 A3.236785156677362,3.236785156677362 0 0 1 34.99803497584415,15.172646302377037 Q34.884228377543636,14.68119575382618 34.88365791840428,14.106172941360411 A5.943899002467354,5.943899002467354 0 0 1 34.88365791840428,14.101609268245603 Q34.88365791840428,12.846599161673485 35.62525479956054,11.80551123235798 A4.527448959458915,4.527448959458915 0 0 1 36.87513077387851,10.629509716585972 A6.014921165316549,6.014921165316549 0 0 1 37.75021509364285,10.165441206723958 A7.1344472262928145,7.1344472262928145 0 0 1 39.53888972507781,9.665433771082842 A9.418280390684393,9.418280390684393 0 0 1 40.93052479552449,9.566459110405452 Q43.34670448024548,9.566459110405452 44.91746372044838,10.66658956064378 A5.292719894898231,5.292719894898231 0 0 1 45.25175277610805,10.921299566363988 A4.743938202842605,4.743938202842605 0 0 1 46.95828129147645,14.080502280089618 A6.528619620302091,6.528619620302091 0 0 1 47.00591462961225,14.615022493661469 L43.754297535311764,14.615022493661469 A2.5602206174071203,2.5602206174071203 0 0 0 43.53638214407968,13.746498453999632 A2.257306814411759,2.257306814411759 0 0 0 42.89860882628531,12.93216803257613 A2.6323836985350164,2.6323836985350164 0 0 0 41.927402141540284,12.442428861443329 Q41.43167314944429,12.304662979290072 40.81643296765429,12.304662979290072 Q39.98242170592317,12.304662979290072 39.40112384292456,12.509457810317066 A2.235914596686098,2.235914596686098 0 0 0 38.84834893689347,12.78955324773839 Q38.163797969672316,13.274443516186707 38.163797969672316,14.073086311278056 A1.384789560774462,1.384789560774462 0 0 0 38.57852176398046,15.087933120183417 A1.6731566557163724,1.6731566557163724 0 0 0 38.62016528115308,15.128435719077336 Q39.07653259263384,15.556280073590557 39.732560602887474,15.798725207814718 Q40.234849875085985,15.984409657673453 41.10508529216588,16.245109484356846 A59.01171612929967,59.01171612929967 0 0 0 41.672121676680746,16.411968782617002 A30.22235474367465,30.22235474367465 0 0 1 42.846411815034685,16.74911013397342 Q43.78681370625475,17.041185213321114 44.481632937984216,17.338964884062314 Q45.57976678123484,17.809593674026857 46.37840957632616,18.7223282969884 A3.2148224798123497,3.2148224798123497 0 0 1 47.070946971498245,20.07716875294694 Q47.19074339076195,20.552646445595965 47.20500486924573,21.110555483881203 A5.811837711707607,5.811837711707607 0 0 1 47.205575328385066,21.14677963922999 Q47.205575328385066,22.487358616704753 46.46397844722884,23.542708024504034 A4.623571324439553,4.623571324439553 0 0 1 45.08147072301176,24.823959251486297 A5.957019562672427,5.957019562672427 0 0 1 44.36754111011405,25.197039528621826 A6.781618248604243,6.781618248604243 0 0 1 42.74515531779991,25.673087680410198 A9.384623301462685,9.384623301462685 0 0 1 41.187231408232435,25.796021624940337 A8.805036815882108,8.805036815882108 0 0 1 39.326108466099896,25.60691442024549 A7.137869981128919,7.137869981128919 0 0 1 37.86430692151305,25.125732136202956 A6.413101644583522,6.413101644583522 0 0 1 36.47666506504186,24.276603707279044 A5.376006929243472,5.376006929243472 0 0 1 35.53968592865789,23.30026289027987 Q34.683997219631436,22.145083133094175 34.62695130569635,20.71893528471677 zM58.32952854572886,12.47580072109536 L54.50745231207739,12.47580072109536 L54.50745231207739,21.17530259619754 A2.9772262482726743,2.9772262482726743 0 0 0 54.53968325345073,21.63024375982993 Q54.57590740879951,21.862991088685128 54.65234893347255,22.04696416112581 A1.1223783566730188,1.1223783566730188 0 0 0 54.921035188106856,22.44457418125343 A1.1731492200752547,1.1731492200752547 0 0 0 55.293830235672715,22.671616918715113 Q55.638958014980034,22.807956653019993 56.162639504904234,22.826781804618584 A4.789860163560357,4.789860163560357 0 0 0 56.332921558000464,22.829634100315328 L58.32952854572886,22.829634100315328 L58.32952854572886,25.539315012232404 L55.762462418649505,25.539315012232404 A7.5563017598428495,7.5563017598428495 0 0 1 54.49005330832719,25.43891420370663 Q53.787532878216496,25.318832554873257 53.22905338079187,25.054424743784086 A3.563087784386112,3.563087784386112 0 0 1 52.39675349647882,24.512488561400673 Q51.227312260809356,23.48566211056894 51.227312260809356,21.17530259619754 L51.227312260809356,12.47580072109536 L49.37332005791873,12.47580072109536 L49.37332005791873,9.823165723113384 L51.227312260809356,9.823165723113384 L51.227312260809356,5.91552061855929 L54.50745231207739,5.91552061855929 L54.50745231207739,9.823165723113384 L58.32952854572886,9.823165723113384 L58.32952854572886,12.47580072109536 zM8.41435385251961,5.715859919786453 L11.694493903787645,5.715859919786453 L11.694493903787645,20.005861360528066 A7.039180550021202,7.039180550021202 0 0 1 11.477434201264614,21.8039485677623 A5.0080607843621,5.0080607843621 0 0 1 10.082946835121177,24.19873603475764 A5.460720111437088,5.460720111437088 0 0 1 7.174460913140294,25.629447556249854 A7.719453073697226,7.719453073697226 0 0 1 5.847287725440282,25.73897571100524 A7.269360812749316,7.269360812749316 0 0 1 3.9693362386969113,25.50851021870745 A5.346343053997221,5.346343053997221 0 0 1 1.6116286157593862,24.19873603475764 A5.098193328379552,5.098193328379552 0 0 1 0.12073365506564926,21.373251917552324 A7.41111990887803,7.41111990887803 0 0 1 0.00008154709291829931,20.005861360528066 L3.280221598360953,20.005861360528066 A4.472114422941871,4.472114422941871 0 0 0 3.3780553407596443,20.870106956644776 Q3.536928211068883,21.591737767923735 3.9505110870983344,22.088037219159084 A2.0604984113356775,2.0604984113356775 0 0 0 5.08144633086161,22.773158645519583 Q5.425147962320565,22.8567309094345 5.8344523948048845,22.858157057282877 A4.0676588931420365,4.0676588931420365 0 0 0 5.847287725440282,22.858157057282877 A3.2105440362672177,3.2105440362672177 0 0 0 6.60656883991642,22.773729104658933 A2.1052794537747275,2.1052794537747275 0 0 0 7.758325842266004,22.073775740675305 Q8.398380996617789,21.30879003480566 8.41406862294994,20.068897095426344 A4.951014870427004,4.951014870427004 0 0 0 8.41435385251961,20.005861360528066 L8.41435385251961,5.715859919786453 z">
 
                                         </path>
@@ -452,7 +468,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                     <g id="svgMorph" strokeLinecap="round" fillRule="nonzero" fontSize="9pt"
                                        stroke="#faf7f7" strokeWidth="0.25mm"
                                        style={{stroke: "#faf7f7", fill: "#faf7f7"}}>
-                                        <path id={"bottomTextToMorph"}
+                                        <path ref={bottomTextToMorphRef}
                                               d="M112.30410167783313,11.571246385576277 L112.30410167783313,20.879798552190856 L109.06758969374866,20.879798552190856 L109.06758969374866,12.058155268137654 A6.798393668515804,6.798393668515804 0 0 0 108.95875123764671,10.801643934139557 Q108.82556733741669,10.093334718507624 108.52855291905425,9.537399341418425 A3.4181003555808736,3.4181003555808736 0 0 0 108.00784683170332,8.807322434566101 A3.494573691841984,3.494573691841984 0 0 0 106.03414735539128,7.755885665223267 A5.060415374761426,5.060415374761426 0 0 0 105.11503523530925,7.675975325085253 A4.792615489352669,4.792615489352669 0 0 0 103.85308197850604,7.833504669443345 A3.4845490972010147,3.4845490972010147 0 0 0 102.20790278942809,8.807322434566101 A3.656399291046206,3.656399291046206 0 0 0 101.36984667744302,10.288384688521917 Q101.19656439864912,10.858354498108469 101.15045126330067,11.54575527348924 A7.670246985290413,7.670246985290413 0 0 0 101.13383907789563,12.058155268137654 L101.13383907789563,20.879798552190856 L97.89732709381117,20.879798552190856 L97.89732709381117,12.058155268137654 A6.798393668515804,6.798393668515804 0 0 0 97.78848863770921,10.801643934139557 Q97.6553047374792,10.093334718507624 97.35829031911675,9.537399341418425 A3.4181003555808736,3.4181003555808736 0 0 0 96.83758423176583,8.807322434566101 A3.494573691841984,3.494573691841984 0 0 0 94.86388475545378,7.755885665223267 A5.060415374761426,5.060415374761426 0 0 0 93.94477263537175,7.675975325085253 A4.792615489352669,4.792615489352669 0 0 0 92.68281937856855,7.833504669443345 A3.4845490972010147,3.4845490972010147 0 0 0 91.03764018949059,8.807322434566101 A3.656399291046206,3.656399291046206 0 0 0 90.19958407750552,10.288384688521917 Q90.02630179871163,10.858354498108469 89.98018866336317,11.54575527348924 A7.670246985290413,7.670246985290413 0 0 0 89.96357647795814,12.058155268137654 L89.96357647795814,20.879798552190856 L86.69842279489949,20.879798552190856 L86.69842279489949,5.09822241740737 L89.96357647795814,5.09822241740737 L89.96357647795814,6.902649452781888 A5.384925824139097,5.384925824139097 0 0 1 91.83559792291176,5.458821407492532 A6.2983096044262945,6.2983096044262945 0 0 1 91.99713710512624,5.384639407149356 Q93.22873016101678,4.840447126639581 94.63217341075251,4.840447126639581 A7.622415348003502,7.622415348003502 0 0 1 96.625349242367,5.09249407761253 A6.469300547302261,6.469300547302261 0 0 1 98.01189388970796,5.642414697917145 Q99.50126223636629,6.444382269194708 100.30322980764386,7.96239231482724 Q101.01927228199884,6.530307366117304 102.53728232763136,5.685377246378443 Q104.05529237326388,4.840447126639581 105.80243601069,4.840447126639581 A7.6845678347775115,7.6845678347775115 0 0 1 107.7744169850636,5.085047235879238 A6.520282771476335,6.520282771476335 0 0 1 109.13919394118416,5.613772998942946 Q110.61424143835539,6.387098871246311 111.45917155809424,7.9051089168788415 Q112.30410167783313,9.423118962511374 112.30410167783313,11.571246385576277 zM48.6908882561378,7.389558335343265 L48.6908882561378,5.09822241740737 L51.98468363817065,5.09822241740737 L51.98468363817065,21.137573842958645 A8.830808627724945,8.830808627724945 0 0 1 51.71058257898756,23.37706828575124 A7.4024470998816545,7.4024470998816545 0 0 1 51.068149270996294,25.018524053962565 Q50.15161490382193,26.722705142927392 48.418792115882916,27.696522908050145 Q46.68596932794389,28.670340673172902 44.2800666141112,28.670340673172902 A11.28339731088558,11.28339731088558 0 0 1 41.896504425478376,28.431755320717826 A7.909691588714714,7.909691588714714 0 0 1 38.95271060491024,27.166651477027468 A5.682513076481023,5.682513076481023 0 0 1 37.15687607922798,25.15170795419259 A5.824003069413565,5.824003069413565 0 0 1 36.54680789107755,23.085209373204155 L39.783319875162,23.085209373204155 A3.396905498339966,3.396905498339966 0 0 0 40.99629582671931,24.81402232328679 A4.493309735072293,4.493309735072293 0 0 0 41.372934168230024,25.075807451910965 A4.938401737131341,4.938401737131341 0 0 0 43.17421061671739,25.74516395693799 A6.563818153917118,6.563818153917118 0 0 0 44.2800666141112,25.83481247472723 A5.2863983796678555,5.2863983796678555 0 0 0 45.70814172496475,25.651219184302615 A4.0029638486340104,4.0029638486340104 0 0 0 47.47361604973435,24.631861117810885 A3.8566047668758556,3.8566047668758556 0 0 0 48.44943873378531,22.962336484604844 Q48.630454271302234,22.359142304208216 48.67570815568148,21.63422090317125 A7.971557658498984,7.971557658498984 0 0 0 48.6908882561378,21.137573842958645 L48.6908882561378,18.502537537332362 Q47.86027898588603,19.619563797326112 46.4425148866632,20.37856882014238 Q45.02475078744036,21.137573842958645 43.220323752065845,21.137573842958645 Q41.15812142592353,21.137573842958645 39.453940336958716,20.092151830400393 A7.346309369892226,7.346309369892226 0 0 1 36.83207921286057,17.30159109934421 A8.723975090551184,8.723975090551184 0 0 1 36.76162063338404,17.170698535032123 Q35.77348201877418,15.294667252222109 35.77348201877418,12.917406237363615 A9.745338075971109,9.745338075971109 0 0 1 36.03612639836758,10.610603801981652 A7.947785048350399,7.947785048350399 0 0 1 36.76162063338404,8.707076488156407 Q37.74975924799389,6.874007753807689 39.453940336958716,5.857227440223635 Q41.15812142592353,4.840447126639581 43.220323752065845,4.840447126639581 A7.839805843217668,7.839805843217668 0 0 1 45.00011892632256,5.034637845684649 A6.328956222328689,6.328956222328689 0 0 1 46.471156585637395,5.570810450481649 A7.191930612421294,7.191930612421294 0 0 1 47.70017188862026,6.3624670101285 A5.558494519922742,5.558494519922742 0 0 1 48.6908882561378,7.389558335343265 zM48.6908882561378,12.974689635312012 A6.664064100326812,6.664064100326812 0 0 0 48.54366992341041,11.54145901864311 A5.0944989965407235,5.0944989965407235 0 0 0 48.01780833024412,10.139161436866342 A5.056978370884523,5.056978370884523 0 0 0 47.10070112909029,8.9396470838269 A4.441468259928993,4.441468259928993 0 0 0 46.25634384333091,8.306092702517622 Q45.16795928231135,7.675975325085253 43.90772452744662,7.675975325085253 Q42.64748977258187,7.675975325085253 41.55910521156232,8.291771853030523 A4.532835279656687,4.532835279656687 0 0 0 40.018181806750434,9.738750485207044 A5.523551647174219,5.523551647174219 0 0 0 39.79764072464909,10.096198888405043 A5.091348409653563,5.091348409653563 0 0 0 39.21907840537029,11.755412509980374 A6.84536605483349,6.84536605483349 0 0 0 39.12456079875543,12.917406237363615 A6.701011892003529,6.701011892003529 0 0 0 39.287532065918626,14.42739660728337 A5.288976132575533,5.288976132575533 0 0 0 39.79764072464909,15.781576134783487 A5.101086587304789,5.101086587304789 0 0 0 40.70500974815171,16.995411337310028 A4.456361943395576,4.456361943395576 0 0 0 41.57342606104942,17.6576074175935 Q42.67613147155607,18.30204564451297 43.90772452744662,18.30204564451297 Q45.16795928231135,18.30204564451297 46.25634384333091,17.6719282670806 A4.552884468938626,4.552884468938626 0 0 0 47.750867695804594,16.260465341632088 A5.624656844553142,5.624656844553142 0 0 0 48.01780833024412,15.824538683244784 Q48.6908882561378,14.607266476841339 48.6908882561378,12.974689635312012 zM115.59789705986597,16.039351425551274 L118.9776175388214,16.039351425551274 A2.252669624320728,2.252669624320728 0 0 0 119.75552608296064,17.56366264495813 A3.0849973965109427,3.0849973965109427 0 0 0 119.93711445445707,17.7148908155419 A3.1792285861360563,3.1792285861360563 0 0 0 121.31134317123913,18.315507243030844 A4.407098221159955,4.407098221159955 0 0 0 122.12820442598327,18.387970741435566 A5.7744529301882,5.7744529301882 0 0 0 122.9273078273634,18.336129266292268 Q123.74015924425119,18.2224217213647 124.26201099956107,17.858099310412893 Q125.02101602237734,17.328227879390216 125.02101602237734,16.497618609138456 Q125.02101602237734,15.609725940938294 124.17608590263849,15.180100456325313 A7.105719098508957,7.105719098508957 0 0 0 123.62272827845695,14.931776926219012 Q122.81560520136405,14.605547974902887 121.4980870485509,14.234924390176756 A38.39963939771846,38.39963939771846 0 0 1 120.35499684249064,13.903539933045277 Q119.33821652890659,13.590486163257285 118.60527545215685,13.2897483240282 Q117.48824919216308,12.831481140441019 116.67196077139843,11.886305074292462 A3.2502599995920693,3.2502599995920693 0 0 1 115.9705255635203,10.469973060018336 Q115.85624518461324,9.976476586692893 115.85567235063375,9.399059935373048 A5.968643649233268,5.968643649233268 0 0 1 115.85567235063375,9.394477263537174 Q115.85567235063375,8.134242508672433 116.60035652396293,7.088820496114179 A4.54629687817456,4.54629687817456 0 0 1 117.85514935602257,5.907923247407966 A6.039961479679023,6.039961479679023 0 0 1 118.73416309754073,5.441922805097754 A7.164148164416322,7.164148164416322 0 0 1 120.53028404021273,4.93983382208005 A9.457489001280413,9.457489001280413 0 0 1 121.92771253316388,4.840447126639581 Q124.35395085326824,4.840447126639581 125.93096279878765,5.945157456074426 A5.314753661652312,5.314753661652312 0 0 1 126.26692992775499,6.200927827914019 A4.763687373388729,4.763687373388729 0 0 1 127.98056277738131,9.373282406296267 A6.555798478204341,6.555798478204341 0 0 1 128.0283944146682,9.91002784507275 L124.76324073160954,9.91002784507275 A2.5708788999240753,2.5708788999240753 0 0 0 124.54413173445693,9.037888111308401 A2.2667040568180856,2.2667040568180856 0 0 0 123.90398976238359,8.220167605595027 A2.6433423983287976,2.6433423983287976 0 0 0 122.92873991231212,7.728389634208036 Q122.43066076715081,7.5900502281626565 121.81314573726708,7.5900502281626565 Q120.97566245926151,7.5900502281626565 120.39194463416736,7.795697626797404 A2.2452227825874367,2.2452227825874367 0 0 0 119.83686850804737,8.076959110724033 Q119.14946773266661,8.563867993285413 119.14946773266661,9.365835564562977 A1.3905544851973475,1.3905544851973475 0 0 0 119.56591803575145,10.384907214064967 A1.680122061826496,1.680122061826496 0 0 0 119.60773491625379,10.425578426608329 Q120.06600209984097,10.85520391122131 120.72476117624754,11.098658352501998 Q121.22914149518319,11.285115812824033 122.10271331389623,11.546900941448207 A59.25738384169918,59.25738384169918 0 0 0 122.67239670649305,11.71445488044727 A30.348171399081462,30.348171399081462 0 0 1 123.85128903627107,12.0529997623223 Q124.79589226844016,12.346290759818094 125.49360405545163,12.645310097108728 Q126.59630946595827,13.117898130183006 127.39827703723584,14.034432497357365 A3.2282058913819363,3.2282058913819363 0 0 1 128.09369748832938,15.394913198631803 Q128.21399262402102,15.872370320531695 128.22802705651839,16.432601952467024 A5.836032582982728,5.836032582982728 0 0 1 128.22888630748758,16.468976910164255 Q128.22888630748758,17.815136761951592 127.48420213415842,18.874879623996947 A4.64281940371761,4.64281940371761 0 0 1 126.095938984879,20.16146474191795 A5.9818188307614,5.9818188307614 0 0 1 125.37903725955482,20.53609816450047 A6.809850348105484,6.809850348105484 0 0 1 123.74961100491265,21.014128120379844 A9.423691796490857,9.423691796490857 0 0 1 122.18548782393168,21.137573842958645 A8.84169247333514,8.84169247333514 0 0 1 120.31661696586521,20.947679378759705 A7.1675851682932255,7.1675851682932255 0 0 1 118.84872989343752,20.464493917064974 A6.439799597358837,6.439799597358837 0 0 1 117.45531123834276,19.611830538603076 A5.398387422656971,5.398387422656971 0 0 1 116.51443142704032,18.631425182716256 Q115.65518045781437,17.47143637426121 115.59789705986597,16.039351425551274 zM20.421531368603677,16.52626030811265 L10.053236339943744,16.52626030811265 L10.053236339943744,14.063074196331563 L19.676847195274508,0.2577752907677883 L23.62940165371393,0.2577752907677883 L23.62940165371393,13.69073210966698 L26.29307965831441,13.69073210966698 L26.29307965831441,16.52626030811265 L23.62940165371393,16.52626030811265 L23.62940165371393,20.879798552190856 L20.421531368603677,20.879798552190856 L20.421531368603677,16.52626030811265 zM20.56473986347467,13.69073210966698 L20.56473986347467,3.580212371774838 L13.805298905563776,13.69073210966698 L20.56473986347467,13.69073210966698 zM79.10837256673682,7.389558335343265 L79.10837256673682,5.09822241740737 L82.40216794876967,5.09822241740737 L82.40216794876967,20.879798552190856 L79.10837256673682,20.879798552190856 L79.10837256673682,18.53117923630656 A6.00215443703308,6.00215443703308 0 0 1 77.75906212806231,19.83695429254028 A7.678266661003188,7.678266661003188 0 0 1 76.84567834777512,20.392889669629476 A6.594751188809252,6.594751188809252 0 0 1 74.57983354192628,21.078571943071793 A8.265707906964003,8.265707906964003 0 0 1 73.58052466471646,21.137573842958645 Q71.54696403754836,21.137573842958645 69.85710379807064,20.092151830400393 A7.3543290456050014,7.3543290456050014 0 0 1 67.30541483645928,17.401837045753904 A8.764359886104803,8.764359886104803 0 0 1 67.17910494398306,17.170698535032123 Q66.1909663293732,15.294667252222109 66.1909663293732,12.917406237363615 A9.745338075971109,9.745338075971109 0 0 1 66.45361070896661,10.610603801981652 A7.947785048350399,7.947785048350399 0 0 1 67.17910494398306,8.707076488156407 Q68.16724355859292,6.874007753807689 69.87142464755775,5.857227440223635 Q71.57560573652256,4.840447126639581 73.63780806266487,4.840447126639581 A8.024831218590993,8.024831218590993 0 0 1 75.27926383087619,5.000840640895094 A6.130182831447748,6.130182831447748 0 0 1 76.88864089623642,5.570810450481649 A7.32969718448719,7.32969718448719 0 0 1 78.20701830001879,6.447819273071612 A5.956900552653846,5.956900552653846 0 0 1 79.10837256673682,7.389558335343265 zM79.10837256673682,12.974689635312012 A6.664064100326812,6.664064100326812 0 0 0 78.96115423400943,11.54145901864311 A5.0944989965407235,5.0944989965407235 0 0 0 78.43529264084316,10.139161436866342 A5.056978370884523,5.056978370884523 0 0 0 77.51818543968932,8.9396470838269 A4.441468259928993,4.441468259928993 0 0 0 76.67382815392993,8.306092702517622 Q75.58544359291037,7.675975325085253 74.32520883804564,7.675975325085253 Q73.06497408318089,7.675975325085253 71.97658952216133,8.291771853030523 A4.532835279656687,4.532835279656687 0 0 0 70.43566611734946,9.738750485207044 A5.523551647174219,5.523551647174219 0 0 0 70.21512503524812,10.096198888405043 A5.091348409653563,5.091348409653563 0 0 0 69.6365627159693,11.755412509980374 A6.84536605483349,6.84536605483349 0 0 0 69.54204510935445,12.917406237363615 A6.701011892003529,6.701011892003529 0 0 0 69.70501637651765,14.42739660728337 A5.288976132575533,5.288976132575533 0 0 0 70.21512503524812,15.781576134783487 A5.101086587304789,5.101086587304789 0 0 0 71.12249405875075,16.995411337310028 A4.456361943395576,4.456361943395576 0 0 0 71.99091037164844,17.6576074175935 Q73.0936157821551,18.30204564451297 74.32520883804564,18.30204564451297 Q75.58544359291037,18.30204564451297 76.67382815392993,17.6719282670806 A4.552884468938626,4.552884468938626 0 0 0 78.16835200640362,16.260465341632088 A5.624656844553142,5.624656844553142 0 0 0 78.43529264084316,15.824538683244784 Q79.10837256673682,14.607266476841339 79.10837256673682,12.974689635312012 zM2.66367800460048,2.978736693316665 L0,2.978736693316665 L0,0 L5.95747338663333,0 L5.95747338663333,20.879798552190856 L2.66367800460048,20.879798552190856 L2.66367800460048,2.978736693316665 zM64.2719724981019,4.840447126639581 L64.2719724981019,8.220167605595027 L63.44136322785013,8.220167605595027 Q61.52236939657881,8.220167605595027 60.534230781968965,9.193985370717783 Q59.546092167359106,10.16780313584054 59.546092167359106,12.573705849673232 L59.546092167359106,20.879798552190856 L56.28093848430045,20.879798552190856 L56.28093848430045,5.09822241740737 L59.546092167359106,5.09822241740737 L59.546092167359106,7.389558335343265 Q60.26213464171407,6.18660697842692 61.450765149143315,5.5135270525332505 A5.091348409653563,5.091348409653563 0 0 1 63.10997877071865,4.934964733254437 A6.84536605483349,6.84536605483349 0 0 1 64.2719724981019,4.840447126639581 z"
                                               vectorEffect="non-scaling-stroke">
 
@@ -462,10 +478,10 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                             </div>
 
 
-                            <div id="rightSide"
+                            <div ref={rightSideRef}
                                  className="absolute top-[44.0%] left-[522.938px] font-poppins text-3xl font-extrabold text-[#faf7f7]"
                                  style={{lineHeight: 1.1}}>
-                                <div id="topWordRight ">Maximum</div>
+                                <div ref={topWordRightRef}>Maximum</div>
                                 <div
                                     className="stroke-white"
                                     style={{
@@ -477,13 +493,16 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                 </div>
                             </div>
 
-                            <div id={"extraInfo"}
-                                className="absolute top-[28%] left-[98px] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block scale-[0.667] opacity-0">
-                                <p data-aos="fade-up"  className={"font-sans font-semibold leading-7 tracking-tight text-center text-slate-12"}>
-                                    Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals.
+                            <div ref={extraInfoRef}
+                                 className="absolute top-[28%] left-[98px] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block scale-[0.667] opacity-0">
+                                <p data-aos="fade-up"
+                                   className={"font-sans font-semibold leading-7 tracking-tight text-center text-slate-12"}>
+                                    Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain
+                                    mentality to seek out challenges that test you physically. Sleep Mask One is the
+                                    ultimate training partner, and it’s packed with new features to help you reach your
+                                    goals.
                                 </p>
                             </div>
-
 
 
                         </div>
@@ -492,7 +511,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                 <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>
                     <div
-                        id={"initialScrollText"}
+                        ref={initialScrollTextRef}
                         style={{
                             position: 'absolute',
                             right: 20,
@@ -508,7 +527,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                         <div>
                             <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>
                             <div
-                                className="stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"
+                                className=" stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"
                                 style={{
                                     WebkitTextStroke: "1px white",
                                     WebkitTextFillColor: "transparent"

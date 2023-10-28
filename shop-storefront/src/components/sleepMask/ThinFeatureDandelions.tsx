@@ -28,7 +28,7 @@ const ThinFeatureDandelions: React.FC = () => {
     const hotspotTopRef = useRef<HTMLDivElement>(null);
     const hotspotBottomRef = useRef<HTMLDivElement>(null);
 
-    // usePageSettings();
+
     let masterTimeline = gsap.timeline();
 
 
@@ -253,11 +253,11 @@ const ThinFeatureDandelions: React.FC = () => {
         <>
 
             <section id={"SlimAndSoft"}
-                     className="relative h-[100vh] max-h-100 flex flex-col justify-center items-center pinThinFeature"
+                     className="relative h-[100vh] max-h-100 flex flex-col  justify-center items-center pinThinFeature z-[1]"
 
             >
 
-                <div className="mx-auto flex flex-col justify-center mt-10">
+                <div className="mx-auto  flex flex-col justify-center mt-10 ">
 
                     {/* Text above the image always visible but cut in half */}
                     <div ref={textTopRef} className="absolute top-[51.6%] left-[41.5%] z-[2] "
