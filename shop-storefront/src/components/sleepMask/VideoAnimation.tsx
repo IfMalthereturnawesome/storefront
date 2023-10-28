@@ -10,7 +10,6 @@ import SplitType from 'split-type';
 import MaskSequence from "@/components/sleepMask/MaskSequence";
 
 
-
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
@@ -38,14 +37,17 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     const [showDescription, setShowDescription] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [state, setState] = useState(true);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
     const [showCanvas, setShowCanvas] = useState(false);
     const descriptionRef1 = useRef(null);
     const descriptionRef2 = useRef(null);
     const descriptionRef3 = useRef(null);
 
-
-
+    //  Timeline REFs
+    const tl = useRef(null);
+    const tl2 = useRef(null);
+    const tl3 = useRef(null);
+    const tl4 = useRef(null);
+    const tl5 = useRef(null);
 
     const smoothDisappearOneNight = () => {
         if (oneNightRef.current) {
@@ -135,14 +137,14 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
         });
 
         return () => {
-            // Cleanup logic here...
+
             ctx.revert();
         };
     }, [state, smoothDisappear]);
 
 
     // VIDEO
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
             if (headerRef.current) {
@@ -154,9 +156,9 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
             }
-            const tl = gsap.timeline();
+            tl.current = gsap.timeline();
             if (videoRef.current) {
-                tl.fromTo(
+                tl.current.fromTo(
                     videoRef.current,
                     {opacity: 0},
                     {opacity: 1, duration: 1}
@@ -222,12 +224,12 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     // ACHIEVE YOUR DREAMS - HEADER
     const useShowHeaderAnimation = (showHeaderText: boolean, headerRef: RefObject<HTMLDivElement>) => {
-        useEffect(() => {
+        useLayoutEffect(() => {
             let ctx = gsap.context(() => {
                 if (headerRef.current) {
                     const splitText = new SplitType(headerRef.current, {types: 'words, chars'});
 
-                    const tl = gsap.timeline({
+                    tl2.current = gsap.timeline({
                         onStart: () => {
 
 
@@ -263,7 +265,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     }
 
 
-                    tl.from(splitText.chars, {
+                    tl2.current.from(splitText.chars, {
                         opacity: 0,
                         color: '#fdc500',
                         scale: 0.7,
@@ -273,7 +275,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     });
 
 
-                    tl.to(splitText.chars, {
+                    tl2.current.to(splitText.chars, {
                         color: '#faf7f7',
                         opacity: 0.8,
                         scale: 1,
@@ -294,13 +296,13 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
     //  ONE NIGHT AT A TIME - Header
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         let ctx = gsap.context(() => {
             if (oneNightRef.current && showOneNightText) {
                 oneNightRef.current.style.opacity = '1';
                 const splitTextNight = new SplitType(oneNightRef.current, {types: 'words, chars'});
-                const tl = gsap.timeline({
+                tl3.current = gsap.timeline({
                     onStart: () => {
                         if (oneNightRef.current) {
                             oneNightRef.current.style.opacity = '1';
@@ -316,22 +318,21 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 opacity: 0.2, color: 'rgb(255,255,255)'
                             });
 
-                            const tl = gsap.timeline({defaults: {duration: 1, stagger: 0.5, color: "#e7ecef"}});
+                            tl4.current = gsap.timeline({defaults: {duration: 1, stagger: 0.5, color: "#e7ecef"}});
 
-                            tl.to(descriptionRef1.current, {opacity: 0.9}, "+=3")
+                            tl4.current.to(descriptionRef1.current, {opacity: 0.9}, "+=3")
                                 .to(descriptionRef2.current, {opacity: 0.9}, "+=1.2")
                                 .to(descriptionRef3.current, {opacity: 0.9}, "+=1.2");
                         }
 
                     },
                     onComplete: () => {
-                        // Add any completion logic here
 
 
                     }
                 });
 
-                // Add spaces manually
+
                 if (splitTextNight.words) {
                     splitTextNight.words.forEach((word, index) => {
                         const space = document.createElement('span');
@@ -341,17 +342,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     });
                 }
 
-                // // Existing animations
-                // tl.from(splitTextNight.chars, {
-                //     opacity: 1,
-                //     color: '#fdc500',
-                //     scale: 1,
-                //     stagger: {amount: 0.3},
-                //     textShadow: '0px 0px 15px rgba(255, 255, 255, 0.8)', // Initial glow
-                //     ease: 'back.out(1.7)',
-                // });
-
-                tl.to(splitTextNight.chars, {
+                tl3.current.to(splitTextNight.chars, {
                     color: '#faf7f7',
                     opacity: 0.6,
                     stagger: {amount: 0.1},
@@ -361,7 +352,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
                 if (splitTextNight.chars) {
                     splitTextNight.chars.forEach((char, index) => {
-                        tl.to(char, {
+                        tl3.current.to(char, {
                             opacity: 0.9,
                             duration: 0.1,
                             ease: 'power2.inOut',
@@ -371,7 +362,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 char.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.4)';
                                 // change the innerHTML of the char to different letters
 
-                                tl.to(splitTextNight.chars, {
+                                tl3.current.to(splitTextNight.chars, {
                                     opacity: 1,
                                     stagger: {amount: 1},
                                     ease: 'power2.inOut',
@@ -395,12 +386,12 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
     // Smaller "achieve your dreams" Text
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             if (smallDreamRef.current && showSmallDreamText) {
                 smallDreamRef.current.style.opacity = '1';
 
-                const tl = gsap.timeline({
+                tl5.current = gsap.timeline({
                     onComplete: () => {
                         if (smallDreamRef.current) {
                             smallDreamRef.current.style.zIndex = '0';
@@ -412,7 +403,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     }
                 });
 
-                tl.to(smallDreamRef.current, {
+                tl5.current.to(smallDreamRef.current, {
                     opacity: 1,
                     duration: 1,
                     delay: 1,
@@ -432,25 +423,31 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
     const smoothAppear = () => {
+        useLayoutEffect(() => {
+            let ctx = gsap.context(() => {
+                gsap.to(videoContainerRef.current, {
 
-        gsap.to(videoContainerRef.current, {
+                    opacity: 1, duration: 1, onComplete: () => {
 
-            opacity: 1, duration: 1, onComplete: () => {
+                        setShowVideo(true);
 
-                setShowVideo(true);
+                        if (videoRef.current) {
+                            videoRef.current.play().then(() => {
 
-                if (videoRef.current) {
-                    videoRef.current.play().then(() => {
+                                setIsPlaying(true);  // Update the state to reflect that the video is playing
+                            }).catch((error) => {
+                                console.error("Video play failed:", error);
+                            });
+                        }
+                    }
+                });
 
-                        setIsPlaying(true);  // Update the state to reflect that the video is playing
-                    }).catch((error) => {
-                        console.error("Video play failed:", error);
-                    });
-                }
-            }
-        });
+                setShowPlayAgainButton(false);
+            });
+            return () => ctx.revert(); // <-- CLEANUP!
+        }, []);
 
-        setShowPlayAgainButton(false);
+
     };
 
     const scrollToTopAndPlayAgain = () => {
@@ -510,6 +507,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     };
 
     const smoothDisappearHeader = () => {
+
         if (headerRef.current) {
             gsap.to(headerRef.current, {
                 opacity: 0,

@@ -1,18 +1,17 @@
 'use client';
 // MaximumComfortMeetsTotalBlackout.tsx
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 
-gsap.registerPlugin(ScrollTrigger);
 
 const MaximumComfortMeetsTotalBlackout = () => {
     const crawlContainerRef = useRef(null);
     const whereverRef = useRef(null);
     const wheneverRef = useRef(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
         gsap.to(crawlContainerRef.current, {

@@ -25,6 +25,7 @@ const MaskSequence: React.FC = () => {
             gsap.ticker.lagSmoothing(0);
             // Canvas code
             if (canvasRefVideo.current) {
+
                 const canvas = canvasRefVideo.current;
 
                 canvas.width = 960;
@@ -78,6 +79,7 @@ const MaskSequence: React.FC = () => {
 
                     },
                     onUpdate: render,
+
                 });
 
                 gsap.fromTo(canvasRefVideo.current, {
@@ -104,6 +106,17 @@ const MaskSequence: React.FC = () => {
                         scrub: true,
 
                     },
+                    onStart: () => {
+                        if (canvasRefVideo.current) {
+                            canvasRefVideo.current.style.willChange = 'transform';
+                        }
+                    },
+                    onComplete: () => {
+                        if (canvasRefVideo.current) {
+                            canvasRefVideo.current.style.willChange = 'auto';
+                        }
+                    },
+
                 });
 
                 images[0].onload = render
@@ -116,7 +129,7 @@ const MaskSequence: React.FC = () => {
     return (
         <div className="m-0 p-0">
             <div className="canvas-container h-[35vh] md:h-[50vh] xl:min-h-[45vh] 2xl:min-h-[50vh] 3xl:min-h-[61vh] ">
-                <canvas ref={canvasRefVideo} id="hero-lightpass"
+                <canvas ref={canvasRefVideo} id="hero-lightpass" style={{willChange: "transform"}}
                         className={"max-h-[40vh]  2xs:max-h-[48vh] mt-[22vh] 2xs:mt-[20vh] max-w-[98vw] md:max-h-[50vh] lg:max-h-[55vh] xl:max-h-[58vh] 2xl:max-h-[63vh] 3xl:max-h-[65vh] md:mt-[12vh] md:max-w-[100vw]"}/>
 
             </div>
