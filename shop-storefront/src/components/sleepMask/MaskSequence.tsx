@@ -1,20 +1,16 @@
 'use client';
 
 import gsap from "gsap";
-import React, {useEffect, useRef} from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
 import Lenis from '@studio-freight/lenis'
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 const MaskSequence: React.FC = () => {
     const canvasRefVideo = useRef<HTMLCanvasElement | null>(null);
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
             const lenis = new Lenis();
@@ -72,31 +68,27 @@ const MaskSequence: React.FC = () => {
                     frame: frameCount - 1,
                     snap: "frame",
                     ease: "slow",
+
+
                     scrollTrigger: {
                         trigger: ".pin-video",
                         start: "top",
                         end: "+=50%",
                         scrub: true,
+
                     },
                     onUpdate: render,
                 });
 
-                // Fade in the mask
-                gsap.from(canvasRefVideo.current, {
-                    duration: 2,
+                gsap.fromTo(canvasRefVideo.current, {
                     opacity: 0,
                     ease: "slow",
                     delay: 0.35
-
-                });
-
-                // fade in the mask from 0 to 1
-                gsap.to(canvasRefVideo.current, {
-                    duration: 2,
+                }, {
                     opacity: 1,
                     ease: "power2.out",
-                    delay: 0.35,
-                });
+                    delay: 0.35
+                })
 
 
                 // Add scaling at the end of the ScrollTrigger
@@ -111,16 +103,14 @@ const MaskSequence: React.FC = () => {
                         end: "+=100%",
                         scrub: true,
 
-
                     },
                 });
 
-                images[0].onload = render;
-
+                images[0].onload = render
 
             }
         });
-        return () => ctx.revert(); // <-- CLEANUP!
+        return () => ctx.revert();
     }, [])
 
     return (

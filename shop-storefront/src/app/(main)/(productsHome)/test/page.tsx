@@ -13,10 +13,7 @@ import ThinFeatureDandelions from "@/components/sleepMask/ThinFeatureDandelions"
 import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
 import ProductChoice from '@/components/sleepMask/ProductChoice';
 import { SleepMaskOneData, SleepMaskCustomData } from '@/utils/productData';
-import ProductChoiceBlue from "@/components/sleepMask/ProductChoiceBlue";
-import ProductChoiceBlueSecond from "@/components/sleepMask/ProductChoiceBlueSecond";
-import ProductChoiceBlackGray from "@/components/sleepMask/ProductChoiceBlackGray";
-import ProductChoiceBlackBlue from "@/components/sleepMask/ProductChoiceBlackBlue";
+
 import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
 
 export const metadata = {
@@ -65,11 +62,6 @@ export default function TestPage( {shouldPlayParticles}: TestProps) {
 
 
                 {/*<ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlueSecond product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlackGray product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-                {/*<ProductChoiceBlackBlue product1={SleepMaskOneData} product2={SleepMaskCustomData} currentProductTitle="Sleep Mask One" />*/}
-
 
 
             {/*<FaceStory*/}
