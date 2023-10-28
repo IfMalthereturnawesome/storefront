@@ -423,8 +423,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
     const smoothAppear = () => {
-        useLayoutEffect(() => {
-            let ctx = gsap.context(() => {
+
                 gsap.to(videoContainerRef.current, {
 
                     opacity: 1, duration: 1, onComplete: () => {
@@ -443,10 +442,6 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 });
 
                 setShowPlayAgainButton(false);
-            });
-            return () => ctx.revert(); // <-- CLEANUP!
-        }, []);
-
 
     };
 

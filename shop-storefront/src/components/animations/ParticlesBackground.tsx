@@ -23,8 +23,10 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
     const intervalIdRef = useRef<number | NodeJS.Timeout | null>(null);
     const timeoutIdRef = useRef<number | NodeJS.Timeout | null>(null);
     const removeIntervalIdRef = useRef<number | NodeJS.Timeout | null>(null);
+    const [showParticles, setShowParticles] = useState(true);
 
     const [individualParticleOptions, setIndividualParticleOptions] = useState({
+
 
         move: {
             enable: true,
@@ -66,6 +68,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
         autoPlay: false,
 
 
+
         size: {value: {min: 5, max: 15}, random: true, anim: {speed: 4, size_min: 5}},
         opacity: {value: 0.7, random: false, anim: {enable: true, speed: 0.5, opacity_min: 0.3, sync: true}},
     })
@@ -75,6 +78,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
             color: {
                 value: "#030203",
             },
+
         },
         fpsLimit: 60,
         autoPlay: false,
@@ -181,8 +185,10 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
                 }
             },
             fullScreen: {
-                enable: true,
-            }
+                enable: false,
+                zIndex: -1,
+            },
+
         },
         polygon: {
 
@@ -234,10 +240,13 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
                     removeIntervalIdRef.current = setTimeout(() => {
                         setInterval(() => {
                             for (let i = 0; i < REMOVE_PARTICLES_COUNT && container.particles.count > 0; i++) {
-                                container.particles.removeAt(30);
+                                container.particles.removeAt(14);
                             }
+
+
                             if (container.particles.count <= 0) {
                                 if (removeIntervalIdRef.current) clearInterval(removeIntervalIdRef.current as any);
+                                setShowParticles(false)
                             }
                         }, REMOVE_PARTICLES_INTERVAL);
                     }, REMOVE_DELAY);
@@ -268,21 +277,25 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
             if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current as any);
             if (removeIntervalIdRef.current) clearInterval(removeIntervalIdRef.current as any);
 
+
+
+
         };
     }, []);
 
 
-    return (
+
+    return showParticles ? ( // <-- Conditionally render based on showParticles
         <Particles
             id="tsparticles"
             init={particlesInit}
             // @ts-ignore
             loaded={particlesLoaded}
-            className="absolute top-0 left-2 right-2 z-[0] "
+            className="absolute top-0 left-0 z-[0] tsparticles-canvas-el"
             // @ts-ignore
             options={particleOptions}
         />
-    );
+    ) : null; // <-- Return null when you don't want to render anything
 };
 
 export default ParticlesBackground;

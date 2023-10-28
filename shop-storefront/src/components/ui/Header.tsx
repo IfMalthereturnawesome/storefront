@@ -190,7 +190,7 @@ export default function Header({className}: HeaderProps) {
                                     <SecondaryButton variant={"fourth"}
                                                      className={"rounded-[0.5rem] capitalize group text-sm sm:text-md !py-1 !px-2 !min-h-[1.1rem] " +
                                                          "2xs:!py-1 2xs:!px-3 2xs:!min-h-[1.2rem]" +
-                                                         "sm:!py-2 sm:!px-4 sm:!min-h-[1.5rem]"}>
+                                                         "sm:!py-2 sm:!px-4 sm:!min-h-[1.5rem] xl:!min-h-[2.5rem]"}>
                                         Buy now
                                     </SecondaryButton>
                                 </Link>
