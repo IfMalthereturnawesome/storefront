@@ -531,7 +531,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
             <div ref={wrapperRef} className="relative h-screen lg:h-[120vh]  pin-video  z-[1]" id={"smooth-content"}>
 
                 <div ref={headerRef}
-                     className="absolute top-[18vh] w-[99vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
+                     className="absolute top-[18vh] w-[99vw] md:w-[99.2vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
                      style={{zIndex: 1}}>
                     achieve your dreams
                 </div>
@@ -540,7 +540,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 {(showSmallDreamText && showOneNightText) && (
 
                     <div
-                        className={`w-[99vw] h-[120vh] pt-[8vh] 3xs:pt-[9.5vh] 2xs:pt-[11-vh] md:pt-[5vh] lg:pt-[6vh] 3xl:pt-[10vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] md:w-[99.2vw] h-[120vh] pt-[8vh] 3xs:pt-[9.5vh] 2xs:pt-[11-vh] md:pt-[5vh] lg:pt-[6vh] 3xl:pt-[10vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
                         <h3 className={"header-bg-clip text-lg xs:text-xl lg:text-2xl font-sans hidden my-0 md:my-2 dark:block"}>
                             {product}
                         </h3>
