@@ -33,7 +33,7 @@ const ScrollBar: React.FC<ScrollBarProps> = ({ children }) => {
                             } else if (scrollProgress < 0.80) {
                                 newOpacity = 0.4;
                             } else {
-                                newOpacity = 0.4 - ((scrollProgress - 0.85) * 2);
+                                newOpacity = 0.3 - ((scrollProgress - 0.85) * 2);
                             }
 
                             gsap.set(scrollTextRef.current, {

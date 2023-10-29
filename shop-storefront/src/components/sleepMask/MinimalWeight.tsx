@@ -240,17 +240,17 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
             leftSideTL.current.fromTo(
                 leftSideRef.current,
                 {
-                    y: '-30vh',
+                    y: '-54vh',
                     x: '-100px',
                     rotation: 0,
-                    scale: 0,
+                    scale: 0.7,
                     immediateRender: false,
                 },
                 {
                     y: '0vh',
                     x: '0px',
                     scale: 1,
-                    duration: 2.8,
+                    duration: 2.2,
                     ease: 'sine.in',
                     onStart: () => {
                         setShouldPlayParticles(true);
@@ -265,21 +265,28 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .to(leverRef.current, {
                     skewX: 3,
                     rotation: "-=2",
-                    duration: 1,
+                    duration: 0.5,
                     onUpdate: syncWithLever
                 });
+
 
 
             rightSideTL.current
                 .fromTo(rightSideRef.current,
                     {
-                        y: '-300px',
-                        scale: 0
+                        y: '-550px',
+                        x: '420px',
+                        rotation: 90,
+                        scale: 0.7,
+                        opacity: 0.2,
                     },
                     {
                         y: '0px',
+                        x: '0px',
                         scale: 1,
-                        duration: 1,
+                        opacity: 1,
+                        rotation: 0,
+                        duration: 1.5,
                         ease: 'power3.in',
                         onUpdate: syncWithLever,
                         onComplete: () => {
@@ -288,12 +295,12 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     });
 
 
-                rightSideTL.current.to(leverRef.current, {
-                    rotation: "+=15",
-                    skewX: -3,
-                    duration: 0.4,
-                    onUpdate: syncWithLever
-                });
+            rightSideTL.current.to(leverRef.current, {
+                rotation: "+=15",
+                skewX: -3,
+                duration: 0.4,
+                onUpdate: syncWithLever
+            });
 
 
             makeRightSideTurn.current
@@ -321,12 +328,12 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     delay: 0.4,
                     opacity: 0,
                 })
-                // .to(initialScrollTextRef.current, {
-                //     opacity: 0.4,
-                //     onStart: () => {
-                //         isScrollBarTimelineTriggered = true;
-                //     }
-                // });
+            // .to(initialScrollTextRef.current, {
+            //     opacity: 0.4,
+            //     onStart: () => {
+            //         isScrollBarTimelineTriggered = true;
+            //     }
+            // });
 
 
             // scrollTextTimeline.current
@@ -369,9 +376,9 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 .add(scrollTextTimeline.current)
 
 
-          ScrollTrigger.create({
+            ScrollTrigger.create({
                 trigger: '.pinMinimalWeightFeature',
-                start: `center center`,
+                start: `top+=200 bottom`,
                 end: '+=125%',
                 pin: false,
                 markers: true,
@@ -495,7 +502,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                             <div ref={rightSideRef}
                                  className="absolute top-[44.0%] left-[522.938px] font-poppins text-3xl font-extrabold text-[#faf7f7]"
-                                 style={{lineHeight: 1.1, willChange: "transform"}}>
+                                 style={{lineHeight: 1.1, willChange: "transform", opacity:0}}>
                                 <div ref={topWordRightRef}>Maximum</div>
                                 <div
                                     className="stroke-white"
@@ -524,40 +531,40 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     </div>
                 </div>
 
-        {/*        <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>*/}
-        {/*            <div*/}
-        {/*                ref={initialScrollTextRef}*/}
-        {/*                style={{*/}
-        {/*                    position: 'absolute',*/}
-        {/*                    right: 20,*/}
-        {/*                    top: 800,*/}
-        {/*                    writingMode: 'vertical-rl',*/}
-        {/*                    display: 'flex',*/}
-        {/*                    flexDirection: 'row'*/}
-        {/*                }}*/}
-        {/*                className={"opacity-0"}*/}
-        {/*            >*/}
-        {/*                <span*/}
-        {/*                    className={"font-poppins text-9xl scale-[1.2] font-extrabold text-[#faf7f7] mb-14 "}>Discover </span>*/}
-        {/*                <div>*/}
-        {/*                    <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>*/}
-        {/*                    <div*/}
-        {/*                        className=" stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"*/}
-        {/*                        style={{*/}
-        {/*                            WebkitTextStroke: "1px white",*/}
-        {/*                            WebkitTextFillColor: "transparent"*/}
-        {/*                        }}*/}
-        {/*                    >*/}
-        {/*                        Comfort*/}
-        {/*                    </div>*/}
-        {/*                </div>*/}
-        {/*                <span>*/}
-        {/*            <ArrowDownIcon width={40} height={40}*/}
-        {/*                           className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>*/}
+                {/*        <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>*/}
+                {/*            <div*/}
+                {/*                ref={initialScrollTextRef}*/}
+                {/*                style={{*/}
+                {/*                    position: 'absolute',*/}
+                {/*                    right: 20,*/}
+                {/*                    top: 800,*/}
+                {/*                    writingMode: 'vertical-rl',*/}
+                {/*                    display: 'flex',*/}
+                {/*                    flexDirection: 'row'*/}
+                {/*                }}*/}
+                {/*                className={"opacity-0"}*/}
+                {/*            >*/}
+                {/*                <span*/}
+                {/*                    className={"font-poppins text-9xl scale-[1.2] font-extrabold text-[#faf7f7] mb-14 "}>Discover </span>*/}
+                {/*                <div>*/}
+                {/*                    <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>*/}
+                {/*                    <div*/}
+                {/*                        className=" stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"*/}
+                {/*                        style={{*/}
+                {/*                            WebkitTextStroke: "1px white",*/}
+                {/*                            WebkitTextFillColor: "transparent"*/}
+                {/*                        }}*/}
+                {/*                    >*/}
+                {/*                        Comfort*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*                <span>*/}
+                {/*            <ArrowDownIcon width={40} height={40}*/}
+                {/*                           className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>*/}
 
-        {/*</span>*/}
-        {/*            </div>*/}
-        {/*        </Link>*/}
+                {/*</span>*/}
+                {/*            </div>*/}
+                {/*        </Link>*/}
 
 
             </section>

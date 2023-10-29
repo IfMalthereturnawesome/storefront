@@ -67,7 +67,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                     stagger: {amount: 0.5},
                     ease: 'power2.inOut',
 
-                }, '<=-1');
+                }, '<');
 
 
                 tl.current.to(split.chars, {
@@ -145,11 +145,11 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                 </h3>
                 <p
                     ref={bigDescriptionTextRef}
-                    className="font-sans  leading-7 font-[400] text-3xl tracking-tight mb-2 text-left text-slate-12">
+                    className="font-sans  leading-7 font-[400] text-3xl tracking-tight mb-2 text-left text-custom-white">
                     {bigDescriptionText}
                 </p>
                 <p data-aos="fade-up"
-                   className="font-sans font-semibold leading-7 text-xl tracking-tight text-left text-slate-12">
+                   className="font-sans font-semibold leading-7 text-xl tracking-tight text-left text-custom-white">
                     {descriptionText}
                 </p>
             </div>
