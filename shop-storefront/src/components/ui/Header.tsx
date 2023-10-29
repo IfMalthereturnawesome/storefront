@@ -32,7 +32,7 @@ export default function Header({className}: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollPosition, setLastScrollPosition] = useState(0);
+
     const [topNavBanner, setTopNavBanner] = useState(true);
 
 
@@ -45,38 +45,45 @@ export default function Header({className}: HeaderProps) {
 
     const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
 
+    const [lastDirectionChangePosition, setLastDirectionChangePosition] = useState(0);
+    const [scrollingUp, setScrollingUp] = useState(false);
+    const lastScrollPosition = useRef(0);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollPosition = window.scrollY;
-            const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition);
+    const handleScroll = () => {
+        const currentScrollPosition = window.scrollY;
 
-            if (currentScrollPosition < 100) { // near top of the page
-                setTopNavBanner(true);
-            } else {
+        if (currentScrollPosition < 100) { // near top of the page
+            setTopNavBanner(true);
+            setIsVisible(true);
+            lastScrollPosition.current = currentScrollPosition;
+            return;
+        }
+
+        const isScrollingUpNow = currentScrollPosition < lastScrollPosition.current;
+        const scrollDifference = Math.abs(currentScrollPosition - lastScrollPosition.current);
+
+        if (isScrollingUpNow !== scrollingUp) {
+            setLastDirectionChangePosition(currentScrollPosition);
+            setScrollingUp(isScrollingUpNow);
+        }
+
+        if (scrollDifference >= scrollThreshold) {
+            if (isScrollingUpNow && (currentScrollPosition <= lastDirectionChangePosition - scrollThreshold)) {
                 setTopNavBanner(false);
-            }
-
-            if (currentScrollPosition < lastScrollPosition) {
                 setIsVisible(true);
-            } else {
+            } else if (!isScrollingUpNow) {
+                setTopNavBanner(false);
                 setIsVisible(false);
             }
+            lastScrollPosition.current = currentScrollPosition;
+        }
+    };
 
-            if (scrollDifference >= scrollThreshold) {
-                if (currentScrollPosition < lastScrollPosition) {
-                    setIsVisible(true);
-                } else {
-                    setIsVisible(false);
-                }
-                setLastScrollPosition(currentScrollPosition);
-            }
-        };
-
+    useEffect(() => {
         window.addEventListener("scroll", handleScroll);
 
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollPosition]);
+    }, [scrollingUp]);
 
 
     return (

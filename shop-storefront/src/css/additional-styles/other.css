@@ -58,8 +58,9 @@ Form.Message {
     top: 0;
     left: 0;
     right: 0;
-    visibility: visible;
-    transition: visibility 0.1s;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 .headerHidden {
@@ -67,9 +68,11 @@ Form.Message {
     top: 0;
     left: 0;
     right: 0;
-    visibility: hidden;
-    transition: visibility 0.1s;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.3s, transform 0.3s;
 }
+
 
 
 .headerFullWidth {
