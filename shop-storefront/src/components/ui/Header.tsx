@@ -5,20 +5,14 @@ import Image from 'next/image';
 import {ThemeToggle} from '../darkMode/ThemeToggle';
 import React, {useState, useEffect, useRef} from 'react';
 import {Popover} from '@headlessui/react';
-import ResourceNav from './ResourceNav';
-import SupportNav from './SupportNav';
-import ProductNav from './ProductNav';
-import BlogNav from './BlogNav';
-import TopNavBanner from './NavBanner';
 import {MobileMenu} from "@/components/ui/MobileMenu";
 import {Bars3Icon} from '@heroicons/react/24/outline';
 import {UserIcon} from '@heroicons/react/24/outline';
 import Search from '../resources/search';
-import DesktopSearchModal from "@modules/search/templates/desktop-search-modal";
 import CartDropdown from "@modules/layout/components/cart-dropdown";
 import TopNav from "@/components/ui/TopNav";
 import NavigationMenuDropdowns from "@/components/ui/navigation-menu";
-import {useRouter, usePathname, useSearchParams} from 'next/navigation'
+import {usePathname} from 'next/navigation'
 import SecondaryButton from "@modules/common/components/button/SecondaryButton";
 
 import {useCart} from "medusa-react";
@@ -30,21 +24,14 @@ interface HeaderProps {
 
 export default function Header({className}: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(true);
-
     const [topNavBanner, setTopNavBanner] = useState(true);
-
-
     const pathname = usePathname();
-
     const isOnProductPage = pathname.includes('/products/') || pathname === '/';
-
-
     const {cart, totalItems} = useCart()
 
-    const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
 
+    const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
     const [lastDirectionChangePosition, setLastDirectionChangePosition] = useState(0);
     const [scrollingUp, setScrollingUp] = useState(false);
     const lastScrollPosition = useRef(0);
@@ -52,7 +39,7 @@ export default function Header({className}: HeaderProps) {
     const handleScroll = () => {
         const currentScrollPosition = window.scrollY;
 
-        if (currentScrollPosition < 100) { // near top of the page
+        if (currentScrollPosition < 100) {
             setTopNavBanner(true);
             setIsVisible(true);
             lastScrollPosition.current = currentScrollPosition;
