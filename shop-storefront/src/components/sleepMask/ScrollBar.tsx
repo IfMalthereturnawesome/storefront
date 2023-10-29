@@ -55,7 +55,7 @@ const ScrollBar: React.FC<ScrollBarProps> = ({ children }) => {
     return (
         <div style={{ position: 'relative', overflow: 'hidden'}} ref={scrollContainerRef}>
             {children}
-            <div ref={scrollTextRef} style={{ position: 'absolute', right: 20, top: -20, writingMode: 'vertical-rl', zIndex: 41 }} className={"opacity-50"} >
+            <div ref={scrollTextRef} style={{ position: 'absolute', right: 20, top: -20, writingMode: 'vertical-rl', zIndex: 41 }} className={"opacity-50 cursor-default select-none"} >
                 <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7]"}>Maximum</span>
                 <div
                     className="stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7]"

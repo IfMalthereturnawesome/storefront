@@ -550,7 +550,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 </div>
                             )}
                         </div>
-                        <div className="">
+                        <div className="2xl:pt-1">
                             {showOneNightText && (
                                 <div ref={oneNightRef}
                                      className="flex items-center justify-center text-[#faf7f7] text-opacity-60 font-bold text-3xl 2xs:text-6xl xs:text-7xl  lg:text-8xl"

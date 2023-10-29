@@ -321,35 +321,35 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     delay: 0.4,
                     opacity: 0,
                 })
-                .to(initialScrollTextRef.current, {
-                    opacity: 0.4,
-                    onStart: () => {
-                        isScrollBarTimelineTriggered = true;
-                    }
-                });
+                // .to(initialScrollTextRef.current, {
+                //     opacity: 0.4,
+                //     onStart: () => {
+                //         isScrollBarTimelineTriggered = true;
+                //     }
+                // });
 
 
-            scrollTextTimeline.current
-                .to(initialScrollTextRef.current, {
-                    opacity: 0.2,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: ".pinMinimalWeightFeature",
-                        start: "top top",
-                        end: "+=100%",
-                        scrub: true,
-                        onUpdate: self => {
-                            if (isScrollBarTimelineTriggered) {
-                                // If the scrollbar timeline has been triggered, set opacity to 0.4
-                                gsap.set(initialScrollTextRef.current, {opacity: 0.4});
-                            } else {
-                                let progress = self.progress;
-                                let newOpacity = 0 * progress;
-                                gsap.set(initialScrollTextRef.current, {opacity: newOpacity}); // Set the opacity between 0 and 0.2 based on scroll progress
-                            }
-                        }
-                    }
-                });
+            // scrollTextTimeline.current
+            //     .to(initialScrollTextRef.current, {
+            //         opacity: 0.2,
+            //         duration: 1,
+            //         scrollTrigger: {
+            //             trigger: ".pinMinimalWeightFeature",
+            //             start: "top top",
+            //             end: "+=100%",
+            //             scrub: true,
+            //             onUpdate: self => {
+            //                 if (isScrollBarTimelineTriggered) {
+            //                     // If the scrollbar timeline has been triggered, set opacity to 0.4
+            //                     gsap.set(initialScrollTextRef.current, {opacity: 0.4});
+            //                 } else {
+            //                     let progress = self.progress;
+            //                     let newOpacity = 0 * progress;
+            //                     gsap.set(initialScrollTextRef.current, {opacity: newOpacity}); // Set the opacity between 0 and 0.2 based on scroll progress
+            //                 }
+            //             }
+            //         }
+            //     });
 
             descriptionTextTimeline.current
                 .to(extraInfoRef.current, {
@@ -524,40 +524,40 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     </div>
                 </div>
 
-                <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>
-                    <div
-                        ref={initialScrollTextRef}
-                        style={{
-                            position: 'absolute',
-                            right: 20,
-                            top: 320,
-                            writingMode: 'vertical-rl',
-                            display: 'flex',
-                            flexDirection: 'row'
-                        }}
-                        className={"opacity-0"}
-                    >
-                        <span
-                            className={"font-poppins text-9xl scale-[1.2] font-extrabold text-[#faf7f7] mb-14 "}>Discover </span>
-                        <div>
-                            <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>
-                            <div
-                                className=" stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"
-                                style={{
-                                    WebkitTextStroke: "1px white",
-                                    WebkitTextFillColor: "transparent"
-                                }}
-                            >
-                                Comfort
-                            </div>
-                        </div>
-                        <span>
-                    <ArrowDownIcon width={40} height={40}
-                                   className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>
+        {/*        <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>*/}
+        {/*            <div*/}
+        {/*                ref={initialScrollTextRef}*/}
+        {/*                style={{*/}
+        {/*                    position: 'absolute',*/}
+        {/*                    right: 20,*/}
+        {/*                    top: 800,*/}
+        {/*                    writingMode: 'vertical-rl',*/}
+        {/*                    display: 'flex',*/}
+        {/*                    flexDirection: 'row'*/}
+        {/*                }}*/}
+        {/*                className={"opacity-0"}*/}
+        {/*            >*/}
+        {/*                <span*/}
+        {/*                    className={"font-poppins text-9xl scale-[1.2] font-extrabold text-[#faf7f7] mb-14 "}>Discover </span>*/}
+        {/*                <div>*/}
+        {/*                    <span className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>*/}
+        {/*                    <div*/}
+        {/*                        className=" stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"*/}
+        {/*                        style={{*/}
+        {/*                            WebkitTextStroke: "1px white",*/}
+        {/*                            WebkitTextFillColor: "transparent"*/}
+        {/*                        }}*/}
+        {/*                    >*/}
+        {/*                        Comfort*/}
+        {/*                    </div>*/}
+        {/*                </div>*/}
+        {/*                <span>*/}
+        {/*            <ArrowDownIcon width={40} height={40}*/}
+        {/*                           className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white"}/>*/}
 
-        </span>
-                    </div>
-                </Link>
+        {/*</span>*/}
+        {/*            </div>*/}
+        {/*        </Link>*/}
 
 
             </section>

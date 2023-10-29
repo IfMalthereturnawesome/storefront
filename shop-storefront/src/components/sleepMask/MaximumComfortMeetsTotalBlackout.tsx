@@ -51,7 +51,7 @@ const MaximumComfortMeetsTotalBlackout = () => {
         <div className="relative z-[1]">
             <div
                 id="total-blackout"
-                className="w-full h-[100vh] flex flex-col justify-center items-center bg-black font-poppins text-8xl font-extrabold text-[#faf7f7] space-y-8 transform perspective-500 rotateX-25"
+                className="w-full h-[100vh] flex flex-col justify-center items-center  font-poppins text-8xl font-extrabold text-[#faf7f7] space-y-8 transform perspective-500 rotateX-25"
                 ref={crawlContainerRef}
             >
                 <div data-aos="fade-up"  data-aos-anchor-placement="center-bottom" data-aos-duration="2000">
@@ -81,7 +81,7 @@ const MaximumComfortMeetsTotalBlackout = () => {
                     <div className="ml-4 opacity-0" ref={wheneverRef}>Whenever.</div>
                 </div>
             </div>
-            <div className={"h-[25vh] relative z-[1] bg-black"}></div>
+            <div className={"h-[25vh] relative z-[1] bg-black/75"}></div>
         </div>
     );
 

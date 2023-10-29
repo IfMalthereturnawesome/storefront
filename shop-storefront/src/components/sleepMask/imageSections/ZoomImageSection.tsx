@@ -4,6 +4,10 @@ import React, {useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import {ArrowDownIcon} from "@heroicons/react/24/solid";
+import Link from "next/link";
+import SplitType from 'split-type';
+
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -12,17 +16,27 @@ if (typeof window !== 'undefined') {
 interface ZoomImageSectionProps {
     imageSrc: string;
     headerLine1: string;
+    bigDescriptionText: string;
     descriptionText: string;
+
 
 }
 
 const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                                                                imageSrc, headerLine1,
+                                                               bigDescriptionText,
                                                                descriptionText,
                                                            }) => {
+    const initialScrollTextRef = useRef(null);
+    const maximumTextRef = useRef(null);
+    const comfortTextRef = useRef(null);
+    const discoverTextRef = useRef(null);
+    const bigDescriptionTextRef = useRef(null);
+
     const imageRef = useRef(null);
     const headerRef = useRef(null);
     const tl = useRef(null);
+    const tl2 = useRef(null);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -35,50 +49,148 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                 },
             });
 
+            // Image zoom animation
             tl.current.fromTo(
                 imageRef.current,
-                {scale: 1.22},
+                {scale: 1.18},
                 {scale: 1, duration: 3}
             );
 
+
+            if (bigDescriptionTextRef.current) {
+                const split = new SplitType(bigDescriptionTextRef.current, {types: 'lines, words, chars'});
+
+                tl.current.from(split.chars, {
+                    opacity: 0,
+                    color: '#faf7f7',
+                    scale: 0.7,
+                    stagger: {amount: 0.5},
+                    ease: 'power2.inOut',
+
+                }, '<=-1');
+
+
+                tl.current.to(split.chars, {
+                        color: '#fdc500',
+                        opacity: 0.8,
+                        scale: 1,
+                        stagger: {amount: 1.5},
+                        ease: 'power1.out',
+
+                    },
+                    '<');
+            }
+
+
+            tl2.current = gsap.timeline({
+                scrollTrigger: {
+                    trigger: imageRef.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    scrub: true,
+                },
+            });
+
+            // initialScrollText animation
+            tl2.current.to(
+                initialScrollTextRef.current,
+                {opacity: 0.5, duration: 3, stagger: 0.5}
+            );
+
+            // discoverTextRef animation
+            tl2.current.fromTo(
+                discoverTextRef.current,
+                {y: 100, opacity: 0},
+                {y: 0, opacity: 1, duration: 6}
+            );
+
+            // maximumTextRef and comfortTextRef animation
+            tl2.current.fromTo(
+                [maximumTextRef.current, comfortTextRef.current],
+                {y: -50, opacity: 0},
+                {y: 0, opacity: 1, duration: 3, stagger: 0.5}
+            );
+
+
+            // // arrowRef animation
+            // tl2.current.to(
+            //     arrowRef.current,
+            //     { opacity: 0.5, duration: 3, delay:2 }
+            // );
+
+
         });
         return () => {
-
             ctx.revert();
-
-
         };
-
     }, []);
 
-    return (
-        <div className="relative z-[1]">
-            <div className="grain">
-                <div className="grain-texture">
 
-                </div>
-            </div>
-            <div className="w-full h-screen relative" id={"increase-melatonin-production"}>
+    return (
+        <div className="relative z-[1]" id={"increase-melatonin-production"}>
+
+            <div className="w-full h-screen">
                 <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
-                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask" width={1920} height={1080}
+                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask"
+                       width={1920}
+                       height={1080}
                        quality={90}/>
+            </div>
+
+            <div
+                className="absolute top-[38%] left-[15%] transform  -translate-y-1/2 p-4 max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:flex flex-col justify-center">
                 <h3 ref={headerRef}
-                    className="absolute top-1/3 right-1/4 lg:right-1/3 transform -translate-y-1/2 text-8xl lg:text-9xl font-bold text-white break-words">
+                    className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[30vw] 3xl:max-w-[33vw]">
                     {headerLine1}
                 </h3>
-            </div>
-            <div
-                className="absolute top-[38.3%] right-1/4 lg:right-[50.7%] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block">
+                <p
+                    ref={bigDescriptionTextRef}
+                    className="font-sans  leading-7 font-[400] text-3xl tracking-tight mb-2 text-left text-slate-12">
+                    {bigDescriptionText}
+                </p>
                 <p data-aos="fade-up"
-                   className={"font-sans font-semibold leading-7 tracking-tight text-left text-slate-12"}>
+                   className="font-sans font-semibold leading-7 text-xl tracking-tight text-left text-slate-12">
                     {descriptionText}
                 </p>
             </div>
-            <div className="text-left py-8 px-4 max-w-xs sm:max-w-sm md:max-w-md mx-auto lg:hidden mt-4">
-                <p className={"font-semibold tracking-tighter text-xl text-slate-1"}>
-                    {descriptionText}
-                </p>
-            </div>
+
+
+            <Link href="#SlimAndSoft" style={{textDecoration: 'none'}} className={"group"}>
+                <div
+                    ref={initialScrollTextRef}
+                    style={{
+                        position: 'absolute',
+                        right: 18,
+                        bottom: -180,
+                        writingMode: 'vertical-rl',
+                        display: 'flex',
+                        flexDirection: 'row'
+                    }}
+                    className={"opacity-0"}
+                >
+                        <span ref={discoverTextRef}
+                              className={"font-poppins text-9xl scale-[1.2] font-extrabold text-[#faf7f7] mb-16 "}>Discover </span>
+                    <div>
+                        <span ref={maximumTextRef}
+                              className={"font-poppins text-3xl font-extrabold text-[#faf7f7] block"}>Maximum</span>
+                        <div ref={comfortTextRef}
+                             className=" stroke-white bg-transparent font-poppins text-3xl font-extrabold text-[#faf7f7] block"
+                             style={{
+                                 WebkitTextStroke: "1px white",
+                                 WebkitTextFillColor: "transparent"
+                             }}
+                        >
+                            Comfort
+                        </div>
+                    </div>
+                    <span>
+                    {/*<ArrowDownIcon width={40} height={40}*/}
+                        {/*               ref={arrowRef}*/}
+                        {/*               className={"mr-5 mt-4 -mb-6 transition-transform group-hover:translate-y-4 stroke-white opacity-0"}/>*/}
+
+        </span>
+                </div>
+            </Link>
         </div>
     );
 };

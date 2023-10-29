@@ -584,7 +584,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
                     removeIntervalIdRef.current = setTimeout(() => {
                         setInterval(() => {
                             for (let i = 0; i < REMOVE_PARTICLES_COUNT && container.particles.count > 0; i++) {
-                                container.particles.removeAt(14);
+                                container.particles.removeAt(0);
                             }
 
 

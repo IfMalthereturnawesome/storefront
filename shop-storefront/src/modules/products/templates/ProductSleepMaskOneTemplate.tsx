@@ -75,7 +75,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
     return (
         <ProductProvider product={product}>
 
-            <div className="bg-mask-black " >
+            <div className="bg-mask-black font-poppins">
                 <VideoAnimation
                     product={"Sleep Mask One"}
                     description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
@@ -87,7 +87,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*DESKTOP START */}
 
-            <div className={"hidden md:block"}>
+            <div className={"hidden lg:block font-poppins"}>
                 <DoubleImageSection
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}
@@ -103,7 +103,8 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
                 <ZoomImageSection imageSrc={"/images/increase-melatonin-production.jpg"}
                                   headerLine1={"Increase melatonin production"}
-                                  descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}/>
+                                  bigDescriptionText={"Can you see your hand in your bedroom?"}
+                                  descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality."}/>
 
 
                 <WrappedComponent/>
@@ -113,7 +114,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*MOBILE START */}
 
-            <div className={"md:hidden block"}>
+            <div className={"lg:hidden block"}>
 
                 <MobileDoubleImageSection
                     headerLine1={"Greet each day with "}
@@ -132,7 +133,8 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
                 <MobileZoomImageSection imageSrc={"/images/increase-melatonin-production-mobile.jpg"}
                                         headerLine1={"Increase melatonin production"}
-                                        descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                                        bigDescriptionText={"Can you see your hand in your bedroom?"}
+                                        descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality."}
                 />
 
 

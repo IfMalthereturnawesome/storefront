@@ -4,6 +4,8 @@ import React, {useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import {ArrowDownIcon} from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -29,6 +31,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     const image1Ref = useRef(null);
     const image2Ref = useRef(null);
     const headerRef = useRef(null);
+
     const tl1 = useRef(null);
     const tl2 = useRef(null);
     const tl3 = useRef(null);
@@ -132,6 +135,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                     </p>
                 </div>
             </div>
+
         </div>
 
     );
@@ -205,7 +209,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     }, []);
 
     return (
-        <div className="relative bg-[#130612] z-[1] block  md:hidden">
+        <div className="relative bg-[#130612] z-[1] block  ">
 
 
             <div className="relative flex flex-col justify-start items-center z-0 h-[100vh]">
