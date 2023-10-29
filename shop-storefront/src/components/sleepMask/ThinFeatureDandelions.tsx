@@ -288,6 +288,7 @@ const ThinFeatureDandelions: React.FC = () => {
                     {/* Container for Image Sequence */}
 
                     <div
+                        id={"ThinFeatureDandelions"}
                         ref={containerRef}
                         className="overflow-hidden grain relative border border-amberA-1 dark:border-amberA-12 w-[99vw] rounded-[2rem] z-[1] shadow-gray-900 shadow-2xl  "
 

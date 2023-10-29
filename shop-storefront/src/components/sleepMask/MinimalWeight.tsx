@@ -240,9 +240,10 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
             leftSideTL.current.fromTo(
                 leftSideRef.current,
                 {
-                    y: '-54vh',
+                    y: '-550px',
                     x: '-100px',
                     rotation: 0,
+                    opacity: 0,
                     scale: 0.7,
                     immediateRender: false,
                 },
@@ -250,6 +251,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                     y: '0vh',
                     x: '0px',
                     scale: 1,
+                    opacity: 1,
                     duration: 2.2,
                     ease: 'sine.in',
                     onStart: () => {
@@ -271,6 +273,10 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
 
 
+
+
+
+
             rightSideTL.current
                 .fromTo(rightSideRef.current,
                     {
@@ -278,7 +284,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                         x: '420px',
                         rotation: 90,
                         scale: 0.7,
-                        opacity: 0.2,
+                        opacity: 0,
                     },
                     {
                         y: '0px',
