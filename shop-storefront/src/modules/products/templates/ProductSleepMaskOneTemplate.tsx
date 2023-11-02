@@ -16,6 +16,7 @@ import HeaderOverlayOnImage from "@/components/sleepMask/imageSections/HeaderOve
 import MobileThinFeature from "@/components/sleepMask/mobile/ThinFeatureMobile";
 import MobileMinimalWeight from "@/components/sleepMask/mobile/MinimalWeightMobile";
 import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile";
+import MobileHeaderOverlayOnImage from "@/components/sleepMask/mobile/HeaderOverlayOnMobile";
 
 
 type ProductsTemplate = {
@@ -71,7 +72,6 @@ const returnsFAQ = [
 ];
 
 
-
 const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
 
@@ -113,6 +113,21 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 <WrappedComponent/>
 
                 <MaximumComfortMeetsTotalBlackout/>
+
+                <HeaderOverlayOnImage
+                    imageUrl="/images/test-images-for-feature2.jpg"
+                    line1="Made for "
+                    line2="side sleepers"
+                    line3="by side sleepers"
+                    textPosition={"left"}
+                />
+                <HeaderOverlayOnImage
+                    imageUrl="/images/swimming.jpg"
+                    line1="Experience"
+                    line2="weightless comfort"
+                    line3="in total darkness"
+                    textPosition={"right"}
+                />
             </div>
 
             {/*DESKTOP END*/}
@@ -142,11 +157,18 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                                         descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality."}
                 />
 
-                <MobileThinFeature />
+                <MobileThinFeature/>
 
-                <MobileMinimalWeight />
+                <MobileMinimalWeight/>
 
-                <MobileMaximumComfort />
+                <MobileMaximumComfort/>
+
+                <MobileHeaderOverlayOnImage  imageUrl="/images/test-images-for-feature2.jpg"
+                                             line1="Made for "
+                                             line2="side sleepers"
+                                             line3="by side sleepers"
+                                             textPosition={"left"}
+                />
 
 
             </div>
@@ -154,27 +176,8 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             {/*MOBILE END */}
 
 
-
-
-
-            <HeaderOverlayOnImage
-                imageUrl="/images/test-images-for-feature2.jpg"
-                line1="Made for "
-                line2="side sleepers"
-                line3="by side sleepers"
-                textPosition={"left"}
-            />
-            <HeaderOverlayOnImage
-                imageUrl="/images/swimming.jpg"
-                line1="Experience"
-                line2="weightless comfort"
-                line3="in total darkness"
-                textPosition={"right"}
-            />
-
-
-
-            <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnsFAQ}/>
+            <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}
+                                returnFAQ={returnsFAQ}/>
 
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>
