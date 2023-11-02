@@ -43,11 +43,11 @@ export default function RootLayout({children}: RootLayoutProps) {
 
 
     return (
-        <html lang="en" className="dark border-2 border-amberA-12 ">
+        <html lang="en" className="dark  md:border-2  border-amber-12">
         <body
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight  antialiased`}
         >
-        {/*<BreakpointsIndicator />*/}
+        <BreakpointsIndicator />
         <ProvidersNextUI>
             <Providers>
                 <div className="flex min-h-screen flex-col overflow-hidden bg-mask-black ">

@@ -63,7 +63,7 @@ const MobileZoomImageSection: React.FC<MobileZoomImageSectionProps> = ({imageSrc
     }, []);
 
     return (
-        <div className="relative bg-cyan-1 z-[1] block ">
+        <div className="relative  z-[1] block ">
 
 
             <div className="relative flex flex-col justify-start items-center z-0 h-[100vh]">
@@ -83,10 +83,10 @@ const MobileZoomImageSection: React.FC<MobileZoomImageSectionProps> = ({imageSrc
 
                 <div
                     className="text-left mt-8 py-8 px-4 flex-row justify-center items-center max-w-xs xs:max-w-sm sm:max-w-lg mx-auto min-h-[250px] h-[30vh]">
-                    <p className="font-semibold tracking-tighter pb-4 text-2xl text-slate-12">
+                    <p className="font-semibold tracking-tighter pb-4 text-2xl font-sans text-slate-12">
                         {bigDescriptionText}
                     </p>
-                    <p className="font-semibold tracking-tighter text-lg text-slate-11">
+                    <p className="font-semibold tracking-tighter text-lg font-sans text-slate-11">
                         {descriptionText}
                     </p>
                 </div>

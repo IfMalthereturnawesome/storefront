@@ -233,7 +233,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                 {/* Description for mobile */}
                 <div
                     className="text-left mt-6 py-8 px-4 flex justify-center items-center max-w-xs xs:max-w-sm sm:max-w-lg mx-auto min-h-[300px] h-[40vh]">
-                    <p className="font-semibold tracking-tighter text-lg text-slate-1 dark:text-custom-white">
+                    <p className="font-semibold font-sans tracking-tighter text-lg text-slate-1 dark:text-custom-white">
                         {descriptionText}
                     </p>
                 </div>

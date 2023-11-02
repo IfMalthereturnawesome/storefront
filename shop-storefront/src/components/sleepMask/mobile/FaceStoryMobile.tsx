@@ -23,7 +23,7 @@ const MobileFaceStory: React.FC<FaceStoryProps> = ({headline, description, image
             {/* Text */}
             <div className="w-full md:w-[49vw] flex flex-col justify-center text-left space-y-4 mt-5 py-8 px-8 2xs:px-4 items-center max-w-xs xs:max-w-sm sm:max-w-lg mx-auto min-h-[300px] h-[40vh]">
                 <h2 className="text-9xl 2xs:text-10xl font-bold text-custom-white tracking-wide !leading-[2.6rem] sm:!leading-[3.5rem]">{headline}</h2>
-                <p className="font-semibold tracking-tighter text-lg text-slate-12">{description}</p>
+                <p className="font-semibold tracking-tighter text-lg font-sans text-slate-8 dark:text-white/70">{description}</p>
             </div>
         </div>
     );

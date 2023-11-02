@@ -76,7 +76,7 @@ Form.Message {
 
 
 .headerFullWidth {
-    width: 99vw;
+    width: 100vw;
     margin: 0 auto!important;
     transition: width 0.3s ease-in-out;
 }
@@ -89,7 +89,7 @@ Form.Message {
 
 
 .headerOnScroll {
-    width: 99vw;
+    width: 100vw;
 
 }
 
@@ -316,4 +316,15 @@ input:checked + .slider:before {
     background-size: 100% 50px, 100% 50px, 100% 20px, 100% 20px;
     background-attachment: local, local, scroll, scroll;
 }
+
+
+.dark .dark-linear-gradient {
+    background: linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919);
+}
+
+.dark .blue-linear-gradient {
+    background: linear-gradient(to bottom, #0b2b35, #0a3441, #0b3d4d, #0a3441, #0b2b35);
+}
+
+
 

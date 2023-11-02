@@ -13,6 +13,9 @@ import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComf
 import MobileFaceStory from "@/components/sleepMask/mobile/FaceStoryMobile";
 import MobileZoomImageSection from "@/components/sleepMask/mobile/ZoomImageSectionMobile";
 import HeaderOverlayOnImage from "@/components/sleepMask/imageSections/HeaderOverlayOnImage";
+import MobileThinFeature from "@/components/sleepMask/mobile/ThinFeatureMobile";
+import MobileMinimalWeight from "@/components/sleepMask/mobile/MinimalWeightMobile";
+import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile";
 
 
 type ProductsTemplate = {
@@ -108,13 +111,15 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
 
                 <WrappedComponent/>
+
+                <MaximumComfortMeetsTotalBlackout/>
             </div>
 
             {/*DESKTOP END*/}
 
             {/*MOBILE START */}
 
-            <div className={"lg:hidden block"}>
+            <div className={"lg:hidden block font-poppins"}>
 
                 <MobileDoubleImageSection
                     headerLine1={"Greet each day with "}
@@ -137,13 +142,19 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                                         descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality."}
                 />
 
+                <MobileThinFeature />
+
+                <MobileMinimalWeight />
+
+                <MobileMaximumComfort />
+
 
             </div>
 
             {/*MOBILE END */}
 
 
-            <MaximumComfortMeetsTotalBlackout/>
+
 
 
             <HeaderOverlayOnImage

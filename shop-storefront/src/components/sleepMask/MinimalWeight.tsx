@@ -387,7 +387,6 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 start: `top+=200 bottom`,
                 end: '+=125%',
                 pin: false,
-                markers: true,
 
                 onEnter: () => masterTL.current.play(),
 
