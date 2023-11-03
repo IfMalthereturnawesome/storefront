@@ -412,7 +412,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
         <>
 
             <section
-                className="relative z-[1]  flex flex-col justify-center items-center  pinMinimalWeightFeature bg-transparent">
+                className="relative z-[1]  flex flex-col justify-center items-center  pinMinimalWeightFeature ">
 
                 <div className="mx-auto flex flex-col justify-center pt-[8vh]" id="discover-maximum-comfort">
                     <div className="flex justify-center items-center relative w-full h-full scale-150 ">
@@ -523,7 +523,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                             <div ref={extraInfoRef}
                                  className="absolute top-[28%] left-[98px] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block scale-[0.667] opacity-0">
                                 <p data-aos="fade-up"
-                                   className={"font-sans font-semibold leading-7 tracking-tight text-center text-slate-12"}>
+                                   className={"font-sans font-semibold leading-7 tracking-tight text-center text-white/70"}>
                                     Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain
                                     mentality to seek out challenges that test you physically. Sleep Mask One is the
                                     ultimate training partner, and it’s packed with new features to help you reach your

@@ -4,8 +4,8 @@ import {Inter, Architects_Daughter, Poppins} from 'next/font/google';
 import 'flowbite';
 
 import {ProvidersNextUI} from "@/app/providers";
-import { Analytics } from '@vercel/analytics/react';
-import { Metadata } from 'next';
+import {Analytics} from '@vercel/analytics/react';
+import {Metadata} from 'next';
 import BreakpointsIndicatorExtended from "@/components/helper/breakpointsExtended";
 import BreakpointsIndicator from "@/components/helper/breakpoints";
 
@@ -45,20 +45,21 @@ export default function RootLayout({children}: RootLayoutProps) {
 
 
     return (
-        <html lang="en" className="dark  md:border-2  border-amber-12">
+        <html lang="en" className="dark ">
         <body
-            className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight  antialiased`}
+            className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
         >
         {/*<BreakpointsIndicatorExtended />*/}
-        <BreakpointsIndicator />
+        <BreakpointsIndicator/>
         <ProvidersNextUI>
             <Providers>
-                <div className="flex min-h-screen flex-col overflow-hidden bg-mask-black ">
+                <div
+                    className="flex md:border-2  border-black dark:border-[#FEE7B3] min-h-screen flex-col overflow-hidden bg-mask-black ">
                     {children}
                 </div>
             </Providers>
         </ProvidersNextUI>
-        <Analytics />
+        <Analytics/>
         </body>
         </html>
     );

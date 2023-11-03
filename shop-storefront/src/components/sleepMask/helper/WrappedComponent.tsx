@@ -18,7 +18,7 @@ const WrappedComponent: React.FC = () => {
                 <ThinFeatureDandelions/>
             </ScrollBar>
 
-            <div className={"relative w-[99vw] md:w-[99.2vw] h-[100vh] container-particle"}>
+            <div className={"relative w-[99vw] md:w-[99.2vw] h-[100vh] container-particle "}>
             <ParticlesBackground shouldPlayParticles={shouldPlayParticles}/>
                 <MinimalWeight setShouldPlayParticles={setShouldPlayParticles}/>
 

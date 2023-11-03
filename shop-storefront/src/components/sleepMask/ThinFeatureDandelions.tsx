@@ -290,7 +290,7 @@ const ThinFeatureDandelions: React.FC = () => {
                     <div
                         id={"ThinFeatureDandelions"}
                         ref={containerRef}
-                        className="overflow-hidden grain relative border border-amberA-1 dark:border-amberA-12 w-[99vw] rounded-[2rem] z-[1] shadow-gray-900 shadow-2xl  "
+                        className="overflow-hidden grain relative border border-[#FEE7B3] dark:border-amberA-12 w-[99vw] rounded-[2rem] z-[1] shadow-gray-900 shadow-2xl  "
 
                         style={{
                             background: 'linear-gradient(to bottom, #191919, #1f1f1f, #1c1c1c, #1f1f1f, #191919)',

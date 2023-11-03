@@ -90,7 +90,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*DESKTOP START */}
 
-            <div className={"hidden lg:block font-poppins"}>
+            <div className={"hidden lg:block font-poppins bg-black"}>
                 <DoubleImageSection
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}

@@ -631,7 +631,7 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
             init={particlesInit}
             // @ts-ignore
             loaded={particlesLoaded}
-            className="absolute top-0 left-0 z-[0] tsparticles-canvas-el"
+            className="absolute top-0 left-0 z-[0] tsparticles-canvas-el "
             // @ts-ignore
             options={particleOptions}
         />
