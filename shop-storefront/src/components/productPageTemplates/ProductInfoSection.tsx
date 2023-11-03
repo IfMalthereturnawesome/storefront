@@ -36,7 +36,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
         <>
             <div className={"relative z-0 lg:z-[1]"}>
                 <div
-                    className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-12 lg:pb-4"}
+                    className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-8 md:pb-10 2xl:pb-12 lg:pb-4"}
                     ref={info}>
                     <div id={"buy-now"}
                          className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">

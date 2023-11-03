@@ -42,7 +42,7 @@ export default function PostAccordion({title, active = false, ...props}: PostAcc
             </Button>
             <div ref={contentRef} style={{height: height, transition: 'height 0.3s ease-out', overflow: 'hidden'}}>
                 <div
-                    className={`px-4 py-2 mt-2  ${accordionOpen ? 'rounded-b-[12px]' : ''}`}>{props.children}</div>
+                    className={`px-4 py-2 mt-2 text-slate-12/90 leading-7 tracking-wider  ${accordionOpen ? 'rounded-b-[12px]' : ''}`}>{props.children}</div>
             </div>
         </div>
     )

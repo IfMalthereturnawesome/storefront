@@ -47,15 +47,15 @@ const MobileHeaderOverlayOnImageRight: React.FC<Props> = ({ imageUrl, line1, lin
             </div>
 
             {/* Overlay header */}
-            <div className="absolute top-[30%] right-0 text-right text-lg text-3xl 2xs:text-5xl font-extrabold z-[11]">
-                <div className="inline-block bg-custom-white dark:bg-mask-black w-fit rounded-3xl">
-                    <h3 className="p-2 text-black dark:text-custom-white/90">{line1}</h3>
+            <div className="absolute top-[30%] right-0 text-right text-lg text-3xl 2xs:text-5xl font-extrabold z-[11] ">
+                <div className="inline-block bg-custom-white dark:bg-mask-black w-fit rounded-3xl ">
+                    <h3 className="p-2 text-black dark:text-custom-white/90 ml-4">{line1}</h3>
                 </div>
-                <div className="inline-block bg-custom-white dark:bg-mask-black w-fit rounded-3xl p-1">
-                    <h3 className="p-1 text-blue-500 dark:text-amber-12">{line2}</h3>
+                <div className=" bg-custom-white dark:bg-mask-black w-fit rounded-3xl   justify-end ml-auto">
+                    <h3 className="p-2 text-blue-500 dark:text-amber-12 ml-4">{line2}</h3>
                 </div>
-                <div className="inline-block bg-custom-white dark:bg-mask-black w-fit rounded-3xl p-1">
-                    <h3 className="p-1 text-black/80 dark:text-custom-white/75">{line3}</h3>
+                <div className=" bg-custom-white dark:bg-mask-black w-fit rounded-3xl   justify-end ml-auto">
+                    <h3 className=" p-2 text-black/80 dark:text-custom-white/75 ml-4">{line3}</h3>
                 </div>
             </div>
         </div>
