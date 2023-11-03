@@ -307,7 +307,7 @@ const ThinFeatureDandelions: React.FC = () => {
                         {/* Description for Slim feature */}
                         <div ref={descTopRef} className="absolute top-[19%] right-[23%] max-w-sm z-[2] opacity-0">
                             <p className="text-xl font-sans text-slate-11 ">
-                                You'll forget it's even there. The ultra-slim design won't put pressure on your face, making it perfect for side sleepers.
+                                You&apos;ll forget it&apos;s even there. The ultra-slim design won&apos;t put pressure on your face, making it perfect for side sleepers.
                             </p>
                         </div>
 

@@ -32,7 +32,7 @@ const ThinFeatureMobile: FC = () => {
                 {/* Slim Feature Description */}
                 <h3 className="font-semibold text-xl mb-2 text-white">Slim</h3>
                 <p className="font-medium font-sans tracking-tighter text-lg text-slate-8 dark:text-custom-white/70 mb-8">
-                    You'll forget it's even there. The ultra-slim design won't put pressure on your face, making it perfect for side sleepers.
+                    You&apos;ll forget it&apos;s even there. The ultra-slim design won&apos;t put pressure on your face, making it perfect for side sleepers.
                 </p>
 
                 {/* Soft Feature Description */}
