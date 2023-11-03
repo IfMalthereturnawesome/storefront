@@ -15,22 +15,21 @@ interface Props {
 }
 
 
-
 const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, textPosition}) => {
     const line1Ref = useRef(null);
     const line2Ref = useRef(null);
     const line3Ref = useRef(null);
+    const imageRef = useRef(null);
 
-    const tl = useRef(null)
-
-
+    const tl = useRef(null);
+    const tl2 = useRef(null);
 
     const initialX = textPosition === 'left' ? '-200px' : '200px';
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
-             tl.current = gsap.timeline({ paused: false, defaults: { immediateRender: false } });
+            tl.current = gsap.timeline({ defaults: {immediateRender: false}});
 
             gsap.set([line1Ref.current, line2Ref.current, line3Ref.current], {
                 x: initialX,
@@ -42,6 +41,10 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
                 scale: 0.95,
                 ease: 'power2.out',
             });
+
+
+
+
 
             // Animation upon scroll for line1
             tl.current.to(line1Ref.current, {
@@ -99,6 +102,22 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
                 }
             });
 
+            tl2.current = gsap.timeline({
+                scrollTrigger: {
+                    trigger: imageRef.current,
+                    start: 'top center+=200',
+                    end: 'bottom center',
+                    scrub: true,
+                },
+            });
+
+            // Image zoom animation
+            tl2.current.fromTo(
+                imageRef.current,
+                {scale: 1.05, y: '-50px'},
+                {scale: 1, duration: 3, y: '0'}
+            );
+
 
 
             return () => {
@@ -118,9 +137,10 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
         <div className="relative z-[1] bg-[#EAEEF1] h-full py-10">
 
             {/* Image */}
-            <Image src={imageUrl} className="rounded-3xl object-cover w-[60vw] mx-auto z-[10] relative" alt="Background"
-                   width={1200}
-                   height={1000} quality={100}/>
+            <div ref={imageRef} className="rounded-3xl object-cover w-[60vw] mx-auto z-[10] relative">
+                <Image src={imageUrl} alt="Background" width={1200} height={1000} quality={100} />
+            </div>
+
 
             {/* Overlay header */}
             <div
