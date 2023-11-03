@@ -31,15 +31,30 @@ export default function Header({className}: HeaderProps) {
     const {cart, totalItems} = useCart()
 
 
-    const scrollThreshold = 100;  // Set a threshold, 50 pixels in this example
+    const scrollThresholdMobile = 50;
+    const scrollThresholdTablet = 75;
+    const scrollThresholdDesktop = 100;
+
+
     const [lastDirectionChangePosition, setLastDirectionChangePosition] = useState(0);
     const [scrollingUp, setScrollingUp] = useState(false);
     const lastScrollPosition = useRef(0);
 
     const handleScroll = () => {
+
+        const screenWidth = window.innerWidth;
+        let scrollThreshold = scrollThresholdMobile;
+
+        if (screenWidth > 1280) {
+            scrollThreshold = scrollThresholdDesktop;
+        } else if (screenWidth > 768) {
+            scrollThreshold = scrollThresholdTablet;
+        }
+
         const currentScrollPosition = window.scrollY;
 
-        if (currentScrollPosition < 100) {
+        // Handling for when the scroll position is below the threshold
+        if (currentScrollPosition < scrollThreshold) {
             setTopNavBanner(true);
             setIsVisible(true);
             lastScrollPosition.current = currentScrollPosition;
@@ -54,6 +69,7 @@ export default function Header({className}: HeaderProps) {
             setScrollingUp(isScrollingUpNow);
         }
 
+        // Handle visibility based on scroll direction and difference
         if (scrollDifference >= scrollThreshold) {
             if (isScrollingUpNow && (currentScrollPosition <= lastDirectionChangePosition - scrollThreshold)) {
                 setTopNavBanner(false);
@@ -66,6 +82,7 @@ export default function Header({className}: HeaderProps) {
         }
     };
 
+    // Add and remove the scroll event listener when the component mounts and unmounts
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
 

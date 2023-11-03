@@ -163,11 +163,18 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
                 <MobileMaximumComfort/>
 
-                <MobileHeaderOverlayOnImage  imageUrl="/images/test-images-for-feature2.jpg"
-                                             line1="Made for "
-                                             line2="side sleepers"
-                                             line3="by side sleepers"
-                                             textPosition={"left"}
+                <MobileHeaderOverlayOnImage imageUrl="/images/test-images-for-feature2.jpg"
+                                            line1="Made for "
+                                            line2="side sleepers"
+                                            line3="by side sleepers"
+                                            textPosition={"left"}
+                />
+
+                <MobileHeaderOverlayOnImage imageUrl="/images/swimming.jpg"
+                                            line1="Experience"
+                                            line2="weightless comfort"
+                                            line3="in total darkness"
+                                            textPosition={"right"}
                 />
 
 
