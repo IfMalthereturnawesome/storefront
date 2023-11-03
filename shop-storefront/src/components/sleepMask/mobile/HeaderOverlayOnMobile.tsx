@@ -27,7 +27,7 @@ const MobileHeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, li
                             duration: 1,
                             scrollTrigger: {
                                 trigger: imageRef.current,
-                                start: 'top center',
+                                start: 'top center+=100',
                                 toggleActions: 'play none none reverse',
                             },
                         }

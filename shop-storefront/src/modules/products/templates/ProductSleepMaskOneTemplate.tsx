@@ -17,6 +17,7 @@ import MobileThinFeature from "@/components/sleepMask/mobile/ThinFeatureMobile";
 import MobileMinimalWeight from "@/components/sleepMask/mobile/MinimalWeightMobile";
 import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile";
 import MobileHeaderOverlayOnImage from "@/components/sleepMask/mobile/HeaderOverlayOnMobile";
+import MobileHeaderOverlayOnImageRight from "@/components/sleepMask/mobile/HeaderOverlayMobileRight";
 
 
 type ProductsTemplate = {
@@ -170,12 +171,11 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                                             textPosition={"left"}
                 />
 
-                <MobileHeaderOverlayOnImage imageUrl="/images/swimming.jpg"
-                                            line1="Experience"
-                                            line2="weightless comfort"
-                                            line3="in total darkness"
-                                            textPosition={"right"}
-                />
+                <MobileHeaderOverlayOnImageRight imageUrl="/images/swimming.jpg"
+                                                 line1="Experience"
+                                                 line2="weightless comfort"
+                                                 line3="in total darkness" />
+
 
 
             </div>

@@ -145,7 +145,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                 </h3>
                 <p
                     ref={bigDescriptionTextRef}
-                    className="font-sans  leading-7 font-[400] text-3xl tracking-tight mb-2 text-left text-custom-white">
+                    className="leading-7 font-[400] text-2xl tracking-tight mb-2 text-left text-custom-white">
                     {bigDescriptionText}
                 </p>
                 <p data-aos="fade-up"
