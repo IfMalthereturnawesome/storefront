@@ -13,8 +13,7 @@ import {
     ArrowPathRoundedSquareIcon,
     ClipboardDocumentListIcon,
 } from '@heroicons/react/24/outline';
-import { debounce } from 'lodash';
-
+import {debounce} from 'lodash';
 
 
 type SearchModalProps = {
@@ -31,7 +30,7 @@ const formatTopic = (topic: string) => {
         .join(' ');
 };
 
-const SearchModal: React.FC<SearchModalProps> = ({ id, searchId, modalOpen, setModalOpen }) => {
+const SearchModal: React.FC<SearchModalProps> = ({id, searchId, modalOpen, setModalOpen}) => {
     const modalContent = useRef<HTMLDivElement>(null);
     const searchInput = useRef<HTMLInputElement>(null);
 
@@ -41,7 +40,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ id, searchId, modalOpen, setM
     const [groupedBlogSearchResults, setGroupedBlogSearchResults] = useState<Record<string, Post[]>>({});
 
     useEffect(() => {
-        const clickHandler = ({ target }: { target: EventTarget | null }): void => {
+        const clickHandler = ({target}: { target: EventTarget | null }): void => {
             if (!modalOpen || modalContent.current?.contains(target as Node)) return;
             setModalOpen(false);
         };
@@ -75,8 +74,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ id, searchId, modalOpen, setM
             return () => clearTimeout(timer);
         }
     }, [modalOpen]);
-
-
 
 
     const handleSearch = useCallback((searchQuery: string) => {
@@ -133,7 +130,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ id, searchId, modalOpen, setM
         <>
             {/* Modal backdrop */}
             <Transition
-                className="fixed inset-0 z-50 bg-cyan-3 bg-opacity-60 transition-opacity"
+                className="fixed inset-0 z-50 bg-cyan-3 bg-overlay/50 backdrop-blur-sm transition-opacity h-[200vh] w-[200vw] left-[-12rem] top-[-2rem]"
                 show={modalOpen}
                 enter="transition ease-out duration-200"
                 enterFrom="opacity-0"
@@ -146,7 +143,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ id, searchId, modalOpen, setM
             {/* Modal dialog */}
             <Transition
                 id={id}
-                className="custom-scrollbar dark:custom-scrollbar-dark-mode dark:c fixed inset-0 top-20 z-50 mb-4 flex items-start justify-center overflow-hidden px-4 sm:px-6 md:top-28"
+                className=" h-fit fixed inset-0 top-20 z-50 mb-4 flex items-start justify-center px-4 sm:px-6 md:top-28"
                 role="dialog"
                 aria-modal="true"
                 show={modalOpen}
