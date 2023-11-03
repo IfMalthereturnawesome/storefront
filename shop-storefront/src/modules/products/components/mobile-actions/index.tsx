@@ -34,7 +34,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
     return (
         <>
             <div
-                className={clsx("lg:hidden fixed inset-x-0 bottom-0 !opacity-100 ", {
+                className={clsx("lg:hidden fixed  inset-x-0 bottom-0 !opacity-100 ", {
                     "pointer-events-none": !show,
                 })}
             >
@@ -42,11 +42,11 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
                     as={Fragment}
                     show={show}
                     enter="ease-in-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in duration-300"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
+                    enterFrom="opacity-0 transform translate-y-1/2 delay-300"
+                    enterTo="opacity-100 transform translate-y-0 delay-300"
+                    leave="ease-in duration-100"
+                    leaveFrom="opacity-100 transform translate-y-0 "
+                    leaveTo="opacity-0 transform translate-y-1/2"
                 >
                     <div
                         className=" !bg-white dark:!bg-black flex flex-col gap-y-3 justify-center items-center text-large-regular p-4 h-full mx-auto w-[100vw] border-t border-gray-200">
@@ -131,7 +131,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
                                     <div className="bg-cyan-1 px-4 py-6 relative">
                                         {product.variants.length > 1 && (
                                             <div
-                                                className="md:flex flex-col gap-y-6 max-h-[75vh] overflow-x-hidden overflow-y-auto relative scroll-shadows">
+                                                className="lg:flex flex-col gap-y-6 max-h-[75vh] overflow-x-hidden overflow-y-auto relative scroll-shadows">
                                                 {(product.options || []).map((option) => {
                                                     return (
                                                         <div key={option.id}>

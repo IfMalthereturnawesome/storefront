@@ -134,12 +134,12 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                 <div className="text-left mx-auto">
                     <header className="bg-transparent content-start pb-10 text-neutral-100 md:items-baseline">
                         <div className="inline-block">
-                            <h2 className="inline-block max-w-none font-sans text-4xl md:text-6xl font-semibold tracking-normal text-slate-10">Find
+                            <h2 className="inline-block max-w-none font-sans text-3xl 2xs:text-4xl px-4 lg:px-0  md:text-6xl font-semibold tracking-normal text-slate-11">Find
                                 the Sleep Mask that fits you.</h2>
                         </div>
                     </header>
                 </div>
-                <div className="rounded-[2.5rem] bg-black shadow shadow-amberA-10 dark:shadow-amberA-12">
+                <div className="lg:rounded-[2.5rem] bg-black shadow shadow-amberA-10 dark:shadow-amberA-12">
                     <div className="text-center">
                         <div
                             className="mx-auto max-w-[98vw] md:max-w-[80vw] lg:max-w-[65vw] xl:max-w-[55vw] 2xl:max-w-[40vw]">

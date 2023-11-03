@@ -182,7 +182,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*MOBILE END */}
 
-
+            <div className={"h-[2rem] lg:hidden"}> </div>
             <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}
                                 returnFAQ={returnsFAQ}/>
 

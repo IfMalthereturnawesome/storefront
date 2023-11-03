@@ -33,25 +33,29 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
     return (
 
-        <div className={"relative z-0 md:z-[1]"}>
-            <div className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-12 md:pb-4"}
-                 ref={info}>
-                <div id={"buy-now"}
-                     className="content-container__big  flex flex-col small:flex-row small:items-start pt-6 pb-0 md:pb-12 relative ">
-                    <div className="flex flex-col gap-y-8 w-full">
-                        <ZoomableImageGallery images={productImagePaths}/>
+        <>
+            <div className={"relative z-0 lg:z-[1]"}>
+                <div
+                    className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-12 lg:pb-4"}
+                    ref={info}>
+                    <div id={"buy-now"}
+                         className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">
+                        <div className="flex flex-col gap-y-8 w-full">
+                            <ZoomableImageGallery images={productImagePaths}/>
 
-                    </div>
+                        </div>
 
-                    <div className="flex-shrink-0 w-full small:max-w-[344px] medium:max-w-[490px] relative">
-                        <div style={{minHeight: 'calc(100vh - 64px)'}}>
-                            <div
-                                className="sticky top-0  py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
+                        <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
+                            <div style={{minHeight: 'calc(100vh - 64px)'}}>
+                                <div
+                                    className="sticky top-0  py-8 px-4 lg:py-6 lg:px-14 flex flex-col gap-y-12"
 
-                            >
-                                <ProductInfo product={product}/>
-                                <ProductTabs product={product}/>
+                                >
+                                    <ProductInfo product={product}/>
+                                    <ProductTabs product={product}/>
 
+
+                                </div>
 
                             </div>
 
@@ -59,14 +63,17 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
                     </div>
 
+
+                    <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
+
                 </div>
 
-
-                <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
-
             </div>
+
             <MobileActions product={product} show={inView}/>
-        </div>
+
+            </>
+
     )
 }
 
