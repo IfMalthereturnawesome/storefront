@@ -17,6 +17,7 @@ import NativeSelect from "@modules/common/components/native-select";
 import {useStore} from "@lib/context/store-context";
 import SizeOptionSelect from "../option-select/SizeOptionSelect";
 import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect";
+import SizeGuideMobile from "@modules/products/components/size-guide/SizeGuideMobile";
 
 
 
@@ -166,6 +167,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                                           additionalElement={additionalElem}
                                       />
                                       <SizeGuideModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
+                                      <SizeGuideMobile isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
                                     </>
 
                                 }

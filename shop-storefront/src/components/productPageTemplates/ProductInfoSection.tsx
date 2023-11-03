@@ -28,13 +28,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
     const productImageDirectory = `/images/products/${productHandle}/`;
     const productImagePaths = Array(8).fill(null).map((_, idx) => `${productImageDirectory}image${idx + 1}.jpg`);
 
-    // Combined product FAQ and shipping FAQ
-
 
     return (
 
         <>
-            <div className={"relative z-0 lg:z-[1]"}>
+            <div className={"relative z-[0] lg:z-[1]"}>
                 <div
                     className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-8 md:pb-10 2xl:pb-12 lg:pb-4"}
                     ref={info}>
@@ -72,7 +70,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
             <MobileActions product={product} show={inView}/>
 
-            </>
+        </>
 
     )
 }

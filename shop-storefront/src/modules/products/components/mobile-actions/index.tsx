@@ -34,7 +34,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
     return (
         <>
             <div
-                className={clsx("lg:hidden fixed  inset-x-0 bottom-0 !opacity-100 ", {
+                id={"mobile-actions"}
+                className={clsx("lg:hidden fixed z-[0] inset-x-0 bottom-0", {
                     "pointer-events-none": !show,
                 })}
             >
@@ -49,7 +50,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
                     leaveTo="opacity-0 transform translate-y-1/2"
                 >
                     <div
-                        className=" !bg-white dark:!bg-black flex flex-col gap-y-3 justify-center items-center text-large-regular p-4 h-full mx-auto w-[100vw] border-t border-gray-200">
+                        className="bg-white dark:bg-black flex flex-col gap-y-3 justify-center items-center text-large-regular p-4 h-full mx-auto w-[100vw] border-t border-gray-200">
                         <div className="flex items-center gap-x-2">
                             <span>{product.title}</span>
                             <span>—</span>

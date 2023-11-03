@@ -1,31 +1,46 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CustomSwitch from "components/elements/CustomSwitch";
 import Link from 'next/link';
 import Image from "next/image";
-
 
 interface SizeGuideModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
+const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
     const [unit, setUnit] = useState<'cm' | 'in'>('cm');
-    const [activeTab, setActiveTab] = useState<'chart' | 'measure' | 'region'>('chart');
+    const [activeTab, setActiveTab] = useState<'chart' | 'measure'>('chart');
+
+    useEffect(() => {
+        // Accessing `document` inside useEffect to ensure it's client-side
+        const mobileActions = document.getElementById('mobile-actions');
+        if (mobileActions) {
+            mobileActions.style.opacity = isOpen ? '0' : '1';
+        }
+
+        // Optional: Return a cleanup function to reset the opacity when the component unmounts
+        return () => {
+            if (mobileActions) {
+                mobileActions.style.opacity = '1';
+            }
+        };
+    }, [isOpen]); // The effect runs only when `isOpen` changes
 
     if (!isOpen) return null;
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center z-50 p-4 modal-overlay hidden md:block"
+            className="  flex items-center justify-center z-[80] p-4 modal-overlay md:hidden "
             onClick={(e) => {
                 if (e.target === e.currentTarget) onClose();
             }}
         >
             <div
-                className="flex flex-col bg-custom-white dark:bg-cyan-1 w-full max-w-4xl rounded-lg  overflow-hidden">
-                <header className="bg-custom-white dark:bg-cyan-1 p-4 flex justify-between items-center">
-                    <h2 className="text-xl pl-2 font-normal text-slate-12">Size Guide</h2>
+                className="flex flex-col bg-custom-white dark:bg-cyan-1  w-full mt-auto h-[calc(100vh-80px)] max-w-md rounded-lg "
+            >
+                <header className="bg-custom-white dark:bg-cyan-1  p-4 flex justify-between items-center">
+                    <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Size Guide</h2>
                     <button onClick={onClose} className="text-slate-12">
                         <svg width="21px" height="21px" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
@@ -36,7 +51,7 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                 </header>
 
                 <nav
-                    className="bg-custom-white dark:bg-cyan-1 flex justify-between items-center border-b border-slate-6">
+                    className="bg-custom-white dark:bg-cyan-1  flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
                     <div className="flex space-x-0 w-full">
                         <button
                             className={`flex-1 text-center focus:outline-none py-2 ${activeTab === 'chart' ? 'text-slate-12 border-b-2 border-slate-12' : 'text-slate-11'}`}
@@ -51,10 +66,10 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                             How to Measure
                         </button>
                     </div>
-
                 </nav>
 
-                <div className="flex-grow p-4 bg-white dark:bg-cyan-2 text-slate-11 overflow-y-auto h-[450px]">
+                <div
+                    className="flex-grow p-4 overflow-y-auto h-full bg-custom-white dark:bg-cyan-2 text-gray-600 dark:text-gray-300">
                     {activeTab === 'chart' && (
                         <div>
                             <div
@@ -77,7 +92,7 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                             <div className="px-2 pb-4 rounded-md">
                                 <table className="w-full border-collapse">
                                     <thead>
-                                    <tr className="bg-white dark:bg-cyan-2 text-slate-12 text-md">
+                                    <tr className="bg-custom-white dark:bg-cyan-2 text-slate-12 text-sm">
                                         <th className="px-4 py-2 border border-slate-6">Size</th>
                                         <th className="px-4 py-2 border border-slate-6">Head
                                             Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
@@ -92,7 +107,7 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                                         <td className="px-4 py-2 border border-slate-6">Uncommon</td>
                                         <td className="px-4 py-2 border border-slate-6">Common</td>
                                     </tr>
-                                    <tr className="bg-white dark:bg-cyan-2">
+                                    <tr className="bg-custom-white dark:bg-cyan-2">
                                         <td className="px-4 py-2 border border-slate-6">S</td>
                                         <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '54.0 - 56.5' : `${parseFloat((54.0 * 0.393701).toFixed(2))} - ${parseFloat((56.5 * 0.393701).toFixed(2))}`}</td>
                                         <td className="px-4 py-2 border border-slate-6">Average</td>
@@ -104,7 +119,7 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                                         <td className="px-4 py-2 border border-slate-6">Average</td>
                                         <td className="px-4 py-2 border border-slate-6">Average</td>
                                     </tr>
-                                    <tr className="bg-white dark:bg-cyan-2">
+                                    <tr className="bg-custom-white dark:bg-cyan-2">
                                         <td className="px-4 py-2 border border-slate-6">L</td>
                                         <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '57.5 - 60.0' : `${parseFloat((57.5 * 0.393701).toFixed(2))} - ${parseFloat((60.0 * 0.393701).toFixed(2))}`}</td>
                                         <td className="px-4 py-2 border border-slate-6">Common</td>
@@ -123,42 +138,47 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                     )}
 
                     {activeTab === 'measure' && (
-                        <div>
-                            <div className={"py-4 px-2 m-0 leading-5 text-black align-baseline border-0 lg:leading-5"}>
+                        <div className="px-4 py-2">
+                            <div className="text-black">
                                 <h3 className="text-lg font-bold text-slate-12">How to measure your head?</h3>
-                            </div>
-                            <div className={"pb-2 px-3 m-0 leading-5 text-black align-baseline border-0 text-md"}>
-                                <p className="text-slate-11 mt-2">Follow these steps to measure the circumference of your head:</p>
-                                <div className="flex items-center mt-2 ">
-                                    <ol className="list-decimal pl-5 text-slate-11 text-md flex-1">
-                                        <li className={"my-2"}>Use a soft measuring tape.</li>
-                                        <li className={"my-2"}>Start from just above your eyebrows and wrap the tape around the back of your head at the widest part.</li>
-                                        <li className={"my-2"}>Note down the measurement.</li>
-                                        <li className={"my-2"}>Select the size that best fits your measurement from the size chart above.</li>
+                                <p className="text-slate-12 mt-2 text-sm">Follow these steps to measure the circumference of your head:</p>
+                                <div className="mt-3">
+                                    <ol className="list-decimal pl-4 text-slate-11 text-sm space-y-2">
+                                        <li>Use a soft measuring tape.</li>
+                                        <li>Start from just above your eyebrows and wrap the tape around the back of your head at the widest part.</li>
+                                        <li>Note down the measurement.</li>
+                                        <li>Select the size that best fits your measurement from the size chart above.</li>
                                     </ol>
-                                    <div className="ml-2">
-                                        <Image src="/images/male-persons-head-head-size.png" alt="Head with measuring tape" height={200} width={200} />
-                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-4 w-full flex justify-center">
+                                {/* Adjust the image size for mobile using Tailwind CSS */}
+                                <div className="w-1/2 max-w-xs">
+                                    {/* Ensure the Image component is from a library like 'next/image' for optimization */}
+                                    <Image
+                                        src="/images/male-persons-head-head-size.png"
+                                        alt="Head with measuring tape"
+                                        layout="responsive"
+                                        height={200}
+                                        width={200}
+                                    />
                                 </div>
                             </div>
                         </div>
                     )}
-
-
-
                 </div>
 
                 <footer className="bg-mask-black p-4">
                     <p className="text-sm text-gray-100">
                         Still unsure? Check out our&nbsp;
-                        <Link href="/faq" className="text-white font-semibold hover:underline">
+                        <Link href="/faq" className="text-blue-500 hover:underline">
                             Sizing FAQs
                         </Link>
                         &nbsp;or&nbsp;
-                        <Link href="/contact" className="text-white font-semibold hover:underline">
-                            Contact Us&nbsp;
+                        <Link href="/contact" className="text-blue-500 hover:underline">
+                            Contact Us
                         </Link>
-                        directly.
+                        &nbsp;directly.
                     </p>
                 </footer>
             </div>
@@ -166,4 +186,4 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
     );
 }
 
-export default SizeGuideModal;
+export default SizeGuideMobile;
