@@ -12,6 +12,7 @@ import ProductFaqs from "@modules/products/components/product-faqs";
 import ProductFAQ from "@modules/products/components/product-faqs";
 import ImageGallery from "@modules/products/components/image-gallary";
 import MobileImageGallery from "@modules/products/components/image-gallary/MobileImageGallery";
+import MediaQuery from "react-responsive";
 
 type ProductTemplateProps = {
     product: PricedProduct
@@ -41,11 +42,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     <div id={"buy-now"}
                          className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">
                         <div className="hidden lg:flex flex-col gap-y-8 w-full">
-                            <ZoomableImageGallery images={productImagePaths}/>
+                            <MediaQuery minWidth={1024}>
+                                <ZoomableImageGallery images={productImagePaths}/>
+                            </MediaQuery>
 
                         </div>
                         <div className={"block lg:hidden"}>
-                            <MobileImageGallery images={productImagePaths}/>
+                            <MediaQuery maxWidth={1023}>
+                                <MobileImageGallery images={productImagePaths}/>
+                            </MediaQuery>
                         </div>
 
                         <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
@@ -57,23 +62,19 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                                     <ProductInfo product={product}/>
                                     <ProductTabs product={product}/>
 
-
                                 </div>
-
                             </div>
 
                         </div>
 
                     </div>
-
-
                     <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
-
                 </div>
 
             </div>
-
-            <MobileActions product={product} show={inView}/>
+            <MediaQuery maxWidth={1023}>
+                <MobileActions product={product} show={inView}/>
+            </MediaQuery>
 
         </>
 

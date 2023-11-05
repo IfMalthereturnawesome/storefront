@@ -7,6 +7,7 @@ import Image from 'next/image';
 import {ArrowDownIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import SplitType from 'split-type';
+import MediaQuery from "react-responsive";
 
 
 if (typeof window !== 'undefined') {
@@ -36,7 +37,9 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
     const imageRef = useRef(null);
     const headerRef = useRef(null);
     const tl = useRef(null);
+
     const tl2 = useRef(null);
+
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -81,35 +84,39 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                     '<');
             }
 
+            if (tl2.current) {
+                tl2.current = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: imageRef.current,
+                        start: 'top center',
+                        end: 'bottom center',
+                        scrub: true,
+                    },
+                });
 
-            tl2.current = gsap.timeline({
-                scrollTrigger: {
-                    trigger: imageRef.current,
-                    start: 'top center',
-                    end: 'bottom center',
-                    scrub: true,
-                },
-            });
+                // initialScrollText animation
+                tl2.current.to(
+                    initialScrollTextRef.current,
+                    {opacity: 0.5, duration: 3, stagger: 0.5}
+                );
 
-            // initialScrollText animation
-            tl2.current.to(
-                initialScrollTextRef.current,
-                {opacity: 0.5, duration: 3, stagger: 0.5}
-            );
+                // discoverTextRef animation
+                tl2.current.fromTo(
+                    discoverTextRef.current,
+                    {y: 100, opacity: 0},
+                    {y: 0, opacity: 1, duration: 6}
+                );
 
-            // discoverTextRef animation
-            tl2.current.fromTo(
-                discoverTextRef.current,
-                {y: 100, opacity: 0},
-                {y: 0, opacity: 1, duration: 6}
-            );
+                // maximumTextRef and comfortTextRef animation
+                tl2.current.fromTo(
+                    [maximumTextRef.current, comfortTextRef.current],
+                    {y: -50, opacity: 0},
+                    {y: 0, opacity: 1, duration: 3, stagger: 0.5}
+                );
+            }
 
-            // maximumTextRef and comfortTextRef animation
-            tl2.current.fromTo(
-                [maximumTextRef.current, comfortTextRef.current],
-                {y: -50, opacity: 0},
-                {y: 0, opacity: 1, duration: 3, stagger: 0.5}
-            );
+
+
 
 
             // // arrowRef animation
@@ -127,14 +134,17 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
 
 
     return (
+
         <div className="relative z-[1]" id={"increase-melatonin-production"}>
 
             <div className="w-full h-screen">
+                <MediaQuery minWidth={1024}>
                 <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
                        alt="Increase Melatonin Production with Eight Athletics Sleep Mask"
                        width={1920}
                        height={1080}
                        quality={90}/>
+                </MediaQuery>
             </div>
 
             <div
@@ -192,6 +202,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                 </div>
             </Link>
         </div>
+
     );
 };
 

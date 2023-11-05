@@ -1,14 +1,14 @@
 'use client';
 
-import React, {RefObject, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {RefObject, useLayoutEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {PauseIcon} from "@radix-ui/react-icons";
 import {PlayIcon} from '@heroicons/react/20/solid';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
-
+import Image from 'next/image';
 import MaskSequence from "@/components/sleepMask/MaskSequence";
-
+import MediaQuery from 'react-responsive';
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -100,10 +100,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             let mm = gsap.matchMedia();
-            mm.add('(max-width: 399px)', () => {
+            mm.add('(max-width: 767px)', () => {
                 setState(false);
             });
-            mm.add('(min-width: 400px)', () => {
+            mm.add('(min-width: 768px)', () => {
                 setState(true);
                 if (!state) return;
                 if (wrapperRef.current) {
@@ -424,24 +424,24 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     const smoothAppear = () => {
 
-                gsap.to(videoContainerRef.current, {
+        gsap.to(videoContainerRef.current, {
 
-                    opacity: 1, duration: 1, onComplete: () => {
+            opacity: 1, duration: 1, onComplete: () => {
 
-                        setShowVideo(true);
+                setShowVideo(true);
 
-                        if (videoRef.current) {
-                            videoRef.current.play().then(() => {
+                if (videoRef.current) {
+                    videoRef.current.play().then(() => {
 
-                                setIsPlaying(true);  // Update the state to reflect that the video is playing
-                            }).catch((error) => {
-                                console.error("Video play failed:", error);
-                            });
-                        }
-                    }
-                });
+                        setIsPlaying(true);  // Update the state to reflect that the video is playing
+                    }).catch((error) => {
+                        console.error("Video play failed:", error);
+                    });
+                }
+            }
+        });
 
-                setShowPlayAgainButton(false);
+        setShowPlayAgainButton(false);
 
     };
 
@@ -583,14 +583,27 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
                         </div>
                         {showCanvas && (
-                            <MaskSequence/>
+                            <div>
+                                    <MediaQuery minWidth={768}>
+                                    <MaskSequence/>
+                                    </MediaQuery>
+
+                                <div className="m-0 p-0">
+                                    <MediaQuery maxWidth={767}>
+                                    <div
+                                        className="canvas-container h-[35vh] md:h-[50vh] ">
+                                        <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile" width={375}
+                                               height={600} quality={100}
+                                               className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
+
+                                    </div>
+                                    </MediaQuery>
+                                </div>
+                            </div>
                         )
                         }
-
                     </div>
-
                 )}
-
 
                 <div ref={videoContainerRef} className="relative"
                      style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
@@ -637,7 +650,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
             {showPlayAgainButton && (
                 <button onClick={scrollToTopAndPlayAgain}
-                        className="fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center z-[2]"
+                        className="hidden md:flex fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1  items-center justify-center z-[2]"
                         style={{width: '2.3rem', height: '2.3rem'}}>
                     <PlayIcon className="w-4 h-4 text-white"/>
                 </button>

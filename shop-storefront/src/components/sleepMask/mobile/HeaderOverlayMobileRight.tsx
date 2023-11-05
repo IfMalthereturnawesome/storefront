@@ -4,6 +4,7 @@ import React, { useRef, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import MediaQuery from "react-responsive";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +41,7 @@ const MobileHeaderOverlayOnImageRight: React.FC<Props> = ({ imageUrl, line1, lin
     }, []);
 
     return (
+
         <div className="relative z-[1] h-full py-10">
             {/* Image */}
             <div ref={imageRef} className="w-[88vw] mr-auto z-[10] relative">
@@ -59,6 +61,7 @@ const MobileHeaderOverlayOnImageRight: React.FC<Props> = ({ imageUrl, line1, lin
                 </div>
             </div>
         </div>
+
     );
 }
 

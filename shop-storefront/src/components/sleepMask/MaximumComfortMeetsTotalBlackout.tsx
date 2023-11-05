@@ -4,6 +4,11 @@ import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
+
 
 
 const MaximumComfortMeetsTotalBlackout = () => {
@@ -14,40 +19,45 @@ const MaximumComfortMeetsTotalBlackout = () => {
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
-        gsap.to(crawlContainerRef.current, {
-            yPercent: 33,
-            duration: 30,
-            ease: "linear",
-            scrollTrigger: {
+        if (crawlContainerRef.current) {
+            gsap.to(crawlContainerRef.current, {
+                yPercent: 33,
+                duration: 30,
+                ease: "linear",
+                scrollTrigger: {
+                    trigger: crawlContainerRef.current,
+                    start: 'center center',
+                    end: 'bottom top',
+                    scrub: true,
+
+                }
+            });
+
+            ScrollTrigger.create({
                 trigger: crawlContainerRef.current,
-                start: 'center center',
-                end: 'bottom top',
-                scrub: true,
+                start: 'center-=150 center',
+                end: 'bottom center',
 
-            }
-        });
+                onEnter: () => {
+                    gsap.to(
+                        whereverRef.current,
+                        { opacity: 1, duration: 1 }
+                    );
+                    gsap.to(
+                        wheneverRef.current,
+                        { opacity: 1, delay: 0.7, duration: 1 }
+                    );
+                }
+            });
+        }
 
-        ScrollTrigger.create({
-            trigger: crawlContainerRef.current,
-            start: 'center-=150 center',
-            end: 'bottom center',
 
-            onEnter: () => {
-                gsap.to(
-                    whereverRef.current,
-                    { opacity: 1, duration: 1 }
-                );
-                gsap.to(
-                    wheneverRef.current,
-                    { opacity: 1, delay: 0.7, duration: 1 }
-                );
-            }
-        });
         });
         return () => ctx.revert(); // <-- CLEANUP!
     }, []);
 
     return (
+
         <div className="relative z-[1]">
             <div
                 id="total-blackout"
@@ -83,6 +93,7 @@ const MaximumComfortMeetsTotalBlackout = () => {
             </div>
             <div className={"h-[25vh] relative z-[1] bg-black/75"}></div>
         </div>
+
     );
 
 };

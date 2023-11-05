@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
+import MediaQuery from "react-responsive";
 
 
 interface FaceStoryProps {
@@ -131,11 +132,14 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
     }, [])
 
     return (
+
         <div id={"crafted-from-thousands-of-unique-faces"} ref={faceStoryRef}
              className="flex pinFaceStory bg-[#130612] z-[1]">
             {/* Image Sequence to the left */}
             <div className="w-fit ml-2 h-screen ">
+                <MediaQuery minWidth={1024}>
                 <canvas ref={canvasRefImage} className="w-full h-full object-contain"/>
+                </MediaQuery>
 
             </div>
             {/* Text to the right of the center */}
@@ -145,6 +149,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                    className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">{description}</p>
             </div>
         </div>
+
     );
 };
 

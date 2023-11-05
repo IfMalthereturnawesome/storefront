@@ -6,6 +6,7 @@ import ThinFeatureDandelions from "@/components/sleepMask/ThinFeatureDandelions"
 import ParticlesBackground from "@/components/animations/ParticlesBackground";
 import ScrollBar from "@/components/sleepMask/ScrollBar";
 import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
+import MediaQuery from "react-responsive";
 
 
 const WrappedComponent: React.FC = () => {
@@ -13,6 +14,7 @@ const WrappedComponent: React.FC = () => {
 
     return (
         <>
+            <MediaQuery minWidth={1024}>
 
             <ScrollBar>
                 <ThinFeatureDandelions/>
@@ -25,6 +27,7 @@ const WrappedComponent: React.FC = () => {
             </div>
 
 
+            </MediaQuery>
 
 
         </>

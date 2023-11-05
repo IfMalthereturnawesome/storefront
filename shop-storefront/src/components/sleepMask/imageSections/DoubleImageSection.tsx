@@ -7,6 +7,7 @@ import Image from 'next/image';
 import {ArrowDownIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 
+
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 }
@@ -18,7 +19,6 @@ interface DoubleImageSectionProps {
     image1Src: string;
     image2Src: string;
 }
-
 
 const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                                                                    headerLine1,
@@ -38,7 +38,9 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
 
     useLayoutEffect(() => {
+
         const ctx = gsap.context(() => {
+
             tl1.current = gsap.timeline({
                 scrollTrigger: {
                     trigger: image1Ref.current,
@@ -87,7 +89,10 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                 {y: 0},
                 {y: 150}
             );
+
         });
+
+
         return () => {
 
             ctx.revert();
@@ -97,7 +102,9 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
     }, []);
 
+
     return (
+
         <div className="relative bg-[#130612] z-[1]">
 
             {/* Image section */}
@@ -138,11 +145,10 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
         </div>
 
+
     );
 };
-
 export default DoubleImageSection;
-
 
 export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                                                                                 headerLine1,
@@ -209,6 +215,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     }, []);
 
     return (
+
         <div className="relative bg-[#130612] z-[1] block  ">
 
 

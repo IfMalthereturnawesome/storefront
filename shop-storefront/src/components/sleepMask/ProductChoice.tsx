@@ -156,15 +156,11 @@ const ProductChoice: React.FC<ProductChoiceProps> = ({product1, product2, curren
                                         {renderProductSection(product)}
                                         <div
                                             className="w-full border-t border-solid border-zinc-700 my-4 py-6 hidden md:block"></div>
-                                        {/*<div className="md:hidden px-vw-14">*/}
-                                        {/*    {renderFeatures(product.features)}*/}
-                                        {/*    {index === 0 && <div*/}
-                                        {/*        className="w-full border-t border-solid border-zinc-700 my-4 py-6"></div>}*/}
-                                        {/*</div>*/}
+
                                     </div>
                                 ))}
                             </div>
-                            {/* Feature Sections for Desktop */}
+
                             <div className="flex flex-row gap-0  justify-center pb-vw-10">
                                 {products.map(product => (
                                     <div key={product.title + "-features"}

@@ -18,6 +18,8 @@ import MobileMinimalWeight from "@/components/sleepMask/mobile/MinimalWeightMobi
 import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile";
 import MobileHeaderOverlayOnImage from "@/components/sleepMask/mobile/HeaderOverlayOnMobile";
 import MobileHeaderOverlayOnImageRight from "@/components/sleepMask/mobile/HeaderOverlayMobileRight";
+import MediaQuery from "react-responsive";
+
 
 
 type ProductsTemplate = {
@@ -92,6 +94,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             {/*DESKTOP START */}
 
             <div className={"hidden lg:block font-poppins bg-black"}>
+
                 <DoubleImageSection
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}
@@ -104,6 +107,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     headline="Crafted from thousands of unique faces"
                     description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
                 />
+
 
                 <ZoomImageSection imageSrc={"/images/increase-melatonin-production.jpg"}
                                   headerLine1={"Increase melatonin production"}
@@ -129,6 +133,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     line3="in total darkness"
                     textPosition={"right"}
                 />
+
             </div>
 
             {/*DESKTOP END*/}

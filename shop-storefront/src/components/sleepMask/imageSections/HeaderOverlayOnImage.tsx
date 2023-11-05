@@ -4,6 +4,7 @@ import React, {useLayoutEffect, useRef} from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import MediaQuery from "react-responsive";
 
 
 interface Props {
@@ -31,92 +32,98 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
 
             tl.current = gsap.timeline({ defaults: {immediateRender: false}});
 
-            gsap.set([line1Ref.current, line2Ref.current, line3Ref.current], {
-                x: initialX,
-                y: '-50px',
-                autoAlpha: 0,
-                rotationZ: 11,
-                duration: 1.5,
-                background: '#262a2d',
-                scale: 0.95,
-                ease: 'power2.out',
-            });
+            if (line1Ref.current && line2Ref.current && line3Ref.current) {
+                gsap.set([line1Ref.current, line2Ref.current, line3Ref.current], {
+                    x: initialX,
+                    y: '-50px',
+                    autoAlpha: 0,
+                    rotationZ: 11,
+                    duration: 1.5,
+                    background: '#262a2d',
+                    scale: 0.95,
+                    ease: 'power2.out',
+                });
+
+            }
 
 
 
+                // Animation upon scroll for line1
+                tl.current.to(line1Ref.current, {
+                    duration: 1.5,
+                    x: '0',
+                    y: '0',
+                    autoAlpha: 1,
+                    rotationZ: 2,
+                    ease: 'elastic.out(1, 0.75)',
+                    background: '#EAEEF1',
+                    scale: 1,
+                    scrollTrigger: {
+                        trigger: line1Ref.current,
+                        start: 'top center+=200',
+                        end: '+=600',
+                        scrub: true,
+                    }
+                });
+
+                // Animation upon scroll for line2
+                tl.current.to(line2Ref.current, {
+                    duration: 1.5,
+                    x: '0',
+                    y: '0',
+                    autoAlpha: 1,
+                    rotationZ: 0,
+                    ease: 'elastic.out(1, 0.75)',
+                    background: '#ffffff',
+                    scale: 1,
+                    stagger: 0.3,
+                    scrollTrigger: {
+                        trigger: line2Ref.current,
+                        start: 'top center+=200',
+                        end: '+=600',
+                        scrub: true,
+                    }
+                });
+
+                // Animation upon scroll for line3
+                tl.current.to(line3Ref.current, {
+                    duration: 1.5,
+                    x: '0',
+                    y: '0',
+                    autoAlpha: 1,
+                    rotationZ: 3,
+                    ease: 'elastic.out(1, 0.75)',
+                    background: '#dbe0e5',  // Change to desired color for line3
+                    scale: 1,
+                    stagger: 0.3,
+                    scrollTrigger: {
+                        trigger: line3Ref.current,
+                        start: 'top center+=200',
+                        end: '+=600',
+                        scrub: true,
+                    }
+                });
 
 
-            // Animation upon scroll for line1
-            tl.current.to(line1Ref.current, {
-                duration: 1.5,
-                x: '0',
-                y: '0',
-                autoAlpha: 1,
-                rotationZ: 2,
-                ease: 'elastic.out(1, 0.75)',
-                background: '#EAEEF1',
-                scale: 1,
-                scrollTrigger: {
-                    trigger: line1Ref.current,
-                    start: 'top center+=200',
-                    end: '+=600',
-                    scrub: true,
-                }
-            });
+            if (tl2.current){
 
-            // Animation upon scroll for line2
-            tl.current.to(line2Ref.current, {
-                duration: 1.5,
-                x: '0',
-                y: '0',
-                autoAlpha: 1,
-                rotationZ: 0,
-                ease: 'elastic.out(1, 0.75)',
-                background: '#ffffff',
-                scale: 1,
-                stagger: 0.3,
-                scrollTrigger: {
-                    trigger: line2Ref.current,
-                    start: 'top center+=200',
-                    end: '+=600',
-                    scrub: true,
-                }
-            });
+                tl2.current = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: imageRef.current,
+                        start: 'top center+=200',
+                        end: 'bottom center',
+                        scrub: true,
+                    },
+                });
 
-            // Animation upon scroll for line3
-            tl.current.to(line3Ref.current, {
-                duration: 1.5,
-                x: '0',
-                y: '0',
-                autoAlpha: 1,
-                rotationZ: 3,
-                ease: 'elastic.out(1, 0.75)',
-                background: '#dbe0e5',  // Change to desired color for line3
-                scale: 1,
-                stagger: 0.3,
-                scrollTrigger: {
-                    trigger: line3Ref.current,
-                    start: 'top center+=200',
-                    end: '+=600',
-                    scrub: true,
-                }
-            });
+                // Image zoom animation
+                tl2.current.fromTo(
+                    imageRef.current,
+                    {scale: 1.05, y: '-50px'},
+                    {scale: 1, duration: 3, y: '0'}
+                );
 
-            tl2.current = gsap.timeline({
-                scrollTrigger: {
-                    trigger: imageRef.current,
-                    start: 'top center+=200',
-                    end: 'bottom center',
-                    scrub: true,
-                },
-            });
-
-            // Image zoom animation
-            tl2.current.fromTo(
-                imageRef.current,
-                {scale: 1.05, y: '-50px'},
-                {scale: 1, duration: 3, y: '0'}
-            );
+            }
 
 
 
@@ -134,11 +141,14 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
         };
     }, [line1Ref, line2Ref, line3Ref, initialX]);
     return (
+
         <div className="relative z-[1] bg-[#EAEEF1] h-full py-10">
 
             {/* Image */}
             <div ref={imageRef} className="rounded-3xl object-cover w-[60vw] mx-auto z-[10] relative">
+                <MediaQuery minWidth={1024}>
                 <Image src={imageUrl} alt="Background" width={1200} height={1000} quality={100} />
+                </MediaQuery>
             </div>
 
 
@@ -164,6 +174,7 @@ const HeaderOverlayOnImage: React.FC<Props> = ({imageUrl, line1, line2, line3, t
 
             </div>
         </div>
+
     );
 }
 
