@@ -107,6 +107,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
             let mm = gsap.matchMedia();
             mm.add('(max-width: 767px)', () => {
                 setState(false);
+
             });
             mm.add('(min-width: 768px)', () => {
                 setState(true);
