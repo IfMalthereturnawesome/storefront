@@ -12,6 +12,9 @@ import ColorOptionSelect from "@modules/products/components/option-select/ColorO
 import SizeOptionSelect from "@modules/products/components/option-select/SizeOptionSelect";
 
 
+import AddToCartButton from "@/components/elements/AddToCart";
+
+
 type MobileActionsProps = {
     product: PricedProduct
     show: boolean
@@ -21,8 +24,13 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
     const {variant, addToCart, options, inStock, updateOptions} =
         useProductActions()
     const {state, open, close} = useToggleState()
-
+    const colorOptionId = product.options.find(opt => opt.title.toLowerCase() === "color")?.id;
+    const sizeOptionId = product.options.find(opt => opt.title.toLowerCase() === "size")?.id;
+    const isColorSelected = !!options[colorOptionId];
+    const isSizeSelected = !!options[sizeOptionId];
+    const isBothSelected = isColorSelected && isSizeSelected;
     const price = useProductPrice({id: product.id!, variantId: variant?.id})
+
 
     const selectedPrice = useMemo(() => {
         const {variantPrice, cheapestPrice} = price
@@ -87,9 +95,16 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
                                     <ChevronDown/>
                                 </div>
                             </Button>
-                            <Button onClick={addToCart}>
-                                {!inStock ? "Out of stock" : "Add to cart"}
-                            </Button>
+
+
+                            <AddToCartButton
+                                title={isBothSelected ? "Add to cart" : "Choose size"}
+                                onClick={addToCart}
+                                disabled={!isBothSelected}
+                                className={"!text-xs !leading-tight"}
+                            />
+
+
                         </div>
                     </div>
                 </Transition>
@@ -129,7 +144,9 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
                                             <X/>
                                         </button>
                                     </div>
+
                                     <div className="bg-cyan-1 px-4 py-6 relative">
+
                                         {product.variants.length > 1 && (
                                             <div
                                                 className="lg:flex flex-col gap-y-6 max-h-[75vh] overflow-x-hidden overflow-y-auto relative scroll-shadows">

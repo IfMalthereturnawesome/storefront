@@ -18,7 +18,7 @@ const Summary = ({ cart }: SummaryProps) => {
 
 
       <Link href="/checkout">
-        <BuyNowButton title={"Go to checkout"} message={"Go to checkout"}></BuyNowButton>
+        <BuyNowButton title={"Go to checkout"} message={"Go to checkout"}  className={"truncate"}></BuyNowButton>
       </Link>
     </div>
   )

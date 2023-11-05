@@ -18,6 +18,7 @@ import {useStore} from "@lib/context/store-context";
 import SizeOptionSelect from "../option-select/SizeOptionSelect";
 import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect";
 import SizeGuideMobile from "@modules/products/components/size-guide/SizeGuideMobile";
+import AddToCartButton from "@/components/elements/AddToCart";
 
 
 
@@ -235,15 +236,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
     </span>
             </div>
 
-            <Link href={"/cart"}>
-
-            <BuyNowButton
-                title={isBothSelected ? "Add to cart" : "Choose color and size"}
+            <AddToCartButton
+                title={isBothSelected ? "Add to cart" : "Choose options"}
                 onClick={addToCart}
-                message={"Add to cart"}
                 disabled={!isBothSelected}
+                className={"truncate"}
             />
-            </Link>
 
         </div>
     )

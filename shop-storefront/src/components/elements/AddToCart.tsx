@@ -1,11 +1,43 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {ArrowLongRightIcon} from "@heroicons/react/24/solid";
+import Spinner from "@modules/common/icons/spinner"
+import { useRouter } from "next/navigation"
 
-function BuyNowButton({
+import {usePathname} from 'next/navigation'
+
+function AddToCartButton({
                           onClick = () => {
-                          }, message, title, disabled = false, className = '',
+                          },  title, disabled = false, className = '',
                       }) {
     const [isActive, setIsActive] = useState(false);
+    const [isAdding, setIsAdding] = useState(false);  // New state to manage adding text
+    const isMounted = useRef(true);
+    const router = useRouter();
+    const pathname = usePathname();
+
+    useEffect(() => {
+
+        return () => {
+            isMounted.current = false;
+        };
+    }, []);
+
+
+    const handleClick = async () => {
+        if (!disabled) {
+            setIsAdding(true);
+            onClick();
+            router.prefetch('/cart');
+            // set timeout to allow the cart to update before redirecting
+            await new Promise((r) => setTimeout(r, 400));
+            pathname !== '/cart' && router.push('/cart');
+            if (isMounted.current) {
+
+                setIsAdding(false);
+
+            }
+        }
+    };
 
     return (
         <div className={`buy-now--primary-container ${isActive ? 'active' : ''} `}>
@@ -14,7 +46,7 @@ function BuyNowButton({
                 onMouseDown={() => setIsActive(true)}
                 onMouseUp={() => setIsActive(false)}
                 onMouseLeave={() => setIsActive(false)}
-                onClick={!disabled ? onClick : undefined}
+                onClick={handleClick}
                 disabled={disabled}
                 type="button"
                 className={`flex justify-between items-center py-0 px-4 m-0 w-full h-full font-poppins text-sm 
@@ -33,17 +65,17 @@ function BuyNowButton({
                     transform: isActive ? 'translate(0px, 0px)' : 'translate(-3px, -3px)',
                 }}
             >
-                 <span
-                     className={` ${className} flex-auto text-sm leading-5 uppercase`}
-                     style={{letterSpacing: '2px'}}
-                 >
-                    {message}
+                <span
+                    className={` ${className} flex-auto text-sm leading-5 uppercase  `}
+                    style={{letterSpacing: '2px'}}
+                >
+                    {isAdding ? "ADDING" : title}
                 </span>
-                <ArrowLongRightIcon className={"w-6 h-6 ml-2 "}/>
+                {isAdding ? <Spinner /> : <ArrowLongRightIcon className={"w-6 h-6 ml-2 "}/>}
             </button>
             <div className="buy-now--primary-after"></div>
         </div>
     );
 }
 
-export default BuyNowButton;
+export default AddToCartButton;

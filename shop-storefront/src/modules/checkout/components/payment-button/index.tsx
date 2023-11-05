@@ -174,6 +174,7 @@ const StripePaymentButton = ({
             disabled={submitting || disabled || notReady}
             onClick={handlePayment}
             title="Place Order"
+            className={"truncate"}
         >
           {submitting ? <Spinner /> : "Checkout"}
         </BuyNowButton>
