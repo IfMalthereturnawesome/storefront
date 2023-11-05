@@ -16,18 +16,25 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
         // Accessing `document` inside useEffect to ensure it's client-side
         const mobileActions = document.getElementById('mobile-actions');
         const header = document.getElementById('header_1');
+        const body = document.querySelector('body');
+
         if (mobileActions && header) {
             mobileActions.style.opacity = isOpen ? '0' : '1';
-            header.style.opacity = isOpen ? '0' : '1';
             header.style.zIndex = isOpen ? '0' : '30';
+        }
+        if (isOpen) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
         }
 
         // Optional: Return a cleanup function to reset the opacity when the component unmounts
         return () => {
             if (mobileActions && header) {
                 mobileActions.style.opacity = '1';
-                header.style.opacity = '1';
+                header.style.zIndex = '30';
             }
+            body.style.overflow = '';
         };
     }, [isOpen]); // The effect runs only when `isOpen` changes
 
