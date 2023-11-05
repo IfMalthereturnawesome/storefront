@@ -16,10 +16,10 @@ const MobileImageGallery = ({ images }) => {
         <>
             <Swiper
                 style={{
-                    '--swiper-navigation-color': 'rgba(51,48,48,0.76)',
+                    '--swiper-navigation-color': '#524f4f',
                     '--swiper-pagination-color': '#524c4c',
                     '--swiper-navigation-size': '24px',
-                }}
+                } as React.CSSProperties}
                 modules={[Zoom, Navigation, Thumbs, Pagination, FreeMode]}
                 spaceBetween={5}
                 navigation={true}
