@@ -10,6 +10,8 @@ import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
 import ProductFaqs from "@modules/products/components/product-faqs";
 import ProductFAQ from "@modules/products/components/product-faqs";
+import ImageGallery from "@modules/products/components/image-gallary";
+import MobileImageGallery from "@modules/products/components/image-gallary/MobileImageGallery";
 
 type ProductTemplateProps = {
     product: PricedProduct
@@ -38,9 +40,12 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     ref={info}>
                     <div id={"buy-now"}
                          className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">
-                        <div className="flex flex-col gap-y-8 w-full">
+                        <div className="hidden lg:flex flex-col gap-y-8 w-full">
                             <ZoomableImageGallery images={productImagePaths}/>
 
+                        </div>
+                        <div className={"block lg:hidden"}>
+                            <MobileImageGallery images={productImagePaths}/>
                         </div>
 
                         <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
