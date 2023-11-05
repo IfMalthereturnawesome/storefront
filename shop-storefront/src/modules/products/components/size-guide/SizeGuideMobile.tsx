@@ -15,14 +15,18 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
     useEffect(() => {
         // Accessing `document` inside useEffect to ensure it's client-side
         const mobileActions = document.getElementById('mobile-actions');
-        if (mobileActions) {
+        const header = document.getElementById('header_1');
+        if (mobileActions && header) {
             mobileActions.style.opacity = isOpen ? '0' : '1';
+            header.style.opacity = isOpen ? '0' : '1';
+            header.style.zIndex = isOpen ? '0' : '30';
         }
 
         // Optional: Return a cleanup function to reset the opacity when the component unmounts
         return () => {
-            if (mobileActions) {
+            if (mobileActions && header) {
                 mobileActions.style.opacity = '1';
+                header.style.opacity = '1';
             }
         };
     }, [isOpen]); // The effect runs only when `isOpen` changes
@@ -31,17 +35,17 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
     return (
         <div
-            className="  flex items-center justify-center z-[80] p-4 modal-overlay md:hidden "
+            className="  flex items-center justify-center z-[80] p-2 modal-overlay md:hidden "
             onClick={(e) => {
                 if (e.target === e.currentTarget) onClose();
             }}
         >
             <div
-                className="flex flex-col bg-custom-white dark:bg-cyan-1  w-full mt-auto h-[calc(100vh-80px)] max-w-md rounded-lg "
+                className="flex flex-col bg-custom-white dark:bg-cyan-1  w-full my-auto h-[calc(95vh)] max-w-[98vw] rounded-lg "
             >
                 <header className="bg-custom-white dark:bg-cyan-1  p-4 flex justify-between items-center">
                     <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Size Guide</h2>
-                    <button onClick={onClose} className="text-slate-12">
+                    <button onClick={onClose} className="text-slate-12 ">
                         <svg width="21px" height="21px" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
                         >
@@ -93,43 +97,43 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                                 <table className="w-full border-collapse">
                                     <thead>
                                     <tr className="bg-custom-white dark:bg-cyan-2 text-slate-12 text-sm">
-                                        <th className="px-4 py-2 border border-slate-6">Size</th>
-                                        <th className="px-4 py-2 border border-slate-6">Head
+                                        <th className="px-3 py-2 border border-slate-6">Size</th>
+                                        <th className="px-3 py-2 border border-slate-6">Head
                                             Circumference {(unit === 'cm' ? '(cm)' : '(in)')}</th>
-                                        <th className="px-4 py-2 border border-slate-6">Typical Male</th>
-                                        <th className="px-4 py-2 border border-slate-6">Typical Female</th>
+                                        <th className="px-3 py-2 border border-slate-6">Typical Male</th>
+                                        <th className="px-3 py-2 border border-slate-6">Typical Female</th>
                                     </tr>
                                     </thead>
                                     <tbody className="text-sm text-slate-12">
                                     <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">XS</td>
-                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '52.0 - 54.5' : `${parseFloat((52.0 * 0.393701).toFixed(2))} - ${parseFloat((54.5 * 0.393701).toFixed(2))}`}</td>
-                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
-                                        <td className="px-4 py-2 border border-slate-6">Common</td>
+                                        <td className="px-3 py-2 border border-slate-6">XS</td>
+                                        <td className="px-3 py-2 border border-slate-6">{unit === 'cm' ? '52.0 - 54.5' : `${parseFloat((52.0 * 0.393701).toFixed(2))} - ${parseFloat((54.5 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-3 py-2 border border-slate-6">Uncommon</td>
+                                        <td className="px-3 py-2 border border-slate-6">Common</td>
                                     </tr>
                                     <tr className="bg-custom-white dark:bg-cyan-2">
-                                        <td className="px-4 py-2 border border-slate-6">S</td>
-                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '54.0 - 56.5' : `${parseFloat((54.0 * 0.393701).toFixed(2))} - ${parseFloat((56.5 * 0.393701).toFixed(2))}`}</td>
-                                        <td className="px-4 py-2 border border-slate-6">Average</td>
-                                        <td className="px-4 py-2 border border-slate-6">Average</td>
+                                        <td className="px-3 py-2 border border-slate-6">S</td>
+                                        <td className="px-3 py-2 border border-slate-6">{unit === 'cm' ? '54.0 - 56.5' : `${parseFloat((54.0 * 0.393701).toFixed(2))} - ${parseFloat((56.5 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-3 py-2 border border-slate-6">Average</td>
+                                        <td className="px-3 py-2 border border-slate-6">Average</td>
                                     </tr>
                                     <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">M</td>
-                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '56.0 - 58.0' : `${parseFloat((56.0 * 0.393701).toFixed(2))} - ${parseFloat((58.0 * 0.393701).toFixed(2))}`}</td>
-                                        <td className="px-4 py-2 border border-slate-6">Average</td>
-                                        <td className="px-4 py-2 border border-slate-6">Average</td>
+                                        <td className="px-3 py-2 border border-slate-6">M</td>
+                                        <td className="px-3 py-2 border border-slate-6">{unit === 'cm' ? '56.0 - 58.0' : `${parseFloat((56.0 * 0.393701).toFixed(2))} - ${parseFloat((58.0 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-3 py-2 border border-slate-6">Average</td>
+                                        <td className="px-3 py-2 border border-slate-6">Average</td>
                                     </tr>
                                     <tr className="bg-custom-white dark:bg-cyan-2">
-                                        <td className="px-4 py-2 border border-slate-6">L</td>
-                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '57.5 - 60.0' : `${parseFloat((57.5 * 0.393701).toFixed(2))} - ${parseFloat((60.0 * 0.393701).toFixed(2))}`}</td>
-                                        <td className="px-4 py-2 border border-slate-6">Common</td>
-                                        <td className="px-4 py-2 border border-slate-6">Common</td>
+                                        <td className="px-3 py-2 border border-slate-6">L</td>
+                                        <td className="px-3 py-2 border border-slate-6">{unit === 'cm' ? '57.5 - 60.0' : `${parseFloat((57.5 * 0.393701).toFixed(2))} - ${parseFloat((60.0 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-3 py-2 border border-slate-6">Common</td>
+                                        <td className="px-3 py-2 border border-slate-6">Common</td>
                                     </tr>
                                     <tr className="bg-custom-white dark:bg-cyan-1">
-                                        <td className="px-4 py-2 border border-slate-6">XL</td>
-                                        <td className="px-4 py-2 border border-slate-6">{unit === 'cm' ? '59.5 - 62.0' : `${parseFloat((59.5 * 0.393701).toFixed(2))} - ${parseFloat((62.0 * 0.393701).toFixed(2))}`}</td>
-                                        <td className="px-4 py-2 border border-slate-6">Common</td>
-                                        <td className="px-4 py-2 border border-slate-6">Uncommon</td>
+                                        <td className="px-3 py-2 border border-slate-6">XL</td>
+                                        <td className="px-3 py-2 border border-slate-6">{unit === 'cm' ? '59.5 - 62.0' : `${parseFloat((59.5 * 0.393701).toFixed(2))} - ${parseFloat((62.0 * 0.393701).toFixed(2))}`}</td>
+                                        <td className="px-3 py-2 border border-slate-6">Common</td>
+                                        <td className="px-3 py-2 border border-slate-6">Uncommon</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -138,7 +142,7 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                     )}
 
                     {activeTab === 'measure' && (
-                        <div className="px-4 py-2">
+                        <div className="px-3 py-2">
                             <div className="text-black">
                                 <h3 className="text-lg font-bold text-slate-12">How to measure your head?</h3>
                                 <p className="text-slate-12 mt-2 text-sm">Follow these steps to measure the circumference of your head:</p>
