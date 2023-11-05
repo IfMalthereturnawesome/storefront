@@ -61,8 +61,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
     }, [price])
 
 
-
-
     useEffect(() => {
         let ctx = gsap.context(() => {
         if (countryCode == "Eu") {
@@ -112,6 +110,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                     decreaseQuantity();
                 }
             }
+        }
+    };
+
+    const handleQuantityChangeMobile = (change) => {
+        const newQuantity = quantity + change;
+        if (newQuantity !== quantity && newQuantity >= 1 && newQuantity <= maxDisplayQuantity) {
+            change > 0 ? increaseQuantity() : decreaseQuantity();
         }
     };
 
@@ -199,26 +204,51 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                             </>
                         )}
                     </div>
+
                     {isBothSelected && (
-                        <div className="flex items-center gap-x-2 text-base-semi">
-                            <label htmlFor="quantity" className="mr-2">Quantity:</label>
-                            <NativeSelect
-                                value={quantity}
-                                onChange={handleQuantityChange}
-                                placeholder={"Select quantity"}
-                                className="max-h-[45px] w-fit"
-                                disabled={disabled || !inStock}
-                            >
-                                {Array.from({ length: maxDisplayQuantity }).map((_, i) => {
-                                    const value = i + 1;
-                                    return (
-                                        <option value={value} key={i}>
-                                            {value}
-                                        </option>
-                                    );
-                                })}
-                            </NativeSelect>
-                        </div>
+                        <>
+                            <div className="items-center gap-x-2 text-base-semi hidden lg:flex">
+                                <label htmlFor="quantity" className="mr-2">Quantity:</label>
+                                <NativeSelect
+                                    value={quantity}
+                                    onChange={handleQuantityChange}
+                                    placeholder={"Select quantity"}
+                                    className="max-h-[45px] w-fit"
+                                    disabled={disabled || !inStock}
+                                >
+                                    {Array.from({length: maxDisplayQuantity}).map((_, i) => {
+                                        const value = i + 1;
+                                        return (
+                                            <option value={value} key={i}>
+                                                {value}
+                                            </option>
+                                        );
+                                    })}
+                                </NativeSelect>
+                            </div>
+                            <div className="flex lg:hidden sm:flex-row items-center gap-x-2 text-base-semi">
+                                <label htmlFor="quantity" className="mr-1 my-2 sm:mb-0 items-center">Quantity:</label>
+                                <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                                    <button
+                                        onClick={() => handleQuantityChangeMobile(-1)}
+                                        disabled={quantity <= 1}
+                                        className={`px-4 py-2 bg-cyan-3 hover:bg-cyan-4 text-slate-11 focus:outline-none ${quantity <= 1 ? 'text-slate-11/25' : ''}`}
+                                    >
+                                        -
+                                    </button>
+
+                                    <span className="px-4 py-2 border-l border-r border-gray-300">{quantity}</span>
+                                    <button
+                                        onClick={() => handleQuantityChangeMobile(1)}
+                                        disabled={quantity >= maxDisplayQuantity}
+                                        className="px-4 py-2 bg-cyan-3 hover:bg-cyan-4 text-slate-11 focus:outline-none"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </>
+
                     )}
                 </div>
             )}
