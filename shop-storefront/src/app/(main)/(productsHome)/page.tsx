@@ -24,11 +24,11 @@ async function Home({ product }) {
     const product = products[0];
 
     return {
-        title: `${product.title} | Eight Athletics Homepage`,
-        description: product.description || product.title,
+        title: `Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep`,
+        description:`${product.description} | Experience better sleep and performance with Eight Athletics' sleep mask. Tailored for athletes to boost recovery and success - achieve your dreams nightly.`,
         openGraph: {
-            title: `${product.title} | Eight Athletics Store`,
-            description: `${product.title}`,
+            title: `${product.title} | Eight Athletics Homepage`,
+            description: `${product.title} | Experience better sleep and performance with Eight Athletics' sleep mask. Tailored for athletes to boost recovery and success - achieve your dreams nightly.`,
             images: product.thumbnail ? [product.thumbnail] : [],
         },
 

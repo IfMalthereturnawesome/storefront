@@ -140,6 +140,11 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 <MediaQuery minWidth={1024}>
                 <canvas ref={canvasRefImage} className="w-full h-full object-contain"/>
                 </MediaQuery>
+                <MediaQuery maxWidth={1023}>
+                    <div >
+                    <img  src="/images/facestory/facestory_1.png" className="w-full h-full object-contain" alt={"Face story"}/>
+                    </div>
+                </MediaQuery>
 
             </div>
             {/* Text to the right of the center */}

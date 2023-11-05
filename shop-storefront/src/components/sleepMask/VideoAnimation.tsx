@@ -1,6 +1,6 @@
 'use client';
 
-import React, {RefObject, useLayoutEffect, useRef, useState} from 'react';
+import React, {RefObject, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {PauseIcon} from "@radix-ui/react-icons";
 import {PlayIcon} from '@heroicons/react/20/solid';
@@ -41,6 +41,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     const descriptionRef1 = useRef(null);
     const descriptionRef2 = useRef(null);
     const descriptionRef3 = useRef(null);
+    const [isClient, setIsClient] = useState(false);
 
     //  Timeline REFs
     const tl = useRef(null);
@@ -95,6 +96,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
             }
         });
     };
+
+    useEffect(() => {
+        setIsClient(true)
+    }, []);
 
 
     useLayoutEffect(() => {
@@ -582,14 +587,16 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                             )}
 
                         </div>
-                        {showCanvas && (
-                            <div>
+                        {showCanvas && isClient && (
+                            <>
+
                                     <MediaQuery minWidth={768}>
                                     <MaskSequence/>
                                     </MediaQuery>
 
+                                <MediaQuery maxWidth={767}>
                                 <div className="m-0 p-0">
-                                    <MediaQuery maxWidth={767}>
+
                                     <div
                                         className="canvas-container h-[35vh] md:h-[50vh] ">
                                         <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile" width={375}
@@ -597,9 +604,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                                className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
 
                                     </div>
-                                    </MediaQuery>
+
                                 </div>
-                            </div>
+                                </MediaQuery>
+                            </>
                         )
                         }
                     </div>
