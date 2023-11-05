@@ -232,7 +232,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                                     <button
                                         onClick={() => handleQuantityChangeMobile(-1)}
                                         disabled={quantity <= 1}
-                                        className={`px-4 py-2 bg-cyan-3 hover:bg-cyan-4 text-slate-11 focus:outline-none ${quantity <= 1 ? 'text-slate-11/25' : ''}`}
+                                        className={`px-4 py-2 bg-cyan-3 hover:bg-cyan-4 text-slate-12 focus:outline-none ${quantity <= 1 ? 'text-slate-12/25' : ''}`}
                                     >
                                         -
                                     </button>
@@ -241,7 +241,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                                     <button
                                         onClick={() => handleQuantityChangeMobile(1)}
                                         disabled={quantity >= maxDisplayQuantity}
-                                        className="px-4 py-2 bg-cyan-3 hover:bg-cyan-4 text-slate-11 focus:outline-none"
+                                        className="px-4 py-2 bg-cyan-3 hover:bg-cyan-4 text-slate-12 focus:outline-none"
                                     >
                                         +
                                     </button>
