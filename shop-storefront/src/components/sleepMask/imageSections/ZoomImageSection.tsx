@@ -8,7 +8,7 @@ import {ArrowDownIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import SplitType from 'split-type';
 import MediaQuery from "react-responsive";
-
+import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -39,6 +39,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
     const tl = useRef(null);
 
     const tl2 = useRef(null);
+    const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
 
 
     useLayoutEffect(() => {
@@ -138,13 +139,13 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
         <div className="relative z-[1]" id={"increase-melatonin-production"}>
 
             <div className="w-full h-screen">
-                <MediaQuery minWidth={1024}>
+                {isDesktop && (
                 <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
                        alt="Increase Melatonin Production with Eight Athletics Sleep Mask"
                        width={1920}
                        height={1080}
                        quality={90}/>
-                </MediaQuery>
+                )}
             </div>
 
             <div

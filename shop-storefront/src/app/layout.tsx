@@ -45,7 +45,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
 
     return (
-        <html lang="en" className="dark ">
+        <html lang="en" className="dark" >
         <body
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
         >

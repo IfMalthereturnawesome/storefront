@@ -4,6 +4,8 @@ import gsap from "gsap";
 import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import MediaQuery from "react-responsive";
+import useBetterMediaQuery from 'utils/useBetterMediaQuery'
+
 
 
 interface FaceStoryProps {
@@ -12,16 +14,19 @@ interface FaceStoryProps {
 }
 
 const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
-    const canvasRefImage = useRef<HTMLCanvasElement | null>(null);
+    const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
     const faceStoryRef = useRef<HTMLDivElement | null>(null);
+    const canvasRef = useRef(null);
+
+
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
 
             // Canvas code
-            if (canvasRefImage.current) {
-                const canvas = canvasRefImage.current;
+            if (canvasRef.current) {
+                const canvas = canvasRef.current;
 
                 canvas.width = 960;
                 canvas.height = 640;
@@ -45,10 +50,10 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 }
 
                 images[1].onload = () => {
-                    if (canvasRefImage.current) {
-                        const context = canvasRefImage.current.getContext("2d");
-                        context?.clearRect(0, 0, canvasRefImage.current.width, canvasRefImage.current.height);
-                        context?.drawImage(images[1], 0, 0, canvasRefImage.current.width, canvasRefImage.current.height);
+                    if (canvasRef.current) {
+                        const context = canvasRef.current.getContext("2d");
+                        context?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+                        context?.drawImage(images[1], 0, 0, canvasRef.current.width, canvasRef.current.height);
                     }
                 };
 
@@ -85,7 +90,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 );
 
 
-                gsap.fromTo(canvasRefImage.current,
+                gsap.fromTo(canvasRef.current,
                     {
                         opacity: 0,
                     },
@@ -97,7 +102,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                 );
 
 
-                gsap.to(canvasRefImage.current, {
+                gsap.to(canvasRef.current, {
                     scale: 1,
                     ease: "none",
 
@@ -135,19 +140,12 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
 
         <div id={"crafted-from-thousands-of-unique-faces"} ref={faceStoryRef}
              className="flex pinFaceStory bg-[#130612] z-[1]">
-            {/* Image Sequence to the left */}
-            <div className="w-fit ml-2 h-screen ">
-                <MediaQuery minWidth={1024}>
-                <canvas ref={canvasRefImage} className="w-full h-full object-contain"/>
-                </MediaQuery>
-                <MediaQuery maxWidth={1023}>
-                    <div >
-                    <img  src="/images/facestory/facestory_1.png" className="w-full h-full object-contain" alt={"Face story"}/>
-                    </div>
-                </MediaQuery>
+            {isDesktop && (
 
-            </div>
-            {/* Text to the right of the center */}
+                <div className="w-fit ml-2 h-screen ">
+                    <canvas ref={canvasRef} className="w-full h-full object-contain" />
+                </div>
+            )}
             <div className="w-auto mx-auto flex flex-col justify-center pl-8 -mt-[3rem] ">
                 <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[30vw] 3xl:max-w-[33vw]">{headline}</h2>
                 <p data-aos="fade-up"

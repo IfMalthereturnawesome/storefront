@@ -41,17 +41,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     ref={info}>
                     <div id={"buy-now"}
                          className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">
-                        <div className="hidden lg:flex flex-col gap-y-8 w-full">
-                            <MediaQuery minWidth={1024}>
+                        <MediaQuery minWidth={1024}>
+                            <div className="hidden lg:flex flex-col gap-y-8 w-full">
                                 <ZoomableImageGallery images={productImagePaths}/>
-                            </MediaQuery>
-
-                        </div>
-                        <div className={"block lg:hidden"}>
-                            <MediaQuery maxWidth={1023}>
+                            </div>
+                        </MediaQuery>
+                        <MediaQuery maxWidth={1023}>
+                            <div className={"block lg:hidden"}>
                                 <MobileImageGallery images={productImagePaths}/>
-                            </MediaQuery>
-                        </div>
+                            </div>
+                        </MediaQuery>
 
                         <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
                             <div style={{minHeight: 'calc(100vh - 64px)'}}>

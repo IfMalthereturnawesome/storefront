@@ -130,12 +130,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
             {product.collection && (
                 <Link
                     href={`/collections/${product.collection.handle}`}
-                    className="text-small-regular text-slate-11"
+                    className="text-small-regular w-fit mb-1 text-slate-11"
                 >
                     {product.collection.title}
                 </Link>
             )}
-            <h3 className="text-3xl font-bold text-slate-12">{product.title}</h3>
+            <h2 className="text-3xl header-bg-clip my-0 font-bold ">{product.title}</h2>
 
             <p className="text-base-regular text-slate-12 ">{product.description}</p>
 

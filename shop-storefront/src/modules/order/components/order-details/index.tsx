@@ -24,9 +24,6 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
             <h1 className="mt-2 uppercase text-2xl-semi text-slate-11">#{order.display_id}</h1>
             <span className={"text-xs break-words"}>{order.id.split("order_")[1]}</span>
 
-            {/* Confirmation Email Notice */}
-
-
             <div className="flex items-center text-slate-11 text-small-regular gap-x-4 mt-4">
                 <span>{new Date(order.created_at).toDateString()}</span>
                 <span>{`${items} ${items !== 1 ? "items" : "item"}`}</span>
