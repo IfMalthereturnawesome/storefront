@@ -84,7 +84,7 @@ const CartDropdown = () => {
                                   </Link>
                                 </h3>
                                 <LineItemOptions variant={item.variant} />
-                                <span>Quantity: {item.quantity}</span>
+                                <span className={"text-xs text-slate-11"}>Items: {item.quantity}</span>
                               </div>
                               <div className="flex justify-end">
                                 <LineItemPrice

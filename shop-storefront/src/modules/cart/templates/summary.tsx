@@ -9,7 +9,7 @@ type SummaryProps = {
   }
 
 const Summary = ({ cart }: SummaryProps) => {
-    console.log("Cart Data before CartTotals:", cart);
+
   return (
 
     <div className="grid grid-cols-1 gap-y-6">

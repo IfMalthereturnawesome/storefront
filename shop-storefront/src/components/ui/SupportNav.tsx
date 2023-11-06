@@ -14,13 +14,13 @@ export default function SupportNav({ activeSubMenu, setActiveSubMenu }: { active
   const { buttonRef, onHover, handleClick } = useDropdownHoverMenu();
 
   const onMouseEnterHandler = () => {
-    console.log("onMouseEnterHandler called"); // <-- add this line
+
     onHover(true, 'onMouseEnter');
     setActiveSubMenu('support');
   };
 
   const onMouseLeaveHandler = () => {
-    console.log("onMouseLeaveHandler called"); // <-- add this line
+
     onHover(false, 'onMouseLeave');
     if (activeSubMenu === 'support') {
       setActiveSubMenu(null);

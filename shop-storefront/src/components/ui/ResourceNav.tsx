@@ -15,13 +15,13 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
     const { buttonRef, onHover, handleClick } = useDropdownHoverMenu();
 
     const onMouseEnterHandler = () => {
-        console.log("onMouseEnterHandler called"); // <-- add this line
+
         onHover(true, 'onMouseEnter');
         setActiveSubMenu('resource');
     };
 
     const onMouseLeaveHandler = () => {
-        console.log("onMouseLeaveHandler called"); // <-- add this line
+
         onHover(false, 'onMouseLeave');
         if (activeSubMenu === 'resource') {
             setActiveSubMenu(null);

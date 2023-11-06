@@ -14,13 +14,13 @@ export default function  ProductNav({ activeSubMenu, setActiveSubMenu }: { activ
     const { buttonRef, onHover, handleClick } = useDropdownHoverMenu();
 
     const onMouseEnterHandler = () => {
-        console.log("onMouseEnterHandler called"); // <-- add this line
+
         onHover(true, 'onMouseEnter');
         setActiveSubMenu('product');
     };
 
     const onMouseLeaveHandler = () => {
-        console.log("onMouseLeaveHandler called"); // <-- add this line
+
         onHover(false, 'onMouseLeave');
         if (activeSubMenu === 'product') {
             setActiveSubMenu(null);

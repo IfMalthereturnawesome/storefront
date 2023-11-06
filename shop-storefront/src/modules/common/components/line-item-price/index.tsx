@@ -22,8 +22,6 @@ const LineItemPrice = ({
 
     const locale = getLocaleForRegion(region.name) || "en-US";
 
-    console.log("locale", locale)
-    console.log("region", region.name)
 
     return (
         <div className="flex flex-col text-slate-12 text-right">

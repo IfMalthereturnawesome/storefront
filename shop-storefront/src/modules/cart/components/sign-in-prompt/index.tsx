@@ -5,7 +5,7 @@ const SignInPrompt = () => {
     return (
         // Use responsive flex direction and margin, justify content to start on medium screens and up
         <div className="flex flex-col  mb-5 xs:flex-row xs:items-start xs:justify-between xs:mb-6 lg:mb-8">
-            <div className="text-left xs:text-center">
+            <div className="text-left ">
                 {/* Keep the original text and color classes */}
                 <h2 className="text-xl-semi text-slate-12">Already have an account?</h2>
                 <p className="text-base-regular text-slate-11 mt-2 sm:mt-3">
