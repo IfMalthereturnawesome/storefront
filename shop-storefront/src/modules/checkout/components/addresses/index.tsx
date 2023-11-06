@@ -56,30 +56,30 @@ const Addresses = () => {
         <div>
           <div className="bg-cyan-2 px-3 sm:px-8 py-6 text-small-regular">
             {cart && cart.shipping_address ? (
-              <div className="flex items-start gap-x-8">
+              <div className="flex items-start gap-x-6 sm:gap-x-8">
                 <div className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">
                   ✓
                 </div>
                 <div className="flex items-start justify-between w-full text-slate-11">
-                  <div className="flex flex-col">
-                    <span>
+                  <div className="flex flex-col ">
+                    <span className={"text-slate-12"}>
                       {cart.shipping_address.first_name}{" "}
                       {cart.shipping_address.last_name}
                     </span>
-                    <span>
+                    <span className={"text-slate-12"}>
                       {cart.shipping_address.address_1}{" "}
                       {cart.shipping_address.address_2}
                     </span>
-                    <span>
+                    <span className={"text-slate-12"}>
                       {cart.shipping_address.postal_code},{" "}
                       {cart.shipping_address.city}
                     </span>
-                    <span>
+                    <span className={"text-slate-12"}>
                       {cart.shipping_address.country_code?.toUpperCase()}
                     </span>
                     <div className="mt-4 flex flex-col">
-                      <span>{cart.shipping_address.phone}</span>
-                      <span>{cart.email}</span>
+                      <span className={"text-slate-12"}>{cart.shipping_address.phone}</span>
+                      <span className={"text-slate-12"}>{cart.email}</span>
                     </div>
                     {checked && (
                       <div className="flex items-center gap-x-2 mt-6">
@@ -111,30 +111,30 @@ const Addresses = () => {
               </div>
               <div className="bg-cyan-2 px-3 sm:px-8 py-6 text-small-regular">
                 {cart && cart.billing_address ? (
-                  <div className="flex items-start gap-x-8">
+                  <div className="flex items-start gap-x-6 sm:gap-x-8">
                     <div className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">
                       ✓
                     </div>
                     <div className="flex items-start justify-between w-full text-slate-11">
                       <div className="flex flex-col">
-                        <span>
+                        <span className={"text-slate-12"}>
                           {cart.billing_address.first_name}{" "}
                           {cart.billing_address.last_name}
                         </span>
-                        <span>
+                        <span className={"text-slate-12"}>
                           {cart.billing_address.address_1}{" "}
                           {cart.billing_address.address_2}
                         </span>
-                        <span>
+                        <span className={"text-slate-12"}>
                           {cart.billing_address.postal_code},{" "}
                           {cart.billing_address.city}
                         </span>
-                        <span>
+                        <span className={"text-slate-12"}>
                           {cart.billing_address.country_code?.toUpperCase()}
                         </span>
 
                         <div className="mt-4 flex flex-col">
-                          <span>{cart.billing_address.phone}</span>
+                          <span className={"text-slate-12"}>{cart.billing_address.phone}</span>
                         </div>
                       </div>
                       <div>

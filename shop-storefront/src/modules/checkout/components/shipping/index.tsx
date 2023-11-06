@@ -358,60 +358,58 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                         </div>
                                     )}
                                 </RadioGroup>
-                                {loadingServicePoints ? (
-                                    <div className="flex flex-col items-center justify-center px-4 py-8 text-slate-12">
-                                        <Spinner/>
-                                    </div>
-                                ) : (
-                                    servicePoints && servicePoints.length > 0 && (
-                                        <div className="mt-4 px-8 py-4">
-                                            <Listbox value={selectedServicePoint} onChange={setSelectedServicePoint}>
-                                                {({open}) => (
-                                                    <>
-                                                        <Listbox.Label
-                                                            className="block text-sm font-medium text-slate-12">
-                                                            Select a Service Point
-                                                        </Listbox.Label>
-                                                        <div
-                                                            className="mt-2 relative group">
-                                                            <span className="block relative">
-          <Listbox.Button
-              className={`block w-full pl-3 pr-10 py-3 text-left custom-button-neo-dark bg-white text-slate-12 group-hover:bg-custom-white group-hover:text-slate-12`}> {/* Use group-hover here */}
-              {selectedServicePoint ? `${selectedServicePoint.name} - ${formatDistance(selectedServicePoint.distance)}` : 'Select a service point'}
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <ChevronDownIcon className="w-5 h-5 text-slate-10"/>
-            </span>
-          </Listbox.Button>
-        </span>
-                                                            <Listbox.Options
-                                                                className={`z-10 mt-2 relative w-full py-1 bg-custom-white dark:bg-cyan-2 border border-slate-5 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
-                                                                {servicePoints.map((servicePoint) => (
-                                                                    <Listbox.Option
-                                                                        key={servicePoint.id}
-                                                                        value={servicePoint}
-                                                                        className={({
-                                                                                        active,
-                                                                                        selected
-                                                                                    }) => `cursor-pointer select-none relative px-4 py-2 ${active ? ' text-slate-12' : 'text-slate-11'} ${selected ? 'font-semibold' : 'font-normal'}`}
-                                                                    >
-                                                                        {servicePoint.name} - {formatDistance(servicePoint.distance)}
-                                                                        <div className="text-xs">
-                                                                            {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
-                                                                        </div>
-                                                                        <div className="text-xs mt-1">
-                                                                            {formatOpeningHours(servicePoint.opening_hours)}
-                                                                        </div>
-                                                                    </Listbox.Option>
-                                                                ))}
-                                                            </Listbox.Options>
-                                                        </div>
-                                                    </>
-                                                )}
-                                            </Listbox>
-
+                                {
+                                    loadingServicePoints ? (
+                                        <div className="flex flex-col items-center justify-center px-4 py-8 text-slate-12">
+                                            <Spinner/>
                                         </div>
+                                    ) : (
+                                        servicePoints && servicePoints.length > 0 && (
+                                            <div className="mt-4 px-0  py-4">
+                                                <Listbox value={selectedServicePoint} onChange={setSelectedServicePoint}>
+                                                    {({ open }) => (
+                                                        <>
+                                                            <Listbox.Label
+                                                                className="block text-xs sm:text-sm font-medium text-slate-12">
+                                                                Select a Service Point
+                                                            </Listbox.Label>
+                                                            <div
+                                                                className="mt-2 relative group">
+                <span className="block relative">
+                  <Listbox.Button
+                      className={`block w-full pl-3 pr-10 py-3 text-left custom-button-neo-dark bg-white text-slate-12 text-xs sm:text-sm group-hover:bg-custom-white group-hover:text-slate-12`}>
+                    {selectedServicePoint ? `${selectedServicePoint.name} - ${formatDistance(selectedServicePoint.distance)}` : 'Select a service point'}
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <ChevronDownIcon className="w-5 h-5 text-slate-10"/>
+                    </span>
+                  </Listbox.Button>
+                </span>
+                                                                <Listbox.Options
+                                                                    className={`z-10 mt-2 w-full py-1 bg-custom-white dark:bg-cyan-2 border border-slate-5 rounded-md shadow-lg ${open ? 'block' : 'hidden'}`}>
+                                                                    {servicePoints.map((servicePoint) => (
+                                                                        <Listbox.Option
+                                                                            key={servicePoint.id}
+                                                                            value={servicePoint}
+                                                                            className={({ active, selected }) => `cursor-pointer select-none relative px-3 sm:px-4 py-2 border-b border-slate-5 text-xs sm:text-sm ${active ? ' text-slate-12' : 'text-slate-11'} ${selected ? 'font-semibold' : 'font-normal'}`}
+                                                                        >
+                                                                            {servicePoint.name} - {formatDistance(servicePoint.distance)}
+                                                                            <div className="text-2xs sm:text-xs">
+                                                                                {`${servicePoint.address.street} ${servicePoint.address.zip_code} ${servicePoint.address.city}`}
+                                                                            </div>
+                                                                            <div className="text-2xs sm:text-xs mt-1">
+                                                                                {formatOpeningHours(servicePoint.opening_hours)}
+                                                                            </div>
+                                                                        </Listbox.Option>
+                                                                    ))}
+                                                                </Listbox.Options>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </Listbox>
+                                            </div>
+                                        )
                                     )
-                                )}
+                                }
 
                                 <ErrorMessage
                                     errors={errors}
@@ -437,9 +435,9 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
             </div>
         ) : (
             <div className="p-3 sm:p-8">
-                <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4">
-                    <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-3 sm:space-y-0">
-                        <div className="bg-teal-9 rounded-full w-6 h-6 flex items-center justify-center text-slate-1 text-xs sm:text-small-regular">
+                <div className="flex flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4">
+                    <div className="flex items-start gap-x-6 sm:gap-x-8">
+                        <div className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">
                             ✓
                         </div>
 
@@ -447,11 +445,11 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                             <Image
                                 src={getCarrierImage(cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier)}
                                 alt={cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier as string || 'default'}
-                                width={64} // Adjusted for a better fit on mobile
-                                height={64} // Adjusted for a better fit on mobile
-                                className="w-16 h-16 sm:w-24 sm:h-16 object-contain"/>
+                                width={64}
+                                height={64}
+                                className="w-6 h-6 3xs:w-8 3xs:h-8 2xs:w-12 2xs:h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 2xl:w-20 2xl:h-20 object-contain"/>
                             <span
-                                className="text-slate-12 font-semibold block sm:block"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
+                                className="text-slate-12  text-xs sm:text-xs md:text-md font-semibold block sm:block"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
                             <p className="text-slate-12 text-xs sm:text-xs block">{
                                 // @ts-ignore
                                 shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price

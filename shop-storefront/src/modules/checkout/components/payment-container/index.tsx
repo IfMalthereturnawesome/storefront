@@ -47,7 +47,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       )}
     >
       <button
-        className={"grid grid-cols-[12px_1fr] gap-x-4 py-4 px-8"}
+        className={"grid grid-cols-[12px_1fr] gap-x-4 py-4 px-3 sm:px-8"}
         onClick={setSelected}
         disabled={disabled}
       >
@@ -78,7 +78,7 @@ const PaymentElement = ({
   switch (paymentSession.provider_id) {
     case "stripe":
       return (
-        <div className="pt-8 pr-7">
+        <div className="pt-8 pr-2 sm:pr-7">
           <PaymentStripe />
         </div>
       )
