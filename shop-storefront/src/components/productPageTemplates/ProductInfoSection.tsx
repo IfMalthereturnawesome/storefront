@@ -4,7 +4,7 @@ import {useIntersection} from "@lib/hooks/use-in-view"
 import ProductTabs from "@modules/products/components/product-tabs"
 
 import ProductInfo from "@modules/products/templates/product-info"
-import React, { useRef} from "react"
+import React, {useRef} from "react"
 import MobileActions from "../../modules/products/components/mobile-actions"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
@@ -31,13 +31,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
     const inView = useIntersection(info, "0px")
     const productHandle = product?.handle || "sleep-mask-one";
-
     const productImageDirectory = `/images/products/${productHandle}/`;
     const productImagePaths = Array(8).fill(null).map((_, idx) => `${productImageDirectory}image${idx + 1}.jpg`);
 
 
     return (
-
         <>
             <div className={"relative z-[0] lg:z-[1]"}>
                 <div
@@ -60,24 +58,20 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                             <div style={{minHeight: 'calc(100vh - 64px)'}}>
                                 <div
                                     className="sticky top-0  py-8 px-4 lg:py-6 lg:px-14 flex flex-col gap-y-12"
-
                                 >
                                     <ProductInfo product={product}/>
                                     <ProductTabs product={product}/>
-
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                     <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
                 </div>
 
             </div>
-            <MediaQuery maxWidth={1023}>
+            {isDesktop && (
                 <MobileActions product={product} show={inView}/>
-            </MediaQuery>
+            )}
 
         </>
 

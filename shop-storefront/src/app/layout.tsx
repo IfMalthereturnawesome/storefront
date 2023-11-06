@@ -51,7 +51,7 @@ export default function RootLayout({children}: RootLayoutProps) {
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
         >
         {/*<BreakpointsIndicatorExtended />*/}
-        <BreakpointsIndicator/>
+        {/*<BreakpointsIndicator/>*/}
         <ProvidersNextUI>
             <Providers>
                 <div

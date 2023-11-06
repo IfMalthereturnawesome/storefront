@@ -52,7 +52,7 @@ export default function PostItem({...props}) {
                 </p>
                 <footer className="my-4 flex items-center px-4 md:mb-4">
                   <Link href="#">
-                    <img
+                    <Image
                       className="mr-4 shrink-0 rounded-full"
                       src={props.authorImg}
                       width={40}

@@ -82,11 +82,6 @@ export default function SupportSidebar() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          {/* Gradient bg displaying on light layout only */}
-          <div
-            className="pointer-events-none absolute inset-0 -left-[9999px] -z-10 bg-gradient-to-b from-cyan-1 to-cyan-2 dark:hidden"
-            aria-hidden="true"
-          ></div>
 
           <div className=" 2xl:no-scrollbar bottom-0 top-0 w-64 mb-20  px-4 sm:px-6 md:pl-0 md:pr-8">
             <div className=" py-0 2xl:pb-8 2xl:pt-12 2xl:md:pt-16">

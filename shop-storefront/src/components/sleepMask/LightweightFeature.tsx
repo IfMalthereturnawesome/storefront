@@ -8,7 +8,7 @@ import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
 
 import Lenis from '@studio-freight/lenis';
 import usePageSettings from "@/utils/hooks/usePageSettings";
-import lottie from 'lottie-web';
+
 
 
 if (typeof window !== 'undefined') {
@@ -130,182 +130,182 @@ const LightweightFeature = () => {
         gsap.ticker.add(rafLoop);
         gsap.ticker.lagSmoothing(0);
 
-        if (lottieContainer.current) {
-            const animation = lottie.loadAnimation({
-                container: lottieContainer.current,
-                renderer: 'svg',
-                loop: true,
-                autoplay: false,
-                path: '/images/product/coins-animation.json' // Replace with your Lottie JSON path
-            });
-
-
-            // Initialize ScrollTrigger
-            ScrollTrigger.create({
-                trigger: '.pinScale',
-                start: 'center center',
-                end: '+=2000px',
-                pin: true,
-                pinSpacing: true,
-                markers: false,
-                onEnter: () => {
-                    setCoinsLanded(0);
-                    setRightBowlWeight(0);
-
-                },
-                onLeave: () => {
-                    //     reset coinsLanded
-                    setCoinsLanded(4);
-                    setRightBowlWeight(20);
-
-
-                },
-
-                onUpdate: (self) => {
-                    // Update the scroll direction
-                    setScrollDirection(self.direction);
-
-                    const frame = Math.floor(self.progress * animation.totalFrames);
-                    animation.goToAndStop(frame, true);
-
-
-                    if (frame < COIN_LAND_FRAMES[0]) {
-                        setCoinsLanded(0);
-                        setRightBowlWeight(0);
-                        return;
-                    }
-
-                    if (self.direction === -1) {
-                        // Scrolling Up
-                        const lastFrameWhereCoinLanded = COIN_LAND_FRAMES_UP.filter(f => f < frame).pop();
-
-                        if (lastFrameWhereCoinLanded !== undefined) {
-                            const indexOfLastFrame = COIN_LAND_FRAMES_UP.indexOf(lastFrameWhereCoinLanded);
-
-                            // Update coinsLanded and rightBowlWeight based on the last frame where a coin landed
-                            setCoinsLanded(indexOfLastFrame + 1);
-                            setRightBowlWeight((indexOfLastFrame + 1) * 5);
-
-                        } else {
-                            // Reset if no coins have landed
-                            setCoinsLanded(0);
-                            setRightBowlWeight(0);
-                        }
-                    }
-
-
-                    const indexOfFrame = COIN_LAND_FRAMES.indexOf(frame);
-
-                    if (indexOfFrame !== -1 && !hitFrames.has(frame)) {
-                        const newSet = new Set(hitFrames);
-                        newSet.add(frame);
-                        setHitFrames(newSet);
-
-                        setCoinsLanded(indexOfFrame + 1);
-
-                        // Update the right bowl weight
-                        setRightBowlWeight((indexOfFrame + 1) * 5);
-                        oscillationTime = 0;
-
-                    } else if (indexOfFrame === -1 && hitFrames.has(frame)) {
-                        const newSet = new Set(Array.from(hitFrames).filter(f => f !== frame));
-                        setHitFrames(newSet);
-
-                    }
-
-                    if (coinsLanded > 0) {
-                        oscillationTime += oscillationSpeed;
-                    }
-
-                    // Update time and angular position based on Hooke's Law
-                    time += timeIncrement;
-
-                    const A = oscillationAmplitude;
-                    const b = 0.05;  // Damping constant
-                    const w = angularFrequency;
-                    const phi = 0;  // Phase angle
-
-
-                    oscillationTime += oscillationSpeed;
-                    const angleOscillation = A * Math.exp(-b * oscillationTime) * Math.cos(w * oscillationTime + phi);
-
-                    // This block of code is where you calculate 'newTilt' based on oscillation and other factors
-                    const newTiltBase = -15 + (self.progress * 30) + angleOscillation;
-
-                    // Initialize a variable to hold the actual new tilt angle
-                    let newTilt = newTiltBase;
-                    const newTiltRad = newTilt * (Math.PI / -180);
-
-                    if (rightBowlWeight === 15) {
-                        // Slightly adjust the tilt to show that the right bowl is heavier by 1 gram
-                        // You can fine-tune this value to get the exact visual effect you want
-                        newTilt += 0.5;  // Add a slight tilt
-                    }
-
-
-                    gsap.to('#lever', {rotation: newTilt, transformOrigin: 'bottom center', duration: 0.3});
-
-
-                    const deltaY = LEVER_LENGTH * Math.sin(newTiltRad);
-                    const deltaX = LEVER_LENGTH * (1 - Math.cos(newTiltRad));
-
-                    const leftBowlNew = {
-                        x: leftBowlInitial.x - deltaX,
-                        y: leftBowlInitial.y - deltaY
-                    };
-                    const rightBowlNew = {
-                        x: rightBowlInitial.x + deltaX,
-                        y: rightBowlInitial.y + deltaY
-                    };
-
-                    gsap.to('#left_bowl', {x: rightBowlNew.x, y: rightBowlNew.y, duration: 0.3});
-                    gsap.to('#right_bowl', {x: leftBowlNew.x, y: leftBowlNew.y, duration: 0.3});
-                    gsap.to('#leftCircle', {x: rightBowlNew.x, y: rightBowlNew.y, duration: 0.3});
-                    gsap.to('#rightCircle', {x: leftBowlNew.x, y: leftBowlNew.y, duration: 0.3});
-
-
-                    //     swing the left bowl a bit to the right and left when a coin lands with rotation
-                    if (COIN_LAND_FRAMES.includes(frame) && !hitFrames.has(frame)) {
-
-                        lastFrame = frame;
-                        oscillationTime = 0;
-
-                        // Calculate the weight difference between the two bowls
-                        const weightDifference = 14 - rightBowlWeight; // 14 grams is the constant weight of the left bowl
-
-                        // Calculate the rotation factor for the left bowl based on this weight difference
-                        const rotationFactorLeft = weightDifference / 14; // This will be a value between 0 and 1
-
-
-                        const endAngleLeft = -0.5 * rotationFactorLeft;
-
-                        const endAngleRight = 3.2 * (0.7 / (indexOfFrame + 1));
-
-
-                        rotateBowl('#left_bowl',
-                            0.5 * rotationFactorLeft,
-                            endAngleLeft,
-                            0.03,
-                            0.2,
-                            "sin.out"
-                        );
-
-                        rotateBowl('#right_bowl',
-                            -endAngleRight,
-                            endAngleRight,
-                            0,
-                            0.2,
-                            "sin.out"
-                        );
-
-
-                    }
-
-
-                },
-
-            })
-        }
+        // if (lottieContainer.current) {
+        //     const animation = lottie.loadAnimation({
+        //         container: lottieContainer.current,
+        //         renderer: 'svg',
+        //         loop: true,
+        //         autoplay: false,
+        //         path: '/images/product/coins-animation.json' // Replace with your Lottie JSON path
+        //     });
+        //
+        //
+        //     // Initialize ScrollTrigger
+        //     ScrollTrigger.create({
+        //         trigger: '.pinScale',
+        //         start: 'center center',
+        //         end: '+=2000px',
+        //         pin: true,
+        //         pinSpacing: true,
+        //         markers: false,
+        //         onEnter: () => {
+        //             setCoinsLanded(0);
+        //             setRightBowlWeight(0);
+        //
+        //         },
+        //         onLeave: () => {
+        //             //     reset coinsLanded
+        //             setCoinsLanded(4);
+        //             setRightBowlWeight(20);
+        //
+        //
+        //         },
+        //
+        //         onUpdate: (self) => {
+        //             // Update the scroll direction
+        //             setScrollDirection(self.direction);
+        //
+        //             const frame = Math.floor(self.progress * animation.totalFrames);
+        //             animation.goToAndStop(frame, true);
+        //
+        //
+        //             if (frame < COIN_LAND_FRAMES[0]) {
+        //                 setCoinsLanded(0);
+        //                 setRightBowlWeight(0);
+        //                 return;
+        //             }
+        //
+        //             if (self.direction === -1) {
+        //                 // Scrolling Up
+        //                 const lastFrameWhereCoinLanded = COIN_LAND_FRAMES_UP.filter(f => f < frame).pop();
+        //
+        //                 if (lastFrameWhereCoinLanded !== undefined) {
+        //                     const indexOfLastFrame = COIN_LAND_FRAMES_UP.indexOf(lastFrameWhereCoinLanded);
+        //
+        //                     // Update coinsLanded and rightBowlWeight based on the last frame where a coin landed
+        //                     setCoinsLanded(indexOfLastFrame + 1);
+        //                     setRightBowlWeight((indexOfLastFrame + 1) * 5);
+        //
+        //                 } else {
+        //                     // Reset if no coins have landed
+        //                     setCoinsLanded(0);
+        //                     setRightBowlWeight(0);
+        //                 }
+        //             }
+        //
+        //
+        //             const indexOfFrame = COIN_LAND_FRAMES.indexOf(frame);
+        //
+        //             if (indexOfFrame !== -1 && !hitFrames.has(frame)) {
+        //                 const newSet = new Set(hitFrames);
+        //                 newSet.add(frame);
+        //                 setHitFrames(newSet);
+        //
+        //                 setCoinsLanded(indexOfFrame + 1);
+        //
+        //                 // Update the right bowl weight
+        //                 setRightBowlWeight((indexOfFrame + 1) * 5);
+        //                 oscillationTime = 0;
+        //
+        //             } else if (indexOfFrame === -1 && hitFrames.has(frame)) {
+        //                 const newSet = new Set(Array.from(hitFrames).filter(f => f !== frame));
+        //                 setHitFrames(newSet);
+        //
+        //             }
+        //
+        //             if (coinsLanded > 0) {
+        //                 oscillationTime += oscillationSpeed;
+        //             }
+        //
+        //             // Update time and angular position based on Hooke's Law
+        //             time += timeIncrement;
+        //
+        //             const A = oscillationAmplitude;
+        //             const b = 0.05;  // Damping constant
+        //             const w = angularFrequency;
+        //             const phi = 0;  // Phase angle
+        //
+        //
+        //             oscillationTime += oscillationSpeed;
+        //             const angleOscillation = A * Math.exp(-b * oscillationTime) * Math.cos(w * oscillationTime + phi);
+        //
+        //             // This block of code is where you calculate 'newTilt' based on oscillation and other factors
+        //             const newTiltBase = -15 + (self.progress * 30) + angleOscillation;
+        //
+        //             // Initialize a variable to hold the actual new tilt angle
+        //             let newTilt = newTiltBase;
+        //             const newTiltRad = newTilt * (Math.PI / -180);
+        //
+        //             if (rightBowlWeight === 15) {
+        //                 // Slightly adjust the tilt to show that the right bowl is heavier by 1 gram
+        //                 // You can fine-tune this value to get the exact visual effect you want
+        //                 newTilt += 0.5;  // Add a slight tilt
+        //             }
+        //
+        //
+        //             gsap.to('#lever', {rotation: newTilt, transformOrigin: 'bottom center', duration: 0.3});
+        //
+        //
+        //             const deltaY = LEVER_LENGTH * Math.sin(newTiltRad);
+        //             const deltaX = LEVER_LENGTH * (1 - Math.cos(newTiltRad));
+        //
+        //             const leftBowlNew = {
+        //                 x: leftBowlInitial.x - deltaX,
+        //                 y: leftBowlInitial.y - deltaY
+        //             };
+        //             const rightBowlNew = {
+        //                 x: rightBowlInitial.x + deltaX,
+        //                 y: rightBowlInitial.y + deltaY
+        //             };
+        //
+        //             gsap.to('#left_bowl', {x: rightBowlNew.x, y: rightBowlNew.y, duration: 0.3});
+        //             gsap.to('#right_bowl', {x: leftBowlNew.x, y: leftBowlNew.y, duration: 0.3});
+        //             gsap.to('#leftCircle', {x: rightBowlNew.x, y: rightBowlNew.y, duration: 0.3});
+        //             gsap.to('#rightCircle', {x: leftBowlNew.x, y: leftBowlNew.y, duration: 0.3});
+        //
+        //
+        //             //     swing the left bowl a bit to the right and left when a coin lands with rotation
+        //             if (COIN_LAND_FRAMES.includes(frame) && !hitFrames.has(frame)) {
+        //
+        //                 lastFrame = frame;
+        //                 oscillationTime = 0;
+        //
+        //                 // Calculate the weight difference between the two bowls
+        //                 const weightDifference = 14 - rightBowlWeight; // 14 grams is the constant weight of the left bowl
+        //
+        //                 // Calculate the rotation factor for the left bowl based on this weight difference
+        //                 const rotationFactorLeft = weightDifference / 14; // This will be a value between 0 and 1
+        //
+        //
+        //                 const endAngleLeft = -0.5 * rotationFactorLeft;
+        //
+        //                 const endAngleRight = 3.2 * (0.7 / (indexOfFrame + 1));
+        //
+        //
+        //                 rotateBowl('#left_bowl',
+        //                     0.5 * rotationFactorLeft,
+        //                     endAngleLeft,
+        //                     0.03,
+        //                     0.2,
+        //                     "sin.out"
+        //                 );
+        //
+        //                 rotateBowl('#right_bowl',
+        //                     -endAngleRight,
+        //                     endAngleRight,
+        //                     0,
+        //                     0.2,
+        //                     "sin.out"
+        //                 );
+        //
+        //
+        //             }
+        //
+        //
+        //         },
+        //
+        //     })
+        // }
     }, []);
 
     return (

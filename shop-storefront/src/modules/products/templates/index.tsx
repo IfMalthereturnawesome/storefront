@@ -6,13 +6,10 @@ import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
 import React, {useRef} from "react"
-import ImageGallery from "../components/image-gallary"
 import MobileActions from "../components/mobile-actions"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
-import VideoAnimation from "@/components/sleepMask/VideoAnimation";
-import usePageSettings from "@/utils/hooks/usePageSettings";
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
-import Image from 'next/image';
+
 
 
 type ProductTemplateProps = {

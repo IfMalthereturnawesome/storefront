@@ -57,18 +57,16 @@ export default function Blog() {
 
   return (
     <>
-      {' '}
-     
       <section className="relative bg-cyan-1">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="pb-12 pt-32 md:pb-20 md:pt-40">
+          <div className="pb-12 pt-16 md:pb-20 md:pt-40">
             {/*  Page header */}
             <div className="max-w-3xl pb-12 text-center md:pb-20 md:text-left">
               <h1
                 className="custom-header-1 format format-blue mb-4 dark:format-invert"
                 data-aos="fade-up"
               >
-                Eight Athletics&apos; Blog &amp; News
+                Eight Athletics&apos; blog
               </h1>
             </div>
 
