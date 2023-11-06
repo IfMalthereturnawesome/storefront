@@ -1,13 +1,14 @@
 import Providers from "@modules/providers"
 import "@/css/globals.css"
 import {Inter, Architects_Daughter, Poppins} from 'next/font/google';
-import 'flowbite';
+
 
 import {ProvidersNextUI} from "@/app/providers";
 import {Analytics} from '@vercel/analytics/react';
 import {Metadata} from 'next';
 import BreakpointsIndicatorExtended from "@/components/helper/breakpointsExtended";
 import BreakpointsIndicator from "@/components/helper/breakpoints";
+import React from "react";
 
 const inter = Inter({
     subsets: ['latin'],
@@ -45,7 +46,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
 
     return (
-        <html lang="en" className="dark" >
+        <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
         <body
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
         >

@@ -8,7 +8,7 @@ import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
 import Image from 'next/image';
 import MaskSequence from "@/components/sleepMask/MaskSequence";
-import MediaQuery from 'react-responsive';
+import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -49,6 +49,11 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     const tl3 = useRef(null);
     const tl4 = useRef(null);
     const tl5 = useRef(null);
+
+
+    const isTabletAndDesktop = useBetterMediaQuery('(min-width: 768px)');
+    const isMobile = useBetterMediaQuery('(max-width: 767px)');
+
 
     const smoothDisappearOneNight = () => {
         if (oneNightRef.current) {
@@ -591,11 +596,11 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         {showCanvas && isClient && (
                             <>
 
-                                    <MediaQuery minWidth={768}>
+                                {isTabletAndDesktop && (
                                     <MaskSequence/>
-                                    </MediaQuery>
+                                )}
 
-                                <MediaQuery maxWidth={767}>
+                            {isMobile && (
                                 <div className="m-0 p-0">
 
                                     <div
@@ -607,7 +612,8 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                     </div>
 
                                 </div>
-                                </MediaQuery>
+                            )}
+
                             </>
                         )
                         }

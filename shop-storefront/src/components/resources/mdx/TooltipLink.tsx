@@ -2,7 +2,7 @@
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {Tooltip} from 'flowbite-react';
-import {allPosts} from 'contentlayer/generated';
+
 
 interface PostLinkProps {
   href: string;

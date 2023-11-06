@@ -44,49 +44,8 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            tl.current = gsap.timeline({
-                scrollTrigger: {
-                    trigger: imageRef.current,
-                    start: 'top center',
-                    end: 'bottom center',
-                    scrub: true,
-                },
-            });
-
-            // Image zoom animation
-            tl.current.fromTo(
-                imageRef.current,
-                {scale: 1.18},
-                {scale: 1, duration: 3}
-            );
-
-
-            if (bigDescriptionTextRef.current) {
-                const split = new SplitType(bigDescriptionTextRef.current, {types: 'lines, words, chars'});
-
-                tl.current.from(split.chars, {
-                    opacity: 0,
-                    color: '#faf7f7',
-                    scale: 0.7,
-                    stagger: {amount: 0.5},
-                    ease: 'power2.inOut',
-
-                }, '<');
-
-
-                tl.current.to(split.chars, {
-                        color: '#fdc500',
-                        opacity: 0.8,
-                        scale: 1,
-                        stagger: {amount: 1.5},
-                        ease: 'power1.out',
-
-                    },
-                    '<');
-            }
-
-            if (tl2.current) {
-                tl2.current = gsap.timeline({
+            if (imageRef.current) {
+                tl.current = gsap.timeline({
                     scrollTrigger: {
                         trigger: imageRef.current,
                         start: 'top center',
@@ -95,38 +54,66 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                     },
                 });
 
-                // initialScrollText animation
-                tl2.current.to(
-                    initialScrollTextRef.current,
-                    {opacity: 0.5, duration: 3, stagger: 0.5}
+                // Image zoom animation
+                tl.current.fromTo(
+                    imageRef.current,
+                    {scale: 1.18},
+                    {scale: 1, duration: 3}
                 );
 
-                // discoverTextRef animation
-                tl2.current.fromTo(
-                    discoverTextRef.current,
-                    {y: 100, opacity: 0},
-                    {y: 0, opacity: 1, duration: 6}
-                );
 
-                // maximumTextRef and comfortTextRef animation
-                tl2.current.fromTo(
-                    [maximumTextRef.current, comfortTextRef.current],
-                    {y: -50, opacity: 0},
-                    {y: 0, opacity: 1, duration: 3, stagger: 0.5}
-                );
+                if (bigDescriptionTextRef.current) {
+                    const split = new SplitType(bigDescriptionTextRef.current, {types: 'lines, words, chars'});
+
+                    tl.current.from(split.chars, {
+                        opacity: 0,
+                        color: '#faf7f7',
+                        scale: 0.7,
+                        stagger: {amount: 0.5},
+                        ease: 'power2.inOut',
+
+                    }, '<');
+
+
+                    tl.current.to(split.chars, {
+                            color: '#fdc500',
+                            opacity: 0.8,
+                            scale: 1,
+                            stagger: {amount: 1.5},
+                            ease: 'power1.out',
+
+                        },
+                        '<');
+                }
+
+                if (tl2.current) {
+                    tl2.current = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: imageRef.current,
+                            start: 'top center',
+                            end: 'bottom center',
+                            scrub: true,
+                        },
+                    });
+
+                    tl2.current.to(
+                        initialScrollTextRef.current,
+                        {opacity: 0.5, duration: 3, stagger: 0.5}
+                    );
+
+                    tl2.current.fromTo(
+                        discoverTextRef.current,
+                        {y: 100, opacity: 0},
+                        {y: 0, opacity: 1, duration: 6}
+                    );
+
+                    tl2.current.fromTo(
+                        [maximumTextRef.current, comfortTextRef.current],
+                        {y: -50, opacity: 0},
+                        {y: 0, opacity: 1, duration: 3, stagger: 0.5}
+                    );
+                }
             }
-
-
-
-
-
-            // // arrowRef animation
-            // tl2.current.to(
-            //     arrowRef.current,
-            //     { opacity: 0.5, duration: 3, delay:2 }
-            // );
-
-
         });
         return () => {
             ctx.revert();
@@ -140,11 +127,11 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
 
             <div className="w-full h-screen">
                 {isDesktop && (
-                <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
-                       alt="Increase Melatonin Production with Eight Athletics Sleep Mask"
-                       width={1920}
-                       height={1080}
-                       quality={90}/>
+                    <Image src={imageSrc} ref={imageRef} className="w-[1920px] h-full object-cover"
+                           alt="Increase Melatonin Production with Eight Athletics Sleep Mask"
+                           width={1920}
+                           height={1080}
+                           quality={90}/>
                 )}
             </div>
 

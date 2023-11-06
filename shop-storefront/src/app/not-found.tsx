@@ -194,8 +194,8 @@ export default function NotFound() {
                                                             <Image
                                                                 className="md:left-0{md}translate{}-x-0 absolute bottom-0 left-1/2 mx-auto max-w-none -translate-x-1/2 md:relative"
                                                                 src={FeatureImg01}
-                                                                width="260"
-                                                                height="330"
+                                                                width={260}
+                                                                height={330}
                                                                 alt="Feature 01"
                                                             />
                                                         </div>

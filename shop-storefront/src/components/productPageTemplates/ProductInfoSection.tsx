@@ -2,17 +2,18 @@
 
 import {useIntersection} from "@lib/hooks/use-in-view"
 import ProductTabs from "@modules/products/components/product-tabs"
-import RelatedProducts from "@modules/products/components/related-products"
+
 import ProductInfo from "@modules/products/templates/product-info"
-import React, {useEffect, useRef} from "react"
+import React, { useRef} from "react"
 import MobileActions from "../../modules/products/components/mobile-actions"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
-import ProductFaqs from "@modules/products/components/product-faqs";
+
 import ProductFAQ from "@modules/products/components/product-faqs";
-import ImageGallery from "@modules/products/components/image-gallary";
+
 import MobileImageGallery from "@modules/products/components/image-gallary/MobileImageGallery";
 import MediaQuery from "react-responsive";
+import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 type ProductTemplateProps = {
     product: PricedProduct
@@ -24,6 +25,9 @@ type ProductTemplateProps = {
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, shippingFAQ, returnFAQ}) => {
     const info = useRef<HTMLDivElement>(null)
+
+    const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
+    const isTabletAndSmaller = useBetterMediaQuery('(max-width: 1023px)');
 
     const inView = useIntersection(info, "0px")
     const productHandle = product?.handle || "sleep-mask-one";
@@ -41,16 +45,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     ref={info}>
                     <div id={"buy-now"}
                          className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">
-                        <MediaQuery minWidth={1024}>
+                        {isDesktop && (
                             <div className="hidden lg:flex flex-col gap-y-8 w-full">
                                 <ZoomableImageGallery images={productImagePaths}/>
                             </div>
-                        </MediaQuery>
-                        <MediaQuery maxWidth={1023}>
+                        )}
+                        {isTabletAndSmaller && (
                             <div className={"block lg:hidden"}>
                                 <MobileImageGallery images={productImagePaths}/>
                             </div>
-                        </MediaQuery>
+                        )}
 
                         <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
                             <div style={{minHeight: 'calc(100vh - 64px)'}}>
