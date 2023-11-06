@@ -7,8 +7,13 @@ import CheckoutForm from "./checkout-form"
 import CheckoutSummary from "./checkout-summary"
 import Image from "next/image";
 import React from "react";
+import CheckoutItems from "@modules/checkout/templates/checkout-items";
+
+
 
 const CheckoutTemplate = () => {
+
+
   return (
     <CheckoutProvider>
       <div className="bg-cyan-1 relative small:min-h-screen">
@@ -46,8 +51,10 @@ const CheckoutTemplate = () => {
           </nav>
         </div>
         <div className="relative">
+          <CheckoutItems />
+
           <CheckoutLoader />
-          <div className="grid grid-cols-1 small:grid-cols-[1fr_416px] gap-y-8 content-container gap-x-8 py-12">
+          <div className="grid grid-cols-1 small:grid-cols-[1fr_416px] gap-y-8 gap-x-8 py-12 max-w-[1440px] w-full mx-auto px-2 3xs:px-3 2xs:px-5 xs:px-6 sm:px-8 md:px-10">
             <CheckoutForm />
             <CheckoutSummary />
           </div>

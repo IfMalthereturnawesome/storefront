@@ -43,7 +43,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             name={name}
             placeholder=" "
             className={clsx(
-              "pt-4 pb-1 block w-full px-4 mt-0 bg-cyan-1 border appearance-none focus:outline-none focus:ring-0 text-slate-11 dark:text-gold-11 focus:border-slate-9 border-slate-5",
+              "pt-4 pb-1 block w-full px-4 mt-0 bg-cyan-1 border appearance-none focus:outline-none focus:ring-0 text-slate-12  focus:border-slate-9 border-slate-5",
               {
                 "border-rose-500 focus:border-rose-500": hasError,
               }

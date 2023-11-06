@@ -116,7 +116,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
         };
         const response = await fetch(endpoint, requestOptions);
         const data = await response.json();
-        console.log("API Response:", data);
+
         return data.servicepoints;
 
     }
@@ -140,7 +140,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                 }
             } catch (error) {
                 console.error("Failed to fetch service points:", error);
-                // Handle the error appropriately, e.g., show an error message to the user
+
             } finally {
                 setLoadingServicePoints(false);
                 setInitialFetchDone(true);
@@ -298,12 +298,12 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
             index={sameBilling ? 2 : 3}
             title="Delivery"
             closedState={
-                <div className="px-8 pb-8 text-small-regular text-slate-11">
+                <div className="px-4 sm:px-8 pb-4 sm:pb-8 text-xs sm:text-small-regular text-slate-11">
                     <p>Enter your address to see available delivery options.</p>
                 </div>
             }
         >   {isEditMode ? (
-            <div className={"px-8 pb-8"}>
+            <div className={"px-3 xs:px-6 sm:px-8 pb-8"}>
                 <Controller
                     name="soId"
                     control={control}
@@ -321,7 +321,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                                     key={option.value}
                                                     value={option.value}
                                                     className={clsx(
-                                                        "flex items-center justify-between text-small-regular cursor-pointer py-4 px-8",
+                                                        "flex items-center justify-between text-small-regular cursor-pointer py-3 px-3 2xs:py-2 2xs:px-4 xs:py-4 xs:px-8",
                                                         {
                                                             "border-b border-t border-x border-slate-12 dark:border-cyan-10": option.value === value, // Solid border for checked
                                                             "border-b border-t border-x border-slate-3 dark:border-slate-3 ": option.value !== value, // Subtle border for unchecked
@@ -329,13 +329,13 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                                         }
                                                     )}
                                                 >
-                                                    <div className="flex items-center gap-x-4">
+                                                    <div className="flex  items-center gap-x-2 sm:gap-x-4">
                                                         <Radio checked={value === option.value}/>
                                                         <Image src={getCarrierImage(option.metadata?.carrier)}
                                                                alt={option.metadata?.carrier || 'default'} width={128}
                                                                height={128}
-                                                               className="w-16 h-16 mr-2 object-contain object-center "/>
-                                                        <span className={clsx("text-base-regular", {
+                                                               className="w-6 h-6 3xs:w-8 3xs:h-8 2xs:w-12 2xs:h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 2xl:w-20 2xl:h-20 mr-2 object-contain object-center "/>
+                                                        <span className={clsx("text-small-regular sm:text-base-regular", {
                                                             "text-slate-12 font-semibold": option.value === value, // Text color for checked
                                                             "text-slate-11": option.value !== value, // Text color for unchecked
                                                         })}>
@@ -373,7 +373,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                                                             Select a Service Point
                                                         </Listbox.Label>
                                                         <div
-                                                            className="mt-2 relative group"> {/* Add the group class here */}
+                                                            className="mt-2 relative group">
                                                             <span className="block relative">
           <Listbox.Button
               className={`block w-full pl-3 pr-10 py-3 text-left custom-button-neo-dark bg-white text-slate-12 group-hover:bg-custom-white group-hover:text-slate-12`}> {/* Use group-hover here */}
@@ -436,32 +436,31 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
 
             </div>
         ) : (
-            <div className="px-8 py-6">
-                <div className="flex items-center justify-between space-x-4">
-
-                    <div className="flex items-center space-x-4">
-                        <div
-                            className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">
+            <div className="p-3 sm:p-8">
+                <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4">
+                    <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-3 sm:space-y-0">
+                        <div className="bg-teal-9 rounded-full w-6 h-6 flex items-center justify-center text-slate-1 text-xs sm:text-small-regular">
                             ✓
                         </div>
 
                         <div>
-
                             <Image
                                 src={getCarrierImage(cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier)}
                                 alt={cart?.shipping_methods?.[0]?.shipping_option.metadata?.carrier as string || 'default'}
-                                width={128}
-                                height={128}
-                                className="w-24 h-16 object-contain"/>
-
+                                width={64} // Adjusted for a better fit on mobile
+                                height={64} // Adjusted for a better fit on mobile
+                                className="w-16 h-16 sm:w-24 sm:h-16 object-contain"/>
                             <span
-                                className="text-slate-12 font-semibold"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
-                            <p className="text-slate-12 text-xs">{shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price}</p>
+                                className="text-slate-12 font-semibold block sm:block"> {cart?.shipping_methods?.[0]?.shipping_option.name}</span>
+                            <p className="text-slate-12 text-xs sm:text-xs block">{
+                                // @ts-ignore
+                                shippingMethods.find(method => method.value === cart?.shipping_methods?.[0]?.shipping_option_id)?.price
+                            }</p>
 
                             {selectedServicePoint && (
                                 <div className="mt-2 text-xs text-slate-12">
                                     <p className={"font-semibold"}>{selectedServicePoint.name}</p>
-                                    {/*  @ts-ignore */}
+                                    {/* @ts-ignore */}
                                     <p>{selectedServicePoint.address.street}, {selectedServicePoint.address.city}, {selectedServicePoint.address.zip_code}, {selectedServicePoint.address.country_code}</p>
                                 </div>
                             )}
@@ -469,11 +468,13 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                     </div>
                     <button
                         onClick={() => setIsEditMode(true)}
-                        className="text-xs text-slate-11 ">
+                        className="text-xs text-slate-11 self-start sm:self-center"
+                    >
                         Edit
                     </button>
                 </div>
             </div>
+
         )}
         </StepContainer>
     )

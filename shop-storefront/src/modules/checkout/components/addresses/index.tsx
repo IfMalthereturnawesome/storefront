@@ -15,14 +15,15 @@ const Addresses = () => {
   } = useCheckout()
   return (
     <div className="bg-cyan-2 border border-slate-5 dark:border-amberA-12">
-      <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
+      <div className="text-xl-semi flex items-center gap-x-4 px-6 sm:px-8 pb-6 pt-8">
         <div className="bg-cyan-12 w-8 h-8 rounded-full text-slate-2 flex justify-center items-center text-sm">
           1
         </div>
         <h2 className={"text-slate-12"}>Shipping address</h2>
       </div>
       {isEdit ? (
-        <div className="px-8 pb-8">
+        <div className="px-3 sm:px-8 pb-8">
+
           <ShippingAddress />
           <div className="mt-6 text-slate-12">
             <Checkbox
@@ -33,7 +34,7 @@ const Addresses = () => {
           </div>
           {!checked && (
             <div>
-              <div className="text-xl-semi flex items-center gap-x-4 pb-6 pt-8">
+              <div className="text-xl-semi flex items-center gap-x-4 px-3 pb-6 pt-8">
                 <div className="bg-cyan-12 w-8 h-8 rounded-full text-slate-2 flex justify-center items-center font-mono text-sm">
                   2
                 </div>
@@ -41,6 +42,7 @@ const Addresses = () => {
               </div>
               <BillingAddress />
             </div>
+
           )}
           <Button
             className="max-w-[200px] mt-6"
@@ -49,9 +51,10 @@ const Addresses = () => {
             Continue to delivery
           </Button>
         </div>
+
       ) : (
         <div>
-          <div className="bg-cyan-2 px-8 py-6 text-small-regular">
+          <div className="bg-cyan-2 px-3 sm:px-8 py-6 text-small-regular">
             {cart && cart.shipping_address ? (
               <div className="flex items-start gap-x-8">
                 <div className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">
@@ -100,13 +103,13 @@ const Addresses = () => {
           </div>
           {!checked && (
             <div>
-              <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
+              <div className="text-xl-semi flex items-center gap-x-4 px-6 sm:px-8 pb-6 pt-8">
                 <div className="bg-cyan-12 w-8 h-8 rounded-full text-slate-2 flex justify-center items-center font-mono text-sm">
                   2
                 </div>
                 <h2 className={"text-slate-12"}>Billing address</h2>
               </div>
-              <div className="bg-cyan-2 px-8 py-6 text-small-regular">
+              <div className="bg-cyan-2 px-3 sm:px-8 py-6 text-small-regular">
                 {cart && cart.billing_address ? (
                   <div className="flex items-start gap-x-8">
                     <div className="bg-teal-9 rounded-full min-w-[24px] h-6 flex items-center justify-center text-slate-1 text-small-regular">

@@ -28,7 +28,7 @@ const StepContainer = ({
         })}
         {...props}
       >
-        <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
+        <div className="text-xl-semi flex items-center gap-x-4 px-6 sm:px-8 pb-6 pt-8">
           <div className="bg-cyan-12 w-8 h-8 rounded-full text-slate-2 flex justify-center items-center text-sm">
             {index}
           </div>
