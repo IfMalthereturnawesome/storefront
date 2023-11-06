@@ -38,7 +38,7 @@ const Payment = () => {
       title="Payment"
       index={isSame ? 3 : 4}
       closedState={
-        <div className="px-8 pb-8 text-small-regular text-slate-11">
+        <div className="px-3 sm:px-8 pb-8 text-small-regular text-slate-11">
           <p>Enter your address to see available payment options.</p>
         </div>
       }

@@ -18,7 +18,7 @@ const OrderSummary = ({ order }: OrderSummaryProps) => {
 
   return (
     <div>
-      <h2 className="text-base-semi">Order Summary</h2>
+      <h2 className="text-large-semi">Order Summary</h2>
       <div className="text-small-regular text-slate-11 my-2">
         <div className="flex items-center justify-between text-base-regular text-slate-12 mb-2">
           <span>Subtotal</span>

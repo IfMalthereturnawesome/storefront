@@ -13,6 +13,11 @@ const Help = () => {
             </Link>
           </li>
           <li>
+            <Link href="/faq">
+                FAQ
+            </Link>
+          </li>
+          <li>
             <Link href="/terms/returns-policy">
               Returns & Exchanges
             </Link>

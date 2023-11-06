@@ -25,7 +25,7 @@ const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
 
   return (
       <div className="bg-cyan-1 py-6 min-h-[calc(100vh-64px)] ">
-        <div className="content-container flex flex-col justify-center items-center">
+        <div className="max-w-[1440px] w-full mx-auto px-2 3xs:px-3 2xs:px-5 xs:px-6 sm:px-8 md:px-10 flex flex-col justify-center items-center">
           {isOnboarding && <OnboardingCta orderId={order.id} />}
           <div className="max-w-4xl h-full bg-cyan-2 border border-sky-5 dark:border-amberA-12 w-full">
             <OrderDetails order={order} />
