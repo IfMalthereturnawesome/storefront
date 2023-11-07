@@ -52,7 +52,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
             <span className="mb-2 text-sm font-medium">
         {current || defaultColor}
       </span>
-            <div className="flex gap-2">
+            <div className="flex gap-2 select-none focus:outline-none">
                 {filteredOptions.map((v) => {
                     const isSelected = v === current;
                     return (
@@ -62,25 +62,25 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                             }}
                             key={v}
                             className={clsx(
-                                "flex-center p-0 mx-px mt-px mb-2 relative",
+                                "flex-center p-0 mx-px mt-px mb-2 relative select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent",
                                 "cursor-pointer hover:scale-105 transform rounded-full",
                                 "border-2 border-black",
                                 {
-                                    "border-transparent": !isSelected && v !== current,
-                                    "focus:border-black group-hover:border-black dark:focus:border-sky-7 dark:focus:outline-sky-9 dark:border-cyan-10 dark:hover:border-cyan-10":
+                                    "border-transparent focus:border-transparent ": !isSelected && v !== current,
+                                    "focus:border-black group-hover:border-black select-none focus:outline-none dark:focus:border-sky-7 dark:focus:outline-sky-9 dark:border-cyan-10 dark:hover:border-cyan-10":
                                         isSelected || v === current,
                                 }
                             )}
                         >
 
                             <div
-                                className="border border-black  dark:border-slate-10"
+                                className="border border-black dark:border-slate-10 select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent"
                                 style={{
                                     width: "44px",
                                     height: "44px",
                                     borderRadius: "50%",
                                     position: "absolute",
-
+                                    userSelect: "none",
                                     top: "0",
                                     left: "0",
                                     zIndex: 1,
@@ -90,7 +90,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                 className={clsx(
                                     "m-[3px]",
                                     {
-                                        "border border-black dark:border-slate-10": isSelected || v === current,
+                                        "border border-black select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent dark:border-slate-10 ": isSelected || v === current,
                                         "border-transparent": !isSelected && v !== current,
                                     }
                                 )}
@@ -100,6 +100,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                     height: "38px",
                                     borderRadius: "50%",
                                     transition: "all 0.3s",
+                                    userSelect: "none",
                                     zIndex: 2,
                                 }}
                             ></div>
