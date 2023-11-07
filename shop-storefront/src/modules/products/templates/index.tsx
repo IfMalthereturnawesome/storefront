@@ -50,7 +50,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
                                 className="sticky top-0 bg-custom-white dark:bg-cyan-1 py-8 px-4 md:py-6 md:px-14 flex flex-col gap-y-12"
                                 ref={info}
                             >
-                                <ProductInfo product={product} />
+                                {/*<ProductInfo product={product} onColorChange={} />*/}
                                 <ProductTabs product={product}/>
                             </div>
                         </div>
@@ -59,7 +59,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product}) => {
                 <div className="content-container bg-custom-white dark:bg-cyan-1 px-6 small:px-8">
                     <RelatedProducts product={product}/>
                 </div>
-                <MobileActions product={product} show={!inView}/>
+                {/*<MobileActions product={product} show={!inView}/>*/}
             </div>
         </ProductProvider>
     )
