@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useRef, useLayoutEffect } from 'react';
+import React, {useRef, useLayoutEffect} from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
 import MediaQuery from "react-responsive";
+import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,15 +16,17 @@ interface Props {
     line3: string;
 }
 
-const MobileHeaderOverlayOnImageRight: React.FC<Props> = ({ imageUrl, line1, line2, line3 }) => {
+const MobileHeaderOverlayOnImageRight: React.FC<Props> = ({imageUrl, line1, line2, line3}) => {
 
     const imageRef = useRef(null);
+    const isSmallerThanDesktop = useBetterMediaQuery('(max-width: 1023px)');
 
     useLayoutEffect(() => {
+        if (!isSmallerThanDesktop) return;
         let ctx = gsap.context(() => {
             gsap.fromTo(
                 imageRef.current,
-                { x: '-95%' }, // Image starts off-screen to the left
+                {x: '-95%'}, // Image starts off-screen to the left
                 {
                     x: '0%',
                     duration: 1,
@@ -38,29 +41,34 @@ const MobileHeaderOverlayOnImageRight: React.FC<Props> = ({ imageUrl, line1, lin
         return () => {
             ctx.revert();
         };
-    }, []);
+    }, [isSmallerThanDesktop]);
 
     return (
+        <>
+            {isSmallerThanDesktop && (
+                <div className="relative z-[1] h-full py-10">
 
-        <div className="relative z-[1] h-full py-10">
-            {/* Image */}
-            <div ref={imageRef} className="w-[88vw] mr-auto z-[10] relative">
-                <Image className="rounded-tl-lg rounded-bl-lg" src={imageUrl} alt="Background" width={600} height={500} quality={100} />
-            </div>
+                    <div ref={imageRef} className="w-[88vw] mr-auto z-[10] relative">
+                        <Image className="rounded-tl-lg rounded-bl-lg" src={imageUrl} alt="Background" width={600}
+                               height={500}
+                               quality={100}/>
+                    </div>
 
-            {/* Overlay header */}
-            <div className="absolute top-[30%] right-0 text-right text-lg text-3xl 2xs:text-5xl font-extrabold z-[11] ">
-                <div className="inline-block bg-custom-white dark:bg-mask-black w-fit rounded-3xl ">
-                    <h3 className="p-2 text-black dark:text-custom-white/90 ml-4">{line1}</h3>
+                    <div
+                        className="absolute top-[30%] right-0 text-right text-lg text-3xl 2xs:text-5xl font-extrabold z-[11] ">
+                        <div className="inline-block bg-custom-white dark:bg-mask-black w-fit rounded-3xl ">
+                            <h3 className="p-2 text-black dark:text-custom-white/90 ml-4">{line1}</h3>
+                        </div>
+                        <div className=" bg-custom-white dark:bg-mask-black w-fit rounded-3xl   justify-end ml-auto">
+                            <h3 className="p-2 text-blue-500 dark:text-amber-12 ml-4">{line2}</h3>
+                        </div>
+                        <div className=" bg-custom-white dark:bg-mask-black w-fit rounded-3xl   justify-end ml-auto">
+                            <h3 className=" p-2 text-black/80 dark:text-custom-white/75 ml-4">{line3}</h3>
+                        </div>
+                    </div>
                 </div>
-                <div className=" bg-custom-white dark:bg-mask-black w-fit rounded-3xl   justify-end ml-auto">
-                    <h3 className="p-2 text-blue-500 dark:text-amber-12 ml-4">{line2}</h3>
-                </div>
-                <div className=" bg-custom-white dark:bg-mask-black w-fit rounded-3xl   justify-end ml-auto">
-                    <h3 className=" p-2 text-black/80 dark:text-custom-white/75 ml-4">{line3}</h3>
-                </div>
-            </div>
-        </div>
+            )}
+        </>
 
     );
 }
