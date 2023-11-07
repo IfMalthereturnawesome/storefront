@@ -5,7 +5,7 @@ import {resources, newestPosts} from '@/utils/reuseableData';
 import {useDropdownHoverMenu} from '@/utils/hooks/DropdownHoverHooks';
 import PostDate from '@/components/post-date';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
-import {Button} from '@nextui-org/button';
+
 
 function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ');
@@ -221,15 +221,18 @@ export function ResourceNavPop() {
 }
 
 
-export function ResourceNavMobile() {
+export function ResourceNavMobile({setMobileMenuOpen}) {
+    const handleLinkClick = () => {
+        setMobileMenuOpen(false);
+    };
     return (
         <Disclosure as="div" className="-mx-3">
-            {({open}) => (
+            {({ open }) => (
                 <>
                     <Disclosure.Button
                         className={classNames(
                             open ? 'dark:text-cgreen-200' : 'text-black',
-                            'flex w-full items-center justify-between rounded-lg py-2  pl-3 pr-3.5 text-xl font-bold leading-7 text-black transition duration-150  dark:text-white  hover:dark:text-cgreen',
+                            'flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-xl font-bold leading-7 text-black transition duration-150 dark:text-white hover:dark:text-cgreen',
                         )}
                         aria-hidden="true"
                     >
@@ -244,25 +247,26 @@ export function ResourceNavMobile() {
                     </Disclosure.Button>
                     <Disclosure.Panel className="mt-2 space-y-2">
                         {[...resources].map(item => (
-                            <Disclosure.Button
-                                key={item.name}
-                                as="a"
-                                href={item.href}
-                                className="flex items-center justify-start gap-x-3 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150 "
-                            >
-                                <item.icon
-                                    className={classNames(
-                                        'h-5 w-5 flex-none transition duration-150',
-                                        'text-gray-400',
-                                        {
-                                            'group-hover:text-indigo-500 dark:text-indigo-400': !open,
-                                        },
-                                        {'dark:text-cgreen-50': open},
-                                    )}
-                                    aria-hidden="true"
-                                />
-                                {item.name}
-                            </Disclosure.Button>
+                            // Wrap Disclosure.Button with Link and move href to Link
+                            <Link key={item.name} href={item.href} passHref onClick={handleLinkClick}>
+                                <Disclosure.Button
+                                    as="a"
+                                    className="flex items-center justify-start gap-x-3 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150 "
+                                >
+                                    <item.icon
+                                        className={classNames(
+                                            'h-5 w-5 flex-none transition duration-150',
+                                            'text-gray-400',
+                                            {
+                                                'group-hover:text-indigo-500 dark:text-indigo-400': !open,
+                                            },
+                                            {'dark:text-cgreen-50': open},
+                                        )}
+                                        aria-hidden="true"
+                                    />
+                                    {item.name}
+                                </Disclosure.Button>
+                            </Link>
                         ))}
                     </Disclosure.Panel>
                 </>

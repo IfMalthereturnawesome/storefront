@@ -134,16 +134,16 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobil
                             {showMainMenu && ( // Conditional rendering of Main Menu
                                 <>
                                     {/* PRODUCT - MOBILE */}
-                                    <ProductNavMobile />
+                                    <ProductNavMobile setMobileMenuOpen={setMobileMenuOpen} />
 
                                     {/* RESOURCES - MOBILE */}
-                                    <ResourceNavMobile />
+                                    <ResourceNavMobile setMobileMenuOpen={setMobileMenuOpen} />
 
                                     {/* SUPPORT - MOBILE */}
-                                    <SupportNavMobile />
+                                    <SupportNavMobile setMobileMenuOpen={setMobileMenuOpen} />
 
                                     {/* BLOG - MOBILE */}
-                                    <BlogNavMobile />
+                                    <BlogNavMobile setMobileMenuOpen={setMobileMenuOpen} />
                                 </>
                             )}
 
@@ -157,7 +157,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobil
                             {showMainMenu && (
                             <div className="space-y-2 -mx-2 py-5">
 
-                                <TopNavMobile />
+                                <TopNavMobile setMobileMenuOpen={setMobileMenuOpen} />
 
                             </div>
                             )}

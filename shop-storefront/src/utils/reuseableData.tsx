@@ -81,7 +81,7 @@ export const products = [
 ];
 
 export const callsToAction = [
-    {name: 'Buy now', href: '#', icon: PlayCircleIcon},
+    {name: 'Buy now', href: '/products/sleep-mask-one#buy-now', icon: PlayCircleIcon},
     {name: 'Contact sales', href: '/contact', icon: PhoneIcon},
 ];
 
