@@ -18,9 +18,6 @@ import MobileMinimalWeight from "@/components/sleepMask/mobile/MinimalWeightMobi
 import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile";
 import MobileHeaderOverlayOnImage from "@/components/sleepMask/mobile/HeaderOverlayOnMobile";
 import MobileHeaderOverlayOnImageRight from "@/components/sleepMask/mobile/HeaderOverlayMobileRight";
-import MediaQuery from "react-responsive";
-
-
 
 type ProductsTemplate = {
     product: PricedProduct

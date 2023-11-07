@@ -136,13 +136,14 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
     }, [isDesktop])
 
     return (
-
+        <>
+        {isDesktop && (
         <div id={"crafted-from-thousands-of-unique-faces"} ref={faceStoryRef}
              className="flex pinFaceStory bg-[#130612] z-[1]">
                 <div className="w-fit ml-2 h-screen ">
-                    {isDesktop && (
+
                     <canvas ref={canvasRef} className="w-full h-full object-contain" />
-                    )}
+
                 </div>
 
             <div className="w-auto mx-auto flex flex-col justify-center pl-8 -mt-[3rem] ">
@@ -151,7 +152,8 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, description}) => {
                    className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">{description}</p>
             </div>
         </div>
-
+        )}
+        </>
     );
 };
 

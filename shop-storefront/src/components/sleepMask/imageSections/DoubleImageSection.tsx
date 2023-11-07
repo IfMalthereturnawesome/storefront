@@ -1,11 +1,12 @@
 'use client';
 
-import React, {useLayoutEffect, useRef} from 'react';
+import React, {useEffect, useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import {ArrowDownIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
+import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 
 if (typeof window !== 'undefined') {
@@ -36,9 +37,10 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     const tl2 = useRef(null);
     const tl3 = useRef(null);
 
+    const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
 
     useLayoutEffect(() => {
-
+        if (!isDesktop) return;
         const ctx = gsap.context(() => {
 
             tl1.current = gsap.timeline({
@@ -100,11 +102,12 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
         };
 
-    }, []);
+    }, [isDesktop]);
 
 
     return (
-
+        <>
+        {isDesktop && (
         <div className="relative bg-[#130612] z-[1]">
 
             {/* Image section */}
@@ -144,6 +147,8 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
             </div>
 
         </div>
+        )}
+        </>
 
 
     );
@@ -162,7 +167,11 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     const image2Ref = React.useRef(null);
     const headerRef = React.useRef(null);
 
-    React.useEffect(() => {
+    const isSmallerThanDesktop = useBetterMediaQuery('(max-width: 1023px)');
+
+    useEffect(() => {
+        if (!isSmallerThanDesktop) return;
+        const ctx = gsap.context(() => {
         const tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: image1Ref.current,
@@ -211,11 +220,17 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
             {y: 0},
             {y: 50}
         );
+        });
 
-    }, []);
+        return () => {
+            ctx.revert();
+        };
+
+    }, [isSmallerThanDesktop]);
 
     return (
-
+        <>
+            {isSmallerThanDesktop && (
         <div className="relative bg-[#130612] z-[1] block  ">
 
 
@@ -247,6 +262,8 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
             </div>
 
         </div>
+            )}
+            </>
     );
 };
 
