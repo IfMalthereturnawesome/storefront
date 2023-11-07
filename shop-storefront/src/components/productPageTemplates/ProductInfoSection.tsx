@@ -86,8 +86,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                 </div>
 
             </div>
-            {isDesktop && (
-                <MobileActions product={product} show={inView}/>
+            {isTabletAndSmaller && (
+                <MobileActions product={product} show={inView} onColorChange={handleColorChange}/>
             )}
 
         </>

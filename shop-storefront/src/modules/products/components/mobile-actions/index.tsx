@@ -18,9 +18,10 @@ import AddToCartButton from "@/components/elements/AddToCart";
 type MobileActionsProps = {
     product: PricedProduct
     show: boolean
+    onColorChange: (color: string) => void
 }
 
-const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
+const MobileActions: React.FC<MobileActionsProps> = ({product, show,onColorChange}) => {
     const {variant, addToCart, options, inStock, updateOptions} =
         useProductActions()
     const {state, open, close} = useToggleState()
@@ -158,6 +159,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show}) => {
                                                                     option={option}
                                                                     current={options[option.id]}
                                                                     updateOption={updateOptions}
+                                                                    onColorChange={onColorChange}
                                                                     title={option.title}
                                                                 />
                                                             )}
