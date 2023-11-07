@@ -31,7 +31,7 @@ const MobileImageGallery = ({ images }) => {
                 {images.map((image, index) => (
                     <SwiperSlide key={image}>
                         <div className="swiper-zoom-container">
-                            <Image height={800} width={600} src={image} alt={`Slide ${index}`} />
+                            <Image height={800} width={600} src={image} alt={`Slide ${index}`} className={"fade-in"} />
                         </div>
                     </SwiperSlide>
                 ))}
@@ -48,7 +48,7 @@ const MobileImageGallery = ({ images }) => {
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={image}>
-                        <Image height={200} width={100} src={image} alt={`Thumbnail ${index}`} />
+                        <Image height={200} width={100} src={image} alt={`Thumbnail ${index}`} className={"fade-in"}/>
                     </SwiperSlide>
                 ))}
             </Swiper>

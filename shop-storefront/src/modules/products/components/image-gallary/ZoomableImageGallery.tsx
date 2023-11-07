@@ -1,6 +1,6 @@
-// ZoomableImageGallery.jsx
+// ZoomableImageGallery.tsx
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ZoomableImage from './ZoomableImage';
 import {ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/24/solid";
 
@@ -9,25 +9,29 @@ type ZoomableImageGalleryProps = {
 };
 
 const ZoomableImageGallery: React.FC<ZoomableImageGalleryProps> = ({images}) => {
-    const initialImages = images.slice(0, 4);
-    // State to determine if all images are shown or just the initial set.
-    const [displayedImages, setDisplayedImages] = useState<string[]>(initialImages);
-    // State to determine the button label.
+
+
+    const [displayedImages, setDisplayedImages] = useState<string[]>([]);
     const [isAllImagesShown, setIsAllImagesShown] = useState<boolean>(false);
+
+    useEffect(() => {
+        setDisplayedImages(images.slice(0, 4));
+    }, [images]);
 
     // Toggle between displaying all images and the initial set.
     const toggleImages = () => {
         if (isAllImagesShown) {
-            setDisplayedImages(initialImages);
+            setDisplayedImages(images.slice(0, 4));
         } else {
             setDisplayedImages(images);
         }
         setIsAllImagesShown(!isAllImagesShown);
     };
 
+
     return (
         <div className="relative grid grid-cols-2 gap-1 cursor-zoom-in">
-            {displayedImages.map((imagePath) => (
+            {displayedImages.map((imagePath, index) => (
                 <ZoomableImage key={imagePath} src={imagePath} alt={`Product image`}/>
             ))}
             <button

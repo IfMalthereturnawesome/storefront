@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import {ProductOption} from "@medusajs/medusa";
 import clsx from "clsx";
 import {onlyUnique} from "@lib/util/only-unique";
@@ -7,6 +7,7 @@ type ColorOptionSelectProps = {
     option: ProductOption;
     current: string;
     updateOption: (option: Record<string, string>) => void;
+    onColorChange: (color: string) => void;
     title: string;
     additionalElement?: React.ReactNode;
 };
@@ -30,6 +31,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                                                  option,
                                                                  current,
                                                                  updateOption,
+                                                                 onColorChange,
                                                                  title,
                                                                  additionalElement,
                                                              }) => {
@@ -38,10 +40,16 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
 
     useEffect(() => {
         if (!current) {
-            updateOption({ [option.id]: defaultColor });
+            updateOption({[option.id]: defaultColor});
         }
 
     }, [current, defaultColor, option.id, updateOption]);
+
+    const handleColorSelect = (value) => {
+        updateOption({[option.id]: value});
+        onColorChange(value);
+    };
+
 
     return (
         <div className="flex flex-col gap-y-1">
@@ -57,9 +65,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                     const isSelected = v === current;
                     return (
                         <button
-                            onClick={() => {
-                                updateOption({[option.id]: v});
-                            }}
+                            onClick={() => handleColorSelect(v)}
                             key={v}
                             className={clsx(
                                 "flex-center p-0 mx-px mt-px mb-2 relative select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent",

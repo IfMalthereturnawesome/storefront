@@ -4,15 +4,12 @@ import {useIntersection} from "@lib/hooks/use-in-view"
 import ProductTabs from "@modules/products/components/product-tabs"
 
 import ProductInfo from "@modules/products/templates/product-info"
-import React, {useRef, useState} from "react"
+import React, {useRef, useEffect, useState} from "react"
 import MobileActions from "../../modules/products/components/mobile-actions"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery";
-
 import ProductFAQ from "@modules/products/components/product-faqs";
-
 import MobileImageGallery from "@modules/products/components/image-gallary/MobileImageGallery";
-import MediaQuery from "react-responsive";
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 type ProductTemplateProps = {
@@ -31,8 +28,27 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
     const inView = useIntersection(info, "0px")
     const productHandle = product?.handle || "sleep-mask-one";
+    const [selectedColor, setSelectedColor] = useState("Black");
     const productImageDirectory = `/images/products/${productHandle}/`;
-    const productImagePaths = Array(8).fill(null).map((_, idx) => `${productImageDirectory}image${idx + 1}.jpg`);
+    const [imagePaths, setImagePaths] = useState([]);
+
+
+    // Function to update the selected color
+    const handleColorChange = (color) => {
+        setSelectedColor(color);
+
+    };
+
+    useEffect(() => {
+        // Only update the paths if a color is selected
+        if (selectedColor) {
+            const basePath = `${productImageDirectory}${selectedColor}/`;
+            const updatedPaths = Array(8).fill(null).map((_, idx) => `${basePath}image${idx + 1}.jpg`);
+
+            setImagePaths(updatedPaths);
+
+        }
+    }, [selectedColor, productImageDirectory]);
 
 
     return (
@@ -45,12 +61,13 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                          className="content-container__big  flex flex-col xl:flex-row xl:items-start xl:pt-6 pb-0 lg:pb-12 relative ">
                         {isDesktop && (
                             <div className="hidden lg:flex flex-col gap-y-8 w-full">
-                                <ZoomableImageGallery images={productImagePaths}/>
+                                <ZoomableImageGallery key={selectedColor} images={imagePaths}/>
+
                             </div>
                         )}
                         {isTabletAndSmaller && (
                             <div className={"block lg:hidden"}>
-                                <MobileImageGallery images={productImagePaths}/>
+                                <MobileImageGallery images={imagePaths}/>
                             </div>
                         )}
 
@@ -59,7 +76,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                                 <div
                                     className="sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-14 flex flex-col gap-y-12"
                                 >
-                                    <ProductInfo product={product}/>
+                                    <ProductInfo product={product} onColorChange={handleColorChange}/>
                                     <ProductTabs product={product}/>
                                 </div>
                             </div>

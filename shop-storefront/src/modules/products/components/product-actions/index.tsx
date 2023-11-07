@@ -20,7 +20,7 @@ import AddToCartButton from "@/components/elements/AddToCart";
 
 type ProductActionsProps = {
     product: PricedProduct,
-
+    onColorChange: (color: string) => void
 }
 
 if (typeof window !== 'undefined') {
@@ -28,7 +28,7 @@ if (typeof window !== 'undefined') {
 }
 
 
-const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
+const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) => {
     const {updateOptions, addToCart, options, inStock, variant, quantity, increaseQuantity, decreaseQuantity, disabled} =
         useProductActions()
     const price = useProductPrice({id: product.id!, variantId: variant?.id})
@@ -119,6 +119,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
         ? variant.inventory_quantity
         : 10;
 
+    const handleColorSelect = (color) => {
+        updateOptions({[colorOptionId]: color});
+        onColorChange(color);
+    };
 
     return (
         <div className="flex flex-col  gap-y-2 ">
@@ -154,6 +158,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product}) => {
                                         <ColorOptionSelect
                                             option={option}
                                             current={options[option.id]}
+                                            onColorChange={onColorChange}
                                             updateOption={updateOptions}
                                             title={option.title}
                                             additionalElement={additionalElem}
