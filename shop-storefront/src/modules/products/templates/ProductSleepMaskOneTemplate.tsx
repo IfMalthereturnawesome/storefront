@@ -95,14 +95,14 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 <DoubleImageSection
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}
-                    descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                    descriptionText={"It’s all about waking up feeling on top of the world — awake, alert, and ready to take charge. Slip on the Sleep Mask One, and you’re choosing the champion's path to restful nights. Sleep through the night undisturbed and open your eyes to a brighter morning, every day."}
                     image1Src={"/images/greeteveryday.jpg"}
                     image2Src={"/images/swimming.jpg"}
                 />
 
                 <FaceStory
-                    headline="Crafted from thousands of unique faces"
-                    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+                    headline="Thousands of unique faces, one perfect fit."
+                    description="Designed using 4,000 face scans, Sleep Mask One fits perfectly, assuring total darkness and all-night comfort for every sleeper."
                 />
 
 
@@ -142,14 +142,14 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 <MobileDoubleImageSection
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}
-                    descriptionText={"Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain mentality to seek out challenges that test you physically. Sleep Mask One is the ultimate training partner, and it’s packed with new features to help you reach your goals."}
+                    descriptionText={"It’s all about waking up feeling on top of the world — awake, alert, and ready to take charge. Slip on the Sleep Mask One, and you’re choosing the champion's path to restful nights. Sleep through the night undisturbed and open your eyes to a brighter morning, every day."}
                     image1Src={"/images/greeteveryday-mobile.jpg"}
                     image2Src={"/images/swimming-mobile.jpg"}
                 />
 
                 <MobileFaceStory
                     headline="Crafted from thousands of unique faces"
-                    description="The skin around your eyes is the thinnest on your face, and the first to show signs of aging. We created the Sleep Mask to help you wake up looking and feeling refreshed."
+                    description="Designed using 4,000 face scans, Sleep Mask One fits perfectly, assuring total darkness and all-night comfort for every sleeper."
                     imageSrc="/images/facestory-1-mobile.png"
                     imageSrcTwo="/images/facestory-2-mobile.png"
                 />

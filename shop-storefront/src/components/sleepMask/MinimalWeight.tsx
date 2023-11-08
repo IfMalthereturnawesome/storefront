@@ -272,11 +272,6 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                 });
 
 
-
-
-
-
-
             rightSideTL.current
                 .fromTo(rightSideRef.current,
                     {
@@ -507,7 +502,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
 
                             <div ref={rightSideRef}
                                  className="absolute top-[44.0%] left-[522.938px] font-poppins text-3xl font-extrabold text-[#faf7f7]"
-                                 style={{lineHeight: 1.1, willChange: "transform", opacity:0}}>
+                                 style={{lineHeight: 1.1, willChange: "transform", opacity: 0}}>
                                 <div ref={topWordRightRef}>Maximum</div>
                                 <div
                                     className="stroke-white"
@@ -524,10 +519,9 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                  className="absolute top-[28%] left-[98px] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block scale-[0.667] opacity-0">
                                 <p data-aos="fade-up"
                                    className={"font-sans font-semibold leading-7 tracking-tight text-center text-white/70"}>
-                                    Whether it’s your first run in a while, a 10K, or a triathlon, it takes a certain
-                                    mentality to seek out challenges that test you physically. Sleep Mask One is the
-                                    ultimate training partner, and it’s packed with new features to help you reach your
-                                    goals.
+                                    Sleep Mask One is designed to be remarkably lightweight, providing a near-weightless
+                                    feel on your face, allowing comfortable side sleeping without eye and ear pressure
+                                    while enhancing airflow for ultimate nighttime comfort.
                                 </p>
                             </div>
 
