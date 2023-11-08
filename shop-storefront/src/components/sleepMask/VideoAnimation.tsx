@@ -600,19 +600,20 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                     <MaskSequence/>
                                 )}
 
-                            {isMobile && (
-                                <div className="m-0 p-0">
+                                {isMobile && (
+                                    <div className="m-0 p-0">
 
-                                    <div
-                                        className="canvas-container h-[35vh] md:h-[50vh] ">
-                                        <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile" width={375}
-                                               height={600} quality={100}
-                                               className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
+                                        <div
+                                            className="canvas-container h-[35vh] md:h-[50vh] ">
+                                            <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile"
+                                                   width={375}
+                                                   height={600} quality={100}
+                                                   className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
+
+                                        </div>
 
                                     </div>
-
-                                </div>
-                            )}
+                                )}
 
                             </>
                         )
@@ -636,13 +637,23 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
                                 preload="auto"
                                 muted={true}
+                                playsInline={true}
                                 autoPlay={false}
-                                src={"/videos/Eight-Athletics-sleep-mask-commercial-web.mp4"}
                                 onLoadedData={() => setIsLoading(false)}
                                 onWaiting={() => setIsLoading(true)}
                             >
+                                {isMobile && (
+                                    <source src={"/videos/eight-athletics-sleep-mask-commercial-web-mobile.mp4"}
+                                            type="video/mp4" media="(max-width: 640px)" />
+                                )}
+                                {isTabletAndDesktop && (
+                                    <source src={"/videos/eight-athletics-sleep-mask-commercial-web.mp4"} type="video/mp4" />
+                                )}
+
+
                                 Your browser does not support the video tag.
                             </video>
+
                         </div>
                     </div>
 
