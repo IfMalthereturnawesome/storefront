@@ -103,7 +103,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
                 <FaceStory
                     headline="Thousands of unique faces, one perfect fit."
-                    description="Designed using 4,000 face scans, Sleep Mask One fits perfectly, assuring total darkness and all-night comfort for every sleeper."
+                    // descriptionOne="Designed using 4,000 face scans, Sleep Mask One fits perfectly, assuring total darkness and all-night comfort for every sleeper."
                 />
 
 
