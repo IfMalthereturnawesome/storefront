@@ -19,6 +19,7 @@ import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMe
 import MobileHeaderOverlayOnImage from "@/components/sleepMask/mobile/HeaderOverlayOnMobile";
 import MobileHeaderOverlayOnImageRight from "@/components/sleepMask/mobile/HeaderOverlayMobileRight";
 
+
 type ProductsTemplate = {
     product: PricedProduct
 
@@ -130,6 +131,10 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     line3="in total darkness"
                     textPosition={"right"}
                 />
+
+
+
+
 
             </div>
 

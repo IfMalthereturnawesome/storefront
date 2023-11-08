@@ -39,16 +39,16 @@ const ThinFeatureDandelions: React.FC = () => {
             masterTimeline.current = gsap.timeline();
             if (containerRef.current && textTopRef.current && textBottomRef.current && canvasRef.current) {
 
-                const canvas = canvasRef.current;
-                canvas.width = containerRef.current.offsetWidth;
-                canvas.height = containerRef.current.offsetHeight;
-                const context = canvas.getContext("2d");
+
+                canvasRef.current.width = containerRef.current.offsetWidth;
+                canvasRef.current.height = containerRef.current.offsetHeight;
+                const context = canvasRef.current.getContext("2d");
                 const img = new Image();
                 img.src = "/images/thinSequence/thinmask_000.png";
 
                 img.onload = () => {
-                    canvas.width = img.width;
-                    canvas.height = img.height;
+                    canvasRef.current.width = img.width;
+                    canvasRef.current.height = img.height;
                     context.drawImage(img, 0, 0);
                 };
                 const sleepMask = {
@@ -247,7 +247,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
             }
         });
-        return () => ctx.revert(); // <-- CLEANUP!
+        return () => ctx.revert();
     }, []);
 
 
@@ -259,7 +259,7 @@ const ThinFeatureDandelions: React.FC = () => {
 
             >
 
-                <div className="mx-auto  flex flex-col justify-center mt-10 ">
+                <div  className="mx-auto  flex flex-col justify-center mt-10 ">
 
                     {/* Text above the image always visible but cut in half */}
                     <div ref={textTopRef} className="absolute top-[51.6%] left-[41.5%] z-[2] "
