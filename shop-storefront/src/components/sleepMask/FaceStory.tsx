@@ -196,14 +196,14 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, descriptionOne, descript
                         <p ref={textRefTwo}
                            className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">
                             <span className="text-opacity">Recognizing that </span><strong className={"font-semibold"}>every face tells a
-                            story</strong><span className="text-opacity">, we've digitally mapped over </span><strong className={"font-semibold"}>4,000
+                            story</strong><span className="text-opacity">, we&apos;ve digitally mapped over </span><strong className={"font-semibold"}>4,000
                             unique faces</strong><span className="text-opacity"> to shape our sleep mask.</span>
                         </p>
                         <p ref={textRefThree}
                            className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">
                             <span
                                 className="text-opacity">This approach allows the mask to align </span><strong className={"font-semibold"}>smoothly</strong><span
-                            className="text-opacity"> with each individual's facial features, offering an unrivaled </span><strong className={"font-semibold"}>fit
+                            className="text-opacity"> with each individual&apos;s facial features, offering an unrivaled </span><strong className={"font-semibold"}>fit
                             and comfort</strong><span className="text-opacity">.</span>
                         </p>
                     </div>
