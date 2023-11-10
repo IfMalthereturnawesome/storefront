@@ -43,6 +43,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
             fontFamily: 'Sohne, system-ui, sans-serif',
             fontWeightNormal: '500',
             borderRadius: '8px',
+            colorBackground: isDarkMode ? '#0A2540' : '#fff',
 
         },
         labels: 'floating',
