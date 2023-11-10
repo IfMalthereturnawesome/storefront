@@ -1,13 +1,14 @@
 import { PaymentSession } from "@medusajs/medusa"
 import { Elements } from "@stripe/react-stripe-js"
 import {Appearance, loadStripe, StripeElementsOptions} from "@stripe/stripe-js"
-import React from "react"
+
 
 type WrapperProps = {
   paymentSession?: PaymentSession | null
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ paymentSession, children }) => {
+
 
 
   if (!paymentSession) {
@@ -33,25 +34,22 @@ const StripeWrapper: React.FC<WrapperProps> = ({
   paymentSession,
   children,
 }) => {
+  const isDarkMode = document.documentElement.classList.contains('dark');
 
   const appearance: Appearance = {
-    theme: "flat",
+    theme: isDarkMode ? 'night' : 'stripe',
     variables: {
       colorPrimaryText: '#262626',
           },
     labels: 'floating',
     rules: {
       '.Label': {
-        color: '#30313d',
+        color: isDarkMode ? '#e3dcdc' : '#262626',
       }
     },
 
 
   };
-
-  // update the appearance .Label color to match if dark mode is enabled with the update method
-
-
 
   const options = {
     appearance,
