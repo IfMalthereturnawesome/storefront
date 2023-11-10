@@ -43,7 +43,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
             fontFamily: 'Sohne, system-ui, sans-serif',
             fontWeightNormal: '500',
             borderRadius: '8px',
-            colorBackground: isDarkMode ? '#0A2540' : '#fff',
+            colorBackground: isDarkMode ? '#0B161A' : '#fff',
 
         },
         labels: 'floating',
@@ -52,7 +52,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
                 color: isDarkMode ? '#e3dcdc' : '#262626',
             },
             '.Input, .Block ': {
-                backgroundColor: isDarkMode ? '#0B161A' : 'inherit',
+                backgroundColor: isDarkMode ? '#101B20' : 'inherit',
                 border: isDarkMode ? '1.5px solid var(--colorPrimary)' : '1px solid  var(--colorPrimary)',
             }
         },
