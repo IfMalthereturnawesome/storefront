@@ -1,26 +1,52 @@
 // pages/check-payment.tsx
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-import { useStripe } from '@stripe/react-stripe-js'
+import {useRouter} from 'next/router'
+import React, {useEffect, useState} from 'react'
+import {useStripe} from '@stripe/react-stripe-js'
+import {useCart} from "medusa-react";
+import {useStore} from "@lib/context/store-context";
 
 const CheckPayment: React.FC = () => {
     const router = useRouter()
     const stripe = useStripe()
+    const [errorMessage, setErrorMessage] = useState('')
+    const {resetCart, setRegion} = useStore()
+    const {push} = useRouter()
+
+    const {
+
+        completeCheckout: {mutate: complete, isLoading: completingCheckout},
+    } = useCart()
+
+
+    const onPaymentCompleted = () => {
+        complete(undefined, {
+            onSuccess: ({data}) => {
+                resetCart()
+                push(`/order/confirmed/${data.id}`)
+            },
+        })
+    }
+
+
 
     useEffect(() => {
         const handleRedirect = async () => {
             const clientSecret = router.query.payment_intent_client_secret
-            const cartId = router.query.cartId
 
             if (!stripe || !clientSecret) return
 
-            const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret as string)
+            try {
+                const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret as string)
 
-            if (paymentIntent.status === 'succeeded' || paymentIntent.status === 'requires_capture') {
-                // Complete the cart here using cartId
-                // Navigate to success page or handle accordingly
-            } else {
-                // Handle failure
+                if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'requires_capture')) {
+                    // Handle success
+                    onPaymentCompleted()
+                } else {
+                    // Handle failure
+                    setErrorMessage('Payment failed. Please try again or contact support.');
+                }
+            } catch (error) {
+                setErrorMessage(error instanceof Error ? error.message : 'An unknown error occurred');
             }
         }
 
@@ -29,8 +55,14 @@ const CheckPayment: React.FC = () => {
 
     return (
         <div>
-            {/* Add your loading or processing state UI here */}
-            Checking payment status...
+            {errorMessage ? (
+                <div>
+                    <p>Error: {errorMessage}</p>
+                    {/* You can add a retry payment button or link to the cart page here */}
+                </div>
+            ) : (
+                <p>Checking payment status...</p>
+            )}
         </div>
     )
 }
