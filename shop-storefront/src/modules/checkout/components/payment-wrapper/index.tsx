@@ -40,12 +40,23 @@ const StripeWrapper: React.FC<WrapperProps> = ({
         variables: {
             colorPrimaryText: '#262626',
             colorPrimary: isDarkMode ? '#23AFD0' : '#0570de',
+            fontFamily: 'Sohne, system-ui, sans-serif',
+            fontWeightNormal: '500',
+            borderRadius: '8px',
             colorBackground: isDarkMode ? '#0B161A' : 'inherit',
+            colorText: 'white',
+            colorTextSecondary: 'white',
+            colorTextPlaceholder: '#727F96',
+
         },
         labels: 'floating',
         rules: {
             '.Label': {
                 color: isDarkMode ? '#e3dcdc' : '#262626',
+            },
+            '.Input, .Block ': {
+                backgroundColor: 'transparent',
+                border: isDarkMode ? '1.5px solid var(--colorPrimary)' : '1px solid var(--colorPrimary)',
             }
         },
 

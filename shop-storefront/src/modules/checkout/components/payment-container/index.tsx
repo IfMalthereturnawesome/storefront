@@ -49,7 +49,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       )}
     >
       <button
-        className={"grid grid-cols-[12px_1fr] gap-x-4 py-4 px-3 sm:px-8"}
+        className={"grid grid-cols-[12px_1fr] gap-x-4 py-4 px-3 lg:pt-4 lg:pb-12 sm:px-8"}
         onClick={setSelected}
         disabled={disabled}
       >
