@@ -15,7 +15,7 @@ const CheckoutSummary = () => {
   }
 
   return (
-    <div className="sticky top-0 flex flex-col-reverse small:flex-col gap-y-8">
+    <div className="sticky top-0 flex flex-col-reverse small:flex-col-reverse gap-y-8">
       <div className="w-full bg-cyan-2 p-6 flex flex-col gap-y-6 border border-slate-5 dark:border-amberA-12">
         <CartTotals cart={cart} />
         <PaymentButton paymentSession={cart?.payment_session} />

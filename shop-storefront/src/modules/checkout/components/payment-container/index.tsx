@@ -74,8 +74,14 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
 const PaymentElements = ({
   paymentSession,
 }: {
-  paymentSession: PaymentSession
-}) => {
+  paymentSession: PaymentSession,
+  }) => {
+
+
+
+
+
+
   switch (paymentSession.provider_id) {
     case "stripe":
       return (

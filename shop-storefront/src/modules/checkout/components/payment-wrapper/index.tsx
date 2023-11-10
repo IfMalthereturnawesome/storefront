@@ -1,6 +1,6 @@
 import { PaymentSession } from "@medusajs/medusa"
 import { Elements } from "@stripe/react-stripe-js"
-import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js"
+import {Appearance, loadStripe, StripeElementsOptions} from "@stripe/stripe-js"
 import React from "react"
 
 type WrapperProps = {
@@ -8,6 +8,8 @@ type WrapperProps = {
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ paymentSession, children }) => {
+
+
   if (!paymentSession) {
     return <div>{children}</div>
   }
@@ -31,13 +33,40 @@ const StripeWrapper: React.FC<WrapperProps> = ({
   paymentSession,
   children,
 }) => {
-  const options: StripeElementsOptions = {
-    clientSecret: paymentSession!.data.client_secret as string | undefined,
 
-  }
+  const appearance: Appearance = {
+    theme: "night",
+    variables: {
+      colorPrimaryText: '#262626',
+          },
+    labels: 'floating',
+    rules: {
+      '.Label': {
+        color: '#387299',
+      }
+    },
+
+
+  };
+
+  const options = {
+    appearance,
+    layout: {
+      type: 'accordion',
+      defaultCollapsed: false,
+      radios: true,
+      spacedAccordionItems: false,
+    },
+  };
+
+  const elementsOptions: StripeElementsOptions = {
+    clientSecret: paymentSession!.data.client_secret as string | undefined,
+    ...options,
+  };
+
 
   return (
-    <Elements stripe={stripePromise} options={options}>
+    <Elements stripe={stripePromise} options={elementsOptions} >
       {children}
     </Elements>
   )
