@@ -4,6 +4,7 @@ import clsx from "clsx"
 import React from "react"
 import PaymentStripe from "../payment-stripe"
 import PaymentTest from "../payment-test"
+import {PaymentElement} from '@stripe/react-stripe-js'
 
 type PaymentContainerProps = {
   paymentSession: PaymentSession
@@ -61,7 +62,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
           </span>
           {selected && (
             <div className="w-full mt-4">
-              <PaymentElement paymentSession={paymentSession} />
+              <PaymentElements paymentSession={paymentSession} />
             </div>
           )}
         </div>
@@ -70,7 +71,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   )
 }
 
-const PaymentElement = ({
+const PaymentElements = ({
   paymentSession,
 }: {
   paymentSession: PaymentSession
@@ -79,7 +80,7 @@ const PaymentElement = ({
     case "stripe":
       return (
         <div className="pt-8 pr-2 sm:pr-7">
-          <PaymentStripe />
+          <PaymentElement id="payment-element" />
         </div>
       )
     case "manual":

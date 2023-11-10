@@ -31,8 +31,6 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
       return;
     }
 
-
-
     if (!cart.email) {
       setErrorMessage("Email is required.");
       return;
@@ -44,7 +42,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
     }
 
     setNotReady(false);
-    setErrorMessage(null); // reset error message if everything is fine
+    setErrorMessage(null);
   }, [cart]);
 
 
@@ -108,61 +106,31 @@ const StripePaymentButton = ({
   const handlePayment = async () => {
     setSubmitting(true)
 
-    if (!stripe || !elements || !card || !cart) {
-      setSubmitting(false)
-      return
-    }
-
-    await stripe
-        .confirmCardPayment(session.data.client_secret as string, {
-          payment_method: {
-            card: card,
-            billing_details: {
-              name:
-                  cart.billing_address.first_name +
-                  " " +
-                  cart.billing_address.last_name,
-              address: {
-                city: cart.billing_address.city ?? undefined,
-                country: cart.billing_address.country_code ?? undefined,
-                line1: cart.billing_address.address_1 ?? undefined,
-                line2: cart.billing_address.address_2 ?? undefined,
-                postal_code: cart.billing_address.postal_code ?? undefined,
-                state: cart.billing_address.province ?? undefined,
-              },
-              email: cart.email,
-              phone: cart.billing_address.phone ?? undefined,
-            },
-          },
-        })
-        .then(({ error, paymentIntent }) => {
-          if (error) {
-            const pi = error.payment_intent
-
-            if (
-                (pi && pi.status === "requires_capture") ||
-                (pi && pi.status === "succeeded")
-            ) {
-              onPaymentCompleted()
-            }
-
-            setErrorMessage(error.message)
-            return
-          }
-
-          if (
-              (paymentIntent && paymentIntent.status === "requires_capture") ||
-              paymentIntent.status === "succeeded"
-          ) {
-            return onPaymentCompleted()
-          }
-
-          return
-        })
-        .finally(() => {
+      if (!stripe || !elements || !cart) {
           setSubmitting(false)
-        })
+          return
+      }
+
+      const result = await stripe.confirmPayment({
+          elements,
+          redirect: 'if_required',
+          confirmParams: {
+              // Your return URL for redirect payment methods like Klarna, Giropay
+              return_url: `${window.location.origin}/check-payment`,
+          },
+      });
+
+      if (result.error) {
+          // Handle errors here
+          setErrorMessage(result.error.message);
+      } else {
+          // Handle successful payment here
+          onPaymentCompleted();
+      }
+
+      setSubmitting(false);
   }
+
 
 
   return (
