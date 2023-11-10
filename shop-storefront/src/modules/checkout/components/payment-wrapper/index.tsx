@@ -35,19 +35,23 @@ const StripeWrapper: React.FC<WrapperProps> = ({
 }) => {
 
   const appearance: Appearance = {
-    theme: "night",
+    theme: "flat",
     variables: {
       colorPrimaryText: '#262626',
           },
     labels: 'floating',
     rules: {
       '.Label': {
-        color: '#387299',
+        color: '#30313d',
       }
     },
 
 
   };
+
+  // update the appearance .Label color to match if dark mode is enabled with the update method
+
+
 
   const options = {
     appearance,
