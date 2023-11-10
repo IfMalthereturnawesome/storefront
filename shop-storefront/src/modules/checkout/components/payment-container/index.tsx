@@ -5,6 +5,7 @@ import React from "react"
 import PaymentStripe from "../payment-stripe"
 import PaymentTest from "../payment-test"
 import {PaymentElement} from '@stripe/react-stripe-js'
+import {StripePaymentElementOptions} from "@stripe/stripe-js";
 
 type PaymentContainerProps = {
   paymentSession: PaymentSession
@@ -78,7 +79,9 @@ const PaymentElements = ({
   }) => {
 
 
-
+  const paymentElementOptions:StripePaymentElementOptions = {
+    layout: "accordion"
+  }
 
 
 
@@ -86,7 +89,7 @@ const PaymentElements = ({
     case "stripe":
       return (
         <div className="pt-8 pr-2 sm:pr-7">
-          <PaymentElement id="payment-element" />
+          <PaymentElement id="payment-element" options={paymentElementOptions} />
         </div>
       )
     case "manual":
