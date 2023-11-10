@@ -53,12 +53,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
 
     const options = {
         appearance,
-        layout: {
-            type: 'accordion',
-            defaultCollapsed: false,
-            radios: true,
-            spacedAccordionItems: false,
-        },
+
     };
 
     const elementsOptions: StripeElementsOptions = {

@@ -80,7 +80,12 @@ const PaymentElements = ({
 
 
   const paymentElementOptions:StripePaymentElementOptions = {
-    layout: "accordion"
+    layout: {
+      type: 'accordion',
+      defaultCollapsed: false,
+      radios: true,
+      spacedAccordionItems: false,
+    },
   }
 
 
