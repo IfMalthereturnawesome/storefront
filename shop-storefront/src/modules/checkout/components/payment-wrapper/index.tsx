@@ -40,6 +40,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
         variables: {
             colorPrimaryText: '#262626',
             colorPrimary: isDarkMode ? '#23AFD0' : '#0570de',
+            colorBackground: isDarkMode ? '#0B161A' : '#fff',
         },
         labels: 'floating',
         rules: {
@@ -51,14 +52,10 @@ const StripeWrapper: React.FC<WrapperProps> = ({
 
     };
 
-    const options = {
-        appearance,
-
-    };
 
     const elementsOptions: StripeElementsOptions = {
         clientSecret: paymentSession!.data.client_secret as string | undefined,
-        ...options,
+        appearance: appearance,
     };
 
 
