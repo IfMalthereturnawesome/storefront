@@ -40,7 +40,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
         variables: {
             colorPrimaryText: '#262626',
             colorPrimary: isDarkMode ? '#23AFD0' : '#0570de',
-            colorBackground: isDarkMode ? '#0B161A' : '#fff',
+            colorBackground: isDarkMode ? '#0B161A' : 'inherit',
         },
         labels: 'floating',
         rules: {
