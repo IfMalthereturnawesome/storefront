@@ -4,32 +4,34 @@ import React, {useEffect, useState} from 'react'
 import {useStripe} from '@stripe/react-stripe-js'
 import {useCart} from "medusa-react";
 import {useStore} from "@lib/context/store-context";
+import {useCheckout} from "@lib/context/checkout-context";
 
 const CheckPayment: React.FC = () => {
     const router = useRouter()
     const stripe = useStripe()
     const [errorMessage, setErrorMessage] = useState('')
-    const {resetCart, setRegion} = useStore()
+    // const {resetCart, setRegion} = useStore()
     const {push} = useRouter()
+    const { onPaymentCompleted } = useCheckout()
 
-    const {
+    // const {
+    //
+    //     completeCheckout: {mutate: complete, isLoading: completingCheckout},
+    // } = useCart()
 
-        completeCheckout: {mutate: complete, isLoading: completingCheckout},
-    } = useCart()
 
-
-    const onPaymentCompleted = () => {
-        complete(undefined, {
-
-            onSuccess: ({data}) => {
-                resetCart()
-                router.push(`/order/confirmed/${data.id}`);
-                console.log(data.id, "data.id")
-            },
-
-        })
-        console.log('Payment completed!')
-    }
+    // const onPaymentCompleted = () => {
+    //     complete(undefined, {
+    //
+    //         onSuccess: ({data}) => {
+    //             resetCart()
+    //             router.push(`/order/confirmed/${data.id}`);
+    //             console.log(data.id, "data.id")
+    //         },
+    //
+    //     })
+    //     console.log('Payment completed!')
+    // }
 
 
     console.log("I am in the check-payment page")
