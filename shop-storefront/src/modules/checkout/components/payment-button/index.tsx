@@ -117,8 +117,14 @@ const StripePaymentButton = ({
           confirmParams: {
               // Your return URL for redirect payment methods like Klarna, Giropay
               return_url: `${window.location.origin}/check-payment`,
+
           },
+
       });
+      console.log(window.location.origin, "return_url")
+      console.log(result, "result")
+
+
 
       if (result.error) {
           // Handle errors here

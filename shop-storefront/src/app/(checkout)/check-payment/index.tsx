@@ -20,12 +20,19 @@ const CheckPayment: React.FC = () => {
 
     const onPaymentCompleted = () => {
         complete(undefined, {
+
             onSuccess: ({data}) => {
                 resetCart()
-                push(`/order/confirmed/${data.id}`)
+                router.push(`/order/confirmed/${data.id}`);
+                console.log(data.id, "data.id")
             },
+
         })
+        console.log('Payment completed!')
     }
+
+
+    console.log("I am in the check-payment page")
 
 
 
@@ -40,10 +47,13 @@ const CheckPayment: React.FC = () => {
 
                 if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'requires_capture')) {
                     // Handle success
+                    console.log('Payment succeeded!' + paymentIntent.status)
                     onPaymentCompleted()
+
                 } else {
                     // Handle failure
                     setErrorMessage('Payment failed. Please try again or contact support.');
+                    console.log('Payment failed!' + paymentIntent.status)
                 }
             } catch (error) {
                 setErrorMessage(error instanceof Error ? error.message : 'An unknown error occurred');
