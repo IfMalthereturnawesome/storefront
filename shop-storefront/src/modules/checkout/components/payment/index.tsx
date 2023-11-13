@@ -20,19 +20,19 @@ const Payment = () => {
 
 
 
-  useEffect(() => {
-    // Check if payment sessions are not initialized and shipping address is present
-    if (!cart?.shipping_address || cart?.payment_sessions?.length || paymentInitialized) return;
-
-
-
-    const timeout = setTimeout(() => {
-      // initPayment();
-      setPaymentInitialized(true); // Mark as initialized to prevent future calls
-    }, 5000);
-
-    return () => clearTimeout(timeout);
-  }, [cart, paymentInitialized, initPayment]);
+  // useEffect(() => {
+  //   // Check if payment sessions are not initialized and shipping address is present
+  //   if (!cart?.shipping_address || cart?.payment_sessions?.length || paymentInitialized) return;
+  //
+  //
+  //
+  //   const timeout = setTimeout(() => {
+  //
+  //     setPaymentInitialized(true); // Mark as initialized to prevent future calls
+  //   }, 5000);
+  //
+  //   return () => clearTimeout(timeout);
+  // }, [cart, paymentInitialized]);
 
   return (
     <StepContainer

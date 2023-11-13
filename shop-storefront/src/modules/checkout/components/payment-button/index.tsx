@@ -25,7 +25,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({paymentSession}) => {
     useEffect(() => {
         setNotReady(true);
 
-        console.log(cart.shipping_address)
+
         if (!cart) {
             setErrorMessage("Cart is not available.");
             return;
@@ -60,16 +60,14 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({paymentSession}) => {
                 </div>
             )}
 
-            {/* existing switch case logic for rendering the payment buttons */}
-            {(() => {
-                switch (paymentSession?.provider_id) {
-                    case "stripe":
-                        return (
-                            <StripePaymentButton session={paymentSession} notReady={notReady}/>
-                        );
 
-                }
-            })()}
+            {paymentSession?.provider_id === "stripe" && (
+                <StripePaymentButton
+                    session={paymentSession}
+                    notReady={notReady}
+                />
+            )}
+
         </div>
     );
 }
@@ -93,19 +91,25 @@ const StripePaymentButton = ({
     )
     const [showModal, setShowModal] = useState(false);
     const {cart} = useCart()
-    const {onPaymentCompleted} = useCheckout()
+
+    const {onPaymentCompleted} = useCheckout();
 
     const stripe = useStripe()
     const elements = useElements()
 
-
     useEffect(() => {
-        if (!stripe || !elements) {
+
+        if (!stripe || !elements || !cart) {
             setDisabled(true)
+
+
         } else {
+
+
             setDisabled(false)
         }
-    }, [stripe, elements])
+    }, [stripe, elements, cart])
+
 
     const handlePayment = async (e) => {
         e.preventDefault()
@@ -116,13 +120,18 @@ const StripePaymentButton = ({
             return
         }
 
+
         const return_url = `${window.location.origin}/order-processing?cart_id=${cart.id}`;
+
+        console.log(stripe)
 
 
         const result = await stripe.confirmPayment({
             elements,
             confirmParams: {
                 return_url: return_url,
+                receipt_email: cart.email,
+
             },
 
 
@@ -132,6 +141,8 @@ const StripePaymentButton = ({
             setShowModal(true);
             setErrorMessage(result.error.message);
         } else {
+
+
 
         }
 
@@ -224,24 +235,24 @@ const StripePaymentButton = ({
 //   )
 // }
 
-const ManualTestPaymentButton = ({notReady}: { notReady: boolean }) => {
-    const [submitting, setSubmitting] = useState(false)
-
-    const {onPaymentCompleted} = useCheckout()
-
-    const handlePayment = () => {
-        setSubmitting(true)
-
-        onPaymentCompleted()
-
-        setSubmitting(false)
-    }
-
-    return (
-        <Button disabled={submitting || notReady} onClick={handlePayment}>
-            {submitting ? <Spinner/> : "Checkout"}
-        </Button>
-    )
-}
+// const ManualTestPaymentButton = ({notReady}: { notReady: boolean }) => {
+//     const [submitting, setSubmitting] = useState(false)
+//
+//     const {onPaymentCompleted} = useCheckout()
+//
+//     const handlePayment = () => {
+//         setSubmitting(true)
+//
+//         onPaymentCompleted()
+//
+//         setSubmitting(false)
+//     }
+//
+//     return (
+//         <Button disabled={submitting || notReady} onClick={handlePayment}>
+//             {submitting ? <Spinner/> : "Checkout"}
+//         </Button>
+//     )
+// }
 
 export default PaymentButton

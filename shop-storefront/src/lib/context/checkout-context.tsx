@@ -89,7 +89,7 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
 
     const methods = useForm<CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
-        reValidateMode: "onChange",
+        reValidateMode: "onSubmit",
     })
     const confirmDelivery = () => setIsDeliveryConfirmed(true);
     const resetDeliveryConfirmation = () => setIsDeliveryConfirmed(false);
@@ -170,14 +170,14 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         return []
     }, [shipping_options, cart])
 
-    /**
-     * Resets the form when the cart changed.
-     */
-    useEffect(() => {
-        if (cart?.id) {
-            methods.reset(mapFormValues(customer, cart, countryCode))
-        }
-    }, [customer, cart, methods, countryCode])
+    // /**
+    //  * Resets the form when the cart changed.
+    //  */
+    // useEffect(() => {
+    //     if (cart?.id) {
+    //         methods.reset(mapFormValues(customer, cart, countryCode))
+    //     }
+    // }, [customer, cart, methods, countryCode])
 
     useEffect(() => {
         if (!cart) {
@@ -214,6 +214,7 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         return medusaClient.carts
             .createPaymentSessions(cartId, {
                 "Idempotency-Key": IDEMPOTENCY_KEY,
+
             })
             .then(({cart}) => cart)
             .catch(() => null)
@@ -223,17 +224,25 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
      * Method that calls the createPaymentSession method and updates the cart with the payment session.
      */
     const initPayment = async () => {
-        if (cart?.id && !cart.payment_sessions?.length && cart?.items?.length) {
-            const paymentSession = await createPaymentSession(cart.id)
-
+        if (
+            cart?.id &&
+            !cart.payment_sessions?.length &&
+            cart?.items?.length &&
+            cart?.email
+        ) {
+            const paymentSession = await createPaymentSession(cart.id);
             if (!paymentSession) {
-                setTimeout(initPayment, 500)
+                setTimeout(initPayment, 500);
             } else {
-                setCart(paymentSession)
-                return
+                setCart(paymentSession);
             }
         }
-    }
+    };
+
+    useEffect(() => {
+        initPayment()
+
+    } , [cart?.id, cart?.items?.length, cart?.email])
 
     /**
      * Method to set the selected payment session for the cart. This is called when the user selects a payment provider, such as Stripe, PayPal, etc.
@@ -318,10 +327,12 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         updateCart(payload, {
             onSuccess: ({cart}) => {
                 setCart(cart)
+                validateRegion(shipping_address.country_code)
                 prepareFinalSteps()
             },
         })
     }
+
 
     /**
      * Method to complete the checkout process. This is called when the user clicks the "Complete Checkout" button.
