@@ -46,6 +46,19 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
     const [loadingServicePoints, setLoadingServicePoints] = React.useState(false); // New state for loading service points
     const [initialFetchDone, setInitialFetchDone] = React.useState(false); // New state for initial fetch
     const [isEditMode, setIsEditMode] = React.useState(true);
+    const { confirmDelivery } = useCheckout();
+
+    const handleConfirmDelivery = () => {
+        confirmDelivery();
+        setIsEditMode(false); // Set edit mode to false when delivery is confirmed
+    };
+
+    const { resetDeliveryConfirmation } = useCheckout();
+
+    const handleEdit = () => {
+        setIsEditMode(true);
+        resetDeliveryConfirmation(); // Reset the delivery confirmation when entering edit mode
+    };
 
     const {addShippingMethod, setCart} = useCart()
     const {
@@ -54,7 +67,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
         formState: {errors},
     } = useForm<ShippingFormProps>({
         defaultValues: {
-            soId: cart.shipping_methods?.[1]?.shipping_option_id,
+            soId: cart.shipping_methods?.[0]?.shipping_option_id,
         },
     })
     const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
@@ -428,7 +441,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                 />
                 <Button
                     className="max-w-[200px] mt-6"
-                    onClick={() => setIsEditMode(false)}
+                    onClick={handleConfirmDelivery}
                 >Continue to Payment
                 </Button>
 
@@ -465,7 +478,7 @@ const Shipping: React.FC<ShippingProps> = ({cart}) => {
                         </div>
                     </div>
                     <button
-                        onClick={() => setIsEditMode(true)}
+                        onClick={handleEdit}
                         className="text-xs text-slate-11 self-start sm:self-center"
                     >
                         Edit

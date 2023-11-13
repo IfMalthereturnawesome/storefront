@@ -1,6 +1,6 @@
 import { useCheckout } from "@lib/context/checkout-context"
 import Spinner from "@modules/common/icons/spinner"
-import {useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import PaymentContainer from "../payment-container"
 import StepContainer from "../step-container"
 
@@ -10,21 +10,21 @@ const Payment = () => {
     setPaymentSession,
     initPayment,
     sameAsBilling: { state: isSame },
+    isDeliveryConfirmed,
   } = useCheckout()
 
-  /**
-   * Fallback if the payment session are not loaded properly we
-   * retry to load them after a 5 second delay.
-   */
+
   const [paymentInitialized, setPaymentInitialized] = useState(false);
 
-  /**
-   * Fallback if the payment session are not loaded properly we
-   * retry to load them after a 5 second delay.
-   */
+
+
+
+
   useEffect(() => {
     // Check if payment sessions are not initialized and shipping address is present
     if (!cart?.shipping_address || cart?.payment_sessions?.length || paymentInitialized) return;
+
+
 
     const timeout = setTimeout(() => {
       // initPayment();
@@ -32,19 +32,21 @@ const Payment = () => {
     }, 5000);
 
     return () => clearTimeout(timeout);
-  }, [cart?.shipping_address, cart?.payment_sessions?.length, paymentInitialized, initPayment]);
+  }, [cart, paymentInitialized, initPayment]);
 
   return (
     <StepContainer
       title="Payment"
       index={isSame ? 3 : 4}
+      isClosed={!isDeliveryConfirmed }
       closedState={
-        <div className="px-3 sm:px-8 pb-8 text-small-regular text-slate-11">
-          <p>Enter your address to see available payment options.</p>
+        <div className="px-4 sm:px-8 pb-4 sm:pb-8 text-xs sm:text-small-regular text-slate-11">
+          <p>Select a delivery method to see available payment options</p>
         </div>
       }
     >
-      <div>
+
+          <div>
         {cart?.payment_sessions?.length ? (
           cart.payment_sessions
             .sort((a, b) => {
@@ -71,6 +73,7 @@ const Payment = () => {
           </div>
         )}
       </div>
+
     </StepContainer>
   )
 }

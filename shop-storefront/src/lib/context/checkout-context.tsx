@@ -20,7 +20,7 @@ import {
     useUpdateCart,
 } from "medusa-react"
 import {useRouter} from "next/navigation"
-import React, {createContext, useContext, useEffect, useMemo} from "react"
+import React, {createContext, useContext, useEffect, useMemo, useState} from "react"
 import {FormProvider, useForm, useFormContext} from "react-hook-form"
 import {useStore} from "./store-context"
 import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
@@ -53,6 +53,9 @@ interface CheckoutContext {
     sameAsBilling: StateType
     editAddresses: StateType
     initPayment: () => Promise<void>
+    isDeliveryConfirmed: boolean
+    confirmDelivery: () => void
+    resetDeliveryConfirmation: () => void
     setAddresses: (addresses: CheckoutFormValues) => void
     setSavedAddress: (address: Address) => void
     setShippingOption: (soId: string) => void
@@ -82,11 +85,14 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
     const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
     const {customer} = useMeCustomer()
     const {countryCode} = useStore()
+    const [isDeliveryConfirmed, setIsDeliveryConfirmed] = useState(false);
 
     const methods = useForm<CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
         reValidateMode: "onChange",
     })
+    const confirmDelivery = () => setIsDeliveryConfirmed(true);
+    const resetDeliveryConfirmation = () => setIsDeliveryConfirmed(false);
 
 
     const {
@@ -339,6 +345,9 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
                     readyToComplete,
                     sameAsBilling,
                     editAddresses,
+                    isDeliveryConfirmed,
+                    confirmDelivery,
+                    resetDeliveryConfirmation,
                     initPayment,
                     setAddresses,
                     setSavedAddress,

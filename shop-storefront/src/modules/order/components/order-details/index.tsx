@@ -16,10 +16,10 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
     return (
         <div className="p-10 border-b border-slate-5">
       <span className="text-slate-12 text-small-regular uppercase">
-        Thank you, your order was successfully placed
+        Thank you, your order was successfully placed 🎉
       </span>
             <p className="text-slate-11 text-sm mt-2">
-                A confirmation email has been sent to your email address.
+                A confirmation email has been sent to your email address at <strong> {order.email}</strong>
             </p>
             <h1 className="mt-2 uppercase text-2xl-semi text-slate-11">#{order.display_id}</h1>
             <span className={"text-xs break-words"}>{order.id.split("order_")[1]}</span>
