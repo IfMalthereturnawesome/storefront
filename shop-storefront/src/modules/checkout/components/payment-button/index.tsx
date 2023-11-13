@@ -9,7 +9,8 @@ import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
 import BuyNowButton from "@/components/elements/BuyNowButton";
 import cart from "@modules/common/icons/cart";
-
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import ErrorModal from "@modules/error/ErrorModal";
 
 type PaymentButtonProps = {
   paymentSession?: PaymentSession | null
@@ -19,6 +20,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
   const [notReady, setNotReady] = useState(true)
   const { cart } = useCart()
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
   useEffect(() => {
     setNotReady(true);
@@ -71,19 +73,24 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
   );
 }
 
+type StripePaymentButtonProps = {
+  session: PaymentSession;
+  notReady: boolean;
+
+};
+
 const StripePaymentButton = ({
                                session,
                                notReady,
-                             }: {
-  session: PaymentSession
-  notReady: boolean
-}) => {
+
+                             }: StripePaymentButtonProps) => {
+
   const [disabled, setDisabled] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
       undefined
   )
-
+  const [showModal, setShowModal] = useState(false);
   const { cart } = useCart()
   const { onPaymentCompleted } = useCheckout()
 
@@ -121,7 +128,7 @@ const StripePaymentButton = ({
       });
 
       if (result.error) {
-
+        setShowModal(true);
           setErrorMessage(result.error.message);
       } else {
 
@@ -129,7 +136,6 @@ const StripePaymentButton = ({
 
       setSubmitting(false);
   }
-
 
 
 
@@ -146,72 +152,78 @@ const StripePaymentButton = ({
         >
           {submitting ? <Spinner /> : "Checkout"}
         </BuyNowButton>
-        {errorMessage && (
-            <div className="text-red-500 text-small-regular mt-2">
+        {errorMessage && showModal && (
+            <div className="flex items-center text-red-500 text-small-regular mt-2 animate-fade-in">
+              <ExclamationCircleIcon className="h-5 w-5 mr-2" />
               {errorMessage}
+              <ErrorModal message={errorMessage || ''}   isOpen={showModal} onClose={() => setShowModal(false)}/>
             </div>
+
         )}
+
+
+
       </>
   )
 }
+//
+// const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""
 
-const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""
-
-const PayPalPaymentButton = ({
-                               session,
-                               notReady,
-                             }: {
-  session: PaymentSession
-  notReady: boolean
-}) => {
-  const [submitting, setSubmitting] = useState(false)
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-      undefined
-  )
-
-  const { cart } = useCart()
-  const { onPaymentCompleted } = useCheckout()
-
-  const handlePayment = async (
-      _data: OnApproveData,
-      actions: OnApproveActions
-  ) => {
-    actions?.order
-        ?.authorize()
-        .then((authorization) => {
-          if (authorization.status !== "COMPLETED") {
-            setErrorMessage(`An error occurred, status: ${authorization.status}`)
-            return
-          }
-          onPaymentCompleted()
-        })
-        .catch(() => {
-          setErrorMessage(`An unknown error occurred, please try again.`)
-        })
-        .finally(() => {
-          setSubmitting(false)
-        })
-  }
-  return (
-      <PayPalScriptProvider
-          options={{
-            "client-id": PAYPAL_CLIENT_ID,
-            currency: cart?.region.currency_code.toUpperCase(),
-            intent: "authorize",
-          }}
-      >
-        {errorMessage && (
-            <span className="text-rose-500 mt-4">{errorMessage}</span>
-        )}
-        <PayPalButtons
-            style={{ layout: "horizontal" }}
-            createOrder={async () => session.data.id as string}
-            onApprove={handlePayment}
-            disabled={notReady || submitting}
-        />
-      </PayPalScriptProvider>
-  )
-}
+// const PayPalPaymentButton = ({
+//                                session,
+//                                notReady,
+//                              }: {
+//   session: PaymentSession
+//   notReady: boolean
+// }) => {
+//   const [submitting, setSubmitting] = useState(false)
+//   const [errorMessage, setErrorMessage] = useState<string | undefined>(
+//       undefined
+//   )
+//
+//   const { cart } = useCart()
+//   const { onPaymentCompleted } = useCheckout()
+//
+//   const handlePayment = async (
+//       _data: OnApproveData,
+//       actions: OnApproveActions
+//   ) => {
+//     actions?.order
+//         ?.authorize()
+//         .then((authorization) => {
+//           if (authorization.status !== "COMPLETED") {
+//             setErrorMessage(`An error occurred, status: ${authorization.status}`)
+//             return
+//           }
+//           onPaymentCompleted()
+//         })
+//         .catch(() => {
+//           setErrorMessage(`An unknown error occurred, please try again.`)
+//         })
+//         .finally(() => {
+//           setSubmitting(false)
+//         })
+//   }
+//   return (
+//       <PayPalScriptProvider
+//           options={{
+//             "client-id": PAYPAL_CLIENT_ID,
+//             currency: cart?.region.currency_code.toUpperCase(),
+//             intent: "authorize",
+//           }}
+//       >
+//         {errorMessage && (
+//             <span className="text-rose-500 mt-4">{errorMessage}</span>
+//         )}
+//         <PayPalButtons
+//             style={{ layout: "horizontal" }}
+//             createOrder={async () => session.data.id as string}
+//             onApprove={handlePayment}
+//             disabled={notReady || submitting}
+//         />
+//       </PayPalScriptProvider>
+//   )
+// }
 
 const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   const [submitting, setSubmitting] = useState(false)
