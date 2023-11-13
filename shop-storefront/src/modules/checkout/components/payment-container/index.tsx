@@ -7,6 +7,7 @@ import PaymentTest from "../payment-test"
 import {PaymentElement} from '@stripe/react-stripe-js'
 import {StripePaymentElementOptions} from "@stripe/stripe-js";
 
+
 type PaymentContainerProps = {
   paymentSession: PaymentSession
   selected: boolean
@@ -14,24 +15,6 @@ type PaymentContainerProps = {
   disabled?: boolean
 }
 
-const PaymentInfoMap: Record<string, { title: string; description: string }> = {
-  stripe: {
-    title: "Stripe",
-    description: "Secure payment with Stripe",
-  },
-  "stripe-ideal": {
-    title: "iDEAL",
-    description: "Secure payment with iDEAL",
-  },
-  paypal: {
-    title: "PayPal",
-    description: "Secure payment with PayPal",
-  },
-  manual: {
-    title: "Test payment",
-    description: "Test payment using medusa-payment-manual",
-  },
-}
 
 const PaymentContainer: React.FC<PaymentContainerProps> = ({
   paymentSession,
@@ -39,6 +22,9 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   setSelected,
   disabled = false,
 }) => {
+  const title = "Stripe";
+  const description = "Secure payment with Stripe";
+
   return (
     <div
       className={clsx(
@@ -56,10 +42,10 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
         <Radio checked={selected} />
         <div className="flex flex-col text-left">
           <h3 className="text-base-semi leading-none text-slate-12">
-            {PaymentInfoMap[paymentSession.provider_id].title}
+            {title}
           </h3>
           <span className="text-slate-11 text-small-regular mt-2">
-            {PaymentInfoMap[paymentSession.provider_id].description}
+            {description}
           </span>
           {selected && (
             <div className="w-full mt-4">
@@ -88,21 +74,13 @@ const PaymentElements = ({
     },
   }
 
-
-
-  switch (paymentSession.provider_id) {
-    case "stripe":
       return (
         <div className="pt-8 pr-2 sm:pr-7">
           <PaymentElement id="payment-element" options={paymentElementOptions} />
+
         </div>
       )
-    case "manual":
-      // We only display the test payment form if we are in a development environment
-      return process.env.NODE_ENV === "development" ? <PaymentTest /> : null
-    default:
-      return null
-  }
+
 }
 
 export default PaymentContainer

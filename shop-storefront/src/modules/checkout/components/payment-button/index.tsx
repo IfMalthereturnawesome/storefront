@@ -8,6 +8,8 @@ import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
 import BuyNowButton from "@/components/elements/BuyNowButton";
+import cart from "@modules/common/icons/cart";
+
 
 type PaymentButtonProps = {
   paymentSession?: PaymentSession | null
@@ -21,6 +23,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
   useEffect(() => {
     setNotReady(true);
 
+    console.log(cart.shipping_address)
     if (!cart) {
       setErrorMessage("Cart is not available.");
       return;
@@ -61,14 +64,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
               return (
                   <StripePaymentButton session={paymentSession} notReady={notReady} />
               );
-            case "manual":
-              return <ManualTestPaymentButton notReady={notReady} />;
-            case "paypal":
-              return (
-                  <PayPalPaymentButton notReady={notReady} session={paymentSession} />
-              );
-            default:
-              return <Button disabled>Select a payment method</Button>;
+
           }
         })()}
       </div>
@@ -93,7 +89,7 @@ const StripePaymentButton = ({
 
   const stripe = useStripe()
   const elements = useElements()
-  const card = elements?.getElement("cardNumber")
+
 
   useEffect(() => {
     if (!stripe || !elements) {
@@ -103,35 +99,32 @@ const StripePaymentButton = ({
     }
   }, [stripe, elements])
 
-  const handlePayment = async () => {
+  const handlePayment = async (e) => {
+      e.preventDefault()
     setSubmitting(true)
 
-      if (!stripe || !elements || !cart) {
+      if (!stripe || !elements  || !cart ) {
           setSubmitting(false)
           return
       }
 
+      const return_url = `${window.location.origin}/order-processing?cart_id=${cart.id}`;
+
+
       const result = await stripe.confirmPayment({
           elements,
-          redirect: 'if_required',
-          confirmParams: {
-              // Your return URL for redirect payment methods like Klarna, Giropay
-              return_url: `${window.location.origin}/check-payment`,
+            confirmParams: {
+                return_url: return_url,
+            },
 
-          },
 
       });
-      console.log(window.location.origin, "return_url")
-      console.log(result, "result")
-
-
 
       if (result.error) {
-          // Handle errors here
+
           setErrorMessage(result.error.message);
       } else {
-          // Handle successful payment here
-          onPaymentCompleted();
+
       }
 
       setSubmitting(false);
@@ -139,13 +132,14 @@ const StripePaymentButton = ({
 
 
 
-  return (
+
+    return (
 
       <>
-        {/* @ts-ignore*/}
         <BuyNowButton
             message={"Place Order"}
             disabled={submitting || disabled || notReady}
+            // @ts-ignore
             onClick={handlePayment}
             title="Place Order"
             className={"truncate"}

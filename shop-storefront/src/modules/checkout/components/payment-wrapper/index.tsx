@@ -2,6 +2,8 @@ import {PaymentSession} from "@medusajs/medusa"
 import {Elements} from "@stripe/react-stripe-js"
 import {Appearance, loadStripe, StripeElementsOptions} from "@stripe/stripe-js"
 
+import React from "react";
+
 
 type WrapperProps = {
     paymentSession?: PaymentSession | null
@@ -19,6 +21,7 @@ const Wrapper: React.FC<WrapperProps> = ({paymentSession, children}) => {
             return (
                 <StripeWrapper paymentSession={paymentSession}>
                     {children}
+
                 </StripeWrapper>
             )
 
@@ -70,6 +73,7 @@ const StripeWrapper: React.FC<WrapperProps> = ({
     return (
         <Elements stripe={stripePromise} options={elementsOptions}>
             {children}
+
         </Elements>
     )
 }

@@ -1,6 +1,6 @@
 import { useCheckout } from "@lib/context/checkout-context"
 import Spinner from "@modules/common/icons/spinner"
-import { useEffect } from "react"
+import {useEffect, useState} from "react"
 import PaymentContainer from "../payment-container"
 import StepContainer from "../step-container"
 
@@ -16,22 +16,23 @@ const Payment = () => {
    * Fallback if the payment session are not loaded properly we
    * retry to load them after a 5 second delay.
    */
+  const [paymentInitialized, setPaymentInitialized] = useState(false);
+
+  /**
+   * Fallback if the payment session are not loaded properly we
+   * retry to load them after a 5 second delay.
+   */
   useEffect(() => {
-    let timeout: NodeJS.Timeout | null = null
+    // Check if payment sessions are not initialized and shipping address is present
+    if (!cart?.shipping_address || cart?.payment_sessions?.length || paymentInitialized) return;
 
-    if (cart?.shipping_address && cart?.payment_sessions) {
-      timeout = setTimeout(() => {
-        initPayment()
-      }, 5000)
-    }
+    const timeout = setTimeout(() => {
+      // initPayment();
+      setPaymentInitialized(true); // Mark as initialized to prevent future calls
+    }, 5000);
 
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart])
+    return () => clearTimeout(timeout);
+  }, [cart?.shipping_address, cart?.payment_sessions?.length, paymentInitialized, initPayment]);
 
   return (
     <StepContainer

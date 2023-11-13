@@ -8,20 +8,41 @@ import OrderSummary from "@modules/order/components/order-summary"
 import ShippingDetails from "@modules/order/components/shipping-details"
 import OnboardingCta from "@modules/order/components/onboarding-cta"
 import React, { useEffect, useState } from "react"
+import { loadStripe } from '@stripe/stripe-js';
 
 type OrderCompletedTemplateProps = {
   order: Order
 }
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
                                                                          order,
                                                                        }) => {
   const [isOnboarding, setIsOnboarding] = useState<boolean>(false)
+  const [paymentStatusMessage, setPaymentStatusMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const onboarding = window.sessionStorage.getItem("onboarding")
-    setIsOnboarding(onboarding === "true")
-  }, [])
+    const onboarding = window.sessionStorage.getItem("onboarding");
+    setIsOnboarding(onboarding === "true");
+
+    // Check Stripe payment status
+    stripePromise.then(async (stripe) => {
+      if (!stripe) return;
+
+      const url = new URL(window.location.href);
+      const clientSecret = url.searchParams.get('payment_intent_client_secret');
+
+      if (clientSecret) {
+        const { error, paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+        if (error) {
+          setPaymentStatusMessage(`Error: ${error.message}`);
+        } else if (paymentIntent) {
+          setPaymentStatusMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+        }
+      }
+    });
+  }, []);
 
   return (
       <div className="bg-cyan-1 py-6 min-h-[calc(100vh-64px)] ">
@@ -43,6 +64,11 @@ const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-10">
               <Help />
+              {paymentStatusMessage && (
+                  <div className="text-red-500">
+                    {paymentStatusMessage}
+                  </div>
+              )}
             </div>
           </div>
         </div>

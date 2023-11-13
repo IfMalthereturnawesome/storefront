@@ -28,17 +28,22 @@ const ShippingDetails = ({
         <h3 className="text-base-regular text-slate-12">Delivery method</h3>
           <div className={"text-xs"}>
               {shippingMethods.map((sm) => {
-                  const servicePoint = address.metadata.selectedServicePoint;
+                  const servicePoint = address.metadata?.selectedServicePoint;
 
                   return (
                       <div key={sm.id}>
                           <div className="text-slate-11">{sm.shipping_option.name}</div>
-                          {/*  @ts-ignore */}
-                          <div className="text-slate-11 font-bold">{servicePoint.name}</div>
-                          <div className="text-slate-11">
-                              {/*  @ts-ignore */}
-                              {servicePoint.address.street}, {servicePoint.address.city} {servicePoint.address.zip_code}
-                          </div>
+
+                          {servicePoint && (
+                              <>
+                                  {/*  @ts-ignore */}
+                                  <div className="text-slate-11 font-bold">{servicePoint.name}</div>
+                                  <div className="text-slate-11">
+                                      {/*  @ts-ignore */}
+                                      {servicePoint.address.street}, {servicePoint.address.city} {servicePoint.address.zip_code}
+                                  </div>
+                              </>
+                          )}
                       </div>
                   );
               })}

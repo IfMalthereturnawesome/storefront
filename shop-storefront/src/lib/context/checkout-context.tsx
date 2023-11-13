@@ -25,6 +25,7 @@ import {FormProvider, useForm, useFormContext} from "react-hook-form"
 import {useStore} from "./store-context"
 import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
+
 type AddressValues = {
     first_name: string
     last_name: string
@@ -346,7 +347,9 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
                     onPaymentCompleted,
                 }}
             >
-                <Wrapper paymentSession={cart?.payment_session}>{children}</Wrapper>
+                <Wrapper paymentSession={cart?.payment_session}>{children}
+                   </Wrapper>
+
             </CheckoutContext.Provider>
         </FormProvider>
     )
