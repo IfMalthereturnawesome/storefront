@@ -15,15 +15,15 @@ type ColorOptionSelectProps = {
 };
 
 const colorInfoMap = {
-    "Dark Gray": {
+    "Space Grey": {
         gradient:
             "linear-gradient(180deg, rgba(105,91,91,1) 0%, rgba(98,97,97,1) 25%, rgba(87,84,84,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
-    "Silver": {
+    "Warm Grey": {
         gradient:
-            "linear-gradient(180deg, rgba(182,175,175,1) 0%, rgba(180,173,173,1) 25%, rgba(172,166,166,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+            "linear-gradient(180deg, rgb(180, 173, 172) 0%, rgb(175, 168, 166) 25%, rgb(137, 126, 123) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
-    "Black": {
+    "Eclipse Black": {
         gradient:
             "linear-gradient(180deg, rgba(25,24,24,1) 0%, rgba(25,23,23,1) 25%, rgba(22,21,21,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
@@ -40,7 +40,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                                                  stockLevels,
                                                              }) => {
     const uniqueOptions = option.values.map((v) => v.value).filter(onlyUnique);
-    const orderedOptions = ["Silver", "Dark Gray", "Black"].filter(color => uniqueOptions.includes(color));
+    const orderedOptions = ["Warm Grey", "Space Grey", "Eclipse Black"].filter(color => uniqueOptions.includes(color));
 
     const defaultColor = orderedOptions[0];
 
