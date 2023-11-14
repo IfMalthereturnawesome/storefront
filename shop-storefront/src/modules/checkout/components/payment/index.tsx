@@ -20,19 +20,20 @@ const Payment = () => {
 
 
 
-  // useEffect(() => {
-  //   // Check if payment sessions are not initialized and shipping address is present
-  //   if (!cart?.shipping_address || cart?.payment_sessions?.length || paymentInitialized) return;
-  //
-  //
-  //
-  //   const timeout = setTimeout(() => {
-  //
-  //     setPaymentInitialized(true); // Mark as initialized to prevent future calls
-  //   }, 5000);
-  //
-  //   return () => clearTimeout(timeout);
-  // }, [cart, paymentInitialized]);
+  useEffect(() => {
+    // Check if payment sessions are not initialized and shipping address is present
+    if (!cart?.shipping_address || cart?.payment_sessions?.length || paymentInitialized) return;
+
+
+
+    const timeout = setTimeout(() => {
+        initPayment();
+
+      setPaymentInitialized(true); // Mark as initialized to prevent future calls
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [cart, paymentInitialized]);
 
   return (
     <StepContainer
@@ -49,9 +50,6 @@ const Payment = () => {
           <div>
         {cart?.payment_sessions?.length ? (
           cart.payment_sessions
-            .sort((a, b) => {
-              return a.provider_id > b.provider_id ? 1 : -1
-            })
             .map((paymentSession) => {
               return (
                 <PaymentContainer

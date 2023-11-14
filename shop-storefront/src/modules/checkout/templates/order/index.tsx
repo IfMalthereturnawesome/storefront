@@ -21,50 +21,29 @@ const OrderTemplate = () => {
     const searchParams = useSearchParams();
     const cartId = searchParams.get('cart_id');
     const redirectStatus = searchParams.get('redirect_status')
-    const payment_intent_client_secret = searchParams.get('payment_intent_client_secret');
+
     const {order, isLoading, refetch} = useCartOrder(cartId);
 
-    const checkPaymentStatus = async () => {
-        if (!payment_intent_client_secret) return;
-
-        const stripe = await stripePromise;
-        if (!stripe) return;
-
-        const { paymentIntent, error } = await stripe.retrievePaymentIntent(payment_intent_client_secret);
-        if (error) {
-            setError(error.message);
-            setIsProcessing(false);
+    useEffect(() => {
+        if (redirectStatus === 'failed') {
+            router.push('/checkout');
             return;
         }
-        if (paymentIntent && paymentIntent.status === 'succeeded') {
-            await onPaymentCompleted();
-        }
-    };
 
-    useEffect(() => {
-        const processOrder = async () => {
-            if (redirectStatus === 'failed') {
-                router.push('/checkout');
-                return;
-            }
-
-            await checkPaymentStatus();
-
-            if (!isLoading && order) {
-                router.push(`/order/confirmed/${order.id}`);
-            } else if (!isLoading && !order && retryCount < MAX_RETRY_ATTEMPTS) {
-                setStatusMessage(`Checking order status... (Attempt ${retryCount + 1} of ${MAX_RETRY_ATTEMPTS})`);
+        if (!isLoading && order) {
+            router.push(`/order/confirmed/${order.id}`);
+        } else if (!isLoading && !order && retryCount < MAX_RETRY_ATTEMPTS) {
+            setStatusMessage(`Checking order status... (Attempt ${retryCount + 1} of ${MAX_RETRY_ATTEMPTS})`);
+            setTimeout(() => {
+                refetch();
+                onPaymentCompleted();
                 setRetryCount(retryCount + 1);
-                await refetch();
-            } else if (retryCount >= MAX_RETRY_ATTEMPTS) {
-                setError("Order not found.");
-                setIsProcessing(false);
-            }
-        };
-
-        processOrder();
-    }, [isLoading, order, retryCount,  refetch, redirectStatus, cartId, payment_intent_client_secret]);
-
+            }, RETRY_INTERVAL_MS);
+        } else if (retryCount >= MAX_RETRY_ATTEMPTS) {
+            setError("Order not found.");
+            setIsProcessing(false);
+        }
+    }, [isLoading, order, retryCount, onPaymentCompleted, router, refetch, redirectStatus]);
 
 
     if (isProcessing || isLoading) {

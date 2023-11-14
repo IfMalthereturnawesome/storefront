@@ -1,14 +1,10 @@
 import {useCheckout} from "@lib/context/checkout-context"
 import {PaymentSession} from "@medusajs/medusa"
-import Button from "@modules/common/components/button"
 import Spinner from "@modules/common/icons/spinner"
-import {OnApproveActions, OnApproveData} from "@paypal/paypal-js"
-import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js"
 import {useElements, useStripe} from "@stripe/react-stripe-js"
 import {useCart} from "medusa-react"
 import React, {useEffect, useState} from "react"
 import BuyNowButton from "@/components/elements/BuyNowButton";
-import cart from "@modules/common/icons/cart";
 import {ExclamationCircleIcon} from '@heroicons/react/24/solid';
 import ErrorModal from "@modules/error/ErrorModal";
 
@@ -120,10 +116,10 @@ const StripePaymentButton = ({
             return
         }
 
-
         const return_url = `${window.location.origin}/order-processing?cart_id=${cart.id}`;
 
         console.log(stripe)
+        console.log(session.data.client_secret)
 
 
         const result = await stripe.confirmPayment({
@@ -176,6 +172,8 @@ const StripePaymentButton = ({
         </>
     )
 }
+
+
 //
 // const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""
 

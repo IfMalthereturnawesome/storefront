@@ -89,7 +89,7 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
 
     const methods = useForm<CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
-        reValidateMode: "onSubmit",
+        reValidateMode: "onChange",
     })
     const confirmDelivery = () => setIsDeliveryConfirmed(true);
     const resetDeliveryConfirmation = () => setIsDeliveryConfirmed(false);
@@ -170,14 +170,14 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         return []
     }, [shipping_options, cart])
 
-    // /**
-    //  * Resets the form when the cart changed.
-    //  */
-    // useEffect(() => {
-    //     if (cart?.id) {
-    //         methods.reset(mapFormValues(customer, cart, countryCode))
-    //     }
-    // }, [customer, cart, methods, countryCode])
+    /**
+     * Resets the form when the cart changed.
+     */
+    useEffect(() => {
+        if (cart?.id) {
+            methods.reset(mapFormValues(customer, cart, countryCode))
+        }
+    }, [customer, cart, methods, countryCode])
 
     useEffect(() => {
         if (!cart) {
@@ -215,6 +215,7 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
             .createPaymentSessions(cartId, {
                 "Idempotency-Key": IDEMPOTENCY_KEY,
 
+
             })
             .then(({cart}) => cart)
             .catch(() => null)
@@ -239,10 +240,17 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         }
     };
 
+
+
     useEffect(() => {
         initPayment()
 
+
+
     } , [cart?.id, cart?.items?.length, cart?.email])
+
+
+
 
     /**
      * Method to set the selected payment session for the cart. This is called when the user selects a payment provider, such as Stripe, PayPal, etc.
@@ -262,9 +270,14 @@ export const CheckoutProvider = ({children}: CheckoutProviderProps) => {
         }
     }
 
-    const prepareFinalSteps = () => {
 
+    const prepareFinalSteps = () => {
         initPayment()
+        // Reload the page to update the payment session but only if email is set
+        if (cart?.email){
+            window.location.reload();
+            return;
+        }
 
         if (shippingMethods?.length && shippingMethods?.[0]?.value) {
             setShippingOption(shippingMethods[0].value)
