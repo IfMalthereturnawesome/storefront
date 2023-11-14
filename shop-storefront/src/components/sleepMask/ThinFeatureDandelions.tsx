@@ -316,8 +316,8 @@ const ThinFeatureDandelions: React.FC = () => {
 
                         {/* Description for Soft feature */}
                         <div ref={descBottomRef} className="absolute max-w-sm bottom-[15%] left-[23%] z-[2] opacity-0">
-                            <p className="text-xl font-sans text-slate-11 ">
-                                Feel the difference with our cool, soft nylon fabric. The ultra-fine fibers provide a smooth touch even for the most sensitive skin.
+                            <p className="text-xl font-sans text-slate-11">
+                                Feel the difference with our cool, SoftTech™ fabric. The ultra-fine fibers provide a smooth touch even for the most sensitive skin types.
                             </p>
                         </div>
 

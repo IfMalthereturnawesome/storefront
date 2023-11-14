@@ -110,31 +110,27 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 <ZoomImageSection imageSrc={"/images/increase-melatonin-production.jpg"}
                                   headerLine1={"Increase melatonin production."}
                                   bigDescriptionText={"Can you see your hand in your bedroom?"}
-                                  descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality."}/>
+                                  descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality. Experience the difference of a truly dark sleeping environment."}/>
 
 
                 <WrappedComponent/>
 
                 <MaximumComfortMeetsTotalBlackout/>
 
-                <HeaderOverlayOnImage
-                    imageUrl="/images/test-images-for-feature2.jpg"
-                    line1="Made for "
-                    line2="side sleepers"
-                    line3="by side sleepers"
-                    textPosition={"left"}
-                />
-                <HeaderOverlayOnImage
-                    imageUrl="/images/swimming.jpg"
-                    line1="Experience"
-                    line2="weightless comfort"
-                    line3="in total darkness"
-                    textPosition={"right"}
-                />
-
-
-
-
+                {/*<HeaderOverlayOnImage*/}
+                {/*    imageUrl="/images/test-images-for-feature2.jpg"*/}
+                {/*    line1="Made for "*/}
+                {/*    line2="side sleepers"*/}
+                {/*    line3="by side sleepers"*/}
+                {/*    textPosition={"left"}*/}
+                {/*/>*/}
+                {/*<HeaderOverlayOnImage*/}
+                {/*    imageUrl="/images/swimming.jpg"*/}
+                {/*    line1="Experience"*/}
+                {/*    line2="weightless comfort"*/}
+                {/*    line3="in total darkness"*/}
+                {/*    textPosition={"right"}*/}
+                {/*/>*/}
 
             </div>
 
@@ -162,7 +158,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                 <MobileZoomImageSection imageSrc={"/images/increase-melatonin-production-mobile.jpg"}
                                         headerLine1={"Increase melatonin production."}
                                         bigDescriptionText={"Can you see your hand in your bedroom?"}
-                                        descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality."}
+                                        descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality. Experience the difference of a truly dark sleeping environment."}
                 />
 
                 <MobileThinFeature/>
@@ -171,17 +167,17 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
                 <MobileMaximumComfort/>
 
-                <MobileHeaderOverlayOnImage imageUrl="/images/test-images-for-feature2.jpg"
-                                            line1="Made for "
-                                            line2="side sleepers"
-                                            line3="by side sleepers"
-                                            textPosition={"left"}
-                />
+                {/*<MobileHeaderOverlayOnImage imageUrl="/images/test-images-for-feature2.jpg"*/}
+                {/*                            line1="Made for "*/}
+                {/*                            line2="side sleepers"*/}
+                {/*                            line3="by side sleepers"*/}
+                {/*                            textPosition={"left"}*/}
+                {/*/>*/}
 
-                <MobileHeaderOverlayOnImageRight imageUrl="/images/swimming.jpg"
-                                                 line1="Experience"
-                                                 line2="weightless comfort"
-                                                 line3="in total darkness" />
+                {/*<MobileHeaderOverlayOnImageRight imageUrl="/images/swimming.jpg"*/}
+                {/*                                 line1="Experience"*/}
+                {/*                                 line2="weightless comfort"*/}
+                {/*                                 line3="in total darkness" />*/}
 
 
 

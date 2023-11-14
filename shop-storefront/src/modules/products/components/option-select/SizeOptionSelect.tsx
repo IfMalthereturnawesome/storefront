@@ -14,11 +14,11 @@ type SizeOptionSelectProps = {
 };
 
 const sizeInfoMap = {
-    "XS": "Strap fits head sizes between 52.0-54.5 cm.",
-    "S": "Strap fits head sizes between 54.0-56.5 cm.",
-    "M": "Strap fits head sizes between 56.0-58.0 cm.",
-    "L": "Strap fits head sizes between 57.5-60.0 cm.",
-    "XL": "Strap fits head sizes between 59.5-62.0 cm."
+    "XS": "Fits head sizes between 52.0-54.5 cm.",
+    "S": "Fits head sizes between 54.0-56.5 cm.",
+    "M": "Fits head sizes between 56.0-58.0 cm.",
+    "L": "Fits head sizes between 57.5-60.0 cm.",
+    "XL": "Fits head sizes between 59.5-62.0 cm."
 };
 
 const SizeOptionSelect: React.FC<SizeOptionSelectProps> = ({

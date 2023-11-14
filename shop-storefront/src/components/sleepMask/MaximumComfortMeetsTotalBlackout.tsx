@@ -67,9 +67,9 @@ const MaximumComfortMeetsTotalBlackout = () => {
                         ref={crawlContainerRef}
                     >
                         <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="2000">
-                            <h3 className="inline-flex">
+                            <h3 className="inline-flex font-semibold">
                                 Maximum
-                                <span className="stroke-white ml-2" style={{
+                                <span className="stroke-white ml-2 font-[900]" style={{
                                     WebkitTextStroke: '1px white',
                                     WebkitTextFillColor: 'transparent'
                                 }}>Comfort</span>
@@ -81,9 +81,9 @@ const MaximumComfortMeetsTotalBlackout = () => {
                         </div>
 
                         <div data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="2000">
-                            <h3 className="inline-flex">
+                            <h3 className="inline-flex font-semibold">
                                 Total
-                                <span className="stroke-white ml-2" style={{
+                                <span className="stroke-white ml-2 font-[900]" style={{
                                     WebkitTextStroke: '1px white',
                                     WebkitTextFillColor: 'transparent'
                                 }}>Blackout</span>

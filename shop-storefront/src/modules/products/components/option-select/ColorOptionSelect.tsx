@@ -17,7 +17,7 @@ type ColorOptionSelectProps = {
 const colorInfoMap = {
     "Space Grey": {
         gradient:
-            "linear-gradient(180deg, rgba(105,91,91,1) 0%, rgba(98,97,97,1) 25%, rgba(87,84,84,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+            "linear-gradient(180deg, rgb(53, 55, 59) 0%, rgb(53, 55, 59) 25%, rgb(53, 55, 59) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
     "Warm Grey": {
         gradient:
@@ -25,7 +25,7 @@ const colorInfoMap = {
     },
     "Eclipse Black": {
         gradient:
-            "linear-gradient(180deg, rgba(25,24,24,1) 0%, rgba(25,23,23,1) 25%, rgba(22,21,21,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+            "linear-gradient(180deg, rgb(6, 7, 4) 0%, rgb(5, 7, 2) 25%,rgb(6, 2, 2) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
 
 };

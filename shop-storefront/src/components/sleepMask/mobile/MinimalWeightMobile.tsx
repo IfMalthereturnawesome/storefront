@@ -22,7 +22,7 @@ const MinimalWeightMobile: React.FC = () => {
                         </div>
 
                         <p className="text-custom-white/70 mx-auto text-lg xs:text-2xl large:text-[1.33rem] font-semibold font-sans !leading-normal tracking-wide text-center">
-                            Sleep Mask One is designed to be remarkably lightweight, providing a near-weightless feel on your face, allowing comfortable side sleeping without eye and ear pressure while enhancing airflow for ultimate nighttime comfort.
+                            Sleep Mask One is designed to be truly lightweight, providing a near-weightless feel on your face, allowing comfortable side sleeping without eye and ear pressure while enhancing airflow for ultimate nighttime comfort.
                         </p>
 
 

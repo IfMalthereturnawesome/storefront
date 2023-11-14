@@ -519,7 +519,7 @@ const MinimalWeight: React.FC<MinimalWeightProps> = ({setShouldPlayParticles}) =
                                  className="absolute top-[28%] left-[98px] p-4 lg:text-xl max-w-xs lg:max-w-lg xl:max-w-2xl hidden lg:block scale-[0.667] opacity-0">
                                 <p data-aos="fade-up"
                                    className={"font-sans font-semibold leading-7 tracking-tight text-center text-white/70"}>
-                                    Sleep Mask One is designed to be remarkably lightweight, providing a near-weightless
+                                    Sleep Mask One is designed to be truly lightweight, providing a near-weightless
                                     feel on your face, allowing comfortable side sleeping without eye and ear pressure
                                     while enhancing airflow for ultimate nighttime comfort.
                                 </p>

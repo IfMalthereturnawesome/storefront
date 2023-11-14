@@ -38,8 +38,7 @@ const ThinFeatureMobile: FC = () => {
                 {/* Soft Feature Description */}
                 <h3 className="font-semibold text-xl mb-2 text-white">Soft</h3>
                 <p className="font-medium font-sans tracking-tighter text-lg text-slate-8 dark:text-white/70">
-                    Feel the difference with our cool, soft nylon fabric. The ultra-fine fibers provide a smooth touch
-                    even for the most sensitive skin.
+                    Feel the difference with our cool, SoftTech™ fabric. The ultra-fine fibers provide a smooth touch even for the most sensitive skin types.
                 </p>
             </div>
         </section>
