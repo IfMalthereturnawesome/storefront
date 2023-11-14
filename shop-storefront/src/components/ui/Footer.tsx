@@ -238,8 +238,8 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="flex items-center justify-center rounded-full  text-caction-600 transition duration-150 ease-in-out hover:text-gray-100 dark:hover:bg-white"
-                  aria-label="Twitter"
+                  className="flex items-center justify-center rounded-full  text-caction-600 transition duration-150 ease-in-out hover:text-gray-100 dark:hover:bg-white/50"
+                  aria-label="X | Twitter"
                 >
 
                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50" className="h-7 w-7  mt-[2px] dark:fill-white">
