@@ -16,6 +16,8 @@ import SizeOptionSelect from "../option-select/SizeOptionSelect";
 import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect";
 import SizeGuideMobile from "@modules/products/components/size-guide/SizeGuideMobile";
 import AddToCartButton from "@/components/elements/AddToCart";
+import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
+import {useStore} from "@lib/context/store-context";
 
 
 type ProductActionsProps = {
@@ -28,20 +30,39 @@ if (typeof window !== 'undefined') {
 }
 
 
-const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) => {
-    const {updateOptions, addToCart, options, inStock, variant, quantity, increaseQuantity, decreaseQuantity, disabled} =
+const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange}) => {
+    const {
+        updateOptions,
+        addToCart,
+        options,
+        inStock,
+        variant,
+        quantity,
+        increaseQuantity,
+        decreaseQuantity,
+        disabled
+    } =
         useProductActions()
     const price = useProductPrice({id: product.id!, variantId: variant?.id})
     const colorOptionId = product.options.find(opt => opt.title.toLowerCase() === "color")?.id;
     const sizeOptionId = product.options.find(opt => opt.title.toLowerCase() === "size")?.id;
 
+    const {countryCode} = useStore();
     const {regions} = useRegions();
 
-    //  Get currect country
-    const countryCode = useMemo(() => {
-        const countryName = regions?.[0]?.countries?.[0]?.name?.toLowerCase() || "eu";
-        return countryName.charAt(0).toUpperCase() + countryName.slice(1);
-    }, [regions]);
+    const getCountryLabel = () => {
+        if (!countryCode || !regions) {
+            return 'EU';
+        }
+
+        const countryOptions = regions.map(r => r.countries.map(c => ({
+            country: c.iso_2,
+            label: c.display_name
+        }))).flat();
+
+        const option = countryOptions.find(o => o.country === countryCode);
+        return option ? option.label : 'EU';
+    };
 
 
     const isColorSelected = !!options[colorOptionId];
@@ -57,11 +78,17 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
 
 
     useEffect(() => {
+
+
+        if (!countryCode || !regions) {
+            return;
+        }
+        getCountryLabel();
+
+
+
         let ctx = gsap.context(() => {
-            if (countryCode == "Eu") {
-                // Don't run the animation if countryCode isn't available yet
-                return;
-            }
+
 
             const split = new SplitType('.shipping-text', {types: 'lines, words, chars'});
             gsap.set(split.chars, {opacity: 0});  // Initially hide the second part of the text
@@ -87,9 +114,11 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
             });
         });
 
-        return () => ctx.revert(); // <-- CLEANUP!
 
-    }, [countryCode]);
+        return () => ctx.revert();
+
+    }, [countryCode, regions]);
+
 
     // const maxQuantity = variant?.inventory_quantity || 0
     const handleQuantityChange = (event) => {
@@ -133,7 +162,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
             return acc;
         }, {});
     }, [product.variants, colorOptionId, sizeOptionId]);
-
 
 
     return (
@@ -283,9 +311,14 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
                         <Image src={"/images/free-shipping-icon.svg"} alt={"Free shipping icon"} width={22} height={22}
                                className={"dark:invert"}/>
                     </div>
+
                     <span className="shipping-text inline-block -ml-6">
-        shipping to {countryCode}
+
+
+        shipping to {getCountryLabel()}
     </span>
+
+
                 </div>
 
                 <AddToCartButton

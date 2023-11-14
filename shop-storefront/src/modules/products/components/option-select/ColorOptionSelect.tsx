@@ -73,7 +73,6 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
             <div className="flex px-1 sm:px-0 gap-2 select-none focus:outline-none">
                 {orderedOptions.map((v) => {
                     const isSelected = v === current;
-                    // Check if any size is available for this color
                     const isAnySizeAvailable = Object.values(stockLevels[v] || {}).some(quantity => quantity > 0);
 
                     return (
