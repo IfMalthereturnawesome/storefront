@@ -39,6 +39,16 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show,onColorChang
         return variantPrice || cheapestPrice || null
     }, [price])
 
+    const stockLevels = useMemo(() => {
+        return product.variants.reduce((acc, variant) => {
+            const color = variant.options.find(o => o.option_id === colorOptionId)?.value;
+            const size = variant.options.find(o => o.option_id === sizeOptionId)?.value;
+            if (!acc[color]) acc[color] = {};
+            acc[color][size] = variant.inventory_quantity;
+            return acc;
+        }, {});
+    }, [product.variants, colorOptionId, sizeOptionId]);
+
 
     return (
         <>
@@ -161,6 +171,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show,onColorChang
                                                                     updateOption={updateOptions}
                                                                     onColorChange={onColorChange}
                                                                     title={option.title}
+                                                                    stockLevels={stockLevels}
+
                                                                 />
                                                             )}
 
@@ -170,6 +182,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({product, show,onColorChang
                                                                     current={options[option.id]}
                                                                     updateOption={updateOptions}
                                                                     title={option.title}
+                                                                    stockLevels={stockLevels[options[colorOptionId]] || {}}
                                                                 />
                                                             )}
                                                         </div>
