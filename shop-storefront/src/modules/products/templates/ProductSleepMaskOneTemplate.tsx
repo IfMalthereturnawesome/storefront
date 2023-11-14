@@ -192,10 +192,10 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             <div className={"h-[2rem] lg:hidden"}> </div>
             <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}
                                 returnFAQ={returnsFAQ}/>
-
+            {/*
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>
-
+*/}
 
         </ProductProvider>
     )

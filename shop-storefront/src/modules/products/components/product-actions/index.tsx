@@ -86,7 +86,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
         getCountryLabel();
 
 
-
         let ctx = gsap.context(() => {
 
 
@@ -317,12 +316,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
 
         shipping to {getCountryLabel()}
     </span>
-
-
                 </div>
-
                 <AddToCartButton
-                    title={isBothSelected ? "Add to cart" : "Choose options"}
+                    title={!inStock ? "Out of stock" : (isBothSelected ? "Add to cart" : "Choose options")}
                     onClick={addToCart}
                     disabled={!isBothSelected || !inStock}
                     className={"truncate"}
