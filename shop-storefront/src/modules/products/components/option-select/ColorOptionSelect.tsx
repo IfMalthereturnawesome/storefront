@@ -74,58 +74,61 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
             <div className="flex gap-2 select-none focus:outline-none">
                 {orderedOptions.map((v) => {
                     const isSelected = v === current;
+                    // Check if any size is available for this color
                     const isAnySizeAvailable = Object.values(stockLevels[v] || {}).some(quantity => quantity > 0);
-                    console.log(isAnySizeAvailable);
-                    console.log(stockLevels[v], v);
-                    return (
-                        <button
-                            onClick={() => handleColorSelect(v)}
-                            key={v}
-                            disabled={!isAnySizeAvailable}
-                            className={clsx(
-                                "flex-center p-0 mx-px mt-px mb-2 relative select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent",
-                                "cursor-pointer hover:scale-105 transform rounded-full",
-                                "border-2 border-black",
-                                {
-                                    "border-transparent focus:border-transparent ": !isSelected && v !== current,
-                                    "focus:border-black group-hover:border-black select-none focus:outline-none dark:focus:border-sky-7 dark:focus:outline-sky-9 dark:border-cyan-10 dark:hover:border-cyan-10":
-                                        isSelected || v === current,
-                                }
-                            )}
-                        >
+                    const stockBannerText = isAnySizeAvailable ? "" : "Out of Stock";
 
-                            <div
-                                className="border border-black dark:border-slate-10 select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent"
-                                style={{
-                                    width: "44px",
-                                    height: "44px",
-                                    borderRadius: "50%",
-                                    position: "absolute",
-                                    userSelect: "none",
-                                    top: "0",
-                                    left: "0",
-                                    zIndex: 1,
-                                }}
-                            ></div>
-                            <div
+                    return (
+                        <div key={v}>
+                            {!isAnySizeAvailable && (
+                                <span className="text-xs text-red-500">{stockBannerText}</span>
+                            )}
+                            <button
+                                onClick={() => handleColorSelect(v)}
                                 className={clsx(
-                                    "m-[3px]",
+                                    "flex-center p-0 mx-px mt-px mb-2 relative select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent",
+                                    "cursor-pointer hover:scale-105 transform rounded-full",
+                                    "border-2 border-black",
                                     {
-                                        "border border-black select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent dark:border-slate-10 ": isSelected || v === current,
-                                        "border-transparent": !isSelected && v !== current,
+                                        "border-transparent focus:border-transparent ": !isSelected && v !== current,
+                                        "focus:border-black group-hover:border-black select-none focus:outline-none dark:focus:border-sky-7 dark:focus:outline-sky-9 dark:border-cyan-10 dark:hover:border-cyan-10":
+                                            isSelected || v === current,
                                     }
                                 )}
-                                style={{
-                                    background: colorInfoMap[v].gradient,
-                                    width: "38px",
-                                    height: "38px",
-                                    borderRadius: "50%",
-                                    transition: "all 0.3s",
-                                    userSelect: "none",
-                                    zIndex: 2,
-                                }}
-                            ></div>
-                        </button>
+                            >
+                                <div
+                                    className="border border-black dark:border-slate-10 select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent"
+                                    style={{
+                                        width: "44px",
+                                        height: "44px",
+                                        borderRadius: "50%",
+                                        position: "absolute",
+                                        userSelect: "none",
+                                        top: "0",
+                                        left: "0",
+                                        zIndex: 1,
+                                    }}
+                                ></div>
+                                <div
+                                    className={clsx(
+                                        "m-[3px]",
+                                        {
+                                            "border border-black select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent dark:border-slate-10 ": isSelected || v === current,
+                                            "border-transparent": !isSelected && v !== current,
+                                        }
+                                    )}
+                                    style={{
+                                        background: colorInfoMap[v].gradient,
+                                        width: "38px",
+                                        height: "38px",
+                                        borderRadius: "50%",
+                                        transition: "all 0.3s",
+                                        userSelect: "none",
+                                        zIndex: 2,
+                                    }}
+                                ></div>
+                            </button>
+                        </div>
                     );
                 })}
             </div>

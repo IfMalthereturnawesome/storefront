@@ -291,7 +291,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
                 <AddToCartButton
                     title={isBothSelected ? "Add to cart" : "Choose options"}
                     onClick={addToCart}
-                    disabled={!isBothSelected}
+                    disabled={!isBothSelected || !inStock}
                     className={"truncate"}
                 />
             </div>

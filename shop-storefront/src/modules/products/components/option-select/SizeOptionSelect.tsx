@@ -10,6 +10,7 @@ type SizeOptionSelectProps = {
     updateOption: (option: Record<string, string>) => void
     title: string
     additionalElement?: React.ReactNode;
+    stockLevels: Record<string, number>;
 };
 
 const sizeInfoMap = {
@@ -25,7 +26,8 @@ const SizeOptionSelect: React.FC<SizeOptionSelectProps> = ({
                                                                current,
                                                                updateOption,
                                                                title,
-                                                               additionalElement
+                                                               additionalElement,
+                                                               stockLevels
 
 
                                                            }) => {
@@ -39,11 +41,12 @@ const SizeOptionSelect: React.FC<SizeOptionSelectProps> = ({
             </div>
             <div className="flex flex-col gap-1">
                 {filteredOptions.map((v) => {
-
+                    const isInStock = stockLevels[v] > 0;
                     return (
                         <button
-                            onClick={() => updateOption({[option.id]: v})}
+                            onClick={() => isInStock && updateOption({[option.id]: v})}
                             key={v}
+                            disabled={!isInStock}
                             className={clsx(
                                 "flex-row justify-between   p-0  mt-px mb-2 w-full h-full ",
                                 "text-left rounded-none cursor-pointer rounded-[5px]",
@@ -57,7 +60,9 @@ const SizeOptionSelect: React.FC<SizeOptionSelectProps> = ({
                         >
                             <div className={"font-sans"}>
                                 <div className="text-sm text-left my-1 mx-1 font-medium ">{v}</div>
-                                <div className="text-xs my-1 mx-1">{sizeInfoMap[v]}</div>
+                                <div className="text-xs my-1 mx-1">
+                                    {isInStock ? sizeInfoMap[v] : "Out of Stock"}
+                                </div>
                             </div>
 
                         </button>
