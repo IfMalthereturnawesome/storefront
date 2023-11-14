@@ -24,7 +24,7 @@ export const CartDropdownProvider = ({
 
 
   const timedOpen = () => {
-    open()
+    // open()
 
     const timer = setTimeout(close, 5000)
 
