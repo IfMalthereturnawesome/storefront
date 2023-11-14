@@ -10,7 +10,8 @@ const EmptyCartMessage = () => {
         the link below to start browsing our products.
       </p>
       <div>
-        <UnderlineLink href="/store" className={"!text-black"}>Explore products</UnderlineLink>
+        {/*<UnderlineLink href="/store" className={"!text-black"}>Explore products</UnderlineLink>*/}
+        <UnderlineLink href="/" className={"!text-black"}>Explore products</UnderlineLink>
       </div>
     </div>
   )
