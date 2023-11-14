@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {ProductOption} from "@medusajs/medusa";
 import clsx from "clsx";
 import {onlyUnique} from "@lib/util/only-unique";
+import {Chip} from "@nextui-org/chip";
 
 type ColorOptionSelectProps = {
     option: ProductOption;
@@ -53,13 +54,11 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
 
     const handleColorSelect = (value) => {
         // Check if any size is available for this color
-        const isAnySizeAvailable = Object.values(stockLevels[value] || {}).some(quantity => quantity > 0);
-        if (isAnySizeAvailable) {
-            updateOption({ [option.id]: value });
-            onColorChange(value);
-        }
-    };
 
+            updateOption({[option.id]: value});
+            onColorChange(value);
+
+    };
 
 
     return (
@@ -71,17 +70,18 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
             <span className="mb-2 text-sm font-medium">
         {current || defaultColor}
       </span>
-            <div className="flex gap-2 select-none focus:outline-none">
+            <div className="flex px-1 sm:px-0 gap-2 select-none focus:outline-none">
                 {orderedOptions.map((v) => {
                     const isSelected = v === current;
                     // Check if any size is available for this color
                     const isAnySizeAvailable = Object.values(stockLevels[v] || {}).some(quantity => quantity > 0);
-                    const stockBannerText = isAnySizeAvailable ? "" : "Out of Stock";
 
                     return (
-                        <div key={v}>
-                            {!isAnySizeAvailable && (
-                                <span className="text-xs text-red-500">{stockBannerText}</span>
+                        <div key={v} className="relative">
+                            {!isAnySizeAvailable && isSelected && (
+                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-2xs text-white bg-red-500 rounded-full">
+                                    <Chip size={"sm"} color="warning">Out of stock</Chip>
+                                </div>
                             )}
                             <button
                                 onClick={() => handleColorSelect(v)}
@@ -90,9 +90,10 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                     "cursor-pointer hover:scale-105 transform rounded-full",
                                     "border-2 border-black",
                                     {
-                                        "border-transparent focus:border-transparent ": !isSelected && v !== current,
+                                        "border-transparent focus:border-transparent": !isSelected && v !== current,
                                         "focus:border-black group-hover:border-black select-none focus:outline-none dark:focus:border-sky-7 dark:focus:outline-sky-9 dark:border-cyan-10 dark:hover:border-cyan-10":
                                             isSelected || v === current,
+                                        "opacity-80 ": !isAnySizeAvailable,
                                     }
                                 )}
                             >
@@ -113,7 +114,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                     className={clsx(
                                         "m-[3px]",
                                         {
-                                            "border border-black select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent dark:border-slate-10 ": isSelected || v === current,
+                                            "border border-black select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent dark:border-slate-10": isSelected || v === current,
                                             "border-transparent": !isSelected && v !== current,
                                         }
                                     )}
