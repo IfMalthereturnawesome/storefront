@@ -28,7 +28,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
 
     const inView = useIntersection(info, "0px")
     const productHandle = product?.handle || "sleep-mask-one";
-    const [selectedColor, setSelectedColor] = useState("Black");
+    const [selectedColor, setSelectedColor] = useState("Silver");
     const productImageDirectory = `/images/products/${productHandle}/`;
     const [imagePaths, setImagePaths] = useState([]);
 

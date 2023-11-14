@@ -10,13 +10,10 @@ type ColorOptionSelectProps = {
     onColorChange: (color: string) => void;
     title: string;
     additionalElement?: React.ReactNode;
+    stockLevels: Record<string, number>;
 };
 
 const colorInfoMap = {
-    "Black": {
-        gradient:
-            "linear-gradient(180deg, rgba(25,24,24,1) 0%, rgba(25,23,23,1) 25%, rgba(22,21,21,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
-    },
     "Dark Gray": {
         gradient:
             "linear-gradient(180deg, rgba(105,91,91,1) 0%, rgba(98,97,97,1) 25%, rgba(87,84,84,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
@@ -24,7 +21,12 @@ const colorInfoMap = {
     "Silver": {
         gradient:
             "linear-gradient(180deg, rgba(182,175,175,1) 0%, rgba(180,173,173,1) 25%, rgba(172,166,166,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
-    }
+    },
+    "Black": {
+        gradient:
+            "linear-gradient(180deg, rgba(25,24,24,1) 0%, rgba(25,23,23,1) 25%, rgba(22,21,21,1) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+    },
+
 };
 
 const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
@@ -34,9 +36,13 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                                                  onColorChange,
                                                                  title,
                                                                  additionalElement,
+                                                                 stockLevels,
                                                              }) => {
-    const filteredOptions = option.values.map((v) => v.value).filter(onlyUnique);
-    const defaultColor = filteredOptions[0];
+    const uniqueOptions = option.values.map((v) => v.value).filter(onlyUnique);
+    const orderedOptions = ["Silver", "Dark Gray", "Black"].filter(color => uniqueOptions.includes(color));
+
+    const defaultColor = orderedOptions[0];
+
 
     useEffect(() => {
         if (!current) {
@@ -46,9 +52,14 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
     }, [current, defaultColor, option.id, updateOption]);
 
     const handleColorSelect = (value) => {
-        updateOption({[option.id]: value});
-        onColorChange(value);
+        // Check if any size is available for this color
+        const isAnySizeAvailable = Object.values(stockLevels[value] || {}).some(quantity => quantity > 0);
+        if (isAnySizeAvailable) {
+            updateOption({ [option.id]: value });
+            onColorChange(value);
+        }
     };
+
 
 
     return (
@@ -61,12 +72,16 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
         {current || defaultColor}
       </span>
             <div className="flex gap-2 select-none focus:outline-none">
-                {filteredOptions.map((v) => {
+                {orderedOptions.map((v) => {
                     const isSelected = v === current;
+                    const isAnySizeAvailable = Object.values(stockLevels[v] || {}).some(quantity => quantity > 0);
+                    console.log(isAnySizeAvailable);
+                    console.log(stockLevels[v], v);
                     return (
                         <button
                             onClick={() => handleColorSelect(v)}
                             key={v}
+                            disabled={!isAnySizeAvailable}
                             className={clsx(
                                 "flex-center p-0 mx-px mt-px mb-2 relative select-none focus:outline-none focus:ring-0 active:bg-transparent focus:bg-transparent",
                                 "cursor-pointer hover:scale-105 transform rounded-full",

@@ -91,7 +91,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
 
     }, [countryCode]);
 
-
+    // const maxQuantity = variant?.inventory_quantity || 0
     const handleQuantityChange = (event) => {
         const selectedQuantity = parseInt(event.target.value, 10);
         if (selectedQuantity !== quantity) {
@@ -123,6 +123,18 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
         updateOptions({[colorOptionId]: color});
         onColorChange(color);
     };
+
+    const stockLevels = useMemo(() => {
+        return product.variants.reduce((acc, variant) => {
+            const color = variant.options.find(o => o.option_id === colorOptionId)?.value;
+            const size = variant.options.find(o => o.option_id === sizeOptionId)?.value;
+            if (!acc[color]) acc[color] = {};
+            acc[color][size] = variant.inventory_quantity;
+            return acc;
+        }, {});
+    }, [product.variants, colorOptionId, sizeOptionId]);
+
+
 
     return (
         <div className="flex flex-col  gap-y-2 ">
@@ -162,6 +174,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
                                             updateOption={updateOptions}
                                             title={option.title}
                                             additionalElement={additionalElem}
+                                            stockLevels={stockLevels}
                                         />
                                     }
 
@@ -173,6 +186,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
                                               updateOption={updateOptions}
                                               title={option.title}
                                               additionalElement={additionalElem}
+                                              stockLevels={stockLevels[options[colorOptionId]] || {}}
                                           />
                                           <SizeGuideModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
                                           <SizeGuideMobile isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
@@ -213,26 +227,26 @@ const ProductActions: React.FC<ProductActionsProps> = ({product,onColorChange}) 
 
                         {isBothSelected && (
                             <>
-                                <div className="items-center gap-x-2 text-base-semi hidden lg:flex">
-                                    <label htmlFor="quantity" className="mr-2">Quantity:</label>
-                                    <NativeSelect
-                                        value={quantity}
-                                        onChange={handleQuantityChange}
-                                        placeholder={"Select quantity"}
-                                        className="max-h-[45px] w-fit"
-                                        disabled={disabled || !inStock}
-                                    >
-                                        {Array.from({length: maxDisplayQuantity}).map((_, i) => {
-                                            const value = i + 1;
-                                            return (
-                                                <option value={value} key={i}>
-                                                    {value}
-                                                </option>
-                                            );
-                                        })}
-                                    </NativeSelect>
-                                </div>
-                                <div className="flex lg:hidden sm:flex-row items-center gap-x-2 text-base-semi">
+                                {/*<div className="items-center gap-x-2 text-base-semi hidden lg:flex">*/}
+                                {/*    <label htmlFor="quantity" className="mr-2">Quantity:</label>*/}
+                                {/*    <NativeSelect*/}
+                                {/*        value={quantity}*/}
+                                {/*        onChange={handleQuantityChange}*/}
+                                {/*        placeholder={"Select quantity"}*/}
+                                {/*        className="max-h-[45px] w-fit"*/}
+                                {/*        disabled={disabled || !inStock}*/}
+                                {/*    >*/}
+                                {/*        {Array.from({length: maxDisplayQuantity}).map((_, i) => {*/}
+                                {/*            const value = i + 1;*/}
+                                {/*            return (*/}
+                                {/*                <option value={value} key={i}>*/}
+                                {/*                    {value}*/}
+                                {/*                </option>*/}
+                                {/*            );*/}
+                                {/*        })}*/}
+                                {/*    </NativeSelect>*/}
+                                {/*</div>*/}
+                                <div className="flex sm:flex-row items-center gap-x-2 text-base-semi">
                                     <label htmlFor="quantity"
                                            className="mr-1 my-2 sm:mb-0 items-center">Quantity:</label>
                                     <div
