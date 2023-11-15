@@ -1,9 +1,8 @@
 'use client';
 
 import gsap from "gsap";
-import React, {useLayoutEffect, useRef, useState} from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
-import MediaQuery from "react-responsive";
 import useBetterMediaQuery from 'utils/useBetterMediaQuery'
 
 
@@ -41,7 +40,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, descriptionOne, descript
                 const currentFrame = (index: number) =>
                     `/images/facestory/facestory_${(index)
                         .toString()
-                        .padStart(1, "1")}.png`;
+                        .padStart(1, "1")}.webp`;
 
 
                 const images: any[] = [];

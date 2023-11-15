@@ -8,7 +8,7 @@ const ThinFeatureMobile: FC = () => {
     return (
         <section
             id="SlimAndSoft"
-            className="flex flex-col items-center px-4 py-8 bg-custom-white dark:bg-mask-black"
+            className="flex flex-col items-center px-4 pt-16 pb-8 bg-custom-white dark:bg-mask-black"
 
         >
             <div
@@ -16,7 +16,7 @@ const ThinFeatureMobile: FC = () => {
 
                 <div className="relative -mr-6 -mt-6 mb-4">
                     <Image
-                        src="/images/thinSequence/thinmask_001-mobile.png"
+                        src="/images/thinSequence/thinmask_001-mobile.webp"
                         alt="Slim and Soft Feature"
                         width={600}
                         height={400}

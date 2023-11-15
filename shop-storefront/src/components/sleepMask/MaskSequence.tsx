@@ -35,7 +35,7 @@ const MaskSequence: React.FC = () => {
                 const currentFrame = (index: number) =>
                     `/images/sequence/sleepmask_${(index)
                         .toString()
-                        .padStart(3, "0")}.png`;
+                        .padStart(3, "0")}.webp`;
 
 
                 const images: any[] = [];

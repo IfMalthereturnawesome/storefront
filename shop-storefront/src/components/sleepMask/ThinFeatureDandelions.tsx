@@ -44,7 +44,7 @@ const ThinFeatureDandelions: React.FC = () => {
                 canvasRef.current.height = containerRef.current.offsetHeight;
                 const context = canvasRef.current.getContext("2d");
                 const img = new Image();
-                img.src = "/images/thinSequence/thinmask_000.png";
+                img.src = "/images/thinSequence/thinmask_000.webp";
 
                 img.onload = () => {
                     canvasRef.current.width = img.width;
