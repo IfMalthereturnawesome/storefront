@@ -79,8 +79,8 @@ const MobileZoomImageSection: React.FC<MobileZoomImageSectionProps> = ({
 
                     <div className="relative flex flex-col justify-start items-center z-0 h-[100vh]">
                         <Image src={imageSrc} ref={imageRef} className="absolute inset-0 w-full h-full object-cover"
-                               alt="Athlethe waking up and is ready to greet the day" width={400} height={800}
-                               quality={100}/>
+                               alt="Running quick after a good nights sleep" width={400} height={700}
+                               quality={90}/>
                         <div
                             className="pt-28 flex justify-center md:w-[49vw] flex-col  text-left space-y-4 mt-5 py-8 px-4 items-center max-w-xs xs:max-w-sm sm:max-w-lg mx-auto min-h-[300px] h-[40vh]">
                             <h3 ref={headerRef}

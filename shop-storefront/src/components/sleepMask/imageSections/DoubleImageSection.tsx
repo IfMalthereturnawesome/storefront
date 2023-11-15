@@ -236,7 +236,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
             <div className="relative flex flex-col justify-start items-center z-0 h-[100vh]">
                 <Image src={image1Src} ref={image1Ref} className="absolute inset-0 w-full h-full object-cover"
-                       alt="Athlethe waking up and is ready to greet the day" width={400} height={800} quality={100}/>
+                       alt="Athlethe waking up and is ready to greet the day" width={400} height={800} quality={90}/>
                 <div className="pt-28 flex justify-center w-full xs:max-w-lg sm:max-w-xl">
                     <h3 ref={headerRef}
                         className="pr-4 pl-8 sm:px-10  text-11xl tracking-wide !leading-[2.8rem] sm:!leading-[3.77rem] font-bold text-custom-white break-words">
@@ -249,7 +249,7 @@ export const MobileDoubleImageSection: React.FC<DoubleImageSectionProps> = ({
             <div className="relative z-10 mt-[-15%] mx-auto w-[90%]">
                 <div className="relative h-[55vh] overflow-hidden">
                     <Image src={image2Src} ref={image2Ref} className="object-cover w-full h-full"
-                           alt="Fast Athlethe swimming" width={400} height={500} quality={100}/>
+                           alt="Fast Athlethe swimming" width={400} height={500} quality={90}/>
                 </div>
 
                 {/* Description for mobile */}
