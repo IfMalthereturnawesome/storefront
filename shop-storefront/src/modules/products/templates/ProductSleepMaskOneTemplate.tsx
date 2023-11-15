@@ -1,23 +1,26 @@
+import dynamic from "next/dynamic"
 import {ProductProvider} from "@lib/context/product-context"
 import React from "react"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
-import ProductInfoSection from "@/components/productPageTemplates/ProductInfoSection";
+
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
-import ProductChoice from "@/components/sleepMask/ProductChoice";
+const FaceStory = dynamic(() => import('@/components/sleepMask/FaceStory'));
+const DoubleImageSection = dynamic(() => import('@/components/sleepMask/imageSections/DoubleImageSection'));
+const MobileDoubleImageSection = dynamic(() => import('@/components/sleepMask/mobile/MobileDoubleImageSection'));
+const ZoomImageSection = dynamic(() => import('@/components/sleepMask/imageSections/ZoomImageSection'));
+const WrappedComponent = dynamic(() => import('@/components/sleepMask/helper/WrappedComponent'));
+const MaximumComfortMeetsTotalBlackout = dynamic(() => import('@/components/sleepMask/MaximumComfortMeetsTotalBlackout'));
+const MobileFaceStory = dynamic(() => import('@/components/sleepMask/mobile/FaceStoryMobile'));
+const MobileZoomImageSection = dynamic(() => import('@/components/sleepMask/mobile/ZoomImageSectionMobile'));
+const HeaderOverlayOnImage = dynamic(() => import('@/components/sleepMask/imageSections/HeaderOverlayOnImage'));
+const MobileThinFeature = dynamic(() => import('@/components/sleepMask/mobile/ThinFeatureMobile'));
+const MobileMinimalWeight = dynamic(() => import('@/components/sleepMask/mobile/MinimalWeightMobile'));
+const MobileMaximumComfort = dynamic(() => import('@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile'));
+const MobileHeaderOverlayOnImage = dynamic(() => import('@/components/sleepMask/mobile/HeaderOverlayOnMobile'));
+const MobileHeaderOverlayOnImageRight = dynamic(() => import('@/components/sleepMask/mobile/HeaderOverlayMobileRight'));
+const ProductInfoSection = dynamic(() => import('@/components/productPageTemplates/ProductInfoSection'));
+const ProductChoice = dynamic(() => import('@/components/sleepMask/ProductChoice'));
 import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
-import FaceStory from "@/components/sleepMask/FaceStory";
-import DoubleImageSection, {MobileDoubleImageSection} from "@/components/sleepMask/imageSections/DoubleImageSection";
-import ZoomImageSection from "@/components/sleepMask/imageSections/ZoomImageSection";
-import WrappedComponent from "@/components/sleepMask/helper/WrappedComponent";
-import MaximumComfortMeetsTotalBlackout from "@/components/sleepMask/MaximumComfortMeetsTotalBlackout";
-import MobileFaceStory from "@/components/sleepMask/mobile/FaceStoryMobile";
-import MobileZoomImageSection from "@/components/sleepMask/mobile/ZoomImageSectionMobile";
-import HeaderOverlayOnImage from "@/components/sleepMask/imageSections/HeaderOverlayOnImage";
-import MobileThinFeature from "@/components/sleepMask/mobile/ThinFeatureMobile";
-import MobileMinimalWeight from "@/components/sleepMask/mobile/MinimalWeightMobile";
-import MobileMaximumComfort from "@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile";
-import MobileHeaderOverlayOnImage from "@/components/sleepMask/mobile/HeaderOverlayOnMobile";
-import MobileHeaderOverlayOnImageRight from "@/components/sleepMask/mobile/HeaderOverlayMobileRight";
 
 
 type ProductsTemplate = {
