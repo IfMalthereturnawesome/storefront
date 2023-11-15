@@ -65,11 +65,13 @@ const CartDropdown = () => {
                         return a.created_at > b.created_at ? -1 : 1
                       })
                       .map((item) => {
-                        const productHandle = item.title.replace(/\s+/g, '-').toLowerCase();  // Create handle from title
+                        const [colorName, ...rest] = item.variant.title.split(" / ");
+                        const productHandle = item.title.replace(/\s+/g, '-').toLowerCase();
+                        const color = colorName.replace(/\s+/g, '-').toLowerCase();
                         return (
                             <div className="grid grid-cols-[122px_1fr] gap-x-4" key={item.id}>
                               <div className="w-[122px]">
-                                <Thumbnail productHandle={productHandle} size="full" />  {/* Updated line */}
+                                <Thumbnail productHandle={productHandle} size="full" color={color} />
                               </div>
                         <div className="flex flex-col justify-between flex-1">
                           <div className="flex flex-col flex-1">

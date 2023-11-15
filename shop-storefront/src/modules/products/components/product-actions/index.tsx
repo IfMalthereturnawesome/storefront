@@ -64,6 +64,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
         return option ? option.label : 'EU';
     };
 
+    // Get the label for the selected country when the country code or regions change and save in a variable
+    const [countryLabel, setCountryLabel] = useState(getCountryLabel());
+    useEffect(() => {
+        setCountryLabel(getCountryLabel());
+        getCountryLabel();
+    }, [countryCode, regions]);
+
 
     const isColorSelected = !!options[colorOptionId];
     const isSizeSelected = !!options[sizeOptionId];
@@ -180,7 +187,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
             <div className=" order-1 lg:order-2">
                 {product.variants.length > 1 && (
                     <div
-                        className="mt-6 mb-4 2xs:mt-8 2xs:mb-5 md:my-8 2xl:mt-8 2xl:mb-6 flex flex-col gap-y-6 text-slate-12  ">
+                        className="mt-6 mb-4 2xs:mt-8 2xs:mb-5 md:my-8 2xl:mt-8 2xl:mb-6 flex flex-col-reverse gap-y-6 text-slate-12  ">
                         {(product.options || []).map((option) => {
                             const additionalElem = option.title.toLowerCase() === "size" ? (
                                 <button
@@ -273,6 +280,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
                                 {/*        })}*/}
                                 {/*    </NativeSelect>*/}
                                 {/*</div>*/}
+
                                 <div className="flex sm:flex-row items-center gap-x-2 text-base-semi">
                                     <label htmlFor="quantity"
                                            className="mr-1 my-2 sm:mb-0 items-center">Quantity:</label>
@@ -306,7 +314,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
     <span className="free-shipping-text inline-block">
         Free
     </span>
-                    <div className="truck-icon ml-2">
+                    <div className="truck-icon ml-[0.4rem]">
                         <Image src={"/images/free-shipping-icon.svg"} alt={"Free shipping icon"} width={22} height={22}
                                className={"dark:invert"}/>
                     </div>
@@ -314,7 +322,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
                     <span className="shipping-text inline-block -ml-6">
 
 
-        shipping to {getCountryLabel()}
+        shipping to {countryLabel}
     </span>
                 </div>
                 <AddToCartButton

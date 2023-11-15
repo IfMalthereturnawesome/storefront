@@ -1,5 +1,5 @@
-import { useStore } from "@lib/context/store-context";
-import { LineItem, Region } from "@medusajs/medusa";
+import {useStore} from "@lib/context/store-context";
+import {LineItem, Region} from "@medusajs/medusa";
 import LineItemOptions from "@modules/common/components/line-item-options";
 import LineItemPrice from "@modules/common/components/line-item-price";
 import NativeSelect from "@modules/common/components/native-select";
@@ -7,18 +7,20 @@ import Trash from "@modules/common/icons/trash";
 import Thumbnail from "@modules/products/components/thumbnail";
 
 type ItemProps = {
-  item: Omit<LineItem, "beforeInsert">;
-  region: Region;
+    item: Omit<LineItem, "beforeInsert">;
+    region: Region;
 };
 
-const Item = ({ item, region }: ItemProps) => {
-  const { updateItem, deleteItem } = useStore();
-  const productHandle = item.title.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens
+const Item = ({item, region}: ItemProps) => {
+    const {updateItem, deleteItem} = useStore();
+    const [colorName, ...rest] = item.variant.title.split(" / ");
+    const productHandle = item.title.replace(/\s+/g, '-').toLowerCase();
+    const color = colorName.replace(/\s+/g, '-').toLowerCase();
 
     const handleQuantityChange = (change: number) => {
         const newQuantity = item.quantity + change;
         if (newQuantity >= 1 && newQuantity <= item.variant.inventory_quantity) {
-            updateItem({ lineId: item.id, quantity: newQuantity });
+            updateItem({lineId: item.id, quantity: newQuantity});
         }
     };
 
@@ -26,13 +28,13 @@ const Item = ({ item, region }: ItemProps) => {
         <div className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-x-4 items-center">
             {/* Responsive width for the thumbnail */}
             <div className="w-2/3  md:w-[120px]">
-                <Thumbnail productHandle={productHandle} size="full" />
+                <Thumbnail productHandle={productHandle} size="full" color={color}/>
             </div>
             <div className="text-base-regular flex flex-col gap-y-8">
                 <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between">
                     <div className="flex flex-col">
                         <span className="text-slate-12">{item.title}</span>
-                        <LineItemOptions variant={item.variant} />
+                        <LineItemOptions variant={item.variant}/>
                     </div>
                     <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden mt-4 md:mt-0">
                         <button
@@ -60,12 +62,12 @@ const Item = ({ item, region }: ItemProps) => {
                             className="flex items-center gap-x-1 text-slate-11"
                             onClick={() => deleteItem(item.id)}
                         >
-                            <Trash size={14} />
+                            <Trash size={14}/>
                             <span>Remove</span>
                         </button>
                     </div>
                     <div>
-                        <LineItemPrice item={item} region={region} />
+                        <LineItemPrice item={item} region={region}/>
                     </div>
                 </div>
             </div>

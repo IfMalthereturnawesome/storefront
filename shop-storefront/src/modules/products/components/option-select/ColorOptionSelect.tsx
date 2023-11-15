@@ -17,15 +17,15 @@ type ColorOptionSelectProps = {
 const colorInfoMap = {
     "Space Grey": {
         gradient:
-            "linear-gradient(180deg, rgb(53, 55, 59) 0%, rgb(53, 55, 59) 25%, rgb(53, 55, 59) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+            "linear-gradient(180deg, rgb(46, 46, 47) 0%, rgb(35, 35, 37) 25%,rgb(30, 30, 31) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
     "Warm Grey": {
         gradient:
-            "linear-gradient(180deg, rgb(180, 173, 172) 0%, rgb(175, 168, 166) 25%, rgb(137, 126, 123) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+            "linear-gradient(180deg, rgb(188, 180, 172) 0%, rgb(197, 190, 181) 25%, rgb(182, 172, 164) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
     "Eclipse Black": {
         gradient:
-            "linear-gradient(180deg, rgb(6, 7, 4) 0%, rgb(5, 7, 2) 25%,rgb(6, 2, 2) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+            "linear-gradient(180deg, rgb(23, 18, 17) 0%, rgb(10, 10, 10) 25%,rgb(10, 10, 10) 50%,  rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
 
 };
@@ -92,7 +92,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                         "border-transparent focus:border-transparent": !isSelected && v !== current,
                                         "focus:border-black group-hover:border-black select-none focus:outline-none dark:focus:border-sky-7 dark:focus:outline-sky-9 dark:border-cyan-10 dark:hover:border-cyan-10":
                                             isSelected || v === current,
-                                        "opacity-80 ": !isAnySizeAvailable,
+                                        "border-red-4": !isAnySizeAvailable,
                                     }
                                 )}
                             >

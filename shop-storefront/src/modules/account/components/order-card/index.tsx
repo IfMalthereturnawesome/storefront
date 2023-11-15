@@ -47,11 +47,12 @@ const OrderCard = ({ order }: OrderCardProps) => {
       </div>
       <div className="grid grid-cols-2 small:grid-cols-4 gap-4 my-4">
         {order.items.slice(0, 3).map((i) => {
+            const [colorName, ...rest] = i.variant.title.split(" / ");
             const productHandle = i.title.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens
-
+            const color = colorName.replace(/\s+/g, '-').toLowerCase();
           return (
             <div key={i.id} className="flex flex-col gap-y-2">
-                <Thumbnail productHandle={productHandle} size="full" />
+                <Thumbnail productHandle={productHandle} size="full" color={color} />
               <div className="flex items-center text-small-regular text-slate-11">
                 <span className="text-slate-12 font-semibold">{i.title}</span>
                 <span className="ml-2">x</span>

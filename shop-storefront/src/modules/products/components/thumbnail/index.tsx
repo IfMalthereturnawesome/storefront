@@ -4,17 +4,24 @@ import Image from "next/image"
 import React from "react"
 
 
-
 type ThumbnailProps = {
-    productHandle: string;  // Add a prop for the product handle
+    productHandle: string;
+    color?: string;
     size?: "small" | "medium" | "large" | "full";
+
 }
-const buildThumbnailPath = (productHandle) => `/images/products/${productHandle}/thumbnail/thumbnail-${productHandle}.png`;
+
+
+const buildThumbnailPath = (productHandle, color) => {
+    const colorSegment = color ? `-${color}` : '';
+    return `/images/products/${productHandle}/thumbnail/thumbnail-${productHandle}${colorSegment}.png`;
+};
 const Thumbnail: React.FC<ThumbnailProps> = ({
                                                  productHandle,
+                                                 color,
                                                  size
                                              }) => {
-    const thumbnailPath = buildThumbnailPath(productHandle);  // Build the local thumbnail path
+    const thumbnailPath = buildThumbnailPath(productHandle,color);  // Build the local thumbnail path
 
     return (
         <div
@@ -25,7 +32,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
                 "w-full": size === "full",
             })}
         >
-            <ImageOrPlaceholder image={thumbnailPath} size={size} />
+            <ImageOrPlaceholder image={thumbnailPath} size={size}/>
         </div>
     )
 }
@@ -50,7 +57,7 @@ const ImageOrPlaceholder = ({
         />
     ) : (
         <div className="w-full h-full absolute inset-0 bg-gray-100 flex items-center justify-center">
-            <PlaceholderImage size={size === "small" ? 16 : 24} />
+            <PlaceholderImage size={size === "small" ? 16 : 24}/>
         </div>
     )
 }
