@@ -21,7 +21,7 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
             <p className="text-slate-11 text-sm mt-2">
                 A confirmation email has been sent to your email address at <strong>{order.email}</strong>.
             </p>
-            <p className={"text-slate-11 text-sm mt-2"}>If you don't see it in your inbox, please also check your spam folder.</p>
+            <p className={"text-slate-11 text-sm mt-2"}>If you don&apos;t see it in your inbox, please also check your spam folder.</p>
 
             <h1 className="mt-2 uppercase text-2xl-semi text-slate-11">#{order.display_id}</h1>
             <span className={"text-xs break-words"}>{order.id.split("order_")[1]}</span>
