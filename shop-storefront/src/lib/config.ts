@@ -16,6 +16,11 @@ const queryClient = new QueryClient({
       retry: 1,
     },
   },
+  logger: {
+    log: () => {},
+    warn: () => {},
+    error: () => {},
+  }
 })
 
 const medusaClient = new Medusa({ baseUrl: MEDUSA_BACKEND_URL, maxRetries: 3 })
