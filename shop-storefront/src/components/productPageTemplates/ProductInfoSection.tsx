@@ -43,7 +43,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
         // Only update the paths if a color is selected
         if (selectedColor) {
             const basePath = `${productImageDirectory}${selectedColor}/`;
-            const updatedPaths = Array(8).fill(null).map((_, idx) => `${basePath}image${idx + 1}.jpg`);
+            const updatedPaths = Array(5).fill(null).map((_, idx) => `${basePath}image${idx + 1}.jpg`);
 
             setImagePaths(updatedPaths);
 

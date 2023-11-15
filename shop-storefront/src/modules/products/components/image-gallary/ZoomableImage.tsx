@@ -73,9 +73,9 @@ function ZoomableImage({src, alt}) {
                 src={src}
                 alt={alt}
                 ref={imgRef}
-                height={600}
-                width={600}
-                quality={85}
+                height={700}
+                width={700}
+                quality={90}
                 className="w-full h-auto fade-in"
             />
         </div>
