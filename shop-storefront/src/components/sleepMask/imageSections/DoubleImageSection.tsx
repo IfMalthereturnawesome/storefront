@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
+import {AOSInit} from "@lib/hooks/useAos";
 
 
 if (typeof window !== 'undefined') {
@@ -105,6 +106,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
     return (
         <>
+            <AOSInit/>
         {isDesktop && (
         <div className="relative bg-[#130612] z-[1]">
 
