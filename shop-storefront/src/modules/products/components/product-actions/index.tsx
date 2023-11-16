@@ -96,7 +96,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
         let ctx = gsap.context(() => {
 
 
-            const split = new SplitType('.shipping-text', {types: 'lines, words, chars'});
+            const split = new SplitType('.shipping-text', {types: 'lines,words,chars'});
             gsap.set(split.chars, {opacity: 0});  // Initially hide the second part of the text
 
             gsap.from(split.chars, {

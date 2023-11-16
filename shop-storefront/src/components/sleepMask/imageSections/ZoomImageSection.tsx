@@ -71,7 +71,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
 
 
             if (bigDescriptionTextRef.current) {
-                const split = new SplitType(bigDescriptionTextRef.current, {types: 'lines, words, chars'});
+                const split = new SplitType(bigDescriptionTextRef.current, {types: 'lines,words,chars'});
 
                 tl.current.from(split.chars, {
                     opacity: 0,

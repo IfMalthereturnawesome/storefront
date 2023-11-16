@@ -240,7 +240,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
         useLayoutEffect(() => {
             let ctx = gsap.context(() => {
                 if (headerRef.current) {
-                    const splitText = new SplitType(headerRef.current, {types: 'words, chars'});
+                    const splitText = new SplitType(headerRef.current, {types: 'words,chars'});
 
                     tl2.current = gsap.timeline({
                         onStart: () => {
@@ -314,7 +314,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
         let ctx = gsap.context(() => {
             if (oneNightRef.current && showOneNightText) {
                 oneNightRef.current.style.opacity = '1';
-                const splitTextNight = new SplitType(oneNightRef.current, {types: 'words, chars'});
+                const splitTextNight = new SplitType(oneNightRef.current, {types: 'words,chars'});
                 tl3.current = gsap.timeline({
                     onStart: () => {
                         if (oneNightRef.current) {

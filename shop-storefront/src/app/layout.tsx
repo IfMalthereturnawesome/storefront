@@ -16,6 +16,12 @@ const inter = Inter({
     display: 'swap',
 });
 
+const architects_daughter = Architects_Daughter({
+    subsets: ['latin'],
+    variable: '--font-architects-daughter',
+    weight: '400',
+    display: 'swap',
+});
 
 const poppins = Poppins({
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -42,7 +48,7 @@ export default function RootLayout({children}: RootLayoutProps) {
     return (
         <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
         <body
-            className={`${inter.variable} ${poppins.variable}   font-inter tracking-tight antialiased`}
+            className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
         >
         {/*<BreakpointsIndicatorExtended />*/}
         {/*<BreakpointsIndicator/>*/}
@@ -59,4 +65,3 @@ export default function RootLayout({children}: RootLayoutProps) {
         </html>
     );
 }
-

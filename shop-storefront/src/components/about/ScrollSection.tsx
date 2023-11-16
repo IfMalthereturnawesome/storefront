@@ -66,7 +66,7 @@ const ScrollSection = () => {
         // Subtext animations
         subtextRefs.current.forEach((ref, index) => {
 
-            const splitText = new SplitType(ref, {types: 'words, chars'});
+            const splitText = new SplitType(ref, {types: "words,chars"});
 
             const tl = gsap.timeline({
 
