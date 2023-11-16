@@ -6,8 +6,13 @@ import {PauseIcon} from "@radix-ui/react-icons";
 import {PlayIcon} from '@heroicons/react/20/solid';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
+import Image from 'next/image';
 import MaskSequence from "@/components/sleepMask/MaskSequence";
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
+
+import {CldVideoPlayer} from 'next-cloudinary';
+import 'next-cloudinary/dist/cld-video-player.css';
+
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -52,6 +57,8 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     const isTabletAndDesktop = useBetterMediaQuery('(min-width: 768px)');
     const isMobile = useBetterMediaQuery('(max-width: 767px)');
+
+    const videoSrc = "eight-athletics-sleep-mask-commercial-web_lgyv4z";
 
 
     const smoothDisappearOneNight = () => {
@@ -530,6 +537,12 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
         }
     };
 
+    const handleVideoEnd = () => {
+        smoothDisappear();
+        setShowSmallDreamText(true);
+        setShowOneNightText(true);
+        setShowDescription(true);
+    };
 
     return (
         <>
@@ -599,6 +612,21 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                     <MaskSequence/>
                                 )}
 
+                                {isMobile && (
+                                    <div className="m-0 p-0">
+
+                                        <div
+                                            className="canvas-container h-[35vh] md:h-[50vh] ">
+                                            <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile"
+                                                   width={375}
+                                                   height={600} quality={100}
+                                                   className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
+
+                                        </div>
+
+                                    </div>
+                                )}
+
                             </>
                         )
                         }
@@ -616,24 +644,50 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
-                            <video
-                                ref={videoRef}
-                                className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
-                                preload="auto"
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={false}
-                                onLoadedData={() => setIsLoading(false)}
-                                onWaiting={() => setIsLoading(true)}
-                            >
-
-                                {isTabletAndDesktop && (
-                                    <source src={"/videos/eight-athletics-sleep-mask-commercial-web.mp4"} type="video/mp4" />
+                            <div
+                                className={"w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none  border-2 border-amberA-12 md:border-0"}>
+                                {isMobile && (
+                                    <CldVideoPlayer
+                                        id={"video-player-mobile"}
+                                        videoRef={videoRef}
+                                        className="h-[85vh]  object-cover"
+                                        quality={"auto"}
+                                        preload="auto"
+                                        muted={true}
+                                        autoPlay="always"
+                                        controls={false}
+                                        width="400"
+                                        height="700"
+                                        src={"eight-athletics-sleep-mask-commercial-web-mobile_uddh3v"}
+                                        poster="/"
+                                        onEnded={handleVideoEnd}
+                                    />
                                 )}
+                            </div>
+                            {isTabletAndDesktop && (
+                                <CldVideoPlayer
+                                    id={"video-player-desktop"}
+                                    videoRef={videoRef}
+                                    className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
+                                    preload="auto"
+                                    muted={true}
+                                    autoPlay="always"
+                                    controls={false}
+                                    width="1920"
+                                    height="1080"
+                                    src={"eight-athletics-sleep-mask-commercial-web_lgyv4z"}
+                                    floatingWhenNotVisible={"right"}
+                                    poster={{
+                                        // @ts-ignore
+                                        opacity: 0,
+                                    }}
+                                    quality={'auto'}
 
+                                    onEnded={handleVideoEnd}
 
-                                Your browser does not support the video tag.
-                            </video>
+                                />
+                            )}
+
 
                         </div>
                     </div>

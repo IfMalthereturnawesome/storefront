@@ -6,6 +6,7 @@ import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
 import Image from 'next/image';
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
+import {CldVideoPlayer} from "next-cloudinary";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -49,6 +50,7 @@ const VideoAnimationMobile: React.FC<VideoAnimationProps> = ({product, descripti
 
     const isMobile = useBetterMediaQuery('(max-width: 767px)');
 
+    const videoSrc = "eight-athletics-sleep-mask-commercial-web-mobile_uddh3v";
 
     const smoothDisappearOneNight = () => {
         if (oneNightRef.current) {
@@ -512,21 +514,21 @@ const VideoAnimationMobile: React.FC<VideoAnimationProps> = ({product, descripti
                         style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
+                            {isMobile && (
+                                <CldVideoPlayer
+                                    ref={videoRef}
+                                    className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
+                                    preload="auto"
+                                    muted={true}
+                                    autoPlay="true"
+                                    width="1920"
+                                    height="1080"
+                                    src={videoSrc}
+                                />
 
-                            <video
-                                ref={videoRef}
-                                className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
-                                preload="auto"
-                                muted={true}
-                                playsInline={true}
-                                autoPlay={false}
-                                src={"/videos/eight-athletics-sleep-mask-commercial-web-mobile.mp4"}
-                                onLoadedData={() => setIsLoading(false)}
-                                onWaiting={() => setIsLoading(true)}
-                            >
+                            )}
 
-                                Your browser does not support the video tag.
-                            </video>
+
                         </div>
                     </div>
                 </div>
