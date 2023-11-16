@@ -2,11 +2,9 @@
 
 import React, {RefObject, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
-import {PauseIcon} from "@radix-ui/react-icons";
-import {PlayIcon} from '@heroicons/react/20/solid';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
-import MaskSequence from "@/components/sleepMask/MaskSequence";
+import Image from 'next/image';
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 if (typeof window !== "undefined") {
@@ -20,7 +18,7 @@ interface VideoAnimationProps {
     description3: string;
 }
 
-const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, description2, description3}) => {
+const VideoAnimationMobile: React.FC<VideoAnimationProps> = ({product, description1, description2, description3}) => {
     const [isLoading, setIsLoading] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -49,8 +47,6 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
     const tl4 = useRef(null);
     const tl5 = useRef(null);
 
-
-    const isTabletAndDesktop = useBetterMediaQuery('(min-width: 768px)');
     const isMobile = useBetterMediaQuery('(max-width: 767px)');
 
 
@@ -113,44 +109,13 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 setState(false);
 
             });
-            mm.add('(min-width: 768px)', () => {
-                setState(true);
-                if (!state) return;
-                if (wrapperRef.current) {
-
-
-                    ScrollTrigger.create({
-                        trigger: ".pin-video",
-                        start: "top top",
-                        end: "bottom top",
-                        pin: true,
-                        pinSpacing: true,
-                        refreshPriority: 1,
-                        onLeave: ({progress, direction, isActive}) => {
-                            if (isActive) {
-                                smoothDisappear();
-                                setShowSmallDreamText(true);
-                                setShowOneNightText(true);
-                                setShowDescription(true);
-                            }
-                        },
-                        onEnterBack: ({progress, direction, isActive}) => {
-                            if (isActive) {
-                                // Your logic here
-
-
-                            }
-                        },
-                    });
-                }
-            });
         });
 
         return () => {
 
             ctx.revert();
         };
-    }, [state, smoothDisappear]);
+    }, [state]);
 
 
     // VIDEO
@@ -257,11 +222,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
 
                             }
-
-
                         },
-
-
                     });
 
                     // Add spaces manually
@@ -431,86 +392,6 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     useShowHeaderAnimation(showHeaderText, headerRef);
 
-
-    const smoothAppear = () => {
-
-        gsap.to(videoContainerRef.current, {
-
-            opacity: 1, duration: 1, onComplete: () => {
-
-                setShowVideo(true);
-
-                if (videoRef.current) {
-                    videoRef.current.play().then(() => {
-
-                        setIsPlaying(true);  // Update the state to reflect that the video is playing
-                    }).catch((error) => {
-                        console.error("Video play failed:", error);
-                    });
-                }
-            }
-        });
-
-        setShowPlayAgainButton(false);
-
-    };
-
-    const scrollToTopAndPlayAgain = () => {
-
-        window.scrollTo({
-            top: 0,
-        });
-
-        setShowHeaderText(true);
-
-        resetPage();
-
-
-        smoothAppear();
-
-
-    };
-
-    // const resetPage
-    const resetPage = () => {
-        setShowVideo(true);
-
-        setShowSmallDreamText(false);
-        setShowOneNightText(false);
-        setShowDescription(false);
-
-        // Reset Video Time
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-        }
-
-        // Reset GSAP animations (if any)
-        gsap.killTweensOf(videoContainerRef.current);
-        gsap.killTweensOf(headerRef.current);
-        gsap.killTweensOf(oneNightRef.current);
-        gsap.killTweensOf(smallDreamRef.current);
-        // ...
-
-        // Reset zIndex or other inline css
-        if (headerRef.current) {
-            headerRef.current.style.zIndex = '1';
-        }
-
-
-    }
-
-
-    const togglePlayPause = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
-
     const smoothDisappearHeader = () => {
 
         if (headerRef.current) {
@@ -533,7 +414,9 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     return (
         <>
-            <div ref={wrapperRef} className="relative h-screen lg:h-[120vh]  pin-video  z-[1]" id={"smooth-content"}>
+            <div ref={wrapperRef} className="relative h-screen lg:h-[120vh]  pin-video  z-[1]"
+                 id={"smooth-content"}>
+
 
                 <div ref={headerRef}
                      className="absolute top-[18vh] w-[99vw] md:w-[99.2vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
@@ -585,7 +468,8 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                         <span ref={descriptionRef2}
                                               className="text-[#e7ecef] inline">{description2}</span>
 
-                                        <span ref={descriptionRef3} className="text-[#e7ecef] ">{description3}</span>
+                                        <span ref={descriptionRef3}
+                                              className="text-[#e7ecef] ">{description3}</span>
                                     </p>
 
                                 </div>
@@ -595,10 +479,20 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         {showCanvas && isClient && (
                             <>
 
-                                {isTabletAndDesktop && (
-                                    <MaskSequence/>
-                                )}
+                                {isMobile && (
+                                    <div className="m-0 p-0">
 
+                                        <div
+                                            className="canvas-container h-[35vh] md:h-[50vh] ">
+                                            <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile"
+                                                   width={375}
+                                                   height={600} quality={100}
+                                                   className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
+
+                                        </div>
+
+                                    </div>
+                                )}
                             </>
                         )
                         }
@@ -607,15 +501,18 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
                 <div ref={videoContainerRef} className="relative"
                      style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
-                    {isLoading && <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                      <div className="loading-spinner"></div>
-                    </div>}
+                    {isLoading &&
+                        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                          <div className="loading-spinner"></div>
+                        </div>
+                    }
 
                     <div
                         className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0  sm:p-4 lg:p-0`}
                         style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
+
                             <video
                                 ref={videoRef}
                                 className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
@@ -623,51 +520,20 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                 muted={true}
                                 playsInline={true}
                                 autoPlay={false}
+                                src={"/videos/eight-athletics-sleep-mask-commercial-web-mobile.mp4"}
                                 onLoadedData={() => setIsLoading(false)}
                                 onWaiting={() => setIsLoading(true)}
                             >
 
-                                {isTabletAndDesktop && (
-                                    <source src={"/videos/eight-athletics-sleep-mask-commercial-web.mp4"} type="video/mp4" />
-                                )}
-
-
                                 Your browser does not support the video tag.
                             </video>
-
                         </div>
                     </div>
-
-                    <button
-                        onClick={togglePlayPause}
-                        id={"play-pause-button"}
-                        className="absolute bottom-[35rem] right-[1rem] z-10 focus:outline-none rounded-full border border-white p-1 flex items-center justify-center"
-                        style={{width: '2.3rem', height: '2.3rem'}}
-                    >
-                        {isPlaying ? (
-                            <PauseIcon className="w-5 h-5 text-white"/>
-                        ) : (
-                            <PlayIcon className="w-4 h-4 text-white "/>
-                        )}
-                    </button>
                 </div>
-
-
             </div>
-
-            {showPlayAgainButton && (
-                <button onClick={scrollToTopAndPlayAgain}
-                        className="hidden md:flex fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1  items-center justify-center z-[2]"
-                        style={{width: '2.3rem', height: '2.3rem'}}>
-                    <PlayIcon className="w-4 h-4 text-white"/>
-                </button>
-
-            )}
-
-
         </>
     );
 };
 
-export default VideoAnimation;
+export default VideoAnimationMobile;
 

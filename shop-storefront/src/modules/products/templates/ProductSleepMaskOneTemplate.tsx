@@ -4,6 +4,7 @@ import React from "react"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
+import VideoAnimationMobile from "@/components/sleepMask/mobile/VideoAnimationMobile";
 const FaceStory = dynamic(() => import('@/components/sleepMask/FaceStory'));
 const DoubleImageSection = dynamic(() => import('@/components/sleepMask/imageSections/DoubleImageSection'));
 const MobileDoubleImageSection = dynamic(() => import('@/components/sleepMask/mobile/MobileDoubleImageSection'));
@@ -82,19 +83,21 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
     return (
         <ProductProvider product={product}>
 
-            <div className="bg-mask-black font-poppins">
-                <VideoAnimation
-                    product={"Sleep Mask One"}
-                    description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
-                    // description2={"Custom-fit for your unique face. "}
-                    description2={"Tailored for all face shapes and sizes. "}
-                    description3={"Elevate your peak performance, no matter where you are and how you sleep."}
-                />
-            </div>
+
 
             {/*DESKTOP START */}
 
             <div className={"hidden lg:block font-poppins bg-black"}>
+
+                <div className="bg-mask-black font-poppins">
+                    <VideoAnimation
+                        product={"Sleep Mask One"}
+                        description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
+                        // description2={"Custom-fit for your unique face. "}
+                        description2={"Tailored for all face shapes and sizes. "}
+                        description3={"Elevate your peak performance, no matter where you are and how you sleep."}
+                    />
+                </div>
 
                 <DoubleImageSection
                     headerLine1={"Greet each day with "}
@@ -142,6 +145,16 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             {/*MOBILE START */}
 
             <div className={"lg:hidden block font-poppins"}>
+                <div className="bg-mask-black ">
+                    <VideoAnimationMobile
+                        product={"Sleep Mask One"}
+                        description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
+                        // description2={"Custom-fit for your unique face. "}
+                        description2={"Tailored for all face shapes and sizes. "}
+                        description3={"Elevate your peak performance, no matter where you are and how you sleep."}
+                    />
+                </div>
+
 
                 <MobileDoubleImageSection
                     headerLine1={"Greet each day with "}
