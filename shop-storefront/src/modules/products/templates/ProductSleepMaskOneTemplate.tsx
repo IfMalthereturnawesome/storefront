@@ -4,7 +4,6 @@ import React from "react"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
-import VideoAnimationMobile from "@/components/sleepMask/mobile/VideoAnimationMobile";
 const FaceStory = dynamic(() => import('@/components/sleepMask/FaceStory'));
 const DoubleImageSection = dynamic(() => import('@/components/sleepMask/imageSections/DoubleImageSection'));
 const MobileDoubleImageSection = dynamic(() => import('@/components/sleepMask/mobile/MobileDoubleImageSection'));

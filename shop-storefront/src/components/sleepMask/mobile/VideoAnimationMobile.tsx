@@ -514,19 +514,19 @@ const VideoAnimationMobile: React.FC<VideoAnimationProps> = ({product, descripti
                         style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
-                            {isMobile && (
-                                <CldVideoPlayer
-                                    ref={videoRef}
-                                    className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"
-                                    preload="auto"
-                                    muted={true}
-                                    autoPlay="true"
-                                    width="1920"
-                                    height="1080"
-                                    src={videoSrc}
-                                />
+                            {/*{isMobile && (*/}
+                            {/*    <CldVideoPlayer*/}
+                            {/*        ref={videoRef}*/}
+                            {/*        className="w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none border-2 border-amberA-12 md:border-0"*/}
+                            {/*        preload="auto"*/}
+                            {/*        muted={true}*/}
+                            {/*        autoPlay="true"*/}
+                            {/*        width="1920"*/}
+                            {/*        height="1080"*/}
+                            {/*        src={videoSrc}*/}
+                            {/*    />*/}
 
-                            )}
+                            {/*)}*/}
 
 
                         </div>

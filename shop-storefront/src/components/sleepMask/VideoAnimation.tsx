@@ -1,5 +1,5 @@
 'use client';
-
+import dynamic from "next/dynamic";
 import React, {RefObject, useEffect, useLayoutEffect, useRef, useState} from 'react';
 import gsap from 'gsap';
 import {PauseIcon} from "@radix-ui/react-icons";
@@ -7,11 +7,17 @@ import {PlayIcon} from '@heroicons/react/20/solid';
 import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 import SplitType from 'split-type';
 import Image from 'next/image';
-import MaskSequence from "@/components/sleepMask/MaskSequence";
+
+const MaskSequence = dynamic(() => import('@/components/sleepMask/MaskSequence'));
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 
 import {CldVideoPlayer} from 'next-cloudinary';
+
+
+
+
 import 'next-cloudinary/dist/cld-video-player.css';
+
 
 
 if (typeof window !== "undefined") {
@@ -644,26 +650,32 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                         style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
-                            <div
-                                className={"w-full h-[85vh] lg:h-fit object-cover lg:object-contain rounded lg:rounded-none  border-2 border-amberA-12 md:border-0"}>
+
                                 {isMobile && (
                                     <CldVideoPlayer
+                                        className={"!h-[90vh] object-cover"}
                                         id={"video-player-mobile"}
                                         videoRef={videoRef}
-                                        className="h-[85vh]  object-cover"
                                         quality={"auto"}
                                         preload="auto"
                                         muted={true}
                                         autoPlay="always"
                                         controls={false}
                                         width="400"
-                                        height="700"
+                                        height="600"
+                                        fluid={true}
+                                        playsinline={true}
                                         src={"eight-athletics-sleep-mask-commercial-web-mobile_uddh3v"}
-                                        poster="/"
+                                        floatingWhenNotVisible={"right"}
+                                        poster={{
+                                            src: "transparent-background_ebwlmb",
+                                        }}
                                         onEnded={handleVideoEnd}
+                                        analytics={false}
+
                                     />
                                 )}
-                            </div>
+
                             {isTabletAndDesktop && (
                                 <CldVideoPlayer
                                     id={"video-player-desktop"}
@@ -678,11 +690,10 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                                     src={"eight-athletics-sleep-mask-commercial-web_lgyv4z"}
                                     floatingWhenNotVisible={"right"}
                                     poster={{
-                                        // @ts-ignore
-                                        opacity: 0,
+                                        src: "transparent-background_ebwlmb",
                                     }}
                                     quality={'auto'}
-
+                                    analytics={false}
                                     onEnded={handleVideoEnd}
 
                                 />
