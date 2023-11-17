@@ -55,7 +55,7 @@ const TrackingComponent: React.FC<TrackingComponentProps> = ({
                 }}
             />
             <link rel="stylesheet" href="https://assets.coolrunner.dk/scripts/embeddable-tracking/embeddable-tracking.css"/>
-               <div id="tracking"/>
+               <div id="tracking"  className={"bg-cbg"}/>
 
 
 
