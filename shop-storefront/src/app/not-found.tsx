@@ -1,10 +1,8 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import NotFoundImage from '../../public/images/404.jpg'; // Replace with a sleep-related image
-import React, {useEffect} from 'react';
-import gsap from 'gsap';
+import React from 'react';
+
 
 import Footer from "@/components/ui/Footer";
 import Highlighter, {HighlighterItem} from "@/components/highlighter/highlighter";
@@ -13,11 +11,7 @@ import Header from "@/components/ui/Header";
 
 
 export default function NotFound() {
-    useEffect(() => {
-        gsap.from(".animate-fade", {duration: 1, opacity: 0, y: -50, stagger: 0.3});
-        gsap.to(".animate-fade", {duration: 1, opacity: 1, y: 0, stagger: 0.3});
 
-    }, []);
 
     return (
         <>

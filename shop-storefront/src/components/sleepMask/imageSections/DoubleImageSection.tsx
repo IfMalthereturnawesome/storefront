@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
+import UseAOS from "@/components/utils/useAOS";
 
 
 if (typeof window !== 'undefined') {
@@ -36,6 +37,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
     const tl3 = useRef(null);
 
     const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
+    UseAOS();
 
     useLayoutEffect(() => {
         if (!isDesktop) return;
@@ -105,6 +107,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
     return (
         <>
+
 
         {isDesktop && (
         <div className="relative bg-[#130612] z-[1]">
