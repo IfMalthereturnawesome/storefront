@@ -126,8 +126,6 @@ const StripePaymentButton = ({
             elements,
             confirmParams: {
                 return_url: return_url,
-                receipt_email: cart.email,
-
             },
 
 
