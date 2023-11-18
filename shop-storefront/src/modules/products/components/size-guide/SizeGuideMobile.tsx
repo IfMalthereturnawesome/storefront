@@ -48,7 +48,7 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
             }}
         >
             <div
-                className="flex flex-col bg-custom-white dark:bg-cyan-1  w-full my-auto h-[calc(95vh)] max-w-[98vw] rounded-lg "
+                className="flex flex-col bg-custom-white dark:bg-cyan-1  w-full my-auto h-[calc(95dvh)] max-w-[98vw] rounded-lg "
             >
                 <header className="bg-custom-white dark:bg-cyan-1  p-4 flex justify-between items-center">
                     <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Size Guide</h2>
