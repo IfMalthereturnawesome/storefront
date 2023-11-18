@@ -28,7 +28,7 @@ export default function Header({className}: HeaderProps) {
     const [topNavBanner, setTopNavBanner] = useState(true);
     const pathname = usePathname();
     const isOnProductPage = pathname.includes('/products/') || pathname === '/';
-    const {cart, totalItems} = useCart()
+    const {cart, totalItems} = useCart();
 
 
     const scrollThresholdMobile = 50;
@@ -40,28 +40,28 @@ export default function Header({className}: HeaderProps) {
     const [scrollingUp, setScrollingUp] = useState(false);
     const lastScrollPosition = useRef(0);
 
-    const isInitialMount = useRef(true);
 
+    const [isCartLoaded, setIsCartLoaded] = useState(false);
     // Determine the correct logo to show initially
     const initialLogo = totalItems === 0 ? 'icon' : 'full';
 
-    // State to track which logo to show
-    const [logoType, setLogoType] = useState(initialLogo);
-
     useEffect(() => {
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-        } else {
-            // Update the logo type based on totalItems
-            setLogoType(totalItems === 0 ? 'icon' : 'full');
+        if (cart) {  // Assuming cart will be non-null/undefined once loaded
+            setIsCartLoaded(true);
         }
-    }, [totalItems]);
+    }, [cart]);
 
     const renderLogo = () => {
+        if (!isCartLoaded) {
+
+          return null;
+
+        }
+
         const logoBasePath = '/images/Eight-Athletics-';
-        const logoVariant = logoType === 'icon' ? 'black-logo-icon.svg' : 'black-logo.svg';
-        const logoVariantWhite = logoType === 'icon' ? 'white-logo-icon.svg' : 'white-logo.svg';
-        const logoSize = logoType === 'icon' ? 24 : 80;
+        const logoVariant = totalItems === 0 ? 'black-logo-icon.svg' : 'black-logo.svg';
+        const logoVariantWhite = totalItems === 0 ? 'white-logo-icon.svg' : 'white-logo.svg';
+        const logoSize = totalItems === 0 ? 24 : 80;
 
         return (
             <>
@@ -82,6 +82,7 @@ export default function Header({className}: HeaderProps) {
             </>
         );
     };
+
 
     const handleScroll = () => {
 
