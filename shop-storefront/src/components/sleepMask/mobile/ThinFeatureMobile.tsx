@@ -12,6 +12,7 @@ const ThinFeatureMobile: FC = () => {
 
         >
             <div
+                id="discover-maximum-comfort"
                 className=" p-6 rounded-lg w-full max-w-md shadow-2xl mb-8 bg-black dark-linear-gradient border-2 border-[#FEE7B3]">
 
                 <div className="relative -mr-6 -mt-6 mb-4">

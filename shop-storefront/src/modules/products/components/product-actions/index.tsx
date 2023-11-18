@@ -174,12 +174,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({product, onColorChange})
         <div className="flex flex-col  gap-y-2 ">
             <div className="order-2 lg:order-1">
                 {product.collection && (
-                    <Link
-                        href={`/collections/${product.collection.handle}`}
-                        className="text-small-regular w-fit mb-1 text-slate-11"
-                    >
+                    <p  className="text-small-regular w-fit mb-1 text-slate-11">
                         {product.collection.title}
-                    </Link>
+                    </p>
+                    // <Link
+                    //     href={`/collections/${product.collection.handle}`}
+                    //     className="text-small-regular w-fit mb-1 text-slate-11"
+                    // >
+                    //     {product.collection.title}
+                    // </Link>
                 )}
                 <h2 className="text-3xl header-bg-clip my-2 lg:my-2 font-bold ">{product.title}</h2>
                 <p className="text-base-regular text-slate-12 mb-3 lg:mb-0 ">{product.description}</p>

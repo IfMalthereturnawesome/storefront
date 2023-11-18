@@ -5,7 +5,7 @@ import React from 'react';
 const MobileMaximumComfort: React.FC = () => {
     return (
 
-            <section className="flex flex-col items-center px-4 pb-8 bg-custom-white dark:bg-mask-black">
+            <section id={"total-blackout"} className="flex flex-col items-center px-4 pb-8 bg-custom-white dark:bg-mask-black">
                 <div className="px-4 pt-2 rounded-br-lg rounded-bl-lg shadow-lg w-full text-left max-w-md pb-6 mb-4 bg-black blue-linear-gradient">
                     <div className="text-center mb-4 mt-2">
 

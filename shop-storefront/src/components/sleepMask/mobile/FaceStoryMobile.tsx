@@ -4,13 +4,13 @@ import Image from 'next/image';
 interface FaceStoryProps {
     headline: string;
     description: string;
-    imageSrc?: string;  // You can use a static image for mobile
-    imageSrcTwo?: string; // You can use a static image for mobile
+    imageSrc?: string;
+    imageSrcTwo?: string;
 }
 
 const MobileFaceStory: React.FC<FaceStoryProps> = ({headline, description, imageSrc = "", imageSrcTwo  =""}) => {
     return (
-        <div className="flex flex-col h-auto  bg-[#130612] z-[1] relative pb-12 pt-6">
+        <div id={"crafted-from-thousands-of-unique-faces"} className="flex flex-col h-auto  bg-[#130612] z-[1] relative pb-12 pt-6">
             {/* Images */}
             <div className="flex w-full  items-center justify-center pb-6 space-y-4">
                 <div className="w-2/3 md:w-full animation-grow-shrink">

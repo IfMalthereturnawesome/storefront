@@ -5,7 +5,7 @@ import React from 'react';
 const MinimalWeightMobile: React.FC = () => {
     return (
         <>
-            <section className="flex flex-col items-center px-4  bg-custom-white dark:bg-mask-black">
+            <section  className="flex flex-col items-center px-4  bg-custom-white dark:bg-mask-black">
                 <div
                     className="px-4 pt-6 rounded-lg shadow-lg  text-left max-w-md  bg-black blue-linear-gradient border-b border-white">
 
