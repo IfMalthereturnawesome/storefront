@@ -17,7 +17,7 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center z-50 p-4 modal-overlay hidden md:flex"
+            className="fixed inset-0  items-center justify-center z-50 p-4 modal-overlay hidden md:flex"
             onClick={(e) => {
                 if (e.target === e.currentTarget) onClose();
             }}

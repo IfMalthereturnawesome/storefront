@@ -42,7 +42,7 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
     return (
         <div
-            className="  flex items-center justify-center z-[80] p-2 modal-overlay md:hidden "
+            className="fixed inset-0 flex items-center justify-center z-[80] bg-cyan-1 p-2 modal-overlay md:hidden"
             onClick={(e) => {
                 if (e.target === e.currentTarget) onClose();
             }}

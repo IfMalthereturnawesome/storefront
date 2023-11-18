@@ -663,7 +663,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     <button
                         onClick={togglePlayPause}
                         id={"play-pause-button"}
-                        className="hidden md:flex absolute bottom-[35rem] right-[1rem] z-10 focus:outline-none rounded-full border border-white p-1  items-center justify-center"
+                        className="hidden lg:flex absolute bottom-[35rem] right-[1rem] z-10 focus:outline-none rounded-full border border-white p-1  items-center justify-center"
                         style={{width: '2.3rem', height: '2.3rem'}}
                     >
                         {isPlaying ? (
@@ -679,7 +679,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
             {showPlayAgainButton && (
                 <button onClick={scrollToTopAndPlayAgain}
-                        className="hidden md:flex fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1  items-center justify-center z-[2]"
+                        className="hidden lg:flex fixed bottom-4 right-4 focus:outline-none rounded-full border border-white p-1  items-center justify-center z-[2]"
                         style={{width: '2.3rem', height: '2.3rem'}}>
                     <PlayIcon className="w-4 h-4 text-white"/>
                 </button>

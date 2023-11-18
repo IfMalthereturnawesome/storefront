@@ -9,7 +9,7 @@ export default function UseAOS() {
     useEffect(() => {
         AOS.init({
             once: false,
-            disable: 'phone',
+            disable: 'mobile',
             duration: 600,
             easing: 'ease-out-sine',
         });
