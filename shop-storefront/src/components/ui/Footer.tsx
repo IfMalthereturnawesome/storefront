@@ -310,7 +310,7 @@ export default function Footer() {
             </ul>
 
             {/* Copyrights note */}
-            <div className="mr-4 text-xs text-slate-11">
+            <div className="mr-4 text-2xs xs:text-xs text-slate-11">
               &copy; EightAthletics.com. All rights reserved 2023
             </div>
 

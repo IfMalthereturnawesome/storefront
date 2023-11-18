@@ -40,6 +40,49 @@ export default function Header({className}: HeaderProps) {
     const [scrollingUp, setScrollingUp] = useState(false);
     const lastScrollPosition = useRef(0);
 
+    const isInitialMount = useRef(true);
+
+    // Determine the correct logo to show initially
+    const initialLogo = totalItems === 0 ? 'icon' : 'full';
+
+    // State to track which logo to show
+    const [logoType, setLogoType] = useState(initialLogo);
+
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            // Update the logo type based on totalItems
+            setLogoType(totalItems === 0 ? 'icon' : 'full');
+        }
+    }, [totalItems]);
+
+    const renderLogo = () => {
+        const logoBasePath = '/images/Eight-Athletics-';
+        const logoVariant = logoType === 'icon' ? 'black-logo-icon.svg' : 'black-logo.svg';
+        const logoVariantWhite = logoType === 'icon' ? 'white-logo-icon.svg' : 'white-logo.svg';
+        const logoSize = logoType === 'icon' ? 24 : 80;
+
+        return (
+            <>
+                <Image
+                    src={`${logoBasePath}${logoVariant}`}
+                    alt={'Eight Athletics Logo'}
+                    width={logoSize}
+                    height={logoSize}
+                    className="dark:hidden"
+                />
+                <Image
+                    src={`${logoBasePath}${logoVariantWhite}`}
+                    alt={'Eight Athletics Logo'}
+                    width={logoSize}
+                    height={logoSize}
+                    className="hidden dark:block"
+                />
+            </>
+        );
+    };
+
     const handleScroll = () => {
 
         const screenWidth = window.innerWidth;
@@ -105,41 +148,7 @@ export default function Header({className}: HeaderProps) {
                 >
                     <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
                         <Link href="/" aria-label="Eight Athletics" className={"z-[2]"}>
-                            {(isOnProductPage && totalItems === 0) ? (
-                                <>
-                                    <Image
-                                        src={'/images/Eight-Athletics-black-logo-icon.svg'}
-                                        alt={'Eight Athletics Logo'}
-                                        width={24}
-                                        height={24}
-                                        className="dark:hidden"
-                                    />
-                                    <Image
-                                        src={'/images/Eight-Athletics-white-logo-icon.svg'}
-                                        alt={'Eight Athletics Logo'}
-                                        width={24}
-                                        height={24}
-                                        className="hidden dark:block"
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    <Image
-                                        src={'/images/Eight-Athletics-black-logo.svg'}
-                                        alt={'Eight Athletics Logo'}
-                                        width={80}
-                                        height={80}
-                                        className="dark:hidden"
-                                    />
-                                    <Image
-                                        src={'/images/Eight-Athletics-white-logo.svg'}
-                                        alt={'Eight Athletics Logo'}
-                                        width={80}
-                                        height={80}
-                                        className="hidden dark:block"
-                                    />
-                                </>
-                            )}
+                            {renderLogo()}
                         </Link>
                     </div>
 
