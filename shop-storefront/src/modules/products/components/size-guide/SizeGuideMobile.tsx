@@ -20,6 +20,7 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
         if (mobileActions && header) {
             mobileActions.style.opacity = isOpen ? '0' : '1';
+            mobileActions.style.visibility = isOpen ? 'hidden' : 'visible';
             header.style.zIndex = isOpen ? '0' : '30';
         }
         if (isOpen) {
@@ -42,13 +43,13 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center z-[80] bg-cyan-1 p-2 modal-overlay md:hidden"
+            className="fixed inset-0 flex items-center justify-center z-[80]  p-2 modal-overlay md:hidden"
             onClick={(e) => {
                 if (e.target === e.currentTarget) onClose();
             }}
         >
             <div
-                className="flex flex-col bg-custom-white dark:bg-cyan-1  w-full my-auto h-[calc(95dvh)] max-w-[98vw] rounded-lg "
+                className="flex flex-col bg-custom-white dark:bg-cyan-1 w-full my-auto h-[calc(93dvh)] max-w-[98vw] rounded-lg "
             >
                 <header className="bg-custom-white dark:bg-cyan-1  p-4 flex justify-between items-center">
                     <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Size Guide</h2>
@@ -178,9 +179,13 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
                         </div>
                     )}
                 </div>
-
+                <div className={"flex items-center justify-center bg-cyan-2 px-4 pt-2 pb-3"}>
+                <button onClick={onClose} className="text-slate-11 text-sm inline">
+                    Close Size Guide X
+                </button>
+                </div>
                 <footer className="bg-mask-black p-4">
-                    <p className="text-sm text-gray-100">
+                    <p className="text-xs xs:text-sm text-gray-100">
                         Still unsure? Check out our&nbsp;
                         <Link href="/faq" className="text-blue-500 hover:underline">
                             Sizing FAQs
