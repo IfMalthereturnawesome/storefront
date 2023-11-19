@@ -16,9 +16,9 @@ interface WelcomeEmailProps {
     fullName: string;
 }
 
-// const baseUrl = process.env.VERCEL_URL
-//     ? `https://${process.env.VERCEL_URL}`
-//     : '';
+const baseUrl = process.env.VERCEL_URL
+    ? `${process.env.VERCEL_URL}`
+    : '';
 
 export const WelcomeEmail = ({ fullName }: WelcomeEmailProps) => (
     <Html>
@@ -28,14 +28,13 @@ export const WelcomeEmail = ({ fullName }: WelcomeEmailProps) => (
         </Preview>
         <Body style={main}>
             <Container style={container}>
-                {/* Uncomment and update the following line if you have a logo for Eight Athletics */}
-                {/*<Img*/}
-                {/*    src={`${baseUrl}/static/eight-athletics-logo.png`}*/}
-                {/*    width="170"*/}
-                {/*    height="50"*/}
-                {/*    alt="Eight Athletics"*/}
-                {/*    style={logo}*/}
-                {/*/>*/}
+                <Img
+                    src={`${baseUrl}/images/Eight-Athletics-black-logo.svg`}
+                    width="100"
+                    height="33"
+                    alt="Eight Athletics"
+                    style={logo}
+                />
                 <Text style={paragraph}>Hi {fullName},</Text>
                 <Text style={paragraph}>
                     Thank you for reaching out to Eight Athletics. We have received your message and our team is currently reviewing it. We value your queries and feedback, and we will get back to you as soon as possible.
@@ -45,7 +44,7 @@ export const WelcomeEmail = ({ fullName }: WelcomeEmailProps) => (
                 </Text>
                 <Section style={btnContainer}>
                     {/* Update the following href to the appropriate link for Eight Athletics */}
-                    <Button pX={12} pY={12} style={button} href="https://eightathletics.com">
+                    <Button pX={12} pY={12} style={button} href="https://www.eightathletics.com">
                         Visit our website
                     </Button>
                 </Section>
@@ -55,7 +54,7 @@ export const WelcomeEmail = ({ fullName }: WelcomeEmailProps) => (
                     The Eight Athletics team
                 </Text>
                 <Hr style={hr} />
-                <Text style={footer}>[Sofiegade 5, Copenhagen K, Denmark]</Text>
+                <Text style={footer}>[Eight Athletics ApS - Sofiegade 5, Copenhagen K, Denmark]</Text>
 
             </Container>
         </Body>
@@ -84,11 +83,13 @@ const paragraph = {
 };
 
 const btnContainer = {
-    textAlign: 'center' as const,
+    textAlign: 'start' as const,
+//     padding button
+    padding: '10px 0 15px 0',
 };
 
 const button = {
-    backgroundColor: '#5F51E8',
+    backgroundColor: '#000',
     borderRadius: '3px',
     color: '#fff',
     fontSize: '16px',

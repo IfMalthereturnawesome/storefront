@@ -40,14 +40,16 @@ export default function Contact() {
         });
 
         setState('success');
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     if (state === "success") {
         return (
             <section className="relative">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
-                    <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 ">
-                        <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
+                    <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-6 md:pb-10">
+                        <div className="max-w-3xl mx-auto text-center pb-6">
                             <h1 className="custom-header-1" data-aos="fade-up">Thank You!</h1>
                             <p className="text-xl text-slate-11" data-aos="fade-up" data-aos-delay="200">
                                 Your message has been successfully sent. We will get back to you shortly.
@@ -141,7 +143,8 @@ export default function Contact() {
 
                             <button
                                 className="inline-flex flex-col bg-transparent text-center items-center w-full  dark:border-white py-2 m-0 px-8 text-md font-semibold text-slate-12 hover:text-slate-1 dark:bg-black rounded-[0.3rem] border-2 border-solid duration-200 cursor-pointer border-neutral-900 bg-gold-3 hover:bg-black dark:hover:bg-white"
-                                disabled={state === 'loading'}>Send
+                                disabled={state === 'loading'}>
+                                {state === 'loading' ? 'Sending...' : 'Send'}
                             </button>
                         </Form.Submit>
                     </div>
