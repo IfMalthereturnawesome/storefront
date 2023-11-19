@@ -41,7 +41,7 @@ export default function Contact() {
 
         setState('success');
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     if (state === "success") {
@@ -52,7 +52,10 @@ export default function Contact() {
                         <div className="max-w-3xl mx-auto text-center pb-6">
                             <h1 className="custom-header-1" data-aos="fade-up">Thank You!</h1>
                             <p className="text-xl text-slate-11" data-aos="fade-up" data-aos-delay="200">
-                                Your message has been successfully sent. We will get back to you shortly.
+                                Your message has been successfully sent. We will respond to you shortly.
+                            </p>
+                            <p className="text-slate-11 pt-2 text-sm">
+                                If you haven&apos;t received an automatic confirmation email, please check your spam folder and mark it as not spam.
                             </p>
                         </div>
                     </div>
@@ -152,7 +155,8 @@ export default function Contact() {
                 <div className="flex flex-wrap  my-4">
                     <div className="w-full ">
                         <p className="text-slate-10 text-xs ml-1 font-medium mb-1">
-                            By clicking &quot;send&quot; you consent to allow Eight Athletics to store and process the personal
+                            By clicking &quot;send&quot; you consent to allow Eight Athletics to store and process the
+                            personal
                             information submitted above and agree to our <Link href="/terms/terms-and-conditions"
                                                                                title="Terms and Conditions"
                                                                                className="hover:text-indigo-500 text-blue-600">terms
