@@ -26,7 +26,7 @@ const SecondaryButton = ({
                         variant === "secondary",
                     "text-sky-2 dark:text-sky-11  bg-sky-8 border-sky-8 hover:bg-sky-8  hover:bg-opacity-40 hover:text-white disabled:hover:bg-sky-8 disabled:hover:text-white bg-opacity-20":
                         variant === "third",
-                    "text-sky-11 dark:text-sky-11  bg-sky-8 border-sky-8 hover:bg-sky-8  hover:bg-opacity-40 hover:text-cyan-12 disabled:hover:bg-sky-8 disabled:hover:text-white bg-opacity-20":
+                    "text-sky-11 dark:text-sky-11 bg-sky-8/20 border-sky-8 hover:bg-sky-8  hover:bg-opacity-40 hover:text-cyan-12 disabled:hover:bg-sky-8 disabled:hover:text-white bg-opacity-20":
                         variant === "fourth",
                 },
                 className

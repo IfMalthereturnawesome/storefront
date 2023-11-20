@@ -185,7 +185,7 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, descriptionOne, descript
                     </div>
 
                     <div className="w-auto mx-auto flex flex-col justify-center pl-8 -mt-[3rem]" ref={textSectionRef}>
-                        <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[30vw] 3xl:max-w-[33vw]">{headline}</h2>
+                        <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[36vw] 3xl:max-w-[33vw]">{headline}</h2>
                         <p ref={textRefOne}
                            className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">
                             <span className="text-opacity">The </span><strong className={"font-semibold"}>Sleep Mask One</strong><span
