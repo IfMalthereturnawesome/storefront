@@ -4,6 +4,7 @@ const store = require('./store.config.json');
 
 const nextConfig = {
   experimental: {
+    serverActions: true,
     serverComponentsExternalPackages: [
       '@medusajs/product',
       '@medusajs/modules-sdk',

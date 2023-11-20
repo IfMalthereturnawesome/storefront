@@ -185,21 +185,21 @@ const FaceStory: React.FC<FaceStoryProps> = ({headline, descriptionOne, descript
                     </div>
 
                     <div className="w-auto mx-auto flex flex-col justify-center pl-8 -mt-[3rem]" ref={textSectionRef}>
-                        <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[36vw] 3xl:max-w-[33vw]">{headline}</h2>
+                        <h2 className="text-8xl lg:text-7xl font-bold text-white mb-6 max-w-[37vw] 3xl:max-w-[33vw]">{headline}</h2>
                         <p ref={textRefOne}
-                           className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">
+                           className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[37vw]">
                             <span className="text-opacity">The </span><strong className={"font-semibold"}>Sleep Mask One</strong><span
                             className="text-opacity"> transcends the ordinary, born from </span><strong className={"font-semibold"}>extensive
                             research</strong><span className="text-opacity"> and innovative design.</span>
                         </p>
                         <p ref={textRefTwo}
-                           className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">
+                           className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[37vw]">
                             <span className="text-opacity">Recognizing that </span><strong className={"font-semibold"}>every face tells a
                             story</strong><span className="text-opacity">, we&apos;ve digitally mapped over </span><strong className={"font-semibold"}>4,000
                             unique faces</strong><span className="text-opacity"> to shape our sleep mask.</span>
                         </p>
                         <p ref={textRefThree}
-                           className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[30vw]">
+                           className="text-xl font-sans font-semibold leading-7 tracking-tight text-left text-custom-white max-w-[37vw]">
                             <span
                                 className="text-opacity">This approach allows the mask to align </span><strong className={"font-semibold"}>smoothly</strong><span
                             className="text-opacity"> with each individual&apos;s facial features, offering an unrivaled </span><strong className={"font-semibold"}>fit
