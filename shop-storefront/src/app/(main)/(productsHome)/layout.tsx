@@ -8,7 +8,6 @@ export default function PageLayout({
     children: React.ReactNode
 }) {
 
-
     return (
         <div className="flex flex-col min-h-screen">
             <Header className="flex-shrink-0 bg-cyan-1 dark:bg-mask-black" />

@@ -8,6 +8,7 @@ import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
 import UseAOS from "@/components/utils/useAOS";
 
 
+
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 }
@@ -38,6 +39,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
 
     const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
     UseAOS();
+
 
     useLayoutEffect(() => {
         if (!isDesktop) return;

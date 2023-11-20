@@ -16,7 +16,7 @@ export function TermsMdx({ code }: TermsMdxProps) {
     const Component = useMDXComponent(code)
 
     return (
-        <article className="prose prose-slate max-w-full text-slate-11 prose-p:text-lg prose-li:text-lg">
+        <article className="prose prose-slate  prose-strong:text-slate-12 max-w-full text-slate-11 prose-p:text-lg prose-li:text-lg">
             <Component components={{ ...mdxComponents }} />
         </article>
     )

@@ -1,6 +1,7 @@
 :root {
     --header-height: 80px;
     --banner-height: 54px;
+    --tw-prose-headings: hsl(var(--slate-12) / 1);
 }
 
 .prose-slate {

@@ -47,7 +47,7 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@tanstack/react-query": "^4.22.4",
     "@vercel/analytics": "^1.0.2",
-    "aos": "^3.0.0-beta.6",
+    "aos": "2.3.4",
     "clsx": "^1.1.1",
     "contentlayer": "^0.3.4",
     "country-list": "^2.3.0",
@@ -96,8 +96,8 @@
     "@radix-ui/colors": "^3.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.5",
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/aos": "^3.0.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/aos": "^3.0.7",
     "@types/country-list": "^2.1.1",
     "@types/lodash": "^4.14.195",
     "@types/node": "17.0.21",
@@ -111,12 +111,12 @@
     "eslint-config-next": "^13.4.5",
     "file-loader": "^6.2.0",
     "flowbite-typography": "^1.0.3",
-    "postcss": "^8.4.28",
+    "postcss": "^8.4.31",
     "prettier": "^3.0.2",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.3.5",
     "tailwindcss-fluid-spacing": "^0.4.0",
-    "windy-radix-palette": "^1.0.0",
-    "windy-radix-typography": "^0.2.1"
+    "windy-radix-palette": "2.0.0-beta.7",
+    "windy-radix-typography": "1.0.0-beta.0"
   }
 }

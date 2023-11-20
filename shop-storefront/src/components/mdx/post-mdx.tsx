@@ -23,7 +23,7 @@ export function PostMdx({ code }: PostMdxProps) {
   const Component = useMDXComponent(code)
 
   return (
-    <article className="prose w-full max-w-full pt-10 prose-h2:text-3xl prose-slate text-slate-11 prose-p:text-lg prose-ul:text-lg">
+    <article className="prose prose-slate prose-h3:text-slate-12 prose-strong:text-slate-12 w-full max-w-full pt-10 prose-h2:text-3xl  text-slate-11 prose-p:text-lg prose-ul:text-lg">
       <Component components={{...mdxComponents}} />
     </article>
   );
