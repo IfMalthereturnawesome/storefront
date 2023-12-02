@@ -8,7 +8,8 @@ import {Analytics} from '@vercel/analytics/react';
 import {Metadata} from 'next';
 import BreakpointsIndicatorExtended from "@/components/helper/breakpointsExtended";
 import BreakpointsIndicator from "@/components/helper/breakpoints";
-import React from "react";
+import { Suspense } from "react";
+import { PHProvider, PostHogPageview } from "./provider";
 
 const GTAG = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
@@ -49,6 +50,10 @@ export default function RootLayout({children}: RootLayoutProps) {
 
     return (
         <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
+        <Suspense fallback={""}>
+            <PostHogPageview />
+        </Suspense>
+        <PHProvider>
         <GoogleAnalytics GA_MEASUREMENT_ID={GTAG}/>
         <body
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
@@ -67,7 +72,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
         <CookieBanner/>
         </body>
-
+        </PHProvider>
         </html>
     );
 }

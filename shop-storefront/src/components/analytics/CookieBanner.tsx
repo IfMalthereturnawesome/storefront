@@ -4,19 +4,42 @@
 import Link from 'next/link'
 import {getLocalStorage, setLocalStorage} from '@/lib/analytics/StorageHelper';
 import {useState, useEffect} from 'react';
+import { usePostHog } from "posthog-js/react";
 
 
 export default function CookieBanner() {
+    const posthog = usePostHog();
     const [cookieConsent, setCookieConsent] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const storedCookieConsent = getLocalStorage("cookie_consent", null);
-
-
         setCookieConsent(storedCookieConsent);
         setIsLoading(false);
     }, []);
+
+    const acceptCookies = () => {
+        posthog.opt_in_capturing();
+        updateConsentState(true);
+    };
+
+    const declineCookies = () => {
+        posthog.opt_out_capturing();
+        updateConsentState(false);
+    };
+
+    const updateConsentState = (consent) => {
+        setCookieConsent(consent);
+        setLocalStorage("cookie_consent", consent);
+
+        const newValue = consent ? 'granted' : 'denied';
+        window.gtag("consent", 'update', {
+            'analytics_storage': newValue,
+            'ad_storage': newValue,
+            'ad_user_data': newValue,
+            'ad_personalization': newValue
+        });
+    };
 
     useEffect(() => {
         if (!isLoading) {
@@ -30,15 +53,12 @@ export default function CookieBanner() {
             });
 
             setLocalStorage("cookie_consent", cookieConsent);
-
         }
     }, [cookieConsent, isLoading]);
 
     if (isLoading) {
-
         return null;
     }
-
 
     return (
         <div className={`my-10 mx-auto max-w-max md:max-w-screen-sm z-50
@@ -54,11 +74,9 @@ export default function CookieBanner() {
 
             <div className='flex gap-2'>
                 <button className='px-5 py-2 text-gray-300 rounded-md border-gray-900'
-                        onClick={() => setCookieConsent(false)}>Decline
-                </button>
+                        onClick={declineCookies}>Decline</button>
                 <button className='bg-gray-900 px-5 py-2 text-white rounded-lg'
-                        onClick={() => setCookieConsent(true)}>Allow Cookies
-                </button>
+                        onClick={acceptCookies}>Allow Cookies</button>
             </div>
         </div>
     )
