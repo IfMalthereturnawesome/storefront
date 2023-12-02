@@ -1,14 +1,16 @@
 import Providers from "@modules/providers"
 import "@/css/globals.css"
 import {Inter, Architects_Daughter, Poppins} from 'next/font/google';
-
-
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import CookieBanner from "@/components/analytics/CookieBanner";
 import {ProvidersNextUI} from "@/app/providers";
 import {Analytics} from '@vercel/analytics/react';
 import {Metadata} from 'next';
 import BreakpointsIndicatorExtended from "@/components/helper/breakpointsExtended";
 import BreakpointsIndicator from "@/components/helper/breakpoints";
 import React from "react";
+
+const GTAG = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
 const inter = Inter({
     subsets: ['latin'],
@@ -47,6 +49,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
     return (
         <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
+        <GoogleAnalytics GA_MEASUREMENT_ID={GTAG}/>
         <body
             className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
         >
@@ -61,7 +64,10 @@ export default function RootLayout({children}: RootLayoutProps) {
             </Providers>
         </ProvidersNextUI>
         <Analytics/>
+
+        <CookieBanner/>
         </body>
+
         </html>
     );
 }
