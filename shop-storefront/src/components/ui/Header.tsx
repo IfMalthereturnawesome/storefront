@@ -17,18 +17,31 @@ import SecondaryButton from "@modules/common/components/button/SecondaryButton";
 
 import {useCart} from "medusa-react";
 
+import {usePostHog, useFeatureFlagEnabled, useFeatureFlagVariantKey} from 'posthog-js/react'
+
 
 interface HeaderProps {
     className?: string;
 }
 
-export default function Header({className}: HeaderProps) {
+export default  function Header({className}: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [topNavBanner, setTopNavBanner] = useState(true);
     const pathname = usePathname();
     const isOnProductPage = pathname.includes('/products/') || pathname === '/';
     const {cart, totalItems} = useCart();
+
+    // POSTHUG CLIENT SIDE
+    const [ ctaState, setCtaState ] = useState('Buy now')
+    const ctaVariant = useFeatureFlagVariantKey('buy-now-button')
+
+
+    useEffect(() => {
+        if (ctaVariant === 'test') {
+            setCtaState('Get your mask')
+        }
+    }, [ctaVariant])
 
 
     const scrollThresholdMobile = 50;
@@ -208,11 +221,11 @@ export default function Header({className}: HeaderProps) {
                         <div className={"sm:pl-4 z-[2]"}>
                             {isOnProductPage && totalItems === 0 ? (
                                 <Link href="#buy-now">
-                                    <SecondaryButton variant={"fourth"}
+                                    <SecondaryButton variant={"fourth"} id={"buy-now-button"}
                                                      className={"rounded-[0.5rem] capitalize group text-sm sm:text-md !py-1 !px-2 !min-h-[1.1rem] " +
                                                          "2xs:!py-1 2xs:!px-3 2xs:!min-h-[1.2rem]" +
                                                          "sm:!py-2 sm:!px-4 sm:!min-h-[1.5rem] xl:!min-h-[2.5rem]"}>
-                                        Buy now
+                                        {ctaState}
                                     </SecondaryButton>
                                 </Link>
                             ) : (
