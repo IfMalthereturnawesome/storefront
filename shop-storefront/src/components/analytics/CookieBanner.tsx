@@ -4,7 +4,8 @@
 import Link from 'next/link'
 import {getLocalStorage, setLocalStorage} from '@/lib/analytics/StorageHelper';
 import {useState, useEffect} from 'react';
-import { usePostHog } from "posthog-js/react";
+import {usePostHog} from "posthog-js/react";
+import Image from "next/image";
 
 
 export default function CookieBanner() {
@@ -61,22 +62,38 @@ export default function CookieBanner() {
     }
 
     return (
-        <div className={`my-10 mx-auto max-w-max md:max-w-screen-sm z-50
-                        fixed bottom-0 left-0 right-0 
-                            ${cookieConsent !== null ? "hidden" : "flex"}  px-3 md:px-4 py-3 justify-between items-center flex-col sm:flex-row gap-4  
-                         bg-gray-700 rounded-lg shadow`}>
+        <div
+            className={`fixed z-50 left-10 lg:bottom-5 bottom-[75px] bg-black/80 backdrop-blur-lg dark:bg-gray-800 rounded-lg 
+        shadow-lg   sm:max-w-md lg:max-w-lg  mx-auto border border-white/20 mb-2
+        ${cookieConsent !== null ? "flex" : "flex"} flex-col lg:flex-row lg:items-start justify-between`}>
+            <div className="text-white  pl-5 pr-3 py-5 lg:mt-0 flex flex-col items-center lg:items-start font-sans">
+                <p className={"text-lg inline font-extrabold"}>EightAthletics.com doesn't use third-party cookies</p>
+                <p className={"inline-flex "}>- only first-party cookies.</p>
+                <p className={"pt-4 text-sm"}>No data is sent, shared or sold to a third-party.</p>
 
-            <div className='text-center'>
-                <Link href="/terms/cookie-policy"><p>We use <span className='font-bold text-sky-400'>cookies</span> on
-                    our site.</p></Link>
+                <div className="flex gap-2 flex-col mt-4 w-full">
+                    <button
+                        className="bg-yellow-300 hover:bg-yellow-300/90 border-2 border-mask-black text-black w-full font-bold py-2 px-4 rounded hover:underline transition-colors"
+                        onClick={acceptCookies}>
+                        Accept
+                    </button>
+                    <button
+                        className="bg-mask-black/80 hover:bg-mask-black border border-yellow-300 text-white w-full font-bold py-2 px-4 rounded hover:underline transition-colors"
+                        onClick={declineCookies}>
+                        Decline
+                    </button>
+
+                </div>
             </div>
+            <div className={"pt-4 pr-3 font-sans"}>
+            {/*   Text Click cookie to learn more */}
+                <p className={"text-yellow-300 text-md font-normal pt-1 pb-1"}>Click the cookie to learn more</p>
+                <Link href="/terms/cookie-policy" className="">
+            <Image height={400} width={300} quality={92} src="/images/ursulla-cookie-banner-arrow.png" alt="Ursulla Cookie Banner"
+                   className="w-40 h-40 lg:w-[90%] lg:h-full object-cover "/>
 
 
-            <div className='flex gap-2'>
-                <button className='px-5 py-2 text-gray-300 rounded-md border-gray-900'
-                        onClick={declineCookies}>Decline</button>
-                <button className='bg-gray-900 px-5 py-2 text-white rounded-lg'
-                        onClick={acceptCookies}>Allow Cookies</button>
+                </Link>
             </div>
         </div>
     )

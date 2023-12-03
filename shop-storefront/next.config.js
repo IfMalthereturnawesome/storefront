@@ -1,8 +1,11 @@
 const {withStoreConfig} = require('./store-config');
 const {withContentlayer} = require('next-contentlayer');
 const store = require('./store.config.json');
-
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
+
   experimental: {
     serverActions: true,
     serverComponentsExternalPackages: [
