@@ -3,7 +3,7 @@ import {Disclosure, Popover, Transition} from '@headlessui/react';
 import {Fragment} from 'react';
 import {products, callsToAction} from '@/utils/reuseableData';
 import {useDropdownHoverMenu} from '@/utils/hooks/DropdownHoverHooks';
-import {Button} from '@nextui-org/button';
+import {Button} from '@nextui-org/react';
 import {ChevronDownIcon} from '@heroicons/react/20/solid';
 
 function classNames(...classes: any[]) {

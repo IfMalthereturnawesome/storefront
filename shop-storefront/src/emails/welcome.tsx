@@ -1,6 +1,5 @@
 import {
     Body,
-    Button,
     Container,
     Head,
     Hr,
@@ -10,6 +9,7 @@ import {
     Section,
     Text,
 } from '@react-email/components';
+import {Button} from "@react-email/button";
 import * as React from 'react';
 
 interface WelcomeEmailProps {
@@ -19,6 +19,7 @@ interface WelcomeEmailProps {
 const baseUrl = process.env.VERCEL_URL
     ? `${process.env.VERCEL_URL}`
     : '';
+
 
 export const WelcomeEmail = ({ fullName }: WelcomeEmailProps) => (
     <Html>
@@ -44,6 +45,7 @@ export const WelcomeEmail = ({ fullName }: WelcomeEmailProps) => (
                 </Text>
                 <Section style={btnContainer}>
                     {/* Update the following href to the appropriate link for Eight Athletics */}
+                    {/* @ts-ignore*/}
                     <Button pX={12} pY={12} style={button} href="https://www.eightathletics.com">
                         Visit our website
                     </Button>
