@@ -20,6 +20,7 @@
       "next": "$next"
     }
   },
+
   "resolutions": {
     "webpack": "^5",
     "@types/react": "17.0.40"
@@ -54,7 +55,7 @@
     "country-list": "^2.3.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
-    "gsap": "^3.12.2",
+    "gsap": "^3.12.3",
     "lodash": "^4.17.21",
     "medusa-plugin-resend": "^1.1.0",
     "medusa-react": "^9.0.0",
@@ -66,7 +67,6 @@
     "react": "^18.2.0",
     "react-country-flag": "^3.0.2",
     "react-dom": "^18.2.0",
-    "react-email": "1.10.0",
     "react-hook-form": "^7.45.1",
     "react-icons": "^4.10.1",
     "react-intersection-observer": "^9.3.4",
@@ -117,7 +117,7 @@
   },
   "pnpm": {
     "overrides": {
-      "gsap": "npm:@gsap/shockingly@^3.12.2"
+      "gsap": "npm:@gsap/shockingly@^3.12.3"
     }
   }
 }
