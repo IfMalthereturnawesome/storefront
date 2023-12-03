@@ -5,7 +5,7 @@ const store = require('./store.config.json');
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-
+  swcMinify: true,
   experimental: {
     serverActions: true,
     serverComponentsExternalPackages: [
@@ -33,7 +33,6 @@ const nextConfig = {
   },
 };
 
-// Using withContentlayer and withStoreConfig in sequence
 module.exports = withStoreConfig(withContentlayer(nextConfig));
 
 console.log('next.config.js', JSON.stringify(module.exports, null, 2));
