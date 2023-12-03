@@ -34,7 +34,6 @@ const advancedHeaders = [
 const nextConfig = {
   swcMinify: true,
   experimental: {
-    serverActions: true,
     serverComponentsExternalPackages: [
       '@medusajs/product',
       '@medusajs/modules-sdk',
@@ -52,11 +51,6 @@ const nextConfig = {
   },
   features: store.features,
   reactStrictMode: true,
-  images: {
-    domains: [
-      'localhost',
-    ],
-  },
   headers: async () => {
     return [
       {
