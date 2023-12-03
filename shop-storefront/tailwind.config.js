@@ -35,6 +35,7 @@ module.exports = {
     extend: {
       drawCard: 'drawCard ',
       colors: {
+        foreground: "#e0e2e7",
         caction: {
           50: '#edf9ff',
           100: '#def4ff',

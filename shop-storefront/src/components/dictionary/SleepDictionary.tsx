@@ -704,7 +704,7 @@ export default function SleepLib({word, children}: SleepLibProps) {
               content={tooltip}
               animation="duration-700"
               arrow={false}
-              className="max-w-sm !bg-blue-12 dark:!bg-white !text-slate-2 3xs:p-2 md:p-4"
+              className="max-w-sm !bg-blue-12 dark:!bg-white !text-slate-2 p-2 md:p-4"
           >
             <span className="border-b-2 cursor-help font-semibold border-blue-600 text-slate-11 dark:text-gray-300">
               {children}
