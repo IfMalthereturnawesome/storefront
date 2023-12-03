@@ -1,7 +1,7 @@
 'use client';
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
-import {Tooltip} from 'flowbite-react';
+import {Tooltip} from "@nextui-org/react";
 
 
 interface PostLinkProps {
@@ -42,8 +42,6 @@ export default function TooltipMdx({
         <span className="inline-block">
           <Tooltip
             content={tooltip}
-            animation="duration-300"
-            arrow
             className="max-w-xs "
           >
             <Link href={href}>{children}</Link>

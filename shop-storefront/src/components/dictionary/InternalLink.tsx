@@ -1,7 +1,7 @@
 'use client';
 import {useEffect, useMemo, useState} from 'react';
 import Link from 'next/link';
-import {Tooltip} from 'flowbite-react';
+import {Tooltip} from "@nextui-org/react";
 import {CgInternal} from 'react-icons/cg';
 
 type SleepWord = {
@@ -277,8 +277,6 @@ export default function InternalLink({word, children}: SleepLibProps) {
                 <span className="inline-block my-0">
           <Tooltip
               content={tooltip}
-              animation="duration-700"
-              arrow={false}
               className="max-w-sm !bg-blue-12 dark:!bg-white !text-slate-2 3xs:p-2 md:p-4"
           >
             <Link href={data.url}

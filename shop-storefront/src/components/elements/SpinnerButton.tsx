@@ -22,6 +22,7 @@ const SpinnerButton = React.memo<SpinnerButtonProps>(
             {'focus:outline-black': !isLoading && !disabled && !noMorePosts},
             {'dark:focus:outline-sky-9': !isLoading && !disabled && !noMorePosts},
             {'hover:text-slate-1': !isLoading && !disabled && !noMorePosts},
+            {'dark:hover:text-slate-12': !isLoading && !disabled && !noMorePosts},
             {'dark:hover:bg-cyan-3': !isLoading && !disabled && !noMorePosts},
             {'dark:hover:border-cyan-10': !isLoading && !disabled && !noMorePosts},
             {'group-hover:bg-black': !isLoading && !disabled && !noMorePosts},

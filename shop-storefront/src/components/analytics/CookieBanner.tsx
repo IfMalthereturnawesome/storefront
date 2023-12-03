@@ -6,7 +6,7 @@ import {getLocalStorage, setLocalStorage} from '@/lib/analytics/StorageHelper';
 import {useState, useEffect} from 'react';
 import {usePostHog} from "posthog-js/react";
 import Image from "next/image";
-import {Tooltip, Button} from "@nextui-org/react";
+import {Tooltip} from "@nextui-org/react";
 
 
 export default function CookieBanner() {

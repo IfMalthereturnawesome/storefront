@@ -303,8 +303,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-    require('flowbite/plugin'),
-    require('flowbite-typography'),
     colors.plugin, require("@tailwindcss/typography"),
     require('@tailwindcss/container-queries'),
     require('tailwindcss-fluid-spacing'),

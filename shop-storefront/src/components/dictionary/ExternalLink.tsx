@@ -1,6 +1,6 @@
 'use client';
-import {useEffect, useMemo, useState} from 'react';
-import {Tooltip} from 'flowbite-react';
+import {useEffect,  useState} from 'react';
+import {Tooltip} from "@nextui-org/react";
 import {FaCheckCircle} from 'react-icons/fa';
 import {FaCheck} from "react-icons/fa";
 
@@ -44,8 +44,6 @@ export default function ExternalLink({href, children, citationNumber}: ExternalL
                 <span className="inline-block">
                     <Tooltip
                         content={tooltip}
-                        animation="duration-700"
-                        arrow={false}
                         className="max-w-sm !bg-blue-12 dark:!bg-white !text-slate-2 3xs:p-2 md:p-4"
                     ><a href={href} className={'no-underline'} target="_blank">
                        <sup className="flex items-baseline">

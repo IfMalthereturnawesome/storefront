@@ -3,7 +3,9 @@
     position: static;
 }
 
-
+.underline-offset-2 {
+    text-underline-offset: 2px;
+}
 
 .milestone {
     position: relative;

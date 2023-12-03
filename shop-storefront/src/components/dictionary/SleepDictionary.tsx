@@ -1,8 +1,7 @@
 'use client';
 import {useEffect, useMemo, useState} from 'react';
 import {SlBookOpen} from 'react-icons/sl';
-import * as HoverCard from '@radix-ui/react-hover-card';
-import {Tooltip} from 'flowbite-react';
+import {Tooltip} from "@nextui-org/react";
 
 type SleepWord = {
     title: string;
@@ -702,8 +701,6 @@ export default function SleepLib({word, children}: SleepLibProps) {
                 <span className="inline-block cursor-help text-blue-600 my-0 ">
           <Tooltip
               content={tooltip}
-              animation="duration-700"
-              arrow={false}
               className="max-w-sm !bg-blue-12 dark:!bg-white !text-slate-2 p-2 md:p-4"
           >
             <span className="border-b-2 cursor-help font-semibold border-blue-600 text-slate-11 dark:text-gray-300">

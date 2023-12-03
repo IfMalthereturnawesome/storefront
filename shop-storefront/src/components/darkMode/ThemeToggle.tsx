@@ -1,25 +1,19 @@
 'use client';
-import {useEffect, useState} from 'react';
-import 'flowbite';
+import { useEffect, useState } from 'react';
 
 export const ThemeToggle = () => {
-    const [tooltipContent, setTooltipContent] = useState('');
+    const [tooltipContent, setTooltipContent] = useState('Toggle dark mode');
+    const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
     useEffect(() => {
-        const themeToggleDarkIcon = document.getElementById(
-            'theme-toggle-dark-icon',
-        );
-        const themeToggleLightIcon = document.getElementById(
-            'theme-toggle-light-icon',
-        );
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
 
-        if (!themeToggleDarkIcon || !themeToggleLightIcon) return;
-        if (!themeToggleBtn) return;
+        if (!themeToggleDarkIcon || !themeToggleLightIcon || !themeToggleBtn) return;
 
         const toggleTheme = () => {
             const html = document.querySelector('html');
-
             if (!html) return;
 
             const isDarkMode = html.classList.contains('dark');
@@ -36,6 +30,7 @@ export const ThemeToggle = () => {
             themeToggleLightIcon.classList.toggle('hidden');
         };
 
+        // Set the initial theme and tooltip content
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark' || !currentTheme) {
             document.documentElement.classList.add('dark');
@@ -47,26 +42,31 @@ export const ThemeToggle = () => {
             setTooltipContent('Toggle dark mode');
         }
 
+        // Event listeners for toggling theme
         themeToggleBtn.addEventListener('click', toggleTheme);
 
+        // Event listeners for showing and hiding tooltip
+        themeToggleBtn.addEventListener('mouseenter', () => setIsTooltipVisible(true));
+        themeToggleBtn.addEventListener('mouseleave', () => setIsTooltipVisible(false));
+
+        // Cleanup function
         return () => {
             themeToggleBtn.removeEventListener('click', toggleTheme);
+            themeToggleBtn.removeEventListener('mouseenter', () => setIsTooltipVisible(true));
+            themeToggleBtn.removeEventListener('mouseleave', () => setIsTooltipVisible(false));
         };
     }, []);
 
     return (
         <button
-            data-tooltip-target="tooltip-theme-toggle"
-            data-tooltip-placement="bottom"
             type="button"
             id="theme-toggle"
-            className="z-20 rounded-lg  text-sm text-gray-500 dark:text-gray-400 pr-4 md:pr-0"
+            className="z-20 rounded-lg text-sm text-gray-500 dark:text-gray-400 pr-4 md:pr-0"
         >
-
+            {/* SVG for dark mode icon */}
             <svg
                 id="theme-toggle-dark-icon"
                 className="hidden h-5 w-5 xl:h-6 xl:w-6 fill-mask-black"
-
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
             >
@@ -75,7 +75,6 @@ export const ThemeToggle = () => {
             <svg
                 id="theme-toggle-light-icon"
                 className="hidden h-5 w-5 xl:h-6 xl:w-6 fill-custom-white"
-
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
             >
@@ -87,15 +86,13 @@ export const ThemeToggle = () => {
             </svg>
 
 
-            <span className="sr-only hidden h-5 w-5 border-solid border-gray-200 leading-5 text-gray-400">
-        Toggle dark mode
-      </span>
+            <span className="sr-only">Toggle dark mode</span>
             <div
                 id="tooltip-theme-toggle"
                 role="tooltip"
-                className="tooltip invisible absolute z-10 inline-block rounded-lg bg-cbg px-3 py-2 text-sm font-medium text-black opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700 dark:text-white"
+                className={`tooltip absolute z-10 inline-block rounded-lg bg-cbg px-3 py-2 text-sm font-medium text-black shadow-sm transition-opacity duration-300 dark:bg-gray-700 dark:text-white ${isTooltipVisible ? 'visible opacity-100' : 'invisible opacity-0'}`}
             >
-                <div className="tooltip-content">{tooltipContent || 'Toggle'}</div>
+                {tooltipContent}
             </div>
         </button>
     );
