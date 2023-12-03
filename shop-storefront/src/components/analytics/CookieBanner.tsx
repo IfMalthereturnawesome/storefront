@@ -66,7 +66,7 @@ export default function CookieBanner() {
             <div
                 className={`fixed z-50 left-0  bottom-40 lg:left-10 lg:bottom-5 bg-black/80 backdrop-blur-lg dark:bg-gray-800 rounded-lg 
         shadow-lg   sm:max-w-md lg:max-w-lg  mx-auto border border-white/20 mb-2
-        ${cookieConsent !== null ? "flex" : "flex"} flex-col lg:flex-row lg:items-start justify-between`}>
+        ${cookieConsent !== null ? "hidden" : "flex"} flex-col lg:flex-row lg:items-start justify-between`}>
                 <div className="text-white  pl-5 pr-3 py-5 lg:mt-0 flex flex-col items-center lg:items-start font-sans">
                     <p className={"text-lg inline font-extrabold"}>EightAthletics.com doesn't use third-party
                         cookies</p>
