@@ -12,6 +12,15 @@ const nextConfig = {
       '@medusajs/product',
       '@medusajs/modules-sdk',
     ],
+
+  },
+  modularizeImports: {
+    '@mui/material': {
+      transform: '@mui/material/{{member}}',
+    },
+    '@mui/icons-material': {
+      transform: '@mui/icons-material/{{member}}',
+    },
   },
   features: store.features,
   reactStrictMode: true,
