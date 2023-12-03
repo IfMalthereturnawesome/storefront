@@ -5,6 +5,7 @@
 /uploads
 /node_modules
 yarn-error.log
+npm-debug.log
 
 .idea
 
