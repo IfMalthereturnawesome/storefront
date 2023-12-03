@@ -1,7 +1,7 @@
 'use client';
 // ParticlesBackground.tsx
 import React, {useState, useCallback, useRef, useEffect} from 'react';
-import type {Container, Engine,} from "tsparticles-engine";
+import type { Engine,} from "tsparticles-engine";
 import Particles from "react-tsparticles";
 import {loadFull} from "tsparticles";
 
