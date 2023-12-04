@@ -343,7 +343,7 @@ input:checked + .slider:before {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: rgb(254, 254, 254);
+    background: #EAEEEF;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -491,4 +491,10 @@ input:checked + .slider:before {
 
 .logo-transition {
  transition: opacity 1.5s ease-in-out;
+}
+
+.black-gradient-background{
+    /*background-image: radial-gradient( circle 815px at 13.4% -24.8%, rgb(7, 22, 63) 2.2%, rgba(1,0,2,1) 100.2% );*/
+    background-image: radial-gradient( circle 815px at 23.4% -21.8%, rgb(9, 29, 86) 0.2%, rgb(3, 2, 3) 100.2% );
+
 }

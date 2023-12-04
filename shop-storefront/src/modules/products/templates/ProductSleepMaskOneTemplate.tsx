@@ -82,7 +82,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
     return (
         <ProductProvider product={product}>
 
-            <div className="bg-mask-black font-poppins">
+            <div className="font-poppins bg-mask-black">
                 <VideoAnimation
                     product={"Sleep Mask One"}
                     description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}

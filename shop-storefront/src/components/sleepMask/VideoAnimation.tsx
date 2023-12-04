@@ -536,7 +536,8 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
 
     return (
         <>
-            <div ref={wrapperRef} className="relative h-screen lg:h-[120vh]  pin-video  z-[1]" id={"smooth-content"}>
+
+            <div ref={wrapperRef} className={`relative h-screen lg:h-[120vh]  pin-video  z-[1] ${showVideo ? '' : 'black-gradient-background'}`} id={"smooth-content"} >
 
                 <div ref={headerRef}
                      className="absolute top-[18vh] w-[99vw] md:w-[99.2vw] h-[20vh] flex items-center justify-center text-[#e7ecef] font-bold text-3xl 2xs:text-5xl xs:text-7xl  lg:text-8xl  "
@@ -548,7 +549,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                 {(showSmallDreamText && showOneNightText) && (
 
                     <div
-                        className={`w-[99vw] md:w-[99.2vw] h-[120vh] pt-[8vh] 3xs:pt-[9.5vh] 2xs:pt-[11vh] md:pt-[5vh] lg:pt-[6vh] 3xl:pt-[10vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start bg-mask-black `}>
+                        className={`w-[99vw] md:w-[99.2vw] h-[120vh] pt-[8vh] 3xs:pt-[9.5vh] 2xs:pt-[11vh] md:pt-[5vh] lg:pt-[6vh] 3xl:pt-[10vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start black-gradient-background `}>
                         <h3 className={"header-bg-clip text-lg xs:text-xl lg:text-2xl font-sans hidden my-0 md:my-2 dark:block"}>
                             {product}
                         </h3>
@@ -631,7 +632,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                     </div>}
 
                     <div
-                        className={`py-4 px-2  bg-opacity-50 bg-mask-black rounded md:p-0  sm:p-4 lg:p-0`}
+                        className={`py-4 px-2  bg-opacity-50  rounded md:p-0  sm:p-4 lg:p-0 ${showVideo ? 'bg-mask-black' : 'black-gradient-background'}`}
                         style={{opacity: showVideo ? 1 : 0, visibility: showVideo ? 'visible' : 'hidden'}}>
                         <div
                             className="aspect-w-16 aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 ">
