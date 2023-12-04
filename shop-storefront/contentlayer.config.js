@@ -72,6 +72,14 @@ const Resource = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
+    publishedAt: {
+      type: 'date',
+      required: true,
+    },
+    modifiedAt: {
+      type: 'date',
+      required: false,
+    },
     summary: {
       type: 'string',
       required: true,

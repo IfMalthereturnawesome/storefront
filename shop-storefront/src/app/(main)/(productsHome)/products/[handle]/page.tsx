@@ -18,13 +18,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
+  const localImagePath = `/images/products/${params.handle}/thumbnail/thumbnail-${params.handle}.png`;
+
   return {
-    title: `${product.title} | Eight Athletics Store`,
-    description: `${product.title}`,
+    title: `Eight Athletics Sleep Mask One: Perfect Fit & Comfort`,
+    description: `Experience unmatched sleep with Sleep Mask One. Tailored for all faces, ensuring total blackout and ultimate comfort. Ideal for athletes and side sleepers`,
     openGraph: {
-      title: `${product.title} | Eight Athletics Store`,
-      description: `${product.title}`,
-      images: product.thumbnail ? [product.thumbnail] : [],
+      title: `Eight Athletics Sleep Mask One: Perfect Fit & Comfort`,
+      description: `Experience unmatched sleep with Sleep Mask One. Tailored for all faces, ensuring total blackout and ultimate comfort. Ideal for athletes and side sleepers`,
+      images: [localImagePath],
     },
   }
 }

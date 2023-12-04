@@ -1,39 +1,33 @@
-import { getProductByHandle } from "@lib/data";
+import {getProductByHandle} from "@lib/data";
 import ProductSleepMaskOneTemplate from "@modules/products/templates/ProductSleepMaskOneTemplate";
+import type {Metadata} from 'next'
 
-
-async function Home({ product }) {
-    let params = { handle: "sleep-mask-one" };
+async function Home({product}) {
+    let params = {handle: "sleep-mask-one"};
     let products;
     try {
         const result = await getProductByHandle(params.handle);
         products = result.products;
     } catch (err) {
-        return { notFound: true };
+        return {notFound: true};
     }
 
 
     const producta = products[0];
 
-    return <ProductSleepMaskOneTemplate product={producta} />
+    return <ProductSleepMaskOneTemplate product={producta}/>
 }
 
- const metadata: ({params}: { params: any }) => Promise<{ description: string; title: string }> = async ({ params }) => {
-    let productHandle = "sleep-mask-one";
-    const { products } = await getProductByHandle(productHandle);
-    const product = products[0];
-
-    return {
+export const metadata: Metadata = {
+    title: `Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep`,
+    description: `Experience better sleep and performance with Eight Athletics' sleep mask. Tailored for athletes to boost recovery and success - achieve your dreams one night at a time.`,
+    openGraph: {
         title: `Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep`,
-        description:`${product.description} | Experience better sleep and performance with Eight Athletics' sleep mask. Tailored for athletes to boost recovery and success - achieve your dreams nightly.`,
-        openGraph: {
-            title: `${product.title} | Eight Athletics Homepage`,
-            description: `${product.title} | Experience better sleep and performance with Eight Athletics' sleep mask. Tailored for athletes to boost recovery and success - achieve your dreams nightly.`,
-            images: product.thumbnail ? [product.thumbnail] : [],
-        },
-
-    };
-}
+        description: `Experience better sleep and performance with Eight Athletics' sleep mask. Tailored for athletes to boost recovery and success - achieve your dreams one night at a time.`,
+        type: 'website',
+        images: 'https://www.eightathletics.com/images/Eight-Athletics-black-logo.svg',
+    },
+};
 
 export default Home;
 
