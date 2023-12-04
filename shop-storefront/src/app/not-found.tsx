@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import NotFoundImage from '../../public/images/404.jpg'; // Replace with a sleep-related image
+import NotFoundImage from '../../public/images/404.jpg';
 import React from 'react';
 
 
