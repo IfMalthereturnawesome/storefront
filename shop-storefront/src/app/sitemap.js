@@ -25,7 +25,7 @@ export default async function sitemap(){
       return {
          url: `${URL}/resources/${resource.slug}`,
          // Assume you'll use the current date if there's no specific last modified date
-         lastModified: new Date().toISOString(),
+         lastModified: resource.modifiedAt,
          changeFrequency: 'monthly',
          priority: 0.9,
       };
