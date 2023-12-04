@@ -52,6 +52,7 @@ const nextConfig = {
   features: store.features,
   reactStrictMode: true,
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "http",
