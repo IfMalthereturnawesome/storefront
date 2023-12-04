@@ -28,6 +28,8 @@ const MaskSequence: React.FC = () => {
 
                 const canvas = canvasRefVideo.current;
 
+
+
                 canvas.width = 960;
                 canvas.height = 640;
 
@@ -45,6 +47,7 @@ const MaskSequence: React.FC = () => {
 
                 for (let i = 0; i < frameCount; i++) {
                     const img = new Image();
+
                     img.src = currentFrame(i);
                     images.push(img);
                 }
@@ -54,6 +57,7 @@ const MaskSequence: React.FC = () => {
                     if (canvas) {
                         const context = canvas.getContext("2d");
                         const img = images[sleepMask.frame];
+
 
                         // Set canvas size to image size
                         canvas.width = img.width;
