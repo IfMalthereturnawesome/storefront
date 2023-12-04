@@ -59,7 +59,9 @@ export default async function SinglePost({params}: { params: { slug: string } })
         return false;
     });
 
-    if (!post) notFound();
+    if (!post) {
+        return
+    }
 
     return (
 
