@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:8000'),
     title: 'Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep',
     category: 'Sleep Products',
-    robots: 'index, follow',
+    robots: 'all',
     description: 'Experience better sleep and performance with Eight Athletics\' sleep products. Tailored for athletes to boost recovery and success - achieve your dreams one night at a time.',
     openGraph: {
         title: 'Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep',
