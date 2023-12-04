@@ -35,8 +35,15 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:8000'),
-    title: 'Eight Athletics',
-    description: 'Eight Athletics Store',
+    title: 'Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep',
+    category: 'Sleep Products',
+    description: 'Experience better sleep and performance with Eight Athletics\' sleep products. Tailored for athletes to boost recovery and success - achieve your dreams one night at a time.',
+    openGraph: {
+        title: 'Eight Athletics | Enhance Recovery & Performance for Athletes through Sleep',
+        description: 'Experience better sleep and performance with Eight Athletics\' sleep products. Tailored for athletes to boost recovery and success - achieve your dreams one night at a time.',
+        type: 'website',
+        images: 'https://www.eightathletics.com/images/Eight-Athletics-black-logo.svg',
+    },
 }
 
 

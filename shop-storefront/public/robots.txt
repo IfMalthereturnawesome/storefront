@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /checkout
+Disallow: /account/*
+
+# Host
+Host: https://www.eightathletics.com
+
+# Sitemaps
+Sitemap: https://www.eightathletics.com/sitemap.xml
