@@ -36,7 +36,8 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               <Image
                 src={image.url}
                 className="absolute inset-0"
-                alt="Thumbnail"
+                priority={index <= 2 ? true : false}
+                alt={`Product image asdsadasd ${index + 1}`}
                 fill
                 sizes="100vw"
                 style={{

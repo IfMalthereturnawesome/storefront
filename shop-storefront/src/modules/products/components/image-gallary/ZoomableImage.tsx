@@ -2,7 +2,7 @@
 
 // ZoomableImage.jsx
 
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import Image from 'next/image';
 import {gsap} from 'gsap';
 
@@ -57,9 +57,6 @@ function ZoomableImage({src, alt}) {
         }
     };
 
-
-
-
     return (
         <div
             ref={containerRef}
@@ -68,15 +65,19 @@ function ZoomableImage({src, alt}) {
             onMouseMove={handleMouseMove}
             onMouseLeave={zoomOut}
         >
+
             <Image
                 key={src}
                 src={src}
                 alt={alt}
                 ref={imgRef}
                 height={700}
+                sizes={'100vw'}
                 width={700}
-                quality={90}
-                className="w-full h-auto fade-in"
+                quality={92}
+                blurDataURL={"/images/placeholder-image.jpg"}
+                placeholder={"blur"}
+                className={`w-full bg-[##FEFEFE] h-auto object-contain transition-transform duration-300 ease-in-out fade-in'}`}
             />
         </div>
     );

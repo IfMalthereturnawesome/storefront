@@ -6,6 +6,7 @@ import {ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/24/solid";
 
 type ZoomableImageGalleryProps = {
     images: string[];
+
 };
 
 const ZoomableImageGallery: React.FC<ZoomableImageGalleryProps> = ({images}) => {
@@ -18,7 +19,9 @@ const ZoomableImageGallery: React.FC<ZoomableImageGalleryProps> = ({images}) => 
         setDisplayedImages(images.slice(0, 4));
     }, [images]);
 
-    // Toggle between displaying all images and the initial set.
+
+
+
     const toggleImages = () => {
         if (isAllImagesShown) {
             setDisplayedImages(images.slice(0, 4));
@@ -29,10 +32,15 @@ const ZoomableImageGallery: React.FC<ZoomableImageGalleryProps> = ({images}) => 
     };
 
 
+
+
+
     return (
-        <div className="relative grid grid-cols-2 gap-1 cursor-zoom-in">
+        <div className="relative grid grid-cols-2 gap-1 cursor-zoom-in  min-h-[1410px]">
+
             {displayedImages.map((imagePath, index) => (
-                <ZoomableImage key={imagePath} src={imagePath} alt={`Product image`}/>
+                <ZoomableImage key={imagePath} src={imagePath}  alt={`Product image ${index + 1}`} />
+
             ))}
             <button
                 onClick={toggleImages}

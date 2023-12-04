@@ -23,6 +23,7 @@ type ProductTemplateProps = {
 const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, shippingFAQ, returnFAQ}) => {
     const info = useRef<HTMLDivElement>(null)
 
+
     const isDesktop = useBetterMediaQuery('(min-width: 1024px)');
     const isTabletAndSmaller = useBetterMediaQuery('(max-width: 1023px)');
 
@@ -33,14 +34,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
     const [imagePaths, setImagePaths] = useState([]);
 
 
-    // Function to update the selected color
+
     const handleColorChange = (color) => {
         setSelectedColor(color);
 
     };
 
+
     useEffect(() => {
-        // Only update the paths if a color is selected
+
         if (selectedColor) {
             const basePath = `${productImageDirectory}${selectedColor}/`;
             const updatedPaths = Array(5).fill(null).map((_, idx) => `${basePath}image${idx + 1}.jpg`);
