@@ -39,7 +39,7 @@ export default  function Header({className}: HeaderProps) {
 
     useEffect(() => {
         if (ctaVariant === 'test') {
-            setCtaState('Get your mask')
+            setCtaState('Grab Yours')
         }
     }, [ctaVariant])
 

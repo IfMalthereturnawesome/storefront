@@ -4,7 +4,7 @@
 .idea
 .vscode
 
-
+.idea/prettier.xml
 
 # dependencies
 /node_modules
