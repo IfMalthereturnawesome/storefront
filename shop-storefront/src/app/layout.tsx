@@ -75,6 +75,8 @@ export default function RootLayout({children}: RootLayoutProps) {
         </Suspense>
         <PHProvider>
 
+            <link rel="preload" href="https://region1.google-analytics.com"/>
+            <link rel="dns-prefetch" href="https://region1.google-analytics.com"/>
 
             <body
                 className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
