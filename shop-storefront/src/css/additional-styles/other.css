@@ -7,6 +7,17 @@
     text-underline-offset: 2px;
 }
 
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite
+}
+
 .milestone {
     position: relative;
     width: 100%;
