@@ -8,7 +8,7 @@ import {Analytics} from '@vercel/analytics/react';
 import {Metadata} from 'next';
 import BreakpointsIndicatorExtended from "@/components/helper/breakpointsExtended";
 import BreakpointsIndicator from "@/components/helper/breakpoints";
-import {Suspense} from "react";
+import React, {Suspense} from "react";
 import {PHProvider, PostHogPageview} from "./provider";
 
 const GTAG = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
@@ -54,7 +54,14 @@ type RootLayoutProps = {
 };
 
 function SearchBarFallback() {
-    return <>placeholder</>
+    return (
+        <div className="flex items-center justify-center h-screen ">
+            <div className="flex  items-center  justify-center lg:justify-start">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-8">
+                </div>
+            </div>
+        </div>
+    )
 }
 
 
