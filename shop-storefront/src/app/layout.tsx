@@ -53,7 +53,7 @@ type RootLayoutProps = {
 
 };
 
-function SearchBarFallback() {
+function Fallback() {
     return (
         <div className="flex items-center justify-center h-screen ">
             <div className="flex  items-center  justify-center lg:justify-start">
@@ -70,7 +70,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 
     return (
         <html lang="en" className="dark" style={{colorScheme: 'dark'}}>
-        <Suspense fallback={<SearchBarFallback/>}>
+        <Suspense fallback={<Fallback/>}>
             <PostHogPageview/>
         </Suspense>
         <PHProvider>
@@ -92,7 +92,7 @@ export default function RootLayout({children}: RootLayoutProps) {
                 </Providers>
             </ProvidersNextUI>
             <Analytics/>
-            <Suspense fallback={<SearchBarFallback/>}>
+            <Suspense fallback={<Fallback/>}>
                 <GoogleAnalytics GA_MEASUREMENT_ID={GTAG}/>
                 <CookieBanner/>
             </Suspense>

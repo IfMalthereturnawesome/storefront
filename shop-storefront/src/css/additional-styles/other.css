@@ -505,7 +505,13 @@ input:checked + .slider:before {
 }
 
 .black-gradient-background{
-    /*background-image: radial-gradient( circle 815px at 13.4% -24.8%, rgb(7, 22, 63) 2.2%, rgba(1,0,2,1) 100.2% );*/
-    background-image: radial-gradient( circle 815px at 23.4% -21.8%, rgb(9, 29, 86) 0.2%, rgb(3, 2, 3) 100.2% );
+    background-image: radial-gradient( circle 345px at 23.4% -11.8%, rgb(9, 29, 86) 0.2%, rgb(3, 2, 3) 100.2% );
 
+}
+
+/* mobile black-gradient-background */
+@media (min-width: 767px) {
+    .black-gradient-background{
+        background-image: radial-gradient( circle 815px at 23.4% -21.8%, rgb(9, 29, 86) 0.2%, rgb(3, 2, 3) 100.2% );
+    }
 }
