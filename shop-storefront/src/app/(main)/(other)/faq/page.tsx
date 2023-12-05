@@ -1,4 +1,3 @@
-import React from 'react'
 import { allHelp } from 'contentlayer/generated'
 import PostDate from '@/components/post-date'
 import Link from 'next/link'

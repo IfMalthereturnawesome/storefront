@@ -1,15 +1,14 @@
-import type { Metadata } from 'next';
 import { allTerms } from 'contentlayer/generated'; // change to your actual import path
 import PostDate from '@/components/post-date';
 import Link from 'next/link';
 import NeoButton from "@/components/elements/NeoButton";
 import Container from '@/components/elements/Container';
 
-export async function generateMetadata(): Promise<Metadata> {
-    return {
-        title: 'Terms and Policies',
-        description: 'Overview of all our terms and policies',
-    }
+
+
+export const metadata = {
+    title: 'Terms and Policies',
+    description: 'Overview of all our terms and policies',
 }
 
 export default function TermsIndex() {

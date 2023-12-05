@@ -22,12 +22,12 @@ const TopNav = () => {
                     </Link>
 
                 </li>
-                <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
-                    <Link href="/membership"
-                          className="text-xs font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
-                        Become a member
-                    </Link>
-                </li>
+                {/*<li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">*/}
+                {/*    <Link href="/membership"*/}
+                {/*          className="text-xs font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">*/}
+                {/*        Become a member*/}
+                {/*    </Link>*/}
+                {/*</li>*/}
 
                 <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
                     <Link href="/account"
@@ -63,12 +63,12 @@ export const TopNavMobile = ({setMobileMenuOpen}) => {
                     Track order
                 </Link>
             </li>
-            <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
-                <Link href="/membership" onClick={handleLinkClick}
-                      className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
-                    Become a member
-                </Link>
-            </li>
+            {/*<li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">*/}
+            {/*    <Link href="/membership" onClick={handleLinkClick}*/}
+            {/*          className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">*/}
+            {/*        Become a member*/}
+            {/*    </Link>*/}
+            {/*</li>*/}
 
             <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
                 <Link href="/account" onClick={handleLinkClick}
