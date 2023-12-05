@@ -8,8 +8,8 @@ import {Analytics} from '@vercel/analytics/react';
 import {Metadata} from 'next';
 import BreakpointsIndicatorExtended from "@/components/helper/breakpointsExtended";
 import BreakpointsIndicator from "@/components/helper/breakpoints";
-import { Suspense } from "react";
-import { PHProvider, PostHogPageview } from "./provider";
+import {Suspense} from "react";
+import {PHProvider, PostHogPageview} from "./provider";
 
 const GTAG = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
@@ -53,33 +53,42 @@ type RootLayoutProps = {
 
 };
 
+function SearchBarFallback() {
+    return <>placeholder</>
+}
+
+
 export default function RootLayout({children}: RootLayoutProps) {
 
 
     return (
-        <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
-        <Suspense fallback={""}>
-            <PostHogPageview />
+        <html lang="en" className="dark" style={{colorScheme: 'dark'}}>
+        <Suspense fallback={<SearchBarFallback/>}>
+            <PostHogPageview/>
         </Suspense>
         <PHProvider>
-        <GoogleAnalytics GA_MEASUREMENT_ID={GTAG}/>
-        <body
-            className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
-        >
-        {/*<BreakpointsIndicatorExtended />*/}
-        {/*<BreakpointsIndicator/>*/}
-        <ProvidersNextUI>
-            <Providers>
-                <div
-                    className="flex md:border-2  border-black dark:border-[#FEE7B3] min-h-screen flex-col overflow-hidden bg-mask-black ">
-                    {children}
-                </div>
-            </Providers>
-        </ProvidersNextUI>
-        <Analytics/>
 
-        <CookieBanner/>
-        </body>
+
+            <body
+                className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
+            >
+            {/*<BreakpointsIndicatorExtended />*/}
+            {/*<BreakpointsIndicator/>*/}
+            <ProvidersNextUI>
+                <Providers>
+                    <div
+                        className="flex md:border-2  border-black dark:border-[#FEE7B3] min-h-screen flex-col overflow-hidden bg-mask-black ">
+                        {children}
+                    </div>
+                </Providers>
+            </ProvidersNextUI>
+            <Analytics/>
+            <Suspense fallback={<SearchBarFallback/>}>
+                <GoogleAnalytics GA_MEASUREMENT_ID={GTAG}/>
+                <CookieBanner/>
+            </Suspense>
+
+            </body>
         </PHProvider>
         </html>
     );
