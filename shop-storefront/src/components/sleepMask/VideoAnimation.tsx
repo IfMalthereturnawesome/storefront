@@ -581,7 +581,7 @@ const VideoAnimation: React.FC<VideoAnimationProps> = ({product, description1, d
                             {showDescription && (
                                 <div
                                     className="md:px-[10vw] lg:px-[16vw] xl:px-[20vw] 2xl:px-[24vw] xlarge:px-[26vw] xxlarge:px-[27.5vw] 3xl:px-[29vw]"
-                                    data-aos="fade-up">
+                                   >
                                     <p className="text-[#e7ecef] mx-auto text-lg xs:text-2xl large:text-[1.33rem] 2xl:text-[1.37rem] xxlarge:text-[1.4rem] 3xl:text-2xl font-semibold font-sans !leading-normal tracking-wide text-center">
                                         <span ref={descriptionRef1}
                                               className="text-[#e7ecef] inline">{description1}</span>
