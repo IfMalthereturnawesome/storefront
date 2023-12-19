@@ -11,7 +11,7 @@ import BreakpointsIndicator from "@/components/helper/breakpoints"
 import React, { Suspense } from "react"
 import { PHProvider, PostHogPageview } from "./provider"
 import Script from "next/script"
-
+import { SpeedInsights } from '@vercel/speed-insights/next';
 const GTAG = process.env.NEXT_PUBLIC_MEASUREMENT_ID
 
 const inter = Inter({
@@ -104,6 +104,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <GoogleAnalytics GA_MEASUREMENT_ID={GTAG} />
             <CookieBanner />
           </Suspense>
+          <SpeedInsights />
           <noscript
             dangerouslySetInnerHTML={{
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTAG}" height="0" width="0" style="display: none; visibility: hidden;"></iframe>`,
