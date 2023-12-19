@@ -9,6 +9,14 @@ import Highlighter, {HighlighterItem} from "@/components/highlighter/highlighter
 import FeatureImg01 from '../../public/images/eight-athletics-sleep-resources-blog.png';
 import Header from "@/components/ui/Header";
 
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Page Not Found - 404",
+    description: "Page Not Found",
+}
+
+
 
 export default function NotFound() {
 
