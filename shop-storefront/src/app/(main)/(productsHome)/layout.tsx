@@ -11,7 +11,6 @@ export default function PageLayout({
 
     return (
         <>
-            <link rel="preload" href="https://cdn.jsdelivr.net"/>
             <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
 
             <div className="flex flex-col min-h-screen">
