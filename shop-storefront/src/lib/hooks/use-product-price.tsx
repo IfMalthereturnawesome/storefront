@@ -1,7 +1,6 @@
 import { formatAmount, useCart, useProducts } from "medusa-react"
 import { useEffect, useMemo } from "react"
 import { CalculatedVariant } from "types/medusa"
-import {getLocaleForRegion} from "@/utils/hooks/localeUtils";
 
 type useProductPriceProps = {
   id: string
@@ -10,14 +9,13 @@ type useProductPriceProps = {
 
 const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
   const { cart } = useCart()
-  const locale = getLocaleForRegion(cart?.region?.name) || "en-US";
 
   const { products, isLoading, isError, refetch } = useProducts(
-    {
-      id: id,
-      cart_id: cart?.id,
-    },
-    { enabled: !!cart?.id && !!cart?.region_id }
+      {
+        id: id,
+        cart_id: cart?.id,
+      },
+      { enabled: !!cart?.id && !!cart?.region_id }
   )
 
   useEffect(() => {
@@ -51,22 +49,16 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         amount: cheapestVariant.calculated_price,
         region: cart.region,
         includeTaxes: false,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-        locale: locale,
       }),
       original_price: formatAmount({
         amount: cheapestVariant.original_price,
         region: cart.region,
         includeTaxes: false,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-        locale: locale,
       }),
       price_type: cheapestVariant.calculated_price_type,
       percentage_diff: getPercentageDiff(
-        cheapestVariant.original_price,
-        cheapestVariant.calculated_price
+          cheapestVariant.original_price,
+          cheapestVariant.calculated_price
       ),
     }
   }, [product, cart?.region])
@@ -77,7 +69,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
     }
 
     const variant = product.variants.find(
-      (v) => v.id === variantId || v.sku === variantId
+        (v) => v.id === variantId || v.sku === variantId
     ) as unknown as CalculatedVariant
 
     if (!variant) {
@@ -89,22 +81,16 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         amount: variant.calculated_price,
         region: cart.region,
         includeTaxes: false,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-        locale: locale,
       }),
       original_price: formatAmount({
         amount: variant.original_price,
         region: cart.region,
         includeTaxes: false,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-        locale: locale,
       }),
       price_type: variant.calculated_price_type,
       percentage_diff: getPercentageDiff(
-        variant.original_price,
-        variant.calculated_price
+          variant.original_price,
+          variant.calculated_price
       ),
     }
   }, [product, variantId, cart?.region])
