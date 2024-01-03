@@ -29,10 +29,10 @@ export default function GoogleAnalytics({GA_MEASUREMENT_ID}: { GA_MEASUREMENT_ID
                 gtag('js', new Date());
 
                 gtag('consent', 'default', {
-                    'ad_storage': 'denied',
-                    'ad_user_data': 'denied',
-                    'ad_personalization': 'denied',
-                    'analytics_storage': 'denied'
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
                 });
                 
                 gtag('config', '${GA_MEASUREMENT_ID}', {

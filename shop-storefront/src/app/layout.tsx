@@ -12,7 +12,10 @@ import React, { Suspense } from "react"
 import { PHProvider, PostHogPageview } from "./provider"
 import Script from "next/script"
 import { SpeedInsights } from '@vercel/speed-insights/next';
+
+
 const GTAG = process.env.NEXT_PUBLIC_MEASUREMENT_ID
+const GTM = process.env.NEXT_PUBLIC_GTM
 
 const inter = Inter({
   subsets: ["latin"],
@@ -78,7 +81,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-TRH2KS6X');
+        })(window,document,'script','dataLayer','${GTM}');
         `}
       </Script>
       <Suspense fallback={<Fallback />}>

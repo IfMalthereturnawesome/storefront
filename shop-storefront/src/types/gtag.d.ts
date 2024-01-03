@@ -7,4 +7,5 @@ interface Gtag {
 
 interface Window {
     gtag: Gtag;
+    dataLayer: any[];
 }

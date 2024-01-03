@@ -14,6 +14,7 @@ import React, {
 import { Variant } from "types/medusa"
 import { useStore } from "./store-context"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
+import useProductPrice from "@lib/hooks/use-product-price";
 
 interface ProductContext {
   formattedPrice: string
@@ -49,6 +50,7 @@ export const ProductProvider = ({
   const { cart } = useCart()
 
   const variants = product?.variants ? (product.variants as unknown as Variant[]) : [];
+
   useEffect(() => {
     // initialize the option state
     const optionObj: Record<string, string> = {}
@@ -88,6 +90,8 @@ export const ProductProvider = ({
     return variants.find((v) => v.id === variantId)
   }, [options, variantRecord, variants])
 
+  const price = useProductPrice({ id: product.id!, variantId: variant?.id })
+
   // if product only has one variant, then select it
   useEffect(() => {
     if (variants.length === 1) {
@@ -121,14 +125,63 @@ export const ProductProvider = ({
     setOptions({ ...options, ...update })
   }
 
+  const parsePrice = (priceString) => {
+    const numericPart = priceString.replace(/[^0-9.-]+/g, "");
+    return parseFloat(numericPart);
+  };
+
+  const selectedPrice = useMemo(() => {
+    const { variantPrice, cheapestPrice } = price;
+
+    // Assuming variantPrice and cheapestPrice contain the price string
+    const calculatedPrice = variantPrice ? parsePrice(variantPrice.calculated_price) :
+        cheapestPrice ? parsePrice(cheapestPrice.calculated_price) :
+            0;
+
+    return { ...variantPrice, calculated_price: calculatedPrice };
+  }, [price]);
+
   const addToCart = () => {
     if (variant) {
       addItem({
         variantId: variant.id,
         quantity,
-      })
+      });
+
+      // Clear the previous ecommerce object in the dataLayer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ ecommerce: null });
+
+      // Find the price for the current region
+      const regionCurrency = cart?.region.currency_code || "dkk";
+      const variantPrice = variant.prices.find(price => price.currency_code === regionCurrency);
+      const unitPrice = variantPrice ? variantPrice.amount / 100 : 0;
+
+      const [colorOption, sizeOption] = variant.title.split('/').map(s => s.trim());
+
+
+      // Prepare the ecommerce data for the dataLayer
+      const ecommerceData = {
+        event: "add_to_cart",
+        ecommerce: {
+          currency: regionCurrency,
+          value: selectedPrice.calculated_price * quantity, // Total value for the quantity added
+          items: [{
+            item_id: variant.id, // Variant ID or product ID
+            item_name: product.title, // Product title
+            item_category: product.collection?.title,
+            item_variant: colorOption, // Extracted color variant
+            item_dimension: sizeOption, // Extracted size dimension
+            price: selectedPrice.calculated_price, // Unit price
+            quantity: quantity, // Quantity added to cart
+          }]
+        }
+      };
+      // Push the ecommerce event to the dataLayer
+      window.dataLayer.push(ecommerceData);
     }
-  }
+  };
+
 
   const increaseQuantity = () => {
     const maxQuantity = variant?.inventory_quantity || 0

@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
         api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
         capture_pageview: false,
-        opt_out_capturing_by_default: true,
+        opt_out_capturing_by_default: false,
     });
 }
 

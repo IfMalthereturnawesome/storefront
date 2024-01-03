@@ -16,13 +16,14 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   const tabs = useMemo(() => {
     return [
       {
-        label: "Product Information",
-        component: <ProductInfoTab product={product} />,
-      },
-      {
         label: "Shipping & Returns",
         component: <ShippingInfoTab />,
       },
+      {
+        label: "Product Information",
+        component: <ProductInfoTab product={product} />,
+      }
+
     ]
   }, [product])
 
@@ -60,7 +61,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <Tab.Panel className="text-small-regular py-8">
+    <Tab.Panel className="text-base-regular py-8">
       <div className="grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4 text-slate-12">
           <div>
@@ -102,7 +103,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 
 const ShippingInfoTab = () => {
   return (
-    <Tab.Panel className="text-small-regular py-8">
+    <Tab.Panel className="text-base-regular py-8">
       <div className="grid grid-cols-1 gap-y-8 text-slate-12">
         <div className="flex items-start gap-x-2">
           <Image src={"/images/free-shipping-icon.svg"} alt={"Free shipping icon"} width={16} height={16}

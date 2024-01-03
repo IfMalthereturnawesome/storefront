@@ -147,7 +147,7 @@ export function ProductNavPop() {
 
 
             <div className="p-4">
-                <Link href="/product">
+                <Link href="/products/sleep-mask-one">
                     <h3
                         className="m-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-2xl font-bold
   text-transparent transition duration-500
@@ -231,7 +231,7 @@ export function ProductNavMobile({setMobileMenuOpen}) {
                         />
                     </Disclosure.Button>
                     <Disclosure.Panel className="mt-2 space-y-2">
-                        <Link href="/product">
+                        <Link href="/products/sleep-mask-one">
                             <h3
                                 className=" m-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 
