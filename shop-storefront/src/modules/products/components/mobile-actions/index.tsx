@@ -153,9 +153,11 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   <div className="flex justify-end items-start w-full px-2">
                     <button
                         onClick={close}
-                        className="bg-cyan-1 w-12 h-12 rounded-full text-slate-12 flex justify-center items-center" // Close button styling
+                        className=" w-full h-12  text-slate-12 flex justify-end items-center pr-2" // Close button styling
                     >
+                      <div className={"bg-cyan-1 p-3 rounded-full"}>
                       <X />
+                      </div>
                     </button>
                   </div>
 
