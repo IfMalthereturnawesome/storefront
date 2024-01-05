@@ -94,52 +94,52 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*DESKTOP START */}
 
-            {/*<div className={"hidden lg:block font-poppins bg-black"}>*/}
+            <div className={"hidden lg:block font-poppins bg-black"}>
 
 
 
-            {/*    <DoubleImageSection*/}
-            {/*        headerLine1={"Greet each day with "}*/}
-            {/*        headerLine2={"undivided focus."}*/}
-            {/*        descriptionText={"It’s all about waking up feeling on top of the world — awake, alert, and ready to take charge. Slip on the Sleep Mask One, and you’re choosing the champion's path to restful nights. Sleep through the night undisturbed and wake up to a brighter morning, every day."}*/}
-            {/*        image1Src={"/images/greeteveryday.jpg"}*/}
-            {/*        image2Src={"/images/swimming.jpg"}*/}
-            {/*    />*/}
+                <DoubleImageSection
+                    headerLine1={"Greet each day with "}
+                    headerLine2={"undivided focus."}
+                    descriptionText={"It’s all about waking up feeling on top of the world — awake, alert, and ready to take charge. Slip on the Sleep Mask One, and you’re choosing the champion's path to restful nights. Sleep through the night undisturbed and wake up to a brighter morning, every day."}
+                    image1Src={"/images/greeteveryday.jpg"}
+                    image2Src={"/images/swimming.jpg"}
+                />
 
-            {/*    <FaceStory*/}
-            {/*        headline="Thousands of unique faces, one perfect fit."*/}
-            {/*        // descriptionOne="Designed using 4,000 face scans, Sleep Mask One fits perfectly, assuring total darkness and all-night comfort for every sleeper."*/}
-            {/*    />*/}
-
-
-            {/*    <ZoomImageSection imageSrc={"/images/increase-melatonin-production.jpg"}*/}
-            {/*                      headerLine1={"Increase melatonin production."}*/}
-            {/*                      bigDescriptionText={"Can you see your hand in your bedroom?"}*/}
-            {/*                      descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality. Experience the difference of a truly dark sleeping environment."}/>*/}
+                <FaceStory
+                    headline="Thousands of unique faces, one perfect fit."
+                    // descriptionOne="Designed using 4,000 face scans, Sleep Mask One fits perfectly, assuring total darkness and all-night comfort for every sleeper."
+                />
 
 
-            {/*    <WrappedComponent/>*/}
+                <ZoomImageSection imageSrc={"/images/increase-melatonin-production.jpg"}
+                                  headerLine1={"Increase melatonin production."}
+                                  bigDescriptionText={"Can you see your hand in your bedroom?"}
+                                  descriptionText={"Exposure to even dim light during sleep can suppress melatonin production and disrupt sleep quality. Experience the difference of a truly dark sleeping environment."}/>
 
-            {/*    <MaximumComfortMeetsTotalBlackout/>*/}
 
-            {/*    /!*<HeaderOverlayOnImage*!/*/}
-            {/*    /!*    imageUrl="/images/test-images-for-feature2.jpg"*!/*/}
-            {/*    /!*    line1="Made for "*!/*/}
-            {/*    /!*    line2="side sleepers"*!/*/}
-            {/*    /!*    line3="by side sleepers"*!/*/}
-            {/*    /!*    textPosition={"left"}*!/*/}
-            {/*    /!*//*/}
-            {/*    /!*<HeaderOverlayOnImage*!/*/}
-            {/*    /!*    imageUrl="/images/swimming.jpg"*!/*/}
-            {/*    /!*    line1="Experience"*!/*/}
-            {/*    /!*    line2="weightless comfort"*!/*/}
-            {/*    /!*    line3="in total darkness"*!/*/}
-            {/*    /!*    textPosition={"right"}*!/*/}
-            {/*    /!*//*/}
+                <WrappedComponent/>
 
-            {/*</div>*/
+                <MaximumComfortMeetsTotalBlackout/>
 
-            {/*DESKTOP END*/} }
+                {/*<HeaderOverlayOnImage*/}
+                {/*    imageUrl="/images/test-images-for-feature2.jpg"*/}
+                {/*    line1="Made for "*/}
+                {/*    line2="side sleepers"*/}
+                {/*    line3="by side sleepers"*/}
+                {/*    textPosition={"left"}*/}
+                {/*/>*/}
+                {/*<HeaderOverlayOnImage*/}
+                {/*    imageUrl="/images/swimming.jpg"*/}
+                {/*    line1="Experience"*/}
+                {/*    line2="weightless comfort"*/}
+                {/*    line3="in total darkness"*/}
+                {/*    textPosition={"right"}*/}
+                {/*/>*/}
+
+            </div>
+
+            {/*DESKTOP END*/}
 
             {/*MOBILE START */}
 
