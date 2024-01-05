@@ -131,6 +131,7 @@ const MaskSequence: React.FC = () => {
     }, [])
 
     return (
+
         <div className="m-0 p-0">
             <div className="canvas-container h-[35vh] md:h-[50vh] xl:min-h-[45vh] 2xl:min-h-[50vh] 3xl:min-h-[61vh] ">
                 <canvas ref={canvasRefVideo} id="hero-lightpass" style={{willChange: "transform"}}
@@ -138,6 +139,7 @@ const MaskSequence: React.FC = () => {
 
             </div>
         </div>
+
     );
 
 };

@@ -20,7 +20,9 @@ const MobileHeaderOverlayOnImage = dynamic(() => import('@/components/sleepMask/
 const MobileHeaderOverlayOnImageRight = dynamic(() => import('@/components/sleepMask/mobile/HeaderOverlayMobileRight'));
 const ProductInfoSection = dynamic(() => import('@/components/productPageTemplates/ProductInfoSection'));
 const ProductChoice = dynamic(() => import('@/components/sleepMask/ProductChoice'));
+const MaskSequence = dynamic(() => import('@/components/sleepMask/MaskSequence'));
 import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
+import Image from "next/image";
 
 
 type ProductsTemplate = {
@@ -83,13 +85,14 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
         <ProductProvider product={product}>
 
             <div className="font-poppins bg-mask-black">
-                <VideoAnimation
-                    product={"Sleep Mask One"}
-                    description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
-                    // description2={"Custom-fit for your unique face. "}
-                    description2={"Tailored for all face shapes and sizes. "}
-                    description3={"Elevate your peak performance, no matter where you are and how you sleep."}
-                />
+                {/*<VideoAnimation*/}
+                {/*    product={"Sleep Mask One"}*/}
+                {/*    description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}*/}
+                {/*    // description2={"Custom-fit for your unique face. "}*/}
+                {/*    description2={"Tailored for all face shapes and sizes. "}*/}
+                {/*    description3={"Elevate your peak performance, no matter where you are and how you sleep."}*/}
+                {/*/>*/}
+                <MaskSequence/>
             </div>
 
             {/*DESKTOP START */}
@@ -145,7 +148,18 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             <div className={"lg:hidden block font-poppins"}>
 
+                <div className="m-0 p-0">
 
+                    <div
+                        className="canvas-container h-[35vh] md:h-[50vh] ">
+                        <Image src="/images/sequence/sleepmask_014.png" alt="hero-mobile"
+                               width={375}
+                               height={600} quality={100}
+                               className={"object-contain max-h-[40vh]  2xs:max-h-[48vh] mt-[21vh] 2xs:mt-[19vh] max-w-[92vw] 2xs:max-w-[96vw] md:max-h-[50vh]  md:mt-[12vh] md:max-w-[100vw]"}/>
+
+                    </div>
+
+                </div>
                 <MobileDoubleImageSection
                     headerLine1={"Greet each day with "}
                     headerLine2={"undivided focus."}
