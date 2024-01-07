@@ -4,6 +4,7 @@ import React from "react"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 
 import VideoAnimation from "@/components/sleepMask/VideoAnimation";
+import Hero from "@/components/sleepMask/Hero";
 const FaceStory = dynamic(() => import('@/components/sleepMask/FaceStory'));
 const DoubleImageSection = dynamic(() => import('@/components/sleepMask/imageSections/DoubleImageSection'));
 const MobileDoubleImageSection = dynamic(() => import('@/components/sleepMask/mobile/MobileDoubleImageSection'));
@@ -83,12 +84,13 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
         <ProductProvider product={product}>
 
             <div className="font-poppins bg-mask-black">
-                <VideoAnimation
+                <Hero
                     product={"Sleep Mask One"}
-                    description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
+                    description1={"Elevate your peak performance, no matter where you are and how you sleep."}
+                    description2={""}
                     // description2={"Custom-fit for your unique face. "}
-                    description2={"Tailored for all face shapes and sizes. "}
-                    description3={"Elevate your peak performance, no matter where you are and how you sleep."}
+                    // description2={"Tailored for all face shapes and sizes. "}
+                    description3={""}
                 />
             </div>
 

@@ -509,6 +509,11 @@ input:checked + .slider:before {
 
 }
 
+.black-gradient-background-reviews{
+    background-image: radial-gradient( circle 815px at 23.4% -31.8%, rgb(9, 29, 86) 0.2%, rgb(3, 2, 3) 100.2% );
+
+}
+
 /* mobile black-gradient-background */
 @media (min-width: 767px) {
     .black-gradient-background{
