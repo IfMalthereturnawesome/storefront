@@ -16,6 +16,7 @@ import SizeOptionSelect from "../option-select/SizeOptionSelect"
 import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect"
 import SizeGuideMobile from "@modules/products/components/size-guide/SizeGuideMobile"
 import AddToCartButton from "@/components/elements/AddToCart"
+import VisiterCounter from "@/components/sleepMask/VisiterCounter";
 
 import { useStore } from "@lib/context/store-context"
 
@@ -217,11 +218,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({
 
   return (
     <div className="flex flex-col  gap-y-2 ">
-      <div className="order-2 lg:order-1">
+      <div className="order-1 lg:order-1">
+        <VisiterCounter />
         {product.collection && (
-          <p className="text-small-regular w-fit mb-1 text-slate-11">
-            {product.collection.title}
-          </p>
+            <p className="text-small-regular w-fit mb-1 text-slate-11">
+              {product.collection.title}
+            </p>
+
           // <Link
           //     href={`/collections/${product.collection.handle}`}
           //     className="text-small-regular w-fit mb-1 text-slate-11"
@@ -229,9 +232,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({
           //     {product.collection.title}
           // </Link>
         )}
-        <h2 className="text-3xl header-bg-clip my-2 lg:my-2 font-bold ">
-          {product.title}
+        <h2 className="text-3xl inline header-bg-clip my-2 lg:my-2 font-bold ">
+          {product.title} {" "}
         </h2>
+        <h2 className="text-3xl inline text-slate-12 my-2 lg:my-2 font-bold ">
+          {"stays comfortable the whole night"}
+        </h2>
+
         <p className="text-base-regular text-slate-12 mb-3 lg:mb-0 ">
           {product.description}
         </p>
@@ -295,41 +302,41 @@ const ProductActions: React.FC<ProductActionsProps> = ({
 
       <div className={"order-3 lg:order-3"}>
         {selectedPrice && (
-            <div className="flex flex-col gap-y-2">
-              <div className="flex items-center justify-between">
-                {/* Sale Price (if applicable) */}
+          <div className="flex flex-col gap-y-2">
+            <div className="flex items-center justify-between">
+              {/* Sale Price (if applicable) */}
+              {selectedPrice.price_type === "sale" && (
+                <span className="text-lg text-gray-800 dark:text-gray-300">
+                  Was <span className="line-through"> {initialUnitPrice}</span>
+                </span>
+              )}
+
+              {/* Discount Label */}
+              {selectedPrice.price_type === "sale" && (
+                <span className="bg-red-10 text-red-100 text-sm font-semibold px-2 py-1 rounded">
+                  {percentageDiff + 1}% OFF
+                </span>
+              )}
+            </div>
+
+            {/* Current Price */}
+            <div className="flex items-center justify-between">
+              <span
+                className={clsx("font-bold text-2xl lg:text-3xl", {
+                  "text-red-10": selectedPrice.price_type === "sale",
+                  "text-slate-12": selectedPrice.price_type === "default",
+                })}
+              >
+                {/* "Now" prefix if the product is on sale */}
                 {selectedPrice.price_type === "sale" && (
-                    <span className="text-lg text-gray-800 dark:text-gray-300">
-            Was <span className="line-through"> {initialUnitPrice}</span>
-          </span>
+                  <span className={"font-normal"}>Sale </span>
                 )}
-
-                {/* Discount Label */}
-                {selectedPrice.price_type === "sale" && (
-                    <span className="bg-red-10 text-red-100 text-sm font-semibold px-2 py-1 rounded">
-            {percentageDiff + 1}% OFF
-          </span>
-                )}
-
-
-              </div>
-
-              {/* Current Price */}
-              <div className="flex items-center justify-between">
-        <span className={clsx("font-bold text-2xl lg:text-3xl", {
-          "text-red-10": selectedPrice.price_type === "sale",
-          "text-slate-12": selectedPrice.price_type === "default",
-        })}>
-          {/* "Now" prefix if the product is on sale */}
-          {selectedPrice.price_type === "sale" && <span className={"font-normal"}>Sale </span>}
-          {selectedPrice.calculated_price}
-        </span>
-                <span className="bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 mb-4 rounded">
-          Free Shipping
-            </span>
-              </div>
-
-
+                {selectedPrice.calculated_price}
+              </span>
+              <span className="bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 mb-4 rounded">
+                Free Shipping
+              </span>
+            </div>
 
             {isBothSelected && (
               <>
