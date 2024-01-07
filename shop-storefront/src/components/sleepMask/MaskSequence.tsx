@@ -76,7 +76,7 @@ const MaskSequence: React.FC = () => {
 
 
                     scrollTrigger: {
-                        trigger: ".pin-video",
+                        // trigger: ".pin-video",
                         start: "top",
                         end: "+=50%",
                         scrub: true,

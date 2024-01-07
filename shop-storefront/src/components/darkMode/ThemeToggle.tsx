@@ -30,9 +30,21 @@ export const ThemeToggle = () => {
             themeToggleLightIcon.classList.toggle('hidden');
         };
 
-        // Set the initial theme and tooltip content
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark' || !currentTheme) {
+        // Set the initial theme and tooltip content based on system preference
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme) {
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                setTooltipContent('Toggle light mode');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                setTooltipContent('Toggle dark mode');
+            }
+        } else if (prefersDarkMode) {
             document.documentElement.classList.add('dark');
             themeToggleLightIcon.classList.remove('hidden');
             setTooltipContent('Toggle light mode');

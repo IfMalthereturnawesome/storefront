@@ -131,7 +131,7 @@ export default function CookieBanner() {
               <Image
                 height={400}
                 width={300}
-                quality={92}
+                quality={85}
                 src="/images/ursulla-cookie-banner-arrow.png"
                 alt="Ursulla Cookie Banner"
                 className="w-[50%] h-full lg:w-[90%] object-cover "

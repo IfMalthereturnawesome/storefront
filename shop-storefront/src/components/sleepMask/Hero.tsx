@@ -102,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ product, description1, description2, descri
                     {showSmallDreamText && (
                         <div ref={smallDreamRef}
                              className="flex items-center justify-center text-[#e7ecef] text-opacity-50 font-bold text-xs 2xs:text-sm xs:text-lg sm:text-xl lg:text-2xl ">
-                            Don't let unwanted light spoil your night.
+                            Don&apos;t let unwanted light spoil your night.
 
                         </div>
                     )}
