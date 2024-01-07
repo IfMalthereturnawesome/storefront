@@ -4,18 +4,18 @@ const VisitorCounter = () => {
     const [visitorCount, setVisitorCount] = useState(null);
 
     useEffect(() => {
-        // Function to get or generate the visitor count
+
         const getOrInitializeVisitorCount = () => {
             let count = localStorage.getItem('currentVisitors');
             if (count) {
                 setVisitorCount(parseInt(count, 10));
             } else {
-                // Generate a new random count between 3 and 15 and increment by 1
+
                 const initialCount = Math.floor(Math.random() * 13) + 3;
                 setVisitorCount(initialCount);
                 localStorage.setItem('currentVisitors', initialCount.toString());
 
-                // Wait for a little while before incrementing the count by 1
+
                 setTimeout(() => {
                     const incrementedCount = initialCount + 1;
                     setVisitorCount(incrementedCount);
@@ -27,7 +27,6 @@ const VisitorCounter = () => {
         getOrInitializeVisitorCount();
     }, []);
 
-    // If visitorCount has not been set, do not display the component yet
     if (visitorCount === null) {
         return null;
     }

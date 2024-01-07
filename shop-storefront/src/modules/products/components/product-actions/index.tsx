@@ -19,6 +19,7 @@ import AddToCartButton from "@/components/elements/AddToCart"
 import VisiterCounter from "@/components/sleepMask/VisiterCounter";
 
 import { useStore } from "@lib/context/store-context"
+import ReviewsComponent from "@/components/sleepMask/ReviewsDisplay";
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -217,29 +218,30 @@ const ProductActions: React.FC<ProductActionsProps> = ({
 
 
   return (
-    <div className="flex flex-col  gap-y-2 ">
+    <div className="flex flex-col lg:gap-y-2 ">
       <div className="order-1 lg:order-1">
         <VisiterCounter />
-        {product.collection && (
-            <p className="text-small-regular w-fit mb-1 text-slate-11">
-              {product.collection.title}
-            </p>
+        {/*{product.collection && (*/}
+        {/*    <p className="text-small-regular w-fit mb-1 text-slate-11">*/}
+        {/*      {product.collection.title}*/}
+        {/*    </p>*/}
 
-          // <Link
-          //     href={`/collections/${product.collection.handle}`}
-          //     className="text-small-regular w-fit mb-1 text-slate-11"
-          // >
-          //     {product.collection.title}
-          // </Link>
-        )}
+        {/*  // <Link*/}
+        {/*  //     href={`/collections/${product.collection.handle}`}*/}
+        {/*  //     className="text-small-regular w-fit mb-1 text-slate-11"*/}
+        {/*  // >*/}
+        {/*  //     {product.collection.title}*/}
+        {/*  // </Link>*/}
+        {/*)}*/}
         <h2 className="text-3xl inline header-bg-clip my-2 lg:my-2 font-bold ">
           {product.title} {" "}
         </h2>
         <h2 className="text-3xl inline text-slate-12 my-2 lg:my-2 font-bold ">
           {"stays comfortable the whole night"}
         </h2>
+        <ReviewsComponent rating={4.6} reviewCount={32} />
 
-        <p className="text-base-regular text-slate-12 mb-3 lg:mb-0 ">
+        <p className="text-base-regular text-slate-12 lg:mb-0 ">
           {product.description}
         </p>
       </div>
