@@ -13,7 +13,7 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
     const [activeTab, setActiveTab] = useState<'chart' | 'measure'>('chart');
 
     useEffect(() => {
-        // Accessing `document` inside useEffect to ensure it's client-side
+
         const mobileActions = document.getElementById('mobile-actions');
         const header = document.getElementById('header_1');
         const body = document.querySelector('body');
@@ -29,7 +29,7 @@ const SizeGuideMobile: React.FC<SizeGuideModalProps> = ({isOpen, onClose}) => {
             body.style.overflow = '';
         }
 
-        // Optional: Return a cleanup function to reset the opacity when the component unmounts
+
         return () => {
             if (mobileActions && header) {
                 mobileActions.style.opacity = '1';

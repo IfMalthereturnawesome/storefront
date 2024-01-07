@@ -22,7 +22,7 @@ const MobileHeaderOverlayOnImageRight = dynamic(() => import('@/components/sleep
 const ProductInfoSection = dynamic(() => import('@/components/productPageTemplates/ProductInfoSection'));
 const ProductChoice = dynamic(() => import('@/components/sleepMask/ProductChoice'));
 import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
-
+import DiscoverSleepMaskSection from '@/components/sleepMask/DiscoverSection';
 
 type ProductsTemplate = {
     product: PricedProduct
@@ -93,6 +93,12 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
                     description3={""}
                 />
             </div>
+
+
+            <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}
+                                returnFAQ={returnsFAQ}/>
+
+            <DiscoverSleepMaskSection />
 
             {/*DESKTOP START */}
 
@@ -193,9 +199,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*MOBILE END */}
 
-            <div className={"h-[2rem] lg:hidden"}> </div>
-            <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}
-                                returnFAQ={returnsFAQ}/>
+
             {/*
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>
