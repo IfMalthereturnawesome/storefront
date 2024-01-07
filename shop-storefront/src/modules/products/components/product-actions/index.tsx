@@ -20,6 +20,7 @@ import VisiterCounter from "@/components/sleepMask/VisiterCounter";
 
 import { useStore } from "@lib/context/store-context"
 import ReviewsComponent from "@/components/sleepMask/ReviewsDisplay";
+import FeaturesList from "@/components/sleepMask/FeatureList";
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -240,7 +241,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
           {"stays comfortable the whole night"}
         </h2>
         <ReviewsComponent rating={4.6} reviewCount={32} />
-
+        <FeaturesList productMetadata={product.metadata} />
         <p className="text-base-regular text-slate-12 lg:mb-0 ">
           {product.description}
         </p>
