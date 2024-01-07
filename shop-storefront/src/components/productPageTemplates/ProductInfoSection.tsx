@@ -76,14 +76,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                         <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
                             <div style={{minHeight: 'calc(100vh - 64px)'}}>
                                 <div
-                                    className="relative lg:sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-14 flex flex-col gap-y-12"
+                                    className="relative lg:sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-8 flex flex-col gap-y-12"
                                 >
                                     <ProductInfo product={product} onColorChange={handleColorChange}/>
-                                    <ProductTabs product={product}/>
+
                                 </div>
                             </div>
                         </div>
+
                     </div>
+                    <ProductTabs product={product}/>
                     <ProductFAQ productFAQ={productFAQ} shippingFAQ={shippingFAQ} returnFAQ={returnFAQ}/>
                 </div>
 

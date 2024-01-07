@@ -54,7 +54,7 @@ export default function Timeline() {
                 <div className="pl-2">
                   <div className="font-architects-daughter text-xl text-purple-600 mb-2">Launch</div>
                   <div className="flex items-center mb-3">
-                    <div className="absolute left-0 inline-flex text-sm font-semibold py-1 px-3 text-green-600 bg-green-200 rounded-full">2023 Q3</div>
+                    <div className="absolute left-0 inline-flex text-sm font-semibold py-1 px-3 text-green-600 bg-green-200 rounded-full">2023 Q4</div>
                     <h4 className="h4 text-slate-12">Eight Athletics Sleep Mask Launched</h4>
                   </div>
                   <p className="text-lg text-slate-11">Official market launch of the Eight Athletics sleep mask designed for athletes.</p>

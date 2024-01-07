@@ -1,12 +1,6 @@
 import { Tab } from "@headlessui/react"
-import { Product } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
-import Back from "@modules/common/icons/back"
-import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
-import clsx from "clsx"
 import React, { useMemo } from "react"
-import Image from "next/image";
 
 type ProductTabsProps = {
   product: PricedProduct
@@ -26,130 +20,111 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
     ]
   }, [product])
-
   return (
-    <div>
-      <Tab.Group>
-        <Tab.List className="border-b border-gray-200 dark:border-gray-800 box-border grid grid-cols-2">
-          {tabs.map((tab, i) => {
-            return (
-              <Tab
-                key={i}
-                className={({ selected }) =>
-                  clsx(
-                    "text-left uppercase text-slate-12 text-small-regular pb-2 -mb-px border-b border-gray-200 dark:border-gray-800 transition-color duration-150 ease-in-out",
-                    {
-                      "border-b border-slate-12 dark:border-slate-400": selected,
+      <div className="w-full py-4">
+        <Tab.Group>
+          <Tab.List className="flex divide-x">
+            {tabs.map((tab, i) => (
+                <Tab
+                    key={i}
+                    className={({ selected }) =>
+                        `flex-1 text-center  text-sm py-2 
+                 ${selected ? 'border-b-2 border-gray-200' : 'border-b-2 border-transparent'}`
                     }
-                  )
-                }
-              >
-                {tab.label}
-              </Tab>
-            )
-          })}
-        </Tab.List>
-        <Tab.Panels>
-          {tabs.map((tab, j) => {
-            return <div key={j}>{tab.component}</div>
-          })}
-        </Tab.Panels>
-      </Tab.Group>
-    </div>
-  )
-}
-
-const ProductInfoTab = ({ product }: ProductTabsProps) => {
+                >
+                  {tab.label}
+                </Tab>
+            ))}
+          </Tab.List>
+          <Tab.Panels>
+            {tabs.map((tab, j) => {
+              return <div key={j}>{tab.component}</div>
+            })}
+          </Tab.Panels>
+        </Tab.Group>
+      </div>
+  );
+};
+const ProductInfoTab = ({ product }) => {
   return (
-    <Tab.Panel className="text-base-regular py-8">
-      <div className="grid grid-cols-2 gap-x-8">
-        <div className="flex flex-col gap-y-4 text-slate-12">
+      <Tab.Panel className="py-8 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div>
-            <span className="font-semibold text-slate-12">Material</span>
-            <p>{product.material ? product.material : "-"}</p>
+            <span className="font-semibold">Material</span>
+            <p>{product.material || "-"}</p>
           </div>
           <div>
-            <span className="font-semibold">Country of origin</span>
-            <p>{product.origin_country ? product.origin_country : "-"}</p>
+            <span className="font-semibold">Country of Origin</span>
+            <p>{product.origin_country || "-"}</p>
           </div>
-          {/*<div>*/}
-          {/*  <span className="font-semibold">Type</span>*/}
-          {/*  <p>{product.type ? product.type.value : "-"}</p>*/}
-          {/*</div>*/}
-        </div>
-        <div className="flex flex-col gap-y-4 text-slate-12">
           <div>
             <span className="font-semibold">Shipping Weight</span>
             <p>{product.weight ? `${product.weight} g` : "-"}</p>
           </div>
           <div>
             <span className="font-semibold">Shipping Dimensions</span>
-            <p>
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
-                : "-"}
-            </p>
+            <p>{product.length && product.width && product.height ? `${product.length}L x ${product.width}W x ${product.height}H` : "-"}</p>
           </div>
         </div>
-      </div>
-      {product.tags?.length ? (
-        <div>
-          <span className="font-semibold text-slate-12">Tags</span>
-        </div>
-      ) : null}
-    </Tab.Panel>
+        {product.tags?.length ? (
+            <div>
+              <span className="font-semibold">Tags</span>
+              {/* Render tags */}
+            </div>
+        ) : null}
+      </Tab.Panel>
   )
 }
+
 
 const ShippingInfoTab = () => {
   return (
-    <Tab.Panel className="text-base-regular py-8">
-      <div className="grid grid-cols-1 gap-y-8 text-slate-12">
-        <div className="flex items-start gap-x-2">
-          <Image src={"/images/free-shipping-icon.svg"} alt={"Free shipping icon"} width={16} height={16}
-                 className={"dark:invert"}/>
-          <div>
-            <span className="font-semibold">Free Shipping in EU</span>
-            <p className="max-w-sm">
-                We offer free shipping on all orders within the EU.
-            </p>
+      <Tab.Panel className="py-8 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          {/* Free Shipping Info */}
+          <div className="flex items-start gap-x-2">
+            <div>
+              <span className="font-semibold">Free Shipping in EU</span>
+              <p>We offer free shipping on all orders within the EU.</p>
+            </div>
           </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <FastDelivery />
-          <div>
-            <span className="font-semibold">Fast delivery</span>
-            <p className="max-w-sm">
-              Your package will arrive in 1-5 business days at your pick up
-              location or in the comfort of your home.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Refresh />
-          <div>
-            <span className="font-semibold">Simple exchanges</span>
-            <p className="max-w-sm">
-              Is the fit not quite right? No worries - we&apos;ll exchange your
-              product for a new one.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Back />
-          <div>
-            <span className="font-semibold">Easy returns</span>
-            <p className="max-w-sm">
-              Just return your product and we&apos;ll refund your money. No
-              questions asked – we&apos;ll do our best to make sure your return
-              is hassle-free.
-            </p>
-          </div>
-        </div>
 
-      </div>
-    </Tab.Panel>
-  )
-}
+          {/* Fast Delivery Info */}
+          <div className="flex items-start gap-x-2">
 
+            <div>
+              <span className="font-semibold">Fast delivery</span>
+              <p>
+                Your package will arrive in 1-5 business days.
+              </p>
+            </div>
+          </div>
+
+          {/* Simple Exchanges Info */}
+          <div className="flex items-start gap-x-2">
+
+            <div>
+              <span className="font-semibold">Simple exchanges</span>
+              <p>
+                Is the fit not quite right? No worries - we&apos;ll exchange your
+                product for a new one.
+              </p>
+            </div>
+          </div>
+
+          {/* Easy Returns Info */}
+          <div className="flex items-start gap-x-2">
+
+            <div>
+              <span className="font-semibold">Easy returns</span>
+              <p>
+                Just return your product and we&apos;ll refund your money. No
+                questions asked.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Tab.Panel>
+  );
+};
 export default ProductTabs

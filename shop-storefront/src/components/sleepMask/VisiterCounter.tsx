@@ -8,6 +8,7 @@ const VisitorCounter = () => {
         const getOrInitializeVisitorCount = () => {
             let count = localStorage.getItem('currentVisitors');
             if (count) {
+
                 setVisitorCount(parseInt(count, 10));
             } else {
 
@@ -20,7 +21,7 @@ const VisitorCounter = () => {
                     const incrementedCount = initialCount + 1;
                     setVisitorCount(incrementedCount);
                     localStorage.setItem('currentVisitors', incrementedCount.toString());
-                }, 5000); // 5-second delay
+                }, 5000);
             }
         };
 

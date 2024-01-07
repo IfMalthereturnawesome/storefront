@@ -219,7 +219,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
 
 
   return (
-    <div className="flex flex-col lg:gap-y-2 ">
+    <div className="flex flex-col">
       <div className="order-1 lg:order-1">
         <VisiterCounter />
         {/*{product.collection && (*/}
@@ -238,17 +238,17 @@ const ProductActions: React.FC<ProductActionsProps> = ({
           {product.title} {" "}
         </h2>
         <h2 className="text-3xl inline text-slate-12 my-2 lg:my-2 font-bold ">
-          {"stays comfortable the whole night"}
+          {"stays on & comfortable the whole night"}
         </h2>
         <ReviewsComponent rating={4.6} reviewCount={32} />
         <FeaturesList productMetadata={product.metadata} />
-        <p className="text-base-regular text-slate-12 lg:mb-0 ">
+        <p className="text-base-regular text-slate-12 pt-2 lg:mb-0 ">
           {product.description}
         </p>
       </div>
-      <div className=" order-1 lg:order-2">
+      <div className=" order-1 lg:order-2 ">
         {product.variants.length > 1 && (
-          <div className="mt-6 mb-4 2xs:mt-8 2xs:mb-5 md:my-8 2xl:mt-8 2xl:mb-6 flex flex-col-reverse gap-y-6 text-slate-12  ">
+          <div className="mt-3 mb-4 2xs:mt-5 2xs:mb-5 md:my-8 2xl:mt-5 2xl:mb-6 flex flex-col-reverse gap-y-6 text-slate-12  ">
             {(product.options || []).map((option) => {
               const additionalElem =
                 option.title.toLowerCase() === "size" ? (
@@ -305,7 +305,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
 
       <div className={"order-3 lg:order-3"}>
         {selectedPrice && (
-          <div className="flex flex-col gap-y-2">
+          <div className="flex flex-col md:gap-y-2">
             <div className="flex items-center justify-between">
               {/* Sale Price (if applicable) */}
               {selectedPrice.price_type === "sale" && (
@@ -336,7 +336,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
                 )}
                 {selectedPrice.calculated_price}
               </span>
-              <span className="bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 mb-4 rounded">
+              <span className="bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 md:mb-4 rounded">
                 Free Shipping
               </span>
             </div>
