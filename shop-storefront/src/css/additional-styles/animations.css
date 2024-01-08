@@ -268,3 +268,38 @@
 .animation-shrink-grow {
     animation: shrinkGrow 5s infinite; /* Adjust duration as needed */
 }
+
+
+/* Custom CSS for glowing effect */
+.stock-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background-color: #00AB66;
+    display: inline-block;
+    margin-right: 5px;
+    text-align: left;
+}
+
+.stock-circle.glowing::before {
+    content: " ";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #00AB66;
+    animation: glowingEffect 2s infinite;
+}
+
+.stock-circle.outofstock,
+.stock-circle.outofstock::before {
+    background-color: #FF9300;
+}
+
+@keyframes glowingEffect {
+    50%, 100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}

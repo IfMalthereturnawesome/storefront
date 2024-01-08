@@ -56,17 +56,17 @@ export default TestimonialsBanner;
 
 export const TestimonialsBannerSmall = () => {
     return (
-        <div className="black-gradient-background-reviews w-full rounded-b-xl overflow-hidden py-2 px-1 md:p-3 flex items-center space-x-4 text-left">
-            <div className="flex justify-start items-center space-x-1 text-yellow-200 mx-0 ">
-                <div className="text-xl">
+        <div className="black-gradient-background-reviews w-full rounded-b-xl overflow-hidden py-3 px-1 md:p-3 flex items-center space-x-2 sm:space-x-4 text-left">
+            <div className="flex justify-start items-center  text-yellow-200 mx-0 ">
+                <div className="text-lg">
                     ★★★★★
                 </div>
             </div>
-            <div className="flex-grow ">
-                <p className="text-gray-300 font-bold text-xs xs:text-sm  leading-tight">
+            <div className="">
+                <p className="text-gray-300 font-bold text-xs 2xs:text-sm xs:text-base  leading-tight">
                     Join over 1000 happy sleepers
                 </p>
-                <p className="text-gray-400 text-2xs xs:text-xs">
+                <p className="text-gray-400 text-2xs 2xs:text-xs xs:text-sm">
                     {"who no longer let light spoil their sleep."}
                 </p>
             </div>

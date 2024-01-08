@@ -269,6 +269,9 @@ module.exports = {
         from: {opacity: 1},
         to: {opacity: 0},
       },
+      flow: {
+        '50%, 100%': { transform: 'scale(1.5)', opacity: '0' },
+      },
     },
     animation: {
       slideUpAndFade: 'slideUpAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
@@ -286,6 +289,7 @@ module.exports = {
       enterFromRight: 'enterFromRight 350ms ease-in-out',
       exitToLeft: 'exitToLeft 350ms ease-in-out',
       exitToRight: 'exitToRight 350ms ease-in-out',
+      flow: 'flow 2s infinite',
 
     },
   },

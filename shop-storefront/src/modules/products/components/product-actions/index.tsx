@@ -21,6 +21,7 @@ import VisiterCounter from "@/components/sleepMask/VisiterCounter";
 import { useStore } from "@lib/context/store-context"
 import ReviewsComponent from "@/components/sleepMask/ReviewsDisplay";
 import FeaturesList from "@/components/sleepMask/FeatureList";
+import StockInformation from "@/components/ecommerceElements/StockInformation";
 
 
 type ProductActionsProps = {
@@ -219,6 +220,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   }, [product.variants, colorOptionId, sizeOptionId])
 
 
+  const inStockMessage = inStock ? "In stock: Delivered within 1-5 business days" : "Item is sold out.";
+
+
   return (
     <div className="flex flex-col">
       <div className="order-1 lg:order-1">
@@ -415,6 +419,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
             shipping to {countryLabel}
           </span>
         </div>
+        <StockInformation inStock={inStock} message={inStockMessage} />
         <AddToCartButton
           title={
             !inStock

@@ -19,7 +19,7 @@ const MoneyBackGuarantee = () => {
                 <header className="text-slate-800 text-base font-bold leading-8 whitespace-nowrap mr-2">
                     30-day money-back guarantee
                 </header>
-                <div className="text-zinc-600 text-sm leading-5 mr-2">
+                <div className="text-zinc-600 text-2xs 2xs:text-xs xs:text-sm leading-5 mr-2">
                     If you are not satisfied with the product, simply return it and we will refund your money.
                 </div>
             </div>
