@@ -11,6 +11,9 @@ import ZoomableImageGallery from "@modules/products/components/image-gallary/Zoo
 import ProductFAQ from "@modules/products/components/product-faqs";
 import MobileImageGallery from "@modules/products/components/image-gallary/MobileImageGallery";
 import useBetterMediaQuery from "@/utils/useBetterMediaQuery";
+import PaymentOptionsIcons from "@/components/ecommerceElements/PaymentOptionsIcons";
+import MoneyBackGuarantee from "@/components/ecommerceElements/MoneyBackGuarantee";
+import {TestimonialsBannerSmall} from "@/components/reviews/TestimonialsBanner";
 
 type ProductTemplateProps = {
     product: PricedProduct
@@ -76,9 +79,12 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                         <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
                             <div style={{minHeight: 'calc(100vh - 64px)'}}>
                                 <div
-                                    className="relative lg:sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-8 flex flex-col gap-y-12"
+                                    className="relative lg:sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-8 flex flex-col "
                                 >
                                     <ProductInfo product={product} onColorChange={handleColorChange}/>
+                                    <PaymentOptionsIcons />
+                                    <MoneyBackGuarantee />
+                                    <TestimonialsBannerSmall />
 
                                 </div>
                             </div>

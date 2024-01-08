@@ -51,3 +51,26 @@ const TestimonialsBanner = () => {
 };
 
 export default TestimonialsBanner;
+
+// smaller version of TestimonialBanner  without images
+
+export const TestimonialsBannerSmall = () => {
+    return (
+        <div className="black-gradient-background-reviews w-full rounded-b-xl overflow-hidden py-2 px-1 md:p-3 flex items-center space-x-4 text-left">
+            <div className="flex justify-start items-center space-x-1 text-yellow-200 mx-0 ">
+                <div className="text-xl">
+                    ★★★★★
+                </div>
+            </div>
+            <div className="flex-grow ">
+                <p className="text-gray-300 font-bold text-xs xs:text-sm  leading-tight">
+                    Join over 1000 happy sleepers
+                </p>
+                <p className="text-gray-400 text-2xs xs:text-xs">
+                    {"who no longer let light spoil their sleep."}
+                </p>
+            </div>
+
+        </div>
+    );
+}
