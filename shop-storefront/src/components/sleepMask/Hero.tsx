@@ -91,7 +91,7 @@ const Hero: React.FC<HeroProps> = ({ product, description1, description2, descri
 
     return (
         <div className="relative h-screen lg:h-screen z-[1] black-gradient-background" id={"smooth-content"}>
-            <div className="w-[99vw] md:w-[99.2vw] h-screen pt-[8vh] 3xs:pt-[9.5vh] 2xs:pt-[11vh] md:pt-[5vh] lg:pt-[3vh] 3xl:pt-[6vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start black-gradient-background">
+            <div className="w-[99vw] md:w-[99.2vw] h-screen pt-[7vh] 3xs:pt-[8.5vh] 2xs:pt-[10vh] md:pt-[5vh] lg:pt-[3vh] 3xl:pt-[6vh] px-6 2xs:px-8 sm:px-15 md:px-20 flex flex-col items-center justify-start black-gradient-background">
                 <h3 className={"header-bg-clip text-lg xs:text-xl lg:text-2xl font-sans hidden my-0 md:my-2 dark:block"}>
                     {product}
                 </h3>

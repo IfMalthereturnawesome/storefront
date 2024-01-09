@@ -21,14 +21,20 @@ const ReviewsComponent = ({ rating, reviewCount }) => {
         }
         return stars;
     };
+
     return (
-        <div className="flex items-center py-2">
-            <div className="flex text-2xl">
-                {generateStars(rating)}
+        <div className="flex items-center py-2 w-full">
+            <div className="flex-grow flex items-center">
+                <div className="flex text-2xl">
+                    {generateStars(rating)}
+                </div>
+                <span className="text-md 2xs:text-lg ml-2">
+                    {rating.toFixed(1)} based on {reviewCount} reviews
+                </span>
             </div>
-            <span className="text-lg ml-2">
-        {rating.toFixed(1)} based on {reviewCount} reviews
-      </span>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="24" width="24" className={"fill-slate-12 hover:fill-slate-11"}>
+                <path d="m19.129 11.25-8.19-8.19L12 2l10 10-10 10-1.06-1.06 8.189-8.19H2v-1.5h17.129Z"></path>
+            </svg>
         </div>
     );
 };

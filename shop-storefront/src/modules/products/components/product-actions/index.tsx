@@ -20,6 +20,7 @@ import VisiterCounter from "@/components/sleepMask/VisiterCounter";
 
 import { useStore } from "@lib/context/store-context"
 import ReviewsComponent from "@/components/sleepMask/ReviewsDisplay";
+import ReviewSection from "@/components/ecommerceElements/ReviewSection";
 import FeaturesList from "@/components/sleepMask/FeatureList";
 import StockInformation from "@/components/ecommerceElements/StockInformation";
 
@@ -245,7 +246,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({
         <h2 className="text-3xl inline text-slate-12 my-2 lg:my-2 font-bold ">
           {"stays on & comfortable the whole night"}
         </h2>
-        <ReviewsComponent rating={4.6} reviewCount={32} />
+        {/*<ReviewsComponent rating={4.6} reviewCount={32} />*/}
+        <ReviewSection />
         <FeaturesList productMetadata={product.metadata} />
         <p className="text-base-regular text-slate-12 pt-2 lg:mb-0 ">
           {product.description}
