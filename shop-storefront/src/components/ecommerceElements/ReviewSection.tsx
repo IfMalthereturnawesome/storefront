@@ -37,6 +37,7 @@ const mockReviews: Review[] = [
     { id: 21, rating: 5, date: '8.jan. 2024', summary: 'Finally, a sleep mask that fits my large head!', color: 'Space Grey', size: 'XL' },
     { id: 22, rating: 4, date: '8.jan. 2024', summary: '', color: 'Space Grey', size: 'S' },
     { id: 23, rating: 5, date: '8.jan. 2024', summary: 'My wife seems to like it ', color: 'Warm Grey', size: 'L' },
+    { id: 24, rating: 5, date: '9.jan. 2024', summary: 'Helps me during my midday naps', color: 'Warm Grey', size: 'M' },
 
 ];
 
