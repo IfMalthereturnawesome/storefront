@@ -1,15 +1,18 @@
-import type {Metadata} from 'next';
-import {allPosts} from 'contentlayer/generated';
-import {notFound} from 'next/navigation';
+import type { Metadata } from 'next';
+import { allPosts } from 'contentlayer/generated';
 import Link from 'next/link';
 import Image from 'next/image';
 import PostDate from '@/components/post-date';
 import PostTags from '@/components/elements/post-tags';
-import {PostMdx} from '@/components/mdx/post-mdx';
 import Breadcrumb from '@/components/elements/Breadcrumb';
-import RelatedPosts from '@/components/post-components/RelatedPosts';
-import SocialShare from '@/components/post-components/SocialShare';
 import Container from '@/components/elements/Container';
+import dynamic from 'next/dynamic';
+import {PostMdx} from '@/components/mdx/post-mdx';
+
+const RelatedPosts = dynamic(() => import('@/components/post-components/RelatedPosts'));
+const SocialShare = dynamic(() => import('@/components/post-components/SocialShare'));
+
+
 
 export async function generateStaticParams() {
     return allPosts.map(post => ({
