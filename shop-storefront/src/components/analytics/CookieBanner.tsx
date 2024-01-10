@@ -89,7 +89,7 @@ export default function CookieBanner() {
       >
         <div className="text-black  pl-5 pr-3 py-5 lg:mt-0 flex flex-col items-center lg:items-start font-sans">
           <p className={"text-lg inline font-extrabold"}>
-            EightAthletics.com doesn&apos;t use third-party cookies
+            We use cookies to improve your experience.
           </p>
           <p className={"inline-flex w-full"}>- only first-party cookies.</p>
           <p className={"pt-4 text-sm"}>
@@ -100,7 +100,7 @@ export default function CookieBanner() {
             <button
               className="bg-yellow-300 hover:bg-yellow-300/90 border-2 border-mask-black text-black w-full font-bold py-2 px-4 rounded hover:underline transition-colors"
               onClick={acceptCookies}
-            >Yes to Safe Cookies</button>
+            >OK to Safe Cookies</button>
             <button
               className="bg-mask-black/90 hover:bg-mask-black border border-yellow-300 text-white w-full font-bold py-2 px-4 rounded hover:underline transition-colors"
               onClick={declineCookies}
@@ -131,7 +131,7 @@ export default function CookieBanner() {
               <Image
                 height={400}
                 width={300}
-                quality={85}
+                priority
                 src="/images/ursulla-cookie-banner-arrow.png"
                 alt="Ursulla Cookie Banner"
                 className="w-[50%] h-full lg:w-[90%] object-cover "

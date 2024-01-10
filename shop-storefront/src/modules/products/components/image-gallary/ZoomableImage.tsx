@@ -74,7 +74,8 @@ function ZoomableImage({src, alt}) {
                 height={700}
                 sizes={'100vw'}
                 width={700}
-                quality={98}
+                quality={95}
+                priority
                 blurDataURL={"/images/placeholder-images.jpg"}
                 placeholder={"blur"}
                 className={`w-full bg-[#E8F0F0] h-full object-contain transition-transform duration-300 ease-in-out fade-in'}`}

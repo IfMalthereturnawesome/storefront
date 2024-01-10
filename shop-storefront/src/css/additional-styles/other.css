@@ -370,7 +370,7 @@ input:checked + .slider:before {
 
 .swiper {
     width: 100%;
-    height: 55vh;
+    height: 50vh;
     margin-left: auto;
     margin-right: auto;
 }
@@ -390,8 +390,9 @@ input:checked + .slider:before {
 }
 
 .mySwiper .swiper-slide {
-    width: 25%;
-    height: 9vh;
+    max-width: 25%;
+    height: 7vh;
+
     opacity: 0.4;
 }
 
@@ -407,7 +408,7 @@ input:checked + .slider:before {
 }
 @media (min-width: 325px) {
     .mySwiper .swiper-slide {
-        height: 10vh;
+        height: 8vh;
     }
 
     .swiper-slide img {
@@ -416,7 +417,7 @@ input:checked + .slider:before {
 
 
     .swiper {
-        height: 60vh;
+        height: 52vh;
     }
     .mySwiper {
 
@@ -427,7 +428,8 @@ input:checked + .slider:before {
 
 @media (min-width: 375px) {
     .mySwiper .swiper-slide {
-        height: 12vh;
+        height: 9vh;
+
     }
 
     .swiper-slide img {
@@ -436,7 +438,7 @@ input:checked + .slider:before {
 
 
     .swiper {
-        height: 63vh;
+        height: 55vh;
     }
     .mySwiper {
 
