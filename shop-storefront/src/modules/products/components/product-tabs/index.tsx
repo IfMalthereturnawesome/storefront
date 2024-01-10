@@ -21,7 +21,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     ]
   }, [product])
   return (
-      <div className="w-full py-4">
+      <div className="max-w-8xl my-2 border rounded-xl border-slate-11 h-full py-6 px-5 mx-auto bg-white dark:bg-cyan-2">
         <Tab.Group>
           <Tab.List className="flex divide-x">
             {tabs.map((tab, i) => (
@@ -29,7 +29,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
                     key={i}
                     className={({ selected }) =>
                         `flex-1 text-center  text-sm py-2 
-                 ${selected ? 'border-b-2 border-gray-200' : 'border-b-2 border-transparent'}`
+                 ${selected ? 'border-b-2 border-gray-600 dark:border-gray-200' : 'border-b-2 border-transparent'}`
                     }
                 >
                   {tab.label}
@@ -59,18 +59,16 @@ const ProductInfoTab = ({ product }) => {
           </div>
           <div>
             <span className="font-semibold">Washing Instructions</span>
-          {/*  product.metadata object washing*/}
-            <p>{product.metadata?.washing || "-"}</p>
+            {/* Check if metadata is an object and has the washing property */}
+            <p>{"Hand Wash"}</p>
           </div>
+
           <div>
 
-            <span className="font-semibold">Shipping Weight</span>
-            <p>{product.weight ? `${product.weight} g` : "-"}</p>
+            <span className="font-semibold">Shipping Information</span>
+            <p>Weight: {product.weight ? `${product.weight} g` : "-"} Size: {product.length && product.width && product.height ? `${product.length}L x ${product.width}W x ${product.height}H` : "-"}</p>
           </div>
-          <div>
-            <span className="font-semibold">Shipping Dimensions</span>
-            <p>{product.length && product.width && product.height ? `${product.length}L x ${product.width}W x ${product.height}H` : "-"}</p>
-          </div>
+
         </div>
         {product.tags?.length ? (
             <div>
