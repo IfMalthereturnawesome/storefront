@@ -93,7 +93,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobil
             >
                 <div className="flex items-center justify-between">
                     {showMainMenu && (
-                        <><Link href="/" className="block" aria-label="Eight Athletics">
+                        <><Link prefetch={false} href="/" className="block" aria-label="Eight Athletics">
                             <Image
                                 src={'/images/Eight-Athletics-black-logo-icon.svg'}
                                 alt={'Eight Athletics Logo'}

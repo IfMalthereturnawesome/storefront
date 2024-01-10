@@ -86,6 +86,7 @@ export default function SupportNav({activeSubMenu, setActiveSubMenu}: { activeSu
                                                 </div>
                                                 <div className="flex-auto">
                                                     <Link
+                                                        prefetch={false}
                                                         href={item.href}
                                                         className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
                                                     >
@@ -104,7 +105,7 @@ export default function SupportNav({activeSubMenu, setActiveSubMenu}: { activeSu
                                         {supportCTA.map(item => (
                                             <Button key={item.name}>
                                                 <Link
-
+                                                    prefetch={false}
                                                     href={item.href}
                                                     className="group flex items-center justify-center gap-x-3 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                                                 >
@@ -147,6 +148,7 @@ export function SupportNavPop() {
                         </div>
                         <div className="flex-auto">
                             <Link
+                                prefetch={false}
                                 href={item.href}
                                 className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
                             >
@@ -164,7 +166,7 @@ export function SupportNavPop() {
                 {supportCTA.map(item => (
                     <Button key={item.name}>
                         <Link
-
+                            prefetch={false}
                             href={item.href}
                             className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                         >
@@ -210,7 +212,7 @@ export function SupportNavMobile({setMobileMenuOpen}) {
                     </Disclosure.Button>
                     <Disclosure.Panel className="mt-2 space-y-2">
                         {[...supportItems, ...supportCTA.slice(0, -1)].map(item => (
-                            <Link key={item.name} href={item.href} passHref onClick={handleLinkClick}>
+                            <Link key={item.name} href={item.href} passHref prefetch={false} onClick={handleLinkClick}>
                                 <Disclosure.Button
                                     as="a"
                                     className={classNames(

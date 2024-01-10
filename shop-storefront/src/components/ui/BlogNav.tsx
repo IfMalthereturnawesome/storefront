@@ -14,7 +14,7 @@ export default function BlogNav() {
     return (
         <ul className="flex flex-wrap gap-6 md:gap-10">
             <li>
-                <Link
+                <Link prefetch={false}
                     href={blog[0].href}
                     className="text-sm flex items-center gap-x-2 px-4 py-2 font-semibold leading-6 text-black hover:text-indigo-500 focus:outline-none dark:text-gray-300 dark:hover:text-cgreen-200"
                 >
@@ -56,7 +56,7 @@ export function BlogNavMobile({setMobileMenuOpen}) {
                             Recent Posts
                         </h3>
                         {[...newestPosts].map(item => (
-                            <Link key={item._id} href={`/blog/${item.slug}`} passHref onClick={handleLinkClick}>
+                            <Link key={item._id} href={`/blog/${item.slug}`} prefetch={false} passHref onClick={handleLinkClick}>
                                 <Disclosure.Button
                                     as="a"
                                 className="flex items-center justify-start gap-x-3 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150"
@@ -67,6 +67,7 @@ export function BlogNavMobile({setMobileMenuOpen}) {
                         ))}
                         <div className="mt-2 pb-4 text-base">
                             <Link
+                                prefetch={false}
                                 href="/blog"
                                 onClick={handleLinkClick}
                                 className="py-2 pl-6 pr-3 font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500"

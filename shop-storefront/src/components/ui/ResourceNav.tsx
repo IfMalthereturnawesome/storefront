@@ -89,6 +89,7 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                                                 </div>
                                                 <div className="flex-auto">
                                                     <Link
+                                                        prefetch={false}
                                                         href={item.href}
                                                         className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
                                                     >
@@ -110,6 +111,7 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                                             </h3>
                                             <div className="text-sm">
                                                 <Link
+                                                    prefetch={false}
                                                     href="/blog"
                                                     className="font-medium hover:text-indigo-500 transition duration-150 ease-in-out text-blue-600 dark:text-indigo-500 dark:hover:text-blue-600"
                                                 >
@@ -122,6 +124,7 @@ export default function ResourceNav({ activeSubMenu, setActiveSubMenu }: { activ
                                             {newestPosts.map(post => (
                                                 <li key={post._id} className="py-2 text-sm">
                                                     <Link
+                                                        prefetch={false}
                                                         href={`/blog/${post.slug}`}
                                                         className="flex flex-col items-start text-sm font-medium text-gray-900 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-100 dark:hover:text-indigo-500"
                                                     >
@@ -167,6 +170,7 @@ export function ResourceNavPop() {
                                                 </div>
                                                 <div className="flex-auto">
                                                     <Link
+                                                        prefetch={false}
                                                         href={item.href}
                                                         className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
                                                     >
@@ -188,6 +192,7 @@ export function ResourceNavPop() {
                                             </h3>
                                             <div className="text-sm">
                                                 <Link
+                                                    prefetch={false}
                                                     href="/blog"
                                                     className="font-medium hover:text-indigo-500 transition duration-150 ease-in-out text-blue-600 dark:text-indigo-500 dark:hover:text-blue-600"
                                                 >
@@ -200,6 +205,7 @@ export function ResourceNavPop() {
                                             {newestPosts.map(post => (
                                                 <li key={post._id} className="py-2 text-sm">
                                                     <Link
+                                                        prefetch={false}
                                                         href={`/blog/${post.slug}`}
                                                         className="flex flex-col items-start text-sm font-medium text-gray-900 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-100 dark:hover:text-indigo-500"
                                                     >
@@ -248,7 +254,7 @@ export function ResourceNavMobile({setMobileMenuOpen}) {
                     <Disclosure.Panel className="mt-2 space-y-2">
                         {[...resources].map(item => (
                             // Wrap Disclosure.Button with Link and move href to Link
-                            <Link key={item.name} href={item.href} passHref onClick={handleLinkClick}>
+                            <Link key={item.name} href={item.href} passHref prefetch={false} onClick={handleLinkClick}>
                                 <Disclosure.Button
                                     as="a"
                                     className="flex items-center justify-start gap-x-3 rounded-lg py-2 pl-6 pr-3 text-md font-semibold leading-7 text-slate-12 hover:text-indigo-10 transition duration-150 "

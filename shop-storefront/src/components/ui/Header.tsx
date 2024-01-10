@@ -161,13 +161,13 @@ export default  function Header({className}: HeaderProps) {
                     aria-label="Global"
                 >
                     <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
-                        <Link href="/" aria-label="Eight Athletics" className={"z-[2]"}>
+                        <Link prefetch={false} href="/" aria-label="Eight Athletics" className={"z-[2]"}>
                             {renderLogo()}
                         </Link>
                     </div>
 
                     <div className="hidden lg:flex lg:w-1/4 items-center  justify-center lg:justify-start">
-                        <Link href="/" aria-label="Eight Athletics" className={"lg:ml-[15%] z-[2]"}>
+                        <Link href="/" prefetch={false} aria-label="Eight Athletics" className={"lg:ml-[15%] z-[2]"}>
                             <Image
                                 src={'/images/Eight-Athletics-black-logo.svg'}
                                 alt={'Eight Athletics Logo'}
@@ -212,7 +212,7 @@ export default  function Header({className}: HeaderProps) {
 
                         <div className="hidden lg:flex items-center gap-x-6 h-full">
                             {/*{process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal/>}*/}
-                            <Link href="/account" className={"z-[2]"}>
+                            <Link prefetch={false} href="/account" className={"z-[2]"}>
                                 <UserIcon className="h-5 w-5 xl:h-6 xl:w-6 stroke-mask-black dark:stroke-custom-white"
                                           aria-hidden="true"/>
                             </Link>

@@ -73,7 +73,7 @@ export default function ProductNav({activeSubMenu, setActiveSubMenu}: { activeSu
                                 >
                                     <div className="mt-2"></div>
                                     <div className="p-4">
-                                        <Link href="/products/sleep-mask-one">
+                                        <Link href="/products/sleep-mask-one" prefetch={false}>
                                             <h3
                                                 className="m-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-2xl font-bold
   text-transparent transition duration-500
@@ -96,6 +96,7 @@ export default function ProductNav({activeSubMenu, setActiveSubMenu}: { activeSu
                                                 </div>
                                                 <div className="flex-auto">
                                                     <Link
+                                                        prefetch={false}
                                                         href={item.href}
                                                         className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
                                                     >
@@ -114,7 +115,7 @@ export default function ProductNav({activeSubMenu, setActiveSubMenu}: { activeSu
                                         {callsToAction.map(item => (
                                             <Button key={item.name}>
                                                 <Link
-
+                                                    prefetch={false}
                                                     href={item.href}
                                                     className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                                                 >
@@ -147,7 +148,7 @@ export function ProductNavPop() {
 
 
             <div className="p-4">
-                <Link href="/products/sleep-mask-one">
+                <Link href="/products/sleep-mask-one" prefetch={false}>
                     <h3
                         className="m-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-2xl font-bold
   text-transparent transition duration-500
@@ -169,6 +170,7 @@ export function ProductNavPop() {
                         </div>
                         <div className="flex-auto">
                             <Link
+                                prefetch={false}
                                 href={item.href}
                                 className="block font-bold text-slate-800 dark:text-slate-200  hover:text-blue-600  hover:dark:text-cgreen"
                             >
@@ -186,7 +188,7 @@ export function ProductNavPop() {
                 {callsToAction.map(item => (
                     <Button key={item.name}>
                         <Link
-
+                            prefetch={false}
                             href={item.href}
                             className="group flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 dark:text-white hover:dark:text-cgreen"
                         >
@@ -231,7 +233,7 @@ export function ProductNavMobile({setMobileMenuOpen}) {
                         />
                     </Disclosure.Button>
                     <Disclosure.Panel className="mt-2 space-y-2">
-                        <Link href="/products/sleep-mask-one">
+                        <Link href="/products/sleep-mask-one" prefetch={false}>
                             <h3
                                 className=" m-4 bg-gradient-to-r from-caction-700 via-csecondary-900 to-caction-800 bg-clip-text text-lg font-bold
   text-transparent transition duration-500 
@@ -241,7 +243,7 @@ export function ProductNavMobile({setMobileMenuOpen}) {
                             >Sleep Mask One</h3>
                         </Link>
                         {products.map(item => (
-                            <Link key={item.name} href={item.href} passHref onClick={handleLinkClick}>
+                            <Link key={item.name} href={item.href} passHref prefetch={false} onClick={handleLinkClick}>
                                 <Disclosure.Button
                                     as="a"
                                 href={item.href}
@@ -258,7 +260,7 @@ export function ProductNavMobile({setMobileMenuOpen}) {
 
                         <div className="flex items-center space-x-2 py-2 pl-6">
                             {callsToAction.map(item => (
-                                <Link key={item.name} href={item.href} passHref onClick={handleLinkClick}>
+                                <Link prefetch={false} key={item.name} href={item.href} passHref onClick={handleLinkClick}>
                                     <Disclosure.Button
                                         as="a"
                                     href={item.href}

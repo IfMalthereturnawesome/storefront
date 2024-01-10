@@ -52,13 +52,13 @@ export const TopNavMobile = ({setMobileMenuOpen}) => {
     return (
         <ul className="flex p-0 m-0 gap-6 flex-col leading-5 text-black ">
             <li className="flex relative items-center  py-0 px-2 h-full leading-5 text-left">
-                <Link href="/faq" onClick={handleLinkClick}
+                <Link  prefetch={false} href="/faq" onClick={handleLinkClick}
                       className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
                     Help
                 </Link>
             </li>
             <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
-                <Link href="/track-order" onClick={handleLinkClick}
+                <Link prefetch={false} href="/track-order" onClick={handleLinkClick}
                       className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
                     Track order
                 </Link>
@@ -71,7 +71,7 @@ export const TopNavMobile = ({setMobileMenuOpen}) => {
             {/*</li>*/}
 
             <li className="flex relative items-center py-0 px-2 h-full leading-5 text-left">
-                <Link href="/account" onClick={handleLinkClick}
+                <Link prefetch={false} href="/account" onClick={handleLinkClick}
                       className="text-lg w-full font-normal leading-4 cursor-pointer text-slate-12 hover:text-blue-500">
                     My account
                 </Link>
