@@ -229,7 +229,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
           {product.title}{" "}
         </h2>
         <h2 className="text-3xl inline text-slate-12 my-2 lg:my-2 font-bold ">
-          {"stays on & comfortable the whole night"}
+          {"stays comfortable the whole night"}
         </h2>
 
         <ReviewSection />

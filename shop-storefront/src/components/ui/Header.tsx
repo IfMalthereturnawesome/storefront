@@ -33,15 +33,15 @@ export default  function Header({className}: HeaderProps) {
     const {cart, totalItems} = useCart();
 
     // POSTHUG CLIENT SIDE
-    const [ ctaState, setCtaState ] = useState('Buy now')
-    const ctaVariant = useFeatureFlagVariantKey('buy-now-button')
-
-
-    useEffect(() => {
-        if (ctaVariant === 'test') {
-            setCtaState('Grab Yours')
-        }
-    }, [ctaVariant])
+    // const [ ctaState, setCtaState ] = useState('Buy now')
+    // const ctaVariant = useFeatureFlagVariantKey('buy-now-button')
+    //
+    //
+    // useEffect(() => {
+    //     if (ctaVariant === 'test') {
+    //         setCtaState('Grab Yours')
+    //     }
+    // }, [ctaVariant])
 
 
     const scrollThresholdMobile = 50;
@@ -217,21 +217,21 @@ export default  function Header({className}: HeaderProps) {
                                           aria-hidden="true"/>
                             </Link>
                         </div>
-
-                        <div className={"sm:pl-4 z-[2]"}>
-                            {isOnProductPage && totalItems === 0 ? (
-                                <Link href="#buy-now">
-                                    <SecondaryButton variant={"fourth"} id={"buy-now-button"}
-                                                     className={"rounded-[0.5rem] capitalize group text-sm sm:text-md !py-1 !px-2 !min-h-[1.1rem] " +
-                                                         "2xs:!py-1 2xs:!px-3 2xs:!min-h-[1.2rem]" +
-                                                         "sm:!py-2 sm:!px-4 sm:!min-h-[1.5rem] xl:!min-h-[2.5rem]"}>
-                                        {ctaState}
-                                    </SecondaryButton>
-                                </Link>
-                            ) : (
-                                <CartDropdown/>
-                            )}
-                        </div>
+                        <CartDropdown/>
+                        {/*<div className={"sm:pl-4 z-[2]"}>*/}
+                        {/*    {isOnProductPage && totalItems === 0 ? (*/}
+                        {/*        <Link href="#buy-now">*/}
+                        {/*            <SecondaryButton variant={"fourth"} id={"buy-now-button"}*/}
+                        {/*                             className={"rounded-[0.5rem] capitalize group text-sm sm:text-md !py-1 !px-2 !min-h-[1.1rem] " +*/}
+                        {/*                                 "2xs:!py-1 2xs:!px-3 2xs:!min-h-[1.2rem]" +*/}
+                        {/*                                 "sm:!py-2 sm:!px-4 sm:!min-h-[1.5rem] xl:!min-h-[2.5rem]"}>*/}
+                        {/*                {ctaState}*/}
+                        {/*            </SecondaryButton>*/}
+                        {/*        </Link>*/}
+                        {/*    ) : (*/}
+                        {/*        <CartDropdown/>*/}
+                        {/*    )}*/}
+                        {/*</div>*/}
                     </div>
                 </nav>
                 <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen}/>

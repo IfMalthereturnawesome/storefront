@@ -92,6 +92,7 @@ Form.Message {
     width: 100vw;
     margin: 0 auto!important;
     transition: width 0.3s ease-in-out;
+
 }
 /* Media query for headerFullWidth*/
 @media (min-width: 768px) {

@@ -23,10 +23,10 @@ const colorInfoMap = {
         gradient:
             "linear-gradient(180deg, rgb(188, 180, 172) 0%, rgb(197, 190, 181) 25%, rgb(182, 172, 164) 50%, rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
     },
-    "Eclipse Black": {
-        gradient:
-            "linear-gradient(180deg, rgb(23, 18, 17) 0%, rgb(10, 10, 10) 25%,rgb(10, 10, 10) 50%,  rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
-    },
+    // "Eclipse Black": {
+    //     gradient:
+    //         "linear-gradient(180deg, rgb(23, 18, 17) 0%, rgb(10, 10, 10) 25%,rgb(10, 10, 10) 50%,  rgba(10,52,65,1) 50%, rgba(11,61,77,1) 75%, rgba(1,70,91,1) 100%)",
+    // },
 
 };
 
@@ -40,7 +40,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
                                                                  stockLevels,
                                                              }) => {
     const uniqueOptions = option.values.map((v) => v.value).filter(onlyUnique);
-    const orderedOptions = ["Warm Grey", "Space Grey", "Eclipse Black"].filter(color => uniqueOptions.includes(color));
+    const orderedOptions = ["Warm Grey", "Space Grey"].filter(color => uniqueOptions.includes(color));
 
     const defaultColor = orderedOptions[0];
 
