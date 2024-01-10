@@ -58,6 +58,12 @@ const ProductInfoTab = ({ product }) => {
             <p>{product.origin_country || "-"}</p>
           </div>
           <div>
+            <span className="font-semibold">Washing Instructions</span>
+          {/*  product.metadata object washing*/}
+            <p>{product.metadata?.washing || "-"}</p>
+          </div>
+          <div>
+
             <span className="font-semibold">Shipping Weight</span>
             <p>{product.weight ? `${product.weight} g` : "-"}</p>
           </div>

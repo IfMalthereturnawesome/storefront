@@ -1,6 +1,6 @@
 import Providers from "@modules/providers"
 import "@/css/globals.css"
-import { Inter, Architects_Daughter, Poppins } from "next/font/google"
+import { Inter, Poppins } from "next/font/google"
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics"
 import CookieBanner from "@/components/analytics/CookieBanner"
 import { ProvidersNextUI } from "@/app/providers"
@@ -20,13 +20,6 @@ const GTM = process.env.NEXT_PUBLIC_GTM
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-})
-
-const architects_daughter = Architects_Daughter({
-  subsets: ["latin"],
-  variable: "--font-architects-daughter",
-  weight: "400",
   display: "swap",
 })
 
@@ -91,7 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="dns-prefetch" href="https://region1.google-analytics.com" />
 
         <body
-          className={`${inter.variable} ${poppins.variable}  ${architects_daughter.variable}  font-inter tracking-tight antialiased`}
+          className={`${inter.variable} ${poppins.variable} font-inter tracking-tight antialiased`}
         >
           {/*<BreakpointsIndicatorExtended />*/}
           {/*<BreakpointsIndicator/>*/}
