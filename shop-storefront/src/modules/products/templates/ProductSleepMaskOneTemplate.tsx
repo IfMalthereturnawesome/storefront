@@ -3,8 +3,6 @@ import {ProductProvider} from "@lib/context/product-context"
 import React from "react"
 import {PricedProduct} from "@medusajs/medusa/dist/types/pricing"
 
-import VideoAnimation from "@/components/sleepMask/VideoAnimation";
-import Hero from "@/components/sleepMask/Hero";
 const FaceStory = dynamic(() => import('@/components/sleepMask/FaceStory'));
 const DoubleImageSection = dynamic(() => import('@/components/sleepMask/imageSections/DoubleImageSection'));
 const MobileDoubleImageSection = dynamic(() => import('@/components/sleepMask/mobile/MobileDoubleImageSection'));
@@ -13,15 +11,13 @@ const WrappedComponent = dynamic(() => import('@/components/sleepMask/helper/Wra
 const MaximumComfortMeetsTotalBlackout = dynamic(() => import('@/components/sleepMask/MaximumComfortMeetsTotalBlackout'));
 const MobileFaceStory = dynamic(() => import('@/components/sleepMask/mobile/FaceStoryMobile'));
 const MobileZoomImageSection = dynamic(() => import('@/components/sleepMask/mobile/ZoomImageSectionMobile'));
-const HeaderOverlayOnImage = dynamic(() => import('@/components/sleepMask/imageSections/HeaderOverlayOnImage'));
 const MobileThinFeature = dynamic(() => import('@/components/sleepMask/mobile/ThinFeatureMobile'));
 const MobileMinimalWeight = dynamic(() => import('@/components/sleepMask/mobile/MinimalWeightMobile'));
 const MobileMaximumComfort = dynamic(() => import('@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile'));
-const MobileHeaderOverlayOnImage = dynamic(() => import('@/components/sleepMask/mobile/HeaderOverlayOnMobile'));
-const MobileHeaderOverlayOnImageRight = dynamic(() => import('@/components/sleepMask/mobile/HeaderOverlayMobileRight'));
+
 const ProductInfoSection = dynamic(() => import('@/components/productPageTemplates/ProductInfoSection'));
-const ProductChoice = dynamic(() => import('@/components/sleepMask/ProductChoice'));
-import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
+
+
 import DiscoverSleepMaskSection from '@/components/sleepMask/DiscoverSection';
 
 type ProductsTemplate = {
@@ -83,16 +79,16 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
     return (
         <ProductProvider product={product}>
 
-            <div className="font-poppins bg-mask-black">
-                <Hero
-                    product={"Sleep Mask One"}
-                    description1={"Elevate your peak performance, no matter where you are and how you sleep."}
-                    description2={""}
-                    // description2={"Custom-fit for your unique face. "}
-                    // description2={"Tailored for all face shapes and sizes. "}
-                    description3={""}
-                />
-            </div>
+            {/*<div className="font-poppins bg-mask-black">*/}
+            {/*    <Hero*/}
+            {/*        product={"Sleep Mask One"}*/}
+            {/*        description1={"Elevate your peak performance, no matter where you are and how you sleep."}*/}
+            {/*        description2={""}*/}
+            {/*        // description2={"Custom-fit for your unique face. "}*/}
+            {/*        // description2={"Tailored for all face shapes and sizes. "}*/}
+            {/*        description3={""}*/}
+            {/*    />*/}
+            {/*</div>*/}
 
 
             <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}

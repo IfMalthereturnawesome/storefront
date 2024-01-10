@@ -1,29 +1,23 @@
 import { useProductActions } from "@lib/context/product-context"
 import useProductPrice from "@lib/hooks/use-product-price"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
-import {formatAmount,  useCart, useRegions} from "medusa-react"
+import { formatAmount, useCart, useRegions } from "medusa-react"
 import clsx from "clsx"
-import Link from "next/link"
+
 import React, { useMemo, useState } from "react"
 import { useEffect } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
-import SizeGuideModal from "@modules/products/components/size-guide/SizeGuide"
 import Image from "next/image"
 import SplitType from "split-type"
-import NativeSelect from "@modules/common/components/native-select"
-import SizeOptionSelect from "../option-select/SizeOptionSelect"
 import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect"
-import SizeGuideMobile from "@modules/products/components/size-guide/SizeGuideMobile"
 import AddToCartButton from "@/components/elements/AddToCart"
-import VisiterCounter from "@/components/sleepMask/VisiterCounter";
-
+import VisiterCounter from "@/components/sleepMask/VisiterCounter"
 import { useStore } from "@lib/context/store-context"
-import ReviewsComponent from "@/components/sleepMask/ReviewsDisplay";
-import ReviewSection from "@/components/ecommerceElements/ReviewSection";
-import FeaturesList from "@/components/sleepMask/FeatureList";
-import StockInformation from "@/components/ecommerceElements/StockInformation";
 
+import ReviewSection from "@/components/ecommerceElements/ReviewSection"
+import FeaturesList from "@/components/sleepMask/FeatureList"
+import StockInformation from "@/components/ecommerceElements/StockInformation"
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -47,8 +41,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
     quantity,
     increaseQuantity,
     decreaseQuantity,
-    disabled
-
+    disabled,
   } = useProductActions()
   const { cart } = useCart()
   const price = useProductPrice({ id: product.id!, variantId: variant?.id })
@@ -62,22 +55,20 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   const { countryCode } = useStore()
   const { regions } = useRegions()
 
-
-  const regionCurrency = (cart && cart.region) ? cart.region.currency_code : "dkk";
+  const regionCurrency = cart && cart.region ? cart.region.currency_code : "dkk"
   const initialUnitPrice = useMemo(() => {
-    const anyVariantPrice = product.variants[0].prices.find(price => price.currency_code === regionCurrency);
+    const anyVariantPrice = product.variants[0].prices.find(
+      (price) => price.currency_code === regionCurrency
+    )
     if (anyVariantPrice && cart?.region) {
       return formatAmount({
         amount: anyVariantPrice.amount,
         region: cart.region,
         includeTaxes: false,
-
-      });
+      })
     }
-    return "0"; // Default value if price or region is not available
-  }, [product.variants, regionCurrency, cart?.region]);
-
-
+    return "0" // Default value if price or region is not available
+  }, [product.variants, regionCurrency, cart?.region])
 
   const getCountryLabel = () => {
     if (!countryCode || !regions) {
@@ -102,7 +93,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   useEffect(() => {
     setCountryLabel(getCountryLabel())
     getCountryLabel()
-
   }, [countryCode, regions])
 
   const isColorSelected = !!options[colorOptionId]
@@ -117,27 +107,22 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   }, [price])
 
   const parsePrice = (priceString) => {
-    const numericPart = priceString.replace(/[^0-9.-]+/g, "");
-    return parseFloat(numericPart);
-  };
+    const numericPart = priceString.replace(/[^0-9.-]+/g, "")
+    return parseFloat(numericPart)
+  }
 
-
-    const percentageDiff = useMemo(() => {
-        if (!selectedPrice) {
-            return null
-        }
-        const calculatedPrice = parsePrice(selectedPrice.calculated_price)
-        const unitPrice = parsePrice(initialUnitPrice)
-        const percentageDiff = ((unitPrice - calculatedPrice) / unitPrice) * 100
-        return Math.round(percentageDiff)
-        }, [selectedPrice, initialUnitPrice])
-
-
-
+  const percentageDiff = useMemo(() => {
+    if (!selectedPrice) {
+      return null
+    }
+    const calculatedPrice = parsePrice(selectedPrice.calculated_price)
+    const unitPrice = parsePrice(initialUnitPrice)
+    const percentageDiff = ((unitPrice - calculatedPrice) / unitPrice) * 100
+    return Math.round(percentageDiff)
+  }, [selectedPrice, initialUnitPrice])
 
   useEffect(() => {
     if (!countryCode || !regions) {
-
       return
     }
     getCountryLabel()
@@ -220,9 +205,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({
     }, {})
   }, [product.variants, colorOptionId, sizeOptionId])
 
-
-  const inStockMessage = inStock ? "In stock: Delivered within 1-5 business days" : "Item is sold out.";
-
+  const inStockMessage = inStock
+    ? "In stock: Delivered within 1-5 business days"
+    : "Item is sold out."
 
   return (
     <div className="flex flex-col">
@@ -241,12 +226,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({
         {/*  // </Link>*/}
         {/*)}*/}
         <h2 className="text-3xl inline header-bg-clip my-2 lg:my-2 font-bold ">
-          {product.title} {" "}
+          {product.title}{" "}
         </h2>
         <h2 className="text-3xl inline text-slate-12 my-2 lg:my-2 font-bold ">
           {"stays on & comfortable the whole night"}
         </h2>
-        {/*<ReviewsComponent rating={4.6} reviewCount={32} />*/}
+
         <ReviewSection />
         <FeaturesList productMetadata={product.metadata} />
         <p className="text-base-regular text-slate-12 pt-2 lg:mb-0 ">
@@ -283,26 +268,26 @@ const ProductActions: React.FC<ProductActionsProps> = ({
                     />
                   )}
 
-                  {option.title.toLowerCase() === "size" && (
-                    <>
-                      <SizeOptionSelect
-                        option={option}
-                        current={options[option.id]}
-                        updateOption={updateOptions}
-                        title={option.title}
-                        additionalElement={additionalElem}
-                        stockLevels={stockLevels[options[colorOptionId]] || {}}
-                      />
-                      <SizeGuideModal
-                        isOpen={isModalOpen}
-                        onClose={() => setModalOpen(false)}
-                      />
-                      <SizeGuideMobile
-                        isOpen={isModalOpen}
-                        onClose={() => setModalOpen(false)}
-                      />
-                    </>
-                  )}
+                  {/*{option.title.toLowerCase() === "size" && (*/}
+                  {/*  <>*/}
+                  {/*    <SizeOptionSelect*/}
+                  {/*      option={option}*/}
+                  {/*      current={options[option.id]}*/}
+                  {/*      updateOption={updateOptions}*/}
+                  {/*      title={option.title}*/}
+                  {/*      additionalElement={additionalElem}*/}
+                  {/*      stockLevels={stockLevels[options[colorOptionId]] || {}}*/}
+                  {/*    />*/}
+                  {/*    <SizeGuideModal*/}
+                  {/*      isOpen={isModalOpen}*/}
+                  {/*      onClose={() => setModalOpen(false)}*/}
+                  {/*    />*/}
+                  {/*    <SizeGuideMobile*/}
+                  {/*      isOpen={isModalOpen}*/}
+                  {/*      onClose={() => setModalOpen(false)}*/}
+                  {/*    />*/}
+                  {/*  </>*/}
+                  {/*)}*/}
                 </div>
               )
             })}
@@ -350,25 +335,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({
 
             {isBothSelected && (
               <>
-                {/*<div className="items-center gap-x-2 text-base-semi hidden lg:flex">*/}
-                {/*    <label htmlFor="quantity" className="mr-2">Quantity:</label>*/}
-                {/*    <NativeSelect*/}
-                {/*        value={quantity}*/}
-                {/*        onChange={handleQuantityChange}*/}
-                {/*        placeholder={"Select quantity"}*/}
-                {/*        className="max-h-[45px] w-fit"*/}
-                {/*        disabled={disabled || !inStock}*/}
-                {/*    >*/}
-                {/*        {Array.from({length: maxDisplayQuantity}).map((_, i) => {*/}
-                {/*            const value = i + 1;*/}
-                {/*            return (*/}
-                {/*                <option value={value} key={i}>*/}
-                {/*                    {value}*/}
-                {/*                </option>*/}
-                {/*            );*/}
-                {/*        })}*/}
-                {/*    </NativeSelect>*/}
-                {/*</div>*/}
 
                 <div className="flex sm:flex-row items-center py-4 gap-x-2 text-base-semi">
                   <label
@@ -421,17 +387,19 @@ const ProductActions: React.FC<ProductActionsProps> = ({
             shipping to {countryLabel}
           </span>
         </div>
+        <div className={"py-2"}>
         <StockInformation inStock={inStock} message={inStockMessage} />
+        </div>
         <AddToCartButton
           title={
             !inStock
               ? "Out of stock"
-              : isBothSelected
+              : isColorSelected
                 ? "Add to cart"
                 : "Choose options"
           }
           onClick={addToCart}
-          disabled={!isBothSelected || !inStock}
+          disabled={!isColorSelected || !inStock}
           className={"truncate"}
         />
       </div>

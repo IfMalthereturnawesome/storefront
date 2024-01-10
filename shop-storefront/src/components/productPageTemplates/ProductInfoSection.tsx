@@ -63,7 +63,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                     className={"bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1  h-full pb-8 md:pb-10 2xl:pb-12 lg:pb-4"}
                     ref={info}>
                     <div id={"buy-now"}
-                         className="content-container__big  flex flex-col xl:flex-row xl:items-start pb-0 lg:pb-12 relative ">
+                         className="content-container__big overflow-auto flex flex-col xl:flex-row xl:items-start pb-0 lg:pb-12 relative ">
                         {isDesktop && (
                             <div className="hidden lg:flex flex-col gap-y-8 w-full">
                                 <ZoomableImageGallery key={selectedColor} images={imagePaths}/>
@@ -76,13 +76,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({product, productFAQ, s
                             </div>
                         )}
 
-                        <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] relative">
-                            <div style={{minHeight: 'calc(100vh - 64px)'}}>
+                        <div className="flex-shrink-0 w-full xl:max-w-[344px] medium:max-w-[490px] ">
+                            <div style={{minHeight: 'calc(150vh - 64px)'}}>
                                 <div
-                                    className="relative lg:sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-8 flex flex-col "
+                                    className="lg:sticky top-0 py-0  sm:py-4 px-4 lg:py-6 lg:px-8 flex flex-col z-[100]"
                                 >
                                     <ProductInfo product={product} onColorChange={handleColorChange}/>
+                                    <div className={"pt-2 pb-6"}>
                                     <PaymentOptionsIcons />
+                                    </div>
                                     <MoneyBackGuarantee />
                                     <TestimonialsBannerSmall />
 

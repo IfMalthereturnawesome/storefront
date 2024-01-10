@@ -354,7 +354,7 @@ input:checked + .slider:before {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #EAEEEF;
+    background: #E8F0F0;
     display: flex;
     justify-content: center;
     align-items: center;

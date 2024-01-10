@@ -64,7 +64,7 @@ const ColorOptionSelect: React.FC<ColorOptionSelectProps> = ({
     return (
         <div className="flex flex-col gap-y-1">
             <div className="flex justify-between items-center">
-                <span className="text-base-semi">Select {title}</span>
+                <span className="text-large-semi">Select {title}</span>
                 {additionalElement}
             </div>
             <span className="mb-2 text-sm font-medium">

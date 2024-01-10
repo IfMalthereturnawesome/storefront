@@ -9,7 +9,7 @@ import clsx from "clsx"
 import React, { Fragment, useMemo } from "react"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import ColorOptionSelect from "@modules/products/components/option-select/ColorOptionSelect"
-import SizeOptionSelect from "@modules/products/components/option-select/SizeOptionSelect"
+
 
 import AddToCartButton from "@/components/elements/AddToCart"
 
@@ -114,9 +114,9 @@ const MobileActions: React.FC<MobileActionsProps> = ({
               </Button>
 
               <AddToCartButton
-                title={isBothSelected ? "Add to cart" : "Choose size"}
+                title={isColorSelected ? "Add to cart" : "Choose color"}
                 onClick={addToCart}
-                disabled={!isBothSelected}
+                disabled={!isColorSelected}
                 className={"!text-xs !leading-tight"}
               />
             </div>
@@ -181,26 +181,33 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                                   </div>
                               ))}
 
-                          {/* Render Size Options */}
-                          {product.options
-                              .filter(option => option.title.toLowerCase() === "size")
-                              .map((option) => (
-                                  <SizeOptionSelect
-                                      key={option.id}
-                                      option={option}
-                                      current={options[option.id]}
-                                      updateOption={updateOptions}
-                                      title={option.title}
-                                      stockLevels={stockLevels[options[colorOptionId]] || {}}
-                                  />
-                              ))}
+                          {/*/!* Render Size Options *!/*/}
+                          {/*{product.options*/}
+                          {/*    .filter(option => option.title.toLowerCase() === "size")*/}
+                          {/*    .map((option) => (*/}
+                          {/*        <SizeOptionSelect*/}
+                          {/*            key={option.id}*/}
+                          {/*            option={option}*/}
+                          {/*            current={options[option.id]}*/}
+                          {/*            updateOption={updateOptions}*/}
+                          {/*            title={option.title}*/}
+                          {/*            stockLevels={stockLevels[options[colorOptionId]] || {}}*/}
+                          {/*        />*/}
+                          {/*    ))}*/}
+
 
                           {/* Add to Cart Button */}
                           <div className="my-5">
                             <AddToCartButton
-                                title={isBothSelected ? "Add to cart" : "Choose size"}
+                                title={
+                                  !inStock
+                                      ? "Out of stock"
+                                      : isColorSelected
+                                          ? "Add to cart"
+                                          : "Choose options"
+                                }
                                 onClick={addToCart}
-                                disabled={!isBothSelected}
+                                disabled={!isColorSelected || !inStock}
                                 className="!text-xs !leading-tight"
                             />
                           </div>
