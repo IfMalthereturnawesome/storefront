@@ -2,7 +2,7 @@ import React from "react"
 
 const PaymentOptionsIcons = () => {
   return (
-    <div className="flex flex-row justify-center items-center">
+    <div className="flex flex-row justify-center py-2 items-center">
         <svg width="500" height="70" viewBox="0 0 1356 170" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d_4_56)">
                 <rect x="925.323" y="24.3229" width="182.562" height="124.354" rx="14.5521" fill="white" stroke="#D9D9D9" strokeWidth="2.64583"/>

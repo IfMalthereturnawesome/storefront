@@ -98,7 +98,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*DESKTOP START */}
 
-            <div className={"hidden lg:block font-poppins bg-black"}>
+            <div className={"hidden lg:block font-poppins bg-black overflow-hidden"}>
 
 
 
@@ -147,7 +147,7 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
 
             {/*MOBILE START */}
 
-            <div className={"lg:hidden block font-poppins"}>
+            <div className={"lg:hidden block font-poppins overflow-hidden"}>
 
 
                 <MobileDoubleImageSection
