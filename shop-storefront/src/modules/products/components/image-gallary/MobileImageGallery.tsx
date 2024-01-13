@@ -31,7 +31,7 @@ const MobileImageGallery = ({ images }) => {
                 {images.map((image, index) => (
                     <SwiperSlide key={image}>
                         <div className="swiper-zoom-container w-[50%]">
-                            <Image height={460} width={400} src={image} alt={`Slide ${index}`} className={"fade-in "} quality={95} priority />
+                            <Image height={460} width={400} src={image} alt={`Slide ${index}`} className={"fade-in "} quality={92}  />
                         </div>
                     </SwiperSlide>
                 ))}
