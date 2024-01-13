@@ -435,7 +435,7 @@ input:checked + .slider:before {
     }
 
     .swiper-slide img {
-        object-fit: contain;
+        object-fit: cover;
     }
 
 
