@@ -71,7 +71,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             )}
 
             {/* Mobile Image Gallery */}
-            {isTabletAndSmaller && <MobileImageGallery images={imagePaths} />}
+            {/*{isTabletAndSmaller && <MobileImageGallery images={imagePaths} />}*/}
           </div>
 
           {/* Right side - Sticky Sidebar */}

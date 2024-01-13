@@ -393,6 +393,7 @@ input:checked + .slider:before {
 .mySwiper .swiper-slide {
     max-width: 25%;
     height: 7vh;
+    object-fit: cover;
 
     opacity: 0.4;
 }
@@ -413,7 +414,7 @@ input:checked + .slider:before {
     }
 
     .swiper-slide img {
-        object-fit: contain;
+        object-fit: cover;
     }
 
 

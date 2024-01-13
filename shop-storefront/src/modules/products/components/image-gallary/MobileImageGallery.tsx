@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs, Zoom, Pagination, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/free-mode';
 import 'swiper/css/thumbs';
 import 'swiper/css/zoom';
 import 'swiper/css/pagination';
@@ -39,7 +38,7 @@ const MobileImageGallery = ({ images }) => {
 
             <Swiper
                 onSwiper={setThumbsSwiper}
-                spaceBetween={10}
+                spaceBetween={5}
                 slidesPerView={4}
                 freeMode
                 watchSlidesProgress
