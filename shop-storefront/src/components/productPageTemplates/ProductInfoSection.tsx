@@ -31,7 +31,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   const info = useRef<HTMLDivElement>(null)
 
   const isDesktop = useBetterMediaQuery("(min-width: 1024px)")
-  const isTabletAndSmaller = useBetterMediaQuery("(max-width: 1023px)")
+
 
   const inView = useIntersection(info, "0px")
   const productHandle = product?.handle || "sleep-mask-one"
@@ -71,7 +71,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             )}
 
             {/* Mobile Image Gallery */}
-            {isTabletAndSmaller && <MobileImageGallery images={imagePaths} />}
+            {!isDesktop && <MobileImageGallery images={imagePaths} />}
           </div>
 
           {/* Right side - Sticky Sidebar */}
