@@ -1,8 +1,10 @@
 'use client';
 // ParticlesBackground.tsx
-import React, {useState, useCallback, useRef, useEffect} from 'react';
-import type { Engine,} from "tsparticles-engine";
-import Particles from "react-tsparticles";
+import React, { useState, useCallback, useRef, useEffect, lazy, Suspense } from 'react';
+import type { Engine } from "tsparticles-engine";
+
+// Dynamically import Particles and loadFull
+const Particles = lazy(() => import("react-tsparticles").then(module => ({ default: module.Particles })));
 import {loadFull} from "tsparticles";
 
 
@@ -626,7 +628,9 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
 
 
     return showParticles ? ( // <-- Conditionally render based on showParticles
-        <Particles
+        <Suspense fallback={<div>Loading Particles...</div>}>
+            {showParticles && (
+                <Particles
             id="tsparticles"
             init={particlesInit}
             // @ts-ignore
@@ -634,7 +638,9 @@ const ParticlesBackground = ({shouldPlayParticles}) => {
             className="absolute top-0 left-0 z-[0] tsparticles-canvas-el "
             // @ts-ignore
             options={particleOptions}
-        />
+                />
+            )}
+        </Suspense>
     ) : null; // <-- Return null when you don't want to render anything
 };
 

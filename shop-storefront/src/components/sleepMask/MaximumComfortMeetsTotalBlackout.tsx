@@ -53,9 +53,13 @@ const MaximumComfortMeetsTotalBlackout = () => {
             }
 
 
-        });
-        return () => ctx.revert(); // <-- CLEANUP!
-    }, [isDesktop]);
+        }, [crawlContainerRef, whereverRef, wheneverRef]);
+
+    return () => {
+        ctx.revert();
+
+    };
+}, [isDesktop]);
 
     return (
         <>

@@ -57,7 +57,7 @@ type RootLayoutProps = {
 
 function Fallback() {
   return (
-    <div className="flex items-center justify-center h-screen ">
+    <div className="flex items-center bg-cyan-1 justify-center h-screen ">
       <div className="flex  items-center  justify-center lg:justify-start">
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-8"></div>
       </div>

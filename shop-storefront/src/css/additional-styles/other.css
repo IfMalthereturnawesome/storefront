@@ -97,7 +97,8 @@ Form.Message {
 /* Media query for headerFullWidth*/
 @media (min-width: 768px) {
     .headerFullWidth {
-        width: 99.2vw;
+        /* width = 100% - 2px on left and right side */
+        width: calc(100% - 4px);
     }
 }
 
@@ -355,7 +356,7 @@ input:checked + .slider:before {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #E8F0F0;
+    background: #E8EDEF;
     display: flex;
     justify-content: center;
     align-items: center;

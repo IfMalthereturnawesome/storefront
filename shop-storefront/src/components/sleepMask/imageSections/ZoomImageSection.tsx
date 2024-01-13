@@ -121,7 +121,7 @@ const ZoomImageSection: React.FC<ZoomImageSectionProps> = ({
                 {y: 0, opacity: 1, duration: 3, stagger: 0.5}
             );
 
-        });
+        }, [imageRef, headerRef, initialScrollTextRef, maximumTextRef, comfortTextRef, discoverTextRef, bigDescriptionTextRef]);
 
         return () => {
             ctx.revert();

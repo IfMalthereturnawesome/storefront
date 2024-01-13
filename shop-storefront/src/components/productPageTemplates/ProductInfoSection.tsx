@@ -75,7 +75,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           </div>
 
           {/* Right side - Sticky Sidebar */}
-          <div className="w-full lg:max-w-[364px] xl:max-w-[530px]">
+          <div className="w-full lg:max-w-[364px] xl:max-w-[440px] 2xl:max-w-[470px] 3xl:max-w-[510px]">
             <div
               style={{ minHeight: "calc(100vh - 64px)" }}
               className="sticky top-0"

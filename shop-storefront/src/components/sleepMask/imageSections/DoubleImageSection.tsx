@@ -94,7 +94,7 @@ const DoubleImageSection: React.FC<DoubleImageSectionProps> = ({
                 {y: 150}
             );
 
-        });
+        }, [image1Ref, image2Ref, headerRef]);
 
 
         return () => {
