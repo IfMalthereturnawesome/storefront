@@ -54,6 +54,7 @@ const MobileImageCarousel = ({ images }) => {
                             src={image}
                             width={500}
                             height={500}
+                            quality={95}
                             priority={index === 0}
                             alt={`Slide ${index}`}
                             className={`block w-full h-full object-cover ${currentIndex === index ?
