@@ -45,7 +45,7 @@ const MobileImageCarousel = ({ images }) => {
                 className="overflow-hidden w-full h-[80%]"
             >
                 <div
-                    className="flex    "
+                    className="flex"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                     {images.map((image, index) => (
@@ -55,7 +55,6 @@ const MobileImageCarousel = ({ images }) => {
                             width={500}
                             height={500}
                             quality={95}
-                            priority={index === 0}
                             alt={`Slide ${index}`}
                             className={`block w-full h-full object-cover ${currentIndex === index ?
                                 'opacity-100' : 'opacity-0'}`}
