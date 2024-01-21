@@ -24,11 +24,7 @@ const MobileImageCarousel = ({ images }) => {
             setLoadedImages([...loadedImages, newIndex]);
         }
 
-        // Optionally preload the next image
-        const preloadIndex = direction === 'left' ? newIndex + 1 : newIndex - 1;
-        if (preloadIndex >= 0 && preloadIndex < images.length && !loadedImages.includes(preloadIndex)) {
-            setLoadedImages(current => [...current, preloadIndex]);
-        }
+
     }
 
     const handleTouchStart = (e) => {
@@ -70,6 +66,7 @@ const MobileImageCarousel = ({ images }) => {
                             width={425}
                             height={425}
                             quality={88}
+
                             alt={`Slide ${index}`}
                             className="block w-full h-full object-cover"
                         />
