@@ -15,7 +15,7 @@ const MobileThinFeature = dynamic(() => import('@/components/sleepMask/mobile/Th
 const MobileMinimalWeight = dynamic(() => import('@/components/sleepMask/mobile/MinimalWeightMobile'));
 const MobileMaximumComfort = dynamic(() => import('@/components/sleepMask/mobile/MaximumComfortMeetsTotalBlackoutMobile'));
 
-const ProductInfoSection = dynamic(() => import('@/components/productPageTemplates/ProductInfoSection'));
+import ProductInfoSection from '@/components/productPageTemplates/ProductInfoSection';
 
 
 import DiscoverSleepMaskSection from '@/components/sleepMask/DiscoverSection';

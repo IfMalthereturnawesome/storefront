@@ -66,12 +66,14 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           {/* Left side - Image Gallery */}
           <div className="flex-1">
             {/* Desktop Image Gallery */}
-            {isDesktop && (
+           <div className={"hidden xsmall:block"}>
               <ZoomableImageGallery key={selectedColor} images={imagePaths} />
-            )}
+           </div>
 
             {/* Mobile Image Gallery */}
-            {!isDesktop && <MobileImageGallery images={imagePaths} />}
+            <div className={"block xsmall:hidden"}>
+           <MobileImageGallery images={imagePaths} />
+            </div>
           </div>
 
           {/* Right side - Sticky Sidebar */}

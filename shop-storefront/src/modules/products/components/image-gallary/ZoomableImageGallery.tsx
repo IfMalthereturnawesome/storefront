@@ -1,8 +1,6 @@
-// ZoomableImageGallery.tsx
-
 import React, {useEffect, useState} from 'react';
 import ZoomableImage from './ZoomableImage';
-import {ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/24/solid";
+
 
 type ZoomableImageGalleryProps = {
     images: string[];
@@ -36,7 +34,7 @@ const ZoomableImageGallery: React.FC<ZoomableImageGalleryProps> = ({images}) => 
 
 
     return (
-        <div className="relative grid grid-cols-2 gap-1 cursor-zoom-in  min-h-[1410px]">
+        <div className="relative grid grid-cols-2 gap-1 cursor-zoom-in  lg:min-h-[1410px]">
 
             {displayedImages.map((imagePath, index) => (
                 <ZoomableImage key={imagePath} src={imagePath}  alt={`Product image ${index + 1}`} />
