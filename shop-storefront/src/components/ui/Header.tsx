@@ -152,7 +152,7 @@ export default  function Header({className}: HeaderProps) {
             {/*<TopNavBanner bannerMsg="Step Into the Future: Discover the World's First Custom Sleep Mask!" />*/}
 
             <header id="header_1"
-                    className={`z-30  ${className || 'bg-cyan-1'} md:mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '} ${topNavBanner ? 'headerFullWidth' : 'headerOnScroll bg-cyan-2 dark:bg-mask-black'}`}>
+                    className={`z-30 border-b border-black md:border-none  ${className || 'bg-cyan-1'} md:mx-[2px] ${isVisible ? 'headerVisible' : 'headerHidden '} ${topNavBanner ? 'headerFullWidth' : 'headerOnScroll bg-cyan-2 dark:bg-mask-black'}`}>
 
                 {topNavBanner && <TopNav/>}
 

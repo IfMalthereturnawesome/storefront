@@ -3,18 +3,33 @@ import Image from 'next/image';
 
 const MobileImageCarousel = ({ images }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [loadedImages, setLoadedImages] = useState([0, 1]);
     const carouselRef = useRef(null);
     const isPrevDisabled = currentIndex === 0;
     const isNextDisabled = currentIndex === images.length - 1;
 
 
     const handleSwipe = (direction) => {
+        let newIndex = currentIndex;
         if (direction === 'left' && !isNextDisabled) {
-            setCurrentIndex(currentIndex + 1);
+            newIndex = currentIndex + 1;
         } else if (direction === 'right' && !isPrevDisabled) {
-            setCurrentIndex(currentIndex - 1);
+            newIndex = currentIndex - 1;
         }
-    };
+
+        setCurrentIndex(newIndex);
+
+        // Load the new image if it hasn't been loaded yet
+        if (!loadedImages.includes(newIndex)) {
+            setLoadedImages([...loadedImages, newIndex]);
+        }
+
+        // Optionally preload the next image
+        const preloadIndex = direction === 'left' ? newIndex + 1 : newIndex - 1;
+        if (preloadIndex >= 0 && preloadIndex < images.length && !loadedImages.includes(preloadIndex)) {
+            setLoadedImages(current => [...current, preloadIndex]);
+        }
+    }
 
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX;
@@ -48,20 +63,17 @@ const MobileImageCarousel = ({ images }) => {
                     className="flex"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
-                    {images.map((image, index) => (
+                    {loadedImages.map(index => (
                         <Image
                             key={index}
-                            src={image}
-                            width={500}
-                            height={500}
-                            quality={92}
-                            priority={index === 0}
+                            src={images[index]}
+                            width={425}
+                            height={425}
+                            quality={88}
                             alt={`Slide ${index}`}
-                            className={`block w-full h-full object-cover ${currentIndex === index ?
-                                'opacity-100' : 'opacity-0'}`}
+                            className="block w-full h-full object-cover"
                         />
                     ))}
-
                 </div>
             </div>
 
