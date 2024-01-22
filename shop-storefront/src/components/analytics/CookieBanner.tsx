@@ -79,20 +79,20 @@ export default function CookieBanner() {
   return (
     <>
       <div
-        className={`fixed z-50 left-0 bottom-0 lg:left-10 lg:bottom-5 
-                bg-cbg/60 lg:bg-cbg backdrop-blur-lg 
-                rounded-lg 
-        shadow-lg sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto border border-white/20 mb-2
+        className={`fixed z-50 left-1  bottom-0 lg:left-10 lg:bottom-5 
+                bg-cbg/90 lg:bg-cbg backdrop-blur-lg border border-black lg:border-none
+                lg:rounded-lg  w-[98%]
+        shadow-lg sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto mb-2 
         ${
           cookieConsent !== null ? "hidden" : "flex"
         } flex-col lg:flex-row lg:items-start justify-between`}
       >
-        <div className="text-black  pl-5 pr-3 py-5 lg:mt-0 flex flex-col items-center lg:items-start font-sans">
+        <div className="text-black  pl-5 pr-3 py-5 lg:mt-0 flex text-center md:text-left flex-col items-center lg:items-start font-sans">
           <p className={"text-lg inline font-extrabold"}>
             We use cookies to improve your experience.
           </p>
-          <p className={"inline-flex w-full"}>- only first-party cookies.</p>
-          <p className={"pt-4 text-sm"}>
+          <p className={"inline lg:w-full text-center md:text-left"}>- only first-party cookies.</p>
+          <p className={"pt-4 text-sm text-center md:text-left"}>
             No data is sent, shared or sold to a third-party.
           </p>
 
@@ -131,7 +131,6 @@ export default function CookieBanner() {
               <Image
                 height={400}
                 width={300}
-                priority
                 src="/images/ursulla-cookie-banner-arrow.png"
                 alt="Ursulla Cookie Banner"
                 className="w-[50%] h-full lg:w-[90%] object-cover "

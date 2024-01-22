@@ -10,7 +10,7 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import ZoomableImageGallery from "@modules/products/components/image-gallary/ZoomableImageGallery"
 import ProductFAQ from "@modules/products/components/product-faqs"
 import MobileImageGallery from "@modules/products/components/image-gallary/MobileImageGallery"
-import useBetterMediaQuery from "@/utils/useBetterMediaQuery"
+
 import PaymentOptionsIcons from "@/components/ecommerceElements/PaymentOptionsIcons"
 import MoneyBackGuarantee from "@/components/ecommerceElements/MoneyBackGuarantee"
 import { TestimonialsBannerSmall } from "@/components/reviews/TestimonialsBanner"
@@ -30,7 +30,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 }) => {
   const info = useRef<HTMLDivElement>(null)
 
-  const isDesktop = useBetterMediaQuery("(min-width: 1024px)")
+
 
 
   const inView = useIntersection(info, "0px")
@@ -67,9 +67,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         className={
           "relative z-[0] lg:z-[1] bg-gradient-to-r from-cyan-2 to-cyan-1 dark:from-cyan-3 dark:to-cyan-1 "
         }
-        ref={info}
+
       >
-        <div className="content-container__big flex flex-col lg:flex-row " >
+        <div className="content-container__big flex flex-col lg:flex-row "  >
           {/* Left side - Image Gallery */}
           <div className="flex-1">
             {/* Desktop Image Gallery */}
@@ -84,7 +84,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           </div>
 
           {/* Right side - Sticky Sidebar */}
-          <div className="w-full lg:max-w-[364px] xl:max-w-[440px] 2xl:max-w-[470px] 3xl:max-w-[510px]">
+          <div className="w-full lg:max-w-[364px] xl:max-w-[440px] 2xl:max-w-[470px] 3xl:max-w-[510px]" >
             <div
               style={{ minHeight: "calc(100vh - 64px)" }}
               className="sticky top-0"
@@ -101,18 +101,22 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             </div>
           </div>
         </div>
-        <div className={"py-2 lg:py-6"}></div>
+        <div ref={info}>
+        <div className={"py-2 lg:py-6"} ></div>
 
         {/* Additional sections */}
         <ProductTabs product={product} />
+
         <ProductFAQ
+
           productFAQ={productFAQ}
           shippingFAQ={shippingFAQ}
           returnFAQ={returnFAQ}
         />
+        </div>
       </div>
 
-        <MobileActions
+      <MobileActions
           product={product}
           show={inView}
           onColorChange={handleColorChange}
