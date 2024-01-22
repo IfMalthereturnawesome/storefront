@@ -38,6 +38,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   const [selectedColor, setSelectedColor] = useState("Warm Grey")
   const productImageDirectory = `/images/products/${productHandle}/`
   const [imagePaths, setImagePaths] = useState([])
+  const [mobileImagePaths, setMobileImagePaths] = useState([])
 
   const handleColorChange = (color) => {
     setSelectedColor(color)
@@ -46,11 +47,17 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   useEffect(() => {
     if (selectedColor) {
       const basePath = `${productImageDirectory}${selectedColor}/`
-      const updatedPaths = Array(4)
-        .fill(null)
-        .map((_, idx) => `${basePath}image${idx + 1}.jpg`)
+      const mobileBasePath = `${basePath}mobile/`
 
+      const updatedPaths = Array(6)
+          .fill(null)
+          .map((_, idx) => `${basePath}image${idx + 1}.jpg`)
       setImagePaths(updatedPaths)
+
+      const updatedMobilePaths = Array(6)
+          .fill(null)
+          .map((_, idx) => `${mobileBasePath}image${idx + 1}.jpg`)
+      setMobileImagePaths(updatedMobilePaths)
     }
   }, [selectedColor, productImageDirectory])
 
@@ -72,7 +79,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
             {/* Mobile Image Gallery */}
             <div className={"block xsmall:hidden"}>
-           <MobileImageGallery images={imagePaths} />
+           <MobileImageGallery images={mobileImagePaths} />
             </div>
           </div>
 

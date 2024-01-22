@@ -39,9 +39,9 @@ const MobileImageCarousel = ({ images }) => {
         const currentTouch = e.touches[0].clientX;
         const diff = touchDown - currentTouch;
 
-        if (diff > 5) {
+        if (diff > 7) {
             handleSwipe('left');
-        } else if (diff < -5) {
+        } else if (diff < -7) {
             handleSwipe('right');
         }
 
@@ -65,8 +65,7 @@ const MobileImageCarousel = ({ images }) => {
                             src={images[index]}
                             width={425}
                             height={425}
-                            quality={88}
-
+                            quality={90}
                             alt={`Slide ${index}`}
                             className="block w-full h-full object-cover"
                         />

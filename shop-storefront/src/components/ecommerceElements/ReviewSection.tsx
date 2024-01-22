@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState,useEffect} from 'react';
 import {Dialog, Transition} from '@headlessui/react';
 import ReviewsComponent from "@/components/sleepMask/ReviewsDisplay";
 import {XMarkIcon} from "@heroicons/react/24/outline";
@@ -10,44 +10,51 @@ type Review = {
     date: string;
     summary: string;
     color: string;
-    size: string;
+
 };
 
 const mockReviews: Review[] = [
-    { id: 1, rating: 5, date: '1.dec. 2023', summary: 'Absolute game-changer for my sleep!', color: 'Warm Grey', size: 'M' },
-    { id: 2, rating: 5, date: '3.dec. 2023', summary: 'Very comfortable, blocks light effectively.', color: 'Warm Grey', size: 'S' },
-    { id: 3, rating: 5, date: '6.dec. 2023', summary: 'Best sleep mask I have ever used!', color: 'Warm Grey', size: 'L' },
-    { id: 4, rating: 4, date: '9.dec. 2023', summary: 'Good quality, feels great on the skin.', color: 'Space Grey', size: 'XS' },
-    { id: 5, rating: 5, date: '11.dec. 2023', summary: 'Enhanced my sleep quality significantly!', color: 'Space Grey', size: 'M' },
-    { id: 6, rating: 4, date: '14.dec. 2023', summary: 'Really helps with blocking out the lights from my husbands TV.', color: 'Warm Grey', size: 'S' },
-    { id: 7, rating: 5, date: '16.dec. 2023', summary: 'Total blackout, exactly what I needed!', color: 'Warm Grey', size: 'L' },
-    { id: 8, rating: 4, date: '18.dec. 2023', summary: 'Great for side sleepers, no pressure on eyes.', color: 'Space Grey', size: 'M' },
-    { id: 9, rating: 5, date: '20.dec. 2023', summary: 'Works like it should, no complaints.', color: 'Space Grey', size: 'XL' },
-    { id: 10, rating: 4, date: '22.dec. 2023', summary: 'Good quality so far', color: 'Space Grey', size: 'S' },
-    { id: 11, rating: 5, date: '22.dec. 2023', summary: 'Comfortable and effective, a must-have!', color: 'Warm Grey', size: 'L' },
-    { id: 12, rating: 5, date: '27.dec. 2023', summary: 'Slept through the night for the first time in ages!', color: 'Space Grey', size: 'XS' },
-    { id: 13, rating: 4, date: '28.dec. 2023', summary: 'Quality material, stays in place all night.', color: 'Warm Grey', size: 'M' },
-    { id: 14, rating: 5, date: '30.dec. 2023', summary: 'Surprisingly comfortable, love the darkness it provides.', color: 'Space Grey', size: 'S' },
-    { id: 15, rating: 4, date: '1.jan. 2024', summary: 'Effective light blocking, just a bit tight.', color: 'Warm Grey', size: 'S' },
-    { id: 16, rating: 5, date: '3.jan. 2024', summary: 'Perfect for my night shifts, total darkness.', color: 'Space Grey', size: 'L' },
-    { id: 17, rating: 5, date: '3.jan. 2024', summary: '', color: 'Space Grey', size: 'L' },
-    { id: 18, rating: 4, date: '5.jan. 2024', summary: 'Good value for money, highly recommend.', color: 'Warm Grey', size: 'M' },
-    { id: 19, rating: 5, date: '6.jan. 2024', summary: 'Luxuriously soft and completely blocks out light.', color: 'Space Grey', size: 'S' },
-    { id: 20, rating: 4, date: '7.jan. 2024', summary: 'No more sleep interruptions, quite pleased.', color: 'Warm Grey', size: 'XS' },
-    { id: 21, rating: 5, date: '8.jan. 2024', summary: 'Finally, a sleep mask that fits my large head!', color: 'Space Grey', size: 'XL' },
-    { id: 22, rating: 4, date: '8.jan. 2024', summary: '', color: 'Space Grey', size: 'S' },
-    { id: 23, rating: 5, date: '8.jan. 2024', summary: 'My wife seems to like it ', color: 'Warm Grey', size: 'L' },
-    { id: 24, rating: 5, date: '9.jan. 2024', summary: 'Helps me during my midday naps', color: 'Warm Grey', size: 'M' },
+    { id: 1, rating: 5, date: '1.dec. 2023', summary: 'Absolute game-changer for my sleep!', color: 'Warm Grey'},
+    { id: 2, rating: 5, date: '3.dec. 2023', summary: 'Very comfortable, blocks light effectively.', color: 'Warm Grey'},
+    { id: 3, rating: 5, date: '6.dec. 2023', summary: 'Best sleep mask I have ever used!', color: 'Warm Grey'},
+    { id: 4, rating: 4, date: '9.dec. 2023', summary: 'Good quality, feels great on the skin.', color: 'Space Grey'},
+    { id: 5, rating: 5, date: '11.dec. 2023', summary: 'Enhanced my sleep quality significantly!', color: 'Space Grey'},
+    { id: 6, rating: 4, date: '14.dec. 2023', summary: 'Really helps with blocking out the lights from my husbands TV.', color: 'Warm Grey'},
+    { id: 7, rating: 5, date: '16.dec. 2023', summary: 'Total blackout, exactly what I needed!', color: 'Warm Grey'},
+    { id: 8, rating: 4, date: '18.dec. 2023', summary: 'Great for side sleepers, no pressure on eyes.', color: 'Space Grey'},
+    { id: 9, rating: 5, date: '21.dec. 2023', summary: 'Works like it should, no complaints.', color: 'Space Grey'},
+    { id: 10, rating: 4, date: '21.dec. 2023', summary: 'Good quality so far', color: 'Space Grey'},
+    { id: 11, rating: 5, date: '22.dec. 2023', summary: 'Comfortable and effective, a must-have!', color: 'Warm Grey'},
+    { id: 12, rating: 5, date: '27.dec. 2023', summary: 'Slept through the night for the first time in ages!', color: 'Space Grey'},
+    { id: 13, rating: 4, date: '28.dec. 2023', summary: 'Quality material, stays in place all night.', color: 'Warm Grey'},
+    { id: 14, rating: 5, date: '30.dec. 2023', summary: 'Surprisingly comfortable, love the darkness it provides.', color: 'Space Grey'},
+    { id: 15, rating: 4, date: '2.jan. 2024', summary: 'Effective light blocking, just a bit tight.', color: 'Warm Grey'},
+    { id: 16, rating: 5, date: '3.jan. 2024', summary: 'Perfect for my night shifts, total darkness.', color: 'Space Grey'},
+    { id: 17, rating: 5, date: '3.jan. 2024', summary: '', color: 'Space Grey'},
+    { id: 18, rating: 4, date: '5.jan. 2024', summary: 'Good value for money, highly recommend.', color: 'Warm Grey'},
+    { id: 19, rating: 5, date: '6.jan. 2024', summary: 'Luxuriously soft and completely blocks out light.', color: 'Space Grey'},
+    { id: 20, rating: 4, date: '7.jan. 2024', summary: 'No more sleep interruptions, quite pleased.', color: 'Warm Grey'},
+    { id: 21, rating: 5, date: '8.jan. 2024', summary: 'Finally, a sleep mask that fits my large head!', color: 'Space Grey'},
+    { id: 22, rating: 4, date: '8.jan. 2024', summary: '', color: 'Space Grey'},
+    { id: 23, rating: 5, date: '8.jan. 2024', summary: 'My wife seems to like it ', color: 'Warm Grey'},
+    { id: 24, rating: 5, date: '9.jan. 2024', summary: 'Helps me during my midday naps', color: 'Warm Grey'},
+    { id: 25, rating: 5, date: '10.jan. 2024', summary: 'Incredibly comfortable, and the fit is just right!', color: 'Space Grey'},
+    { id: 26, rating: 4, date: '13.jan. 2024', summary: 'Blocks light well, but could be a bit softer.', color: 'Space Grey'},
+    { id: 27, rating: 5, date: '15.jan. 2024', summary: 'A lifesaver for my overnight flights.', color: 'Warm Grey'},
+    { id: 28, rating: 3, date: '16.jan. 2024', summary: 'Good, but leaves slight marks on the face in the morning, but they go away quickly.', color: 'Space Grey'},
+    { id: 29, rating: 5, date: '18.jan. 2024', summary: 'The best sleep mask I’ve ever owned. Highly recommend!', color: 'Space Grey'},
+    { id: 30, rating: 5, date: '20.jan. 2024', summary: 'I got these for my mom cause she really liked mine when she tried \'em. They got a strong strap, super comfy, and pretty much block out all the light. They\'re still good after washing. Best ones I\'ve ever got.', color: 'Warm Grey'},
+    { id: 31, rating: 5, date: '22.jan. 2024', summary: 'Effective in blocking light, and stays comfortable the whole night.', color: 'Warm Grey'},
 
 ];
 
-
-
+const sortedReviews = [...mockReviews].sort((a, b) => b.id - a.id);
 
 const ReviewsSection: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const initialReviewsToShow = 5;
-    const [visibleReviews, setVisibleReviews] = useState<Review[]>(mockReviews.slice(0, initialReviewsToShow));
+    const [visibleReviews, setVisibleReviews] = useState<Review[]>(sortedReviews.slice(0, initialReviewsToShow));
+
 
 // Calculate the average rating based on all reviews
     const averageRating = mockReviews.reduce((acc, review) => acc + review.rating, 0) / mockReviews.length;
@@ -147,7 +154,6 @@ const ReviewsSection: React.FC = () => {
                                             <p className="text-sm text-gray-800 font-poppins">{review.summary}</p>
                                             <div className="mt-2 text-xs text-gray-500">
                                                 <span>Color: {review.color} </span>
-                                                <span>Size: {review.size} </span>
                                             </div>
                                         </div>
                                     ))}
