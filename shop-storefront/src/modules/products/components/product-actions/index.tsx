@@ -70,6 +70,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({
     return "0" // Default value if price or region is not available
   }, [product.variants, regionCurrency, cart?.region])
 
+  console.log("product price", product.variants[0].prices.find(
+      (price) => price.currency_code === regionCurrency
+  ))
+
   const getCountryLabel = () => {
     if (!countryCode || !regions) {
       return "EU"
@@ -302,7 +306,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
               {/* Sale Price (if applicable) */}
               {selectedPrice.price_type === "sale" && (
                 <span className="text-lg text-gray-800 dark:text-gray-300">
-                  Was <span className="line-through"> {initialUnitPrice}</span>
+                  Was <span className="line-through"> {initialUnitPrice} </span>
                 </span>
               )}
 
