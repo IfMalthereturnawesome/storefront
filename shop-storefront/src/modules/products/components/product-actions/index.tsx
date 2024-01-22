@@ -55,20 +55,25 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   const { countryCode } = useStore()
   const { regions } = useRegions()
 
+  console.log("product", product)
+
   const regionCurrency = cart && cart.region ? cart.region.currency_code : "dkk"
   const initialUnitPrice = useMemo(() => {
-    const anyVariantPrice = product.variants[0].prices.find(
-      (price) => price.currency_code === regionCurrency
-    )
-    if (anyVariantPrice && cart?.region) {
+    // Find a variant price that is not part of 'Wintersale' and matches the region currency
+    const nonWinterSalePrice = product.variants[0].prices.find(price =>
+        price.currency_code === regionCurrency &&
+        (!price.price_list || price.price_list.name !== 'Wintersale')
+    );
+
+    if (nonWinterSalePrice && cart?.region) {
       return formatAmount({
-        amount: anyVariantPrice.amount,
+        amount: nonWinterSalePrice.amount,
         region: cart.region,
         includeTaxes: false,
       })
     }
     return "0" // Default value if price or region is not available
-  }, [product.variants, regionCurrency, cart?.region])
+  }, [product.variants, regionCurrency, cart?.region]);
 
 
   const getCountryLabel = () => {
