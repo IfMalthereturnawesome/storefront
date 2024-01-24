@@ -17,10 +17,11 @@ export default function robots(): MetadataRoute.Robots {
         disallow: excludedPaths,
       },
       {
-        userAgent: ["Applebot", "Bingbot"],
+        userAgent: ["*"],
         allow: ["/"],
         disallow: excludedPaths,
       },
+
     ],
     sitemap: "https://www.eightathletics.com/sitemap.xml",
   }

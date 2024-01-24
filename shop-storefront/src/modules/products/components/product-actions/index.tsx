@@ -55,7 +55,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   const { countryCode } = useStore()
   const { regions } = useRegions()
 
-  console.log("product", product)
 
   const regionCurrency = cart && cart.region ? cart.region.currency_code : "dkk"
   const initialUnitPrice = useMemo(() => {
