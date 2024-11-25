@@ -19,6 +19,11 @@ import ProductInfoSection from '@/components/productPageTemplates/ProductInfoSec
 
 
 import DiscoverSleepMaskSection from '@/components/sleepMask/DiscoverSection';
+import Hero from "@/components/sleepMask/Hero";
+import HeaderOverlayOnImage from "@/components/sleepMask/imageSections/HeaderOverlayOnImage";
+import ProductChoice from "@/components/sleepMask/ProductChoice";
+import {SleepMaskCustomData, SleepMaskOneData} from "@/utils/productData";
+import VideoAnimation from "@/components/sleepMask/VideoAnimation";
 
 type ProductsTemplate = {
     product: PricedProduct
@@ -89,7 +94,17 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             {/*        description3={""}*/}
             {/*    />*/}
             {/*</div>*/}
+            <div className="bg-mask-black">
+                <VideoAnimation
+                    product={"Sleep Mask"}
+                    description1={"Enter a new sleep era where total blackout meets unmatched comfort. "}
+                    description2={"Custom-fit for your unique face. "}
+                    description3={"Elevate your peak performance, no matter where you are and how you sleep."}
+                />
 
+
+
+            </div>
 
             <ProductInfoSection product={product} productFAQ={productFAQ} shippingFAQ={shippingFAQ}
                                 returnFAQ={returnsFAQ}/>
@@ -196,10 +211,10 @@ const ProductSleepMaskOneTemplate: React.FC<ProductsTemplate> = ({product}) => {
             {/*MOBILE END */}
 
 
-            {/*
+
             <ProductChoice product1={SleepMaskOneData} product2={SleepMaskCustomData}
                            currentProductTitle="Sleep Mask One"/>
-*/}
+
 
         </ProductProvider>
     )
